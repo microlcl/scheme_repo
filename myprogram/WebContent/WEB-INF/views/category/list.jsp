@@ -30,15 +30,7 @@
 				animate: true,
 				collapsible: true,
 				fitColumns: true,
-				data: {'rows':[
-	{'id':1,'name':'类别','modified':'3/4/2010','comment':'所有类别','iconCls':'icon-ok'},
-	{'id':2,'name':'视频','modified':'3/4/2010','comment':'视频分类','_parentId':1,'state':'closed'},
-	{'id':21,'name':'自拍','trashed':'是','modified':'3/4/2010','comment':'自己拍摄的视频','_parentId':2},
-	{'id':22,'name':'动画','trashed':'否','modified':'3/7/2010','comment':'动画格式的视频','_parentId':2},
-	{'id':23,'name':'电影','trashed':'是','modified':'3/9/2010','comment':'电影片段','_parentId':2},
-	{'id':3,'name':'音频','trashed':'否','modified':'3/11/2010','comment':'录音材料','_parentId':1},
-	{'id':4,'name':'图片','trashed':'是','modified':'3/19/2010','comment':'照片，截图等','_parentId':1}
-]},
+				url:'${ctx}/category/api/search',
 				method: 'get',
 				idField: 'id',
 				treeField: 'name',

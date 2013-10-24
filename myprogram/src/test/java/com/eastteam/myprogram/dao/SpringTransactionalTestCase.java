@@ -8,7 +8,9 @@ package com.eastteam.myprogram.dao;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 /**
@@ -20,6 +22,8 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
  * @ContextConfiguration(locations = { "/applicationContext.xml" })
  * 
  */
+@DirtiesContext
+@ContextConfiguration(locations = { "/applicationContext.xml" })
 @ActiveProfiles(Profiles.UNIT_TEST)
 public abstract class SpringTransactionalTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 

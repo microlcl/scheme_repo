@@ -2,13 +2,10 @@ package com.eastteam.myprogram.dao;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.eastteam.myprogram.entity.User;
 
-@DirtiesContext
-@ContextConfiguration(locations = { "/applicationContext.xml" })
+
 public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 
 	@Autowired
