@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,9 +36,9 @@ public class CategoryController {
 		return map;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST,value = "/api/create",produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.POST,value = "/api/create")
 	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody Category category) {
+	public ResponseEntity<?> create(Category category) {
 
 		System.out.println("in create:" + category);
 
