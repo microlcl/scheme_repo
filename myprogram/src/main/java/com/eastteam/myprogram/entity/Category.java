@@ -1,0 +1,60 @@
+package com.eastteam.myprogram.entity;
+
+import java.util.Date;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Category {
+	
+	private String id;
+	@JsonProperty(value="_parentId")
+	private String pid;
+	private String name;
+	private String trashed;
+	private String comment;
+	private Date createdDate;
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPid() {
+		return pid;
+	}
+	public void setPid(String pid) {
+		this.pid = pid;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getTrashed() {
+		return trashed;
+	}
+	public void setTrashed(String trashed) {
+		this.trashed = trashed;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
+}

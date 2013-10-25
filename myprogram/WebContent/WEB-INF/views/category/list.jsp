@@ -50,7 +50,8 @@
 		<thead>
 			<tr>
 				<th data-options="field:'name',width:180,editor:'text'">类别名称</th>
-				<th	data-options="field:'trashed',width:60,align:'right',editor:'text'">是否可用</th>
+				<th
+					data-options="field:'trashed',width:60,align:'right',editor:'text'">是否可用</th>
 				<th data-options="field:'modified',width:80">修改时间</th>
 				<th data-options="field:'comment',width:80,editor:'text'">备注</th>
 				<th data-options="field:'id',width:80,formatter:showBtn">操作</th>
@@ -98,6 +99,14 @@
 				t.treegrid('endEdit', editingId);
 				editingId = undefined;
 				t.treegrid('reloadFooter');
+				$.get({
+					url : "${ctx}/category/api/create?id=1&comment='abc'",
+
+					success : function(resp) {
+						console.log('in success function');
+						console.log(resp);
+					}
+				});
 			}
 		}
 
