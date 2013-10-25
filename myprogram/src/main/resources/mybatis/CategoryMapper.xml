@@ -6,6 +6,6 @@
     
 	<!-- 查询用户,演示: 1.输入用map传入多个参数 2.<where>语句, 智能添加where和and关键字 3.输出直接映射对象 -->
 	<select id="search" resultType="Category">
-		select id, pid, name, trashed,created_date as createdDate, comment from category
+		select id, pid, name, trashed,created_date as createdDate,comment from category
 	</select>
 </mapper> 
