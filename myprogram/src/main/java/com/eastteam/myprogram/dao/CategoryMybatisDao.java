@@ -7,5 +7,5 @@ import com.eastteam.myprogram.entity.Category;
 @MyBatisRepository
 public interface CategoryMybatisDao {
 	public List<Category> search();
-
+	public void save(Category category);	
 }
