@@ -7,5 +7,10 @@ import com.eastteam.myprogram.entity.Category;
 @MyBatisRepository
 public interface CategoryMybatisDao {
 	public List<Category> search();
-	public void save(Category category);	
+	public void insert(Category category);	
+	/**
+	 * Get the max sub category ID for the input Parent Id
+	 * @param ParentId Parent category ID
+	 */
+	public String getMaxSubId(String pid);
 }

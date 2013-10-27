@@ -2,6 +2,7 @@ package com.eastteam.myprogram.service.category;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,5 +19,23 @@ public class CategoryService {
 	
 	public List<Category> search() {
 		return categoryDao.search();
+	}
+	
+	public void insert(Category category) {
+		String pid = category.getPid();
+		if (StringUtils.isNotBlank(pid)) {
+			category.setId(getNextSubId(pid));
+		}
+		this.categoryDao.insert(category);
+	} 
+	
+	String getNextSubId(String pid) {
+		String maxSubId = this.categoryDao.getMaxSubId(pid);
+		if (StringUtils.isBlank(maxSubId)) {
+			return pid + "-1";
+		}
+		String seq = StringUtils.substringAfterLast(maxSubId, "-");
+		int nexID = Integer.parseInt(seq) + 1;
+		return pid + "-" + nexID;
 	}
 }

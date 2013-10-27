@@ -2,15 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- namespace必须指向Dao接口 -->
-<mapper namespace="com.eastteam.myprogram.dao.CategoryMybatisDao">
-    
+<mapper namespace="com.eastteam.myprogram.dao.CategoryMybatisDao">    
 	<select id="search" resultType="Category">
 		select id, pid, name, trashed,created_date as createdDate,comment from category
 	</select>
-	<insert id="save" parameterType="Category">
+	<insert id="insert" parameterType="Category">
 		insert into category (
 		id, pid, name, trashed,created_date,comment)
 		values (
 		#{id}, #{pid}, #{name}, #{trashed}, now(),#{comment})
 	</insert>
+	<select id="getMaxSubId" resultType="String">
+		select max(id) from category where pid=#{pid}
+	</select>
 </mapper> 

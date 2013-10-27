@@ -30,8 +30,16 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 		category.setName("道具");
 		category.setTrashed("F");
 		category.setComment("我的备注");
-		this.categoryDao.save(category);
+		this.categoryDao.insert(category);
 		assertEquals(1, categoryDao.search().size() - size);
+	}
+	
+	@Test
+	public void getMaxSubId() {
+		String maxSubId = this.categoryDao.getMaxSubId("1-1");
+		assertTrue("1-1-2".equals(maxSubId));
+		String maxSubId2 = this.categoryDao.getMaxSubId("2");
+		assertNull(maxSubId2);
 	}
 
 }
