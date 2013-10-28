@@ -20,6 +20,7 @@ function edit() {
 	var row = $('#tg').treegrid('getSelected');
 	if (row) {
 		editingId = row.id
+		console.log("editingId=" + editingId);
 		$('#tg').treegrid('beginEdit', editingId);
 	}
 }
@@ -27,20 +28,25 @@ function edit() {
 function save() {
 	if (editingId != undefined) {
 		var t = $('#tg');
+		var node = t.treegrid('getSelected');
 		t.treegrid('endEdit', editingId);
-		editingId = undefined;
-		t.treegrid('reloadFooter');
+
 		$.ajax({
 			url : './api/create',
 			type: 'post',
 			data:{
-				id:'111',
-				name:'lcl',
-				comment:'my comment'
+				id:node.id,
+				pid:node._parentId,
+				name:node.name,
+				trashed:node.trashed,
+				comment:node.comment
 			},
 			success : function(resp) {
 				console.log('in success function');
 				console.log(resp);
+				
+				editingId = undefined;
+				t.treegrid('reloadFooter');
 			}
 		});
 	}

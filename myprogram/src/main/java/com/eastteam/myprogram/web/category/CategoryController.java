@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,8 @@ import com.eastteam.myprogram.service.category.CategoryService;
 @Controller
 @RequestMapping(value = "/category")
 public class CategoryController {
+	
+	private static Logger logger = LoggerFactory.getLogger(CategoryController.class);
 	
 	@Autowired
 	private CategoryService categoryService;
@@ -40,8 +44,8 @@ public class CategoryController {
 	@ResponseBody
 	public ResponseEntity<?> create(Category category) {
 
-		System.out.println("in create:" + category);
-
+		logger.info("in create:" + category);
+		
 		return new ResponseEntity(HttpStatus.CREATED);
 	}
 }
