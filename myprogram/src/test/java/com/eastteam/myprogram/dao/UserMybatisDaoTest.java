@@ -1,12 +1,16 @@
 package com.eastteam.myprogram.dao;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eastteam.myprogram.entity.User;
 
 
 public class UserMybatisDaoTest extends SpringTransactionalTestCase {
+	
+	private static Logger logger = LoggerFactory.getLogger(UserMybatisDaoTest.class);
 
 	@Autowired
 	private UserMybatisDao userDao;
@@ -29,7 +33,7 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 	
 	@Test
 	public void saveUser()  throws Exception {
-		System.out.println("hello");
+		logger.info("hello");
 		User user = new User();
 		user.setLoginName("lichunlei");
 		user.setName("Cheney");
