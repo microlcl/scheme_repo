@@ -25,16 +25,18 @@ public class CategoryService {
 		return categoryDao.search();
 	}
 	
-	public void insert(Category category) {
-		String pid = category.getPid();
-		if (StringUtils.isNotBlank(pid)) {
-			category.setId(getNextSubId(pid));
+	public void save(Category category) {
+		String id = category.getId();
+		if (isExist(id)) {
+			this.categoryDao.update(category);
+			logger.info("update category with id= {} finished.", id);
+		} else {
+			this.categoryDao.insert(category);
+			logger.info("insert category with id= {} finished.", id);
 		}
-		this.categoryDao.insert(category);
 	} 
 	
-	String getNextSubId(String pid) {
-		logger.info("log演示：pid={}，演示完毕", pid);
+	public String getNextSubId(String pid) {
 		String maxSubId = this.categoryDao.getMaxSubId(pid);
 		if (StringUtils.isBlank(maxSubId)) {
 			return pid + "-1";
@@ -42,5 +44,9 @@ public class CategoryService {
 		String seq = StringUtils.substringAfterLast(maxSubId, "-");
 		int nexID = Integer.parseInt(seq) + 1;		
 		return pid + "-" + nexID;
+	}
+	
+	private boolean isExist(String id) {
+		return this.categoryDao.getCount(id) > 0;
 	}
 }

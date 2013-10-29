@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,11 +41,21 @@ public class CategoryController {
 		return map;
 	}
 	
+	@RequestMapping(method = RequestMethod.POST,value = "/api/subId/{pid}")
+	@ResponseBody
+	public String getNextSubId(@PathVariable("pid")String pid) {
+		logger.info("pid={}", pid);
+		String nextSubId = this.categoryService.getNextSubId(pid);
+		logger.info("nextSubId={}", nextSubId);
+		return nextSubId;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST,value = "/api/create")
 	@ResponseBody
-	public ResponseEntity<?> create(Category category) {
+	public ResponseEntity<?> save(Category category) {
 
-		logger.info("in create:" + category);
+		logger.info("in save:" + category);
+		this.categoryService.save(category);
 		
 		return new ResponseEntity(HttpStatus.CREATED);
 	}

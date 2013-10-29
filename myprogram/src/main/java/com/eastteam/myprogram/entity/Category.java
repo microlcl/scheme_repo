@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Category {
@@ -14,6 +15,8 @@ public class Category {
 	private String name;
 	private String trashed;
 	private String comment;
+	// 设定JSON序列化时的日期格式
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	private Date createdDate;
 	
 	public String getId() {

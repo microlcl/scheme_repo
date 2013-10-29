@@ -12,7 +12,19 @@
 		values (
 		#{id}, #{pid}, #{name}, #{trashed}, now(),#{comment})
 	</insert>
+	<update id="update" parameterType="Category">
+		update category set
+		pid=#{pid}, 
+		name=#{name}, 
+		trashed=#{trashed},
+		created_date=now(),
+		comment=#{comment}
+		where id=#{id}
+	</update>
 	<select id="getMaxSubId" resultType="String">
 		select max(id) from category where pid=#{pid}
+	</select>
+	<select id="getCount" resultType="int">
+		select count(0) from category where id=#{id}
 	</select>
 </mapper> 

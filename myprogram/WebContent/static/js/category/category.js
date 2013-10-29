@@ -1,9 +1,14 @@
+var editingId;
+
 function showBtn(value) {
 	var btn = '<a href="javascript:void(0)"  onclick="save()">保存</a>'
 	return btn;
 }
 
 function onContextMenu(e, row) {
+	//只允许没有编辑行的情况下出现右键菜单，避免多行编辑。
+	if (editingId) 
+		return;
 	e.preventDefault();
 	$(this).treegrid('select', row.id);
 	$('#mm').menu('show', {
@@ -11,7 +16,7 @@ function onContextMenu(e, row) {
 		top : e.pageY
 	});
 }
-var editingId;
+
 function edit() {
 	if (editingId != undefined) {
 		$('#tg').treegrid('select', editingId);
@@ -19,7 +24,7 @@ function edit() {
 	}
 	var row = $('#tg').treegrid('getSelected');
 	if (row) {
-		editingId = row.id
+		editingId = row.id;
 		console.log("editingId=" + editingId);
 		$('#tg').treegrid('beginEdit', editingId);
 	}
@@ -28,9 +33,10 @@ function edit() {
 function save() {
 	if (editingId != undefined) {
 		var t = $('#tg');
-		var node = t.treegrid('getSelected');
+//		var node = t.treegrid('getSelected');
+		var node = t.treegrid('find', editingId);
 		t.treegrid('endEdit', editingId);
-
+		console.log('in save(), node.id=' + node.id);
 		$.ajax({
 			url : './api/create',
 			type: 'post',
@@ -50,25 +56,44 @@ function save() {
 			}
 		});
 	}
+	
 }
 
-var idIndex = 100;
 function append() {
-	idIndex++;
-	var d1 = new Date();
+	var node = $('#tg').treegrid('getSelected');
+	//get id from server side
+	$.ajax({
+		url : './api/subId/'+node.id,
+		type: 'post',
+		success : function(resp) {
+			console.log('in success function');
+			console.log(resp);
+			generateSonNode(node.id,resp);
+		}
+	});
+
+}
+
+function generateSonNode(pid,sonId) {
 	var d2 = new Date();
 	d2.setMonth(d2.getMonth() + 1);
-	var node = $('#tg').treegrid('getSelected');
+	
+	console.log("in generateSonNode():");
+	console.log('pid=' + pid + ',sonID=' + sonId);
+
 	$('#tg').treegrid('append', {
-		parent : node.id,
+		parent : pid,
 		data : [ {
-			id : idIndex,
-			name : '类别' + idIndex,
-			trashed : '是',
-			modified : $.fn.datebox.defaults.formatter(d2),
-			comment : '增加了一个新的类别'
+			id : sonId,			
+			name : '',
+			trashed : 'F',
+			createdDate : $.fn.datebox.defaults.formatter(d2),
+			comment : ''
 		} ]
 	})
+	editingId = sonId;
+	$('#tg').treegrid('select', editingId);
+	$('#tg').treegrid('beginEdit', editingId);
 }
 function removeIt() {
 	var node = $('#tg').treegrid('getSelected');

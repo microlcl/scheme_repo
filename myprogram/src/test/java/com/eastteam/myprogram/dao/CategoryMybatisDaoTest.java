@@ -19,14 +19,14 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 	private CategoryMybatisDao categoryDao;
 
 	@Test
-	public void search() {
+	public void testSearch() {
 		List<Category> categorys = categoryDao.search();
 		logger.info(categorys.toString());
 		assertTrue(categorys.size() > 0);
 	}
 	
 	@Test
-	public void save() {
+	public void testInsert() {
 		int size = categoryDao.search().size();
 		Category category = new Category();
 		category.setId("1-2");
@@ -39,11 +39,28 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 	}
 	
 	@Test
-	public void getMaxSubId() {
+	public void testUpdate() {
+		Category category = new Category();
+		category.setId("1-2");
+		category.setPid("1");
+		category.setName("道具_updated");
+		category.setTrashed("F");
+		category.setComment("我的备注_for_update");
+		this.categoryDao.update(category);
+	}
+	
+	@Test
+	public void testGetMaxSubId() {
 		String maxSubId = this.categoryDao.getMaxSubId("1-1");
 		assertTrue("1-1-2".equals(maxSubId));
 		String maxSubId2 = this.categoryDao.getMaxSubId("2");
 		assertNull(maxSubId2);
+	}
+	
+	@Test
+	public void testGetCount() {
+		assertTrue(this.categoryDao.getCount("1-1") == 1);
+		assertTrue(this.categoryDao.getCount("6") == 0);
 	}
 
 }
