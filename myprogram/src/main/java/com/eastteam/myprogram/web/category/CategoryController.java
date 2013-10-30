@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.service.category.CategoryService;
@@ -58,5 +59,11 @@ public class CategoryController {
 		this.categoryService.save(category);
 		
 		return new ResponseEntity(HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/api/delete/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable("id") String id) {
+		categoryService.delete(id);
 	}
 }

@@ -49,4 +49,8 @@ public class CategoryService {
 	private boolean isExist(String id) {
 		return this.categoryDao.getCount(id) > 0;
 	}
+	
+	public void delete(String id) {
+		this.categoryDao.delete(id);
+	} 
 }

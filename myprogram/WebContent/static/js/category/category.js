@@ -98,7 +98,28 @@ function generateSonNode(pid,sonId) {
 function removeIt() {
 	var node = $('#tg').treegrid('getSelected');
 	if (node) {
-		$('#tg').treegrid('remove', node.id);
+		children = $('#tg').treegrid('getChildren', node.id);
+		console.log('children.length=' + children.length);
+		if (children.length > 0) {
+			$.messager.alert('Message','请先删除其子节点');
+			return;
+		}
+		$.messager.confirm('Confirm','你确定要删除这个节点吗?',function(r){
+			if (r){
+				$.ajax({
+					url : './api/delete/'+ node.id,
+					type: 'delete',
+					success : function(resp) {
+						console.log('Delete node success:node.id = ' + node.id);
+						$('#tg').treegrid('remove', node.id);
+						
+						editingId = undefined;
+						t.treegrid('reloadFooter');
+					}
+				});	
+			}
+			});	
+	
 	}
 }
 function collapse() {

@@ -27,4 +27,10 @@
 	<select id="getCount" resultType="int">
 		select count(0) from category where id=#{id}
 	</select>
+	<delete id="delete">
+		delete from category where id=#{id}
+	</delete>
+	<select id="getSubNodeCount" resultType="int">
+		select count(0) from category where pid=#{pid}
+	</select>
 </mapper> 

@@ -62,5 +62,11 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 		assertTrue(this.categoryDao.getCount("1-1") == 1);
 		assertTrue(this.categoryDao.getCount("6") == 0);
 	}
+	
+	@Test
+	public void testGetSubNodeCount() {
+		assertTrue(this.categoryDao.getSubNodeCount("1-1") == 2);
+		assertTrue(this.categoryDao.getSubNodeCount("6") == 0);
+	}
 
 }
