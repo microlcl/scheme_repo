@@ -4,8 +4,9 @@ insert into ss_task (id, title, description, user_id) values(3, 'Try SpringFuse'
 insert into ss_task (id, title, description, user_id) values(4, 'Try Spring Roo','http://www.springsource.org/spring-roo', 2);
 insert into ss_task (id, title, description, user_id) values(5, 'Release SpringSide 4.0','As soon as posibble.', 2);
 
-insert into ss_user (id, login_name, name, password, salt, roles, register_date) values(1,'admin','Admin','691b14d79bf0fa2215f155235df5e670b64394cc','7efbd59d9741d34f','admin','2012-06-04 01:00:00');
-insert into ss_user (id, login_name, name, password, salt, roles, register_date) values(2,'user','Calvin','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','6d65d24122c30500','user','2012-06-04 02:00:00');
+insert into users (id, name, password, email, register_date) values('myloginname','admin','691b14d79bf0fa2215f155235df5e670b64394cc','myloginname@sina.com','2012-06-04 01:00:00');
+insert into users (id, name, password, email, register_date) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00');
+insert into users (id, name, password, email, register_date) values('microlcl','李春雷','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','microlcl@gmail.com', now());
 
 insert into category (id, pid, name, created_date, trashed, comment) values('1','','类别','2012-06-04 02:00:00','F','分类根节点');
 insert into category (id, pid, name, created_date, trashed, comment) values('1-1','1','视频','2012-06-04 02:00:00','F','视频根节点');

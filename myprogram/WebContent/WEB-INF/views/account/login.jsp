@@ -13,14 +13,14 @@
 		<c:if test="${not empty user.loginName}">
 			<div class="alert alert-error input-medium controls">
 				<button class="close" data-dismiss="alert">×</button>
-				${user.loginName},您已经登陆了。
+				${user.name},您已经登陆了。
 			</div>
 		</c:if>
-		<c:if test="${empty user.loginName}">
+		<c:if test="${empty user.name}">
 			<div class="control-group">
 				<label for="loginName" class="control-label">名称:</label>
 				<div class="controls">
-					<input type="text" id="loginName" name="loginName"
+					<input type="text" id="loginName" name="id"
 						value="${username}" class="input-medium required" />
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 					<label class="checkbox" for="rememberMe"><input
 						type="checkbox" id="rememberMe" name="rememberMe" /> 记住我</label> <input
 						id="submit_btn" class="btn btn-primary" type="submit" value="登录" />
-					<a class="btn" href="${ctx}/register">注册</a> <span
+					<a class="btn" href="${ctx}/account/register">注册</a> <span
 						class="help-block">(输入任意account登陆)
 					</span>
 				</div>

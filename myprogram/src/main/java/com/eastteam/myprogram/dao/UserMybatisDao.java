@@ -1,5 +1,8 @@
 package com.eastteam.myprogram.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.eastteam.myprogram.entity.User;
 
 
@@ -11,5 +14,6 @@ import com.eastteam.myprogram.entity.User;
 @MyBatisRepository
 public interface UserMybatisDao {
 	void save(User user);
+	List<User> search(Map<String, Object> parameters);
 //	User findByLoginName(String loginName);
 }

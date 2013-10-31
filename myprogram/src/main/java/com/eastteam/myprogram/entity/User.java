@@ -1,43 +1,116 @@
 package com.eastteam.myprogram.entity;
 
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Transient;
-
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.ImmutableList;
 
 
 public class User{
-	private Long id;
-	private String loginName;
+	private String id;
 	private String name;
 	private String plainPassword;
 	private String password;
-	private String salt;
-	private String roles;
+	private String sex;
+	private String departmentId;
+	private String email;
+	private String phoneNum;
+	private String address;
+	private String howmtown;
+	private Date birthday;
 	private Date registerDate;
+	private String status;	
+	private String comment;	
 
 	public User() {
 	}
 
-	public User(Long id) {
+	public User(String id) {
 		this.id = id;
 	}
 
-	@NotBlank
-	public String getLoginName() {
-		return loginName;
+
+	public String getId() {
+		return id;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getHowmtown() {
+		return howmtown;
+	}
+
+	public void setHowmtown(String howmtown) {
+		this.howmtown = howmtown;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	@NotBlank
@@ -49,14 +122,15 @@ public class User{
 		this.name = name;
 	}
 
-	// 不持久化到数据库，也不显示在Restful接口的属性.
-	@Transient
+	// 不显示在Restful接口的属性.
 	@JsonIgnore
 	public String getPlainPassword() {
+		
 		return plainPassword;
 	}
 
 	public void setPlainPassword(String plainPassword) {
+		this.password = this.encode(plainPassword);
 		this.plainPassword = plainPassword;
 	}
 
@@ -68,28 +142,6 @@ public class User{
 		this.password = password;
 	}
 
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
-	public String getRoles() {
-		return roles;
-	}
-
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-
-	@Transient
-	@JsonIgnore
-	public List<String> getRoleList() {
-		// 角色列表在数据库中实际以逗号分隔字符串存储，因此返回不能修改的List.
-		return ImmutableList.copyOf(StringUtils.split(roles, ","));
-	}
 
 	// 设定JSON序列化时的日期格式
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
@@ -99,6 +151,10 @@ public class User{
 
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
+	}
+	
+	private String encode(String plainPassword) {
+		return "encode_" + plainPassword;
 	}
 
 	@Override

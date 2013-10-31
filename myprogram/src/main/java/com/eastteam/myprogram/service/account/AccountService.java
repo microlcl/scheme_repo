@@ -1,5 +1,8 @@
 package com.eastteam.myprogram.service.account;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +24,12 @@ public class AccountService {
 
 	
 	public void registerUser(User user) {
-		user.setRoles("user");
+//		user.setRoles("user");
 		userDao.save(user);
+	}
+	
+	public List<User> search(Map parameters) {
+		return userDao.search(parameters);
 	}
 	
 	public User findUserByLoginName(String loginName) {

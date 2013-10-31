@@ -2,12 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
-<c:if test="${not empty user.loginName}">
+<c:if test="${not empty user.id}">
 
 	<div id="leftbar" class="span2">
 		<h1>管理</h1>
 		<div class="submenu">
-			<a id="account-tab" href="${ctx}/category/">类别管理</a>
+			<a id="category-tab" href="${ctx}/category/">类别管理</a>
+			<a id="account-tab" href="${ctx}/account/list">人员管理</a>
 		</div>
 		<h1>菜单2</h1>
 		<div class="submenu">

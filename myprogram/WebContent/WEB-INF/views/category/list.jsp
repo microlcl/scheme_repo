@@ -15,6 +15,11 @@
 	type="text/javascript"></script>
 <script src="${ctx}/static/js/category/category.js"
 	type="text/javascript"></script>
+<script>
+		$(document).ready(function() {
+			$("#category-tab").addClass("active");
+		});
+	</script>
 </head>
 <body>
 	<h2>类别管理</h2>

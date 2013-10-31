@@ -8,7 +8,7 @@
 
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-user"></i> ${user.loginName}
+					<i class="icon-user"></i> ${user.name}
 					<span class="caret"></span>
 				</a>
 			
