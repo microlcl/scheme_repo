@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springside.modules.web.Servlets;
 
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.account.AccountService;
+import com.eastteam.myprogram.web.Servlets;
 
 @Controller
 @RequestMapping(value = "/account")

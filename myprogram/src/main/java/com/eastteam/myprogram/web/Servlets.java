@@ -17,6 +17,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springside.modules.utils.Encodes;
 
@@ -151,8 +152,8 @@ public class Servlets {
 					// Do nothing, no values found at all.
 				} else if (values.length > 1) {
 					params.put(unprefixed, values);
-				} else {
-					params.put(unprefixed, values[0]);
+				} else if (StringUtils.isNotBlank(values[0])){
+					params.put(unprefixed, values[0].trim());
 				}
 			}
 		}

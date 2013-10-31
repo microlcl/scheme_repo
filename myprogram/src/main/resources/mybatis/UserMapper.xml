@@ -29,7 +29,10 @@
 				id=#{id}
 			</if>
 			<if test="name != null">
-				name=#{name}
+				and name=#{name}
+			</if>
+			<if test="email != null">
+				and email=#{email}
 			</if>
 		</where>
 	</select>

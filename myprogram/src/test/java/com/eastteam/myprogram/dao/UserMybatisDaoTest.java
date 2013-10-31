@@ -30,19 +30,19 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 //
 	@Test
 	public void searchUser() throws Exception {
-//		Map<String, Object> parameter = Maps.newHashMap();
-//		parameter.put("name", "admin");
-//		List<User> result = userDao.search(parameter);
-//		logger.info("result1=" + result);
-//		assertEquals(1, result.size());
-//		assertEquals("admin", result.get(0).getName());
-//		
-//		List<User> result2 = userDao.search(null);
-//		logger.info("result2=" + result2);
-//		assertEquals(3, result2.size());
+		Map<String, Object> parameter = Maps.newHashMap();
+		parameter.put("name", "admin");
+		List<User> result = userDao.search(parameter);
+		logger.info("result1=" + result);
+		assertEquals(1, result.size());
+		assertEquals("admin", result.get(0).getName());
+		
+		List<User> result2 = userDao.search(null);
+		logger.info("result2=" + result2);
+		assertEquals(3, result2.size());
 		
 		Map<String, Object> parameter3 = Maps.newHashMap();
-		parameter3.put("email", "microlclgmail.com");
+		parameter3.put("email", "microlcl@gmail.com");
 		parameter3.put("id", "microlcl");
 		List<User> result3 = userDao.search(parameter3);
 		logger.info("result1=" + result3);
