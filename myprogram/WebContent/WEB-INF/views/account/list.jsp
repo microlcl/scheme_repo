@@ -52,6 +52,22 @@
 			</tr>
 		</c:forEach>
 		</tbody>		
-	</table>
+	</table>	
+
+
+
+<div class="pagination">
+	<ul>
+		<li><a href="?page=1&amp;sortType=auto&amp;">&lt;&lt;</a></li>
+		<li><a href="?page=2&amp;sortType=auto&amp;">&lt;</a></li>	
+		<li><a href="?page=1&amp;sortType=auto&amp;">1</a></li>
+		<li><a href="?page=2&amp;sortType=auto&amp;">2</a></li>
+		<li class="active"><a href="?page=3&amp;sortType=auto&amp;">3</a></li>
+		<li><a href="?page=4&amp;sortType=auto&amp;">4</a></li>
+		<li><a href="?page=5&amp;sortType=auto&amp;">5</a></li>
+		<li><a href="?page=4&amp;sortType=auto&amp;">&gt;</a></li>
+		<li><a href="?page=5&amp;sortType=auto&amp;">&gt;&gt;</a></li>
+	</ul>
+</div>
 </body>
 </html>
