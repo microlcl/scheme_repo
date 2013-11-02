@@ -9,6 +9,10 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +28,7 @@ import com.eastteam.myprogram.web.Servlets;
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
+	private static final int PAGE_SIZE = 3;
 	
 	private static Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
@@ -57,12 +62,18 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="list",method = RequestMethod.GET)
-	public String list(Model model, ServletRequest request) {
+	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
+			Model model, ServletRequest request) {
 		logger.info("in list");
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		logger.info(searchParams.toString());
-		List<User> users = this.accountService.search(searchParams);
+		
+		Pageable pageRequest = new PageRequest(pageNumber-1, PAGE_SIZE);
+		List<User> userList = this.accountService.search(searchParams, pageRequest);
+		Long count = this.accountService.getCount(searchParams);
+		Page<User> users = new PageImpl<User>(userList, pageRequest, count);
 		model.addAttribute("users", users);
+		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		return "account/list";
 	}
 

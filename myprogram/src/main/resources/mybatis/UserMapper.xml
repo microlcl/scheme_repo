@@ -35,8 +35,28 @@
 				and email=#{email}
 			</if>
 		</where>
+		order by id
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
 	</select>
+	
+	
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0) from users
+		<where>
+		    <if test="id != null">
+				id=#{id}
+			</if>
+			<if test="name != null">
+				and name=#{name}
+			</if>
+			<if test="email != null">
+				and email=#{email}
+			</if>
 
+		</where>
+	</select>
 
 
 	<!-- 删除用户 -->

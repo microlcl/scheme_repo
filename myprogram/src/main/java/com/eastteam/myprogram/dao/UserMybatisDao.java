@@ -15,5 +15,6 @@ import com.eastteam.myprogram.entity.User;
 public interface UserMybatisDao {
 	void save(User user);
 	List<User> search(Map<String, Object> parameters);
+	Long getCount(Map<String, Object> parameters);
 //	User findByLoginName(String loginName);
 }
