@@ -35,7 +35,9 @@
 				and email=#{email}
 			</if>
 		</where>
-		order by id
+		<if test="sort != null">
+			order by ${sort}
+		</if>
 		<if test="offset != null">
 			limit #{offset}, #{pageSize}
 		</if>

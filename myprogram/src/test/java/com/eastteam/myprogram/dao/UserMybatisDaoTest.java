@@ -52,9 +52,11 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		parameter4.put("offset", "8");
 		parameter4.put("pageSize", "5");
 		parameter4.put("name", "乔布斯");
+		parameter4.put("sort", "id");
 		List<User> result4 = userDao.search(parameter4);
 		logger.info("result4=" + result4);
 		assertEquals(2, result4.size());
+		
 		
 		
 	}

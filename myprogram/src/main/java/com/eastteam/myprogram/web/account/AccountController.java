@@ -1,6 +1,5 @@
 package com.eastteam.myprogram.web.account;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -10,9 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +20,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.account.AccountService;
 import com.eastteam.myprogram.web.Servlets;
+import com.google.common.collect.Maps;
 
 @Controller
 @RequestMapping(value = "/account")
 public class AccountController {
-	private static final int PAGE_SIZE = 3;
+	
+	private static final int PAGE_SIZE = 5;
+	
+	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
+	static {
+		sortTypes.put("id", "登录名");
+		sortTypes.put("name", "姓名");
+		sortTypes.put("email", "邮件");
+	}
 	
 	private static Logger logger = LoggerFactory.getLogger(AccountController.class);
 	
@@ -63,17 +68,17 @@ public class AccountController {
 	
 	@RequestMapping(value="list",method = RequestMethod.GET)
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
+			@RequestParam(value = "sortType", defaultValue = "id") String sortType,
 			Model model, ServletRequest request) {
 		logger.info("in list");
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-		logger.info(searchParams.toString());
-		
-		Pageable pageRequest = new PageRequest(pageNumber-1, PAGE_SIZE);
-		List<User> userList = this.accountService.search(searchParams, pageRequest);
-		Long count = this.accountService.getCount(searchParams);
-		Page<User> users = new PageImpl<User>(userList, pageRequest, count);
+		logger.info(searchParams.toString());		
+		Page<User> users = accountService.getCurrentPageContent(searchParams, pageNumber, PAGE_SIZE, sortType);
 		model.addAttribute("users", users);
+		model.addAttribute("sortType", sortType);
+		model.addAttribute("sortTypes", sortTypes);
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
+		logger.info("searchParams=" + searchParams);
 		return "account/list";
 	}
 

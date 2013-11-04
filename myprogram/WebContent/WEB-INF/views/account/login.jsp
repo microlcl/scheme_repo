@@ -10,13 +10,13 @@
 <body>
 	<form id="loginForm" action="${ctx}/login" method="post"
 		class="form-horizontal">
-		<c:if test="${not empty user.loginName}">
+		<c:if test="${not empty user.id}">
 			<div class="alert alert-error input-medium controls">
 				<button class="close" data-dismiss="alert">×</button>
 				${user.name},您已经登陆了。
 			</div>
 		</c:if>
-		<c:if test="${empty user.name}">
+		<c:if test="${empty user.id}">
 			<div class="control-group">
 				<label for="loginName" class="control-label">名称:</label>
 				<div class="controls">

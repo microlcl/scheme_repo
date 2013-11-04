@@ -19,13 +19,14 @@
 	</c:if>
 	
 	<div class="row">
-		<div class="offset4">
+		<div class="span">
 			<form class="form-search" action="#">
 			 	<label>登录名：</label> <input type="text" name="search_id"   class="input-small"  value="${param.search_id}"> 
 			    <label>邮件名：</label> <input type="text" name="search_email" class="input-small" value="${param.search_email}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 		    </form>
 	    </div>
+	    <tags:sort/>
 	</div>	
 			
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
