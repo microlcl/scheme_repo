@@ -49,7 +49,7 @@
 				<td>${user.departmentId}&nbsp;</td>
 				<td>${user.status}&nbsp;</td>
 				<td>
-						<a href="${ctx}/account/user/update/${user.id}" id="editLink-${user.id}">修改</a>
+						<a href="${ctx}/account/update/${user.id}" id="editLink-${user.id}">修改</a>
 				</td>
 			</tr>
 		</c:forEach>

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,6 +82,20 @@ public class AccountController {
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("searchParams=" + searchParams);
 		return "account/list";
+	}
+	
+	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+	public String update(@PathVariable("id") String id, Model model) {
+//		model.addAttribute("task", this.accountService.getUser(id));
+		return "account/userForm";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+		logger.info("in update action");
+//		this.accountService.save(user);
+		redirectAttributes.addFlashAttribute("message", "更新任务成功");
+		return "redirect:/account/list/";
 	}
 
 }
