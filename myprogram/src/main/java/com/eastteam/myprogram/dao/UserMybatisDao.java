@@ -17,4 +17,5 @@ public interface UserMybatisDao {
 	List<User> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
 //	User findByLoginName(String loginName);
+	User getUser(String id);
 }

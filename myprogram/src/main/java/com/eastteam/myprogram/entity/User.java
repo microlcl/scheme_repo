@@ -1,29 +1,32 @@
 package com.eastteam.myprogram.entity;
 
 import java.util.Date;
+import java.util.List;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 
 
-public class User{
+public class User extends BaseEntity{
 	private String id;
 	private String name;
 	private String plainPassword;
 	private String password;
 	private String sex;
-	private String departmentId;
 	private String email;
 	private String phoneNum;
 	private String address;
-	private String howmtown;
+	private String hometown;
 	private Date birthday;
 	private Date registerDate;
 	private String status;	
 	private String comment;	
+	
+	private Department department;
+	private List<Role> roles = Lists.newArrayList();
 
 	public User() {
 	}
@@ -47,14 +50,6 @@ public class User{
 
 	public void setSex(String sex) {
 		this.sex = sex;
-	}
-
-	public String getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(String departmentId) {
-		this.departmentId = departmentId;
 	}
 
 	public String getEmail() {
@@ -82,11 +77,11 @@ public class User{
 	}
 
 	public String getHowmtown() {
-		return howmtown;
+		return hometown;
 	}
 
 	public void setHowmtown(String howmtown) {
-		this.howmtown = howmtown;
+		this.hometown = howmtown;
 	}
 
 	public Date getBirthday() {
@@ -157,8 +152,20 @@ public class User{
 		return "encode_" + plainPassword;
 	}
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
+	public Department getDepartment() {
+		return department;
 	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+	
 }

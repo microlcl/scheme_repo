@@ -11,11 +11,11 @@ create table users (
 	name varchar(64) not null,
 	password varchar(255) not null,
 	sex varchar(2),
-	departent_id varchar(64),
+	department_id varchar(64),
 	email varchar(64),
 	phone_num varchar(20),
 	address varchar(64),
-	howmtown varchar(64),
+	hometown varchar(64),
 	birthday timestamp,
 	register_date timestamp,
 	status varchar(20),
@@ -67,13 +67,14 @@ create table role_function (
 
 create table departments (
 	department_id varchar(64) not null unique,
-	pid varchar(64) not null,
+	name varchar(64) not null,
+	pid varchar(64),
 	description varchar(128),
 	primary key (department_id)
 );
 
-create table user_department (
+create table user_role (
 	user_id varchar(64) not null,
-	department_id varchar(64) not null,
-	primary key (user_id,department_id)
+	role_id varchar(64) not null,
+	primary key (user_id,role_id)
 );

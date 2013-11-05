@@ -21,13 +21,15 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 	@Autowired
 	private UserMybatisDao userDao;
 
-//	@Test
-//	public void getUser() throws Exception {
-//		User user = userDao.get(1L);
-//		assertNotNull("User not found", user);
-//		assertEquals("admin", user.getLoginName());
-//	}
-//
+	@Test
+	public void getUser() throws Exception {
+		User user = userDao.getUser("userid1");
+		logger.info(user.toString());
+		assertNotNull("User not found", user);
+		User user2 = userDao.getUser("userid2");
+		assertNull(user2);
+	}
+
 	@Test
 	public void searchUser() throws Exception {
 		Map<String, Object> parameter = Maps.newHashMap();

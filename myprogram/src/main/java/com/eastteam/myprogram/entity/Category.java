@@ -2,12 +2,10 @@ package com.eastteam.myprogram.entity;
 
 import java.util.Date;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Category {
+public class Category extends BaseEntity {
 	
 	private String id;
 	@JsonProperty(value="_parentId")
@@ -54,10 +52,5 @@ public class Category {
 	}
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
-	}
-	
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 }

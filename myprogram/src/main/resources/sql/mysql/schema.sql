@@ -20,7 +20,8 @@ CREATE TABLE `category` (
 
 CREATE TABLE `departments` (
   `department_id` varchar(64) NOT NULL,
-  `pid` varchar(64) NOT NULL,
+   `name` varchar(64) NOT NULL,
+  `pid` varchar(64),
   `description` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`department_id`),
   UNIQUE KEY `department_id` (`department_id`)
@@ -61,10 +62,10 @@ CREATE TABLE `roles` (
   UNIQUE KEY `role_id` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `user_department` (
+CREATE TABLE `user_role` (
   `user_id` varchar(64) NOT NULL,
-  `department_id` varchar(64) NOT NULL,
-  PRIMARY KEY (`user_id`,`department_id`)
+  `role_id` varchar(64) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `users` (
@@ -72,11 +73,11 @@ CREATE TABLE `users` (
   `name` varchar(64) NOT NULL,
   `password` varchar(255) NOT NULL,
   `sex` varchar(2) DEFAULT NULL,
-  `departent_id` varchar(64) DEFAULT NULL,
+  `department_id` varchar(64) DEFAULT NULL,
   `email` varchar(64) DEFAULT NULL,
   `phone_num` varchar(20) DEFAULT NULL,
   `address` varchar(64) DEFAULT NULL,
-  `howmtown` varchar(64) DEFAULT NULL,
+  `hometown` varchar(64) DEFAULT NULL,
   `birthday` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `register_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `status` varchar(20) DEFAULT NULL,

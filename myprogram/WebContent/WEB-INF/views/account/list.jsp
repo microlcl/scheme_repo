@@ -46,7 +46,7 @@
 				<td>${user.id}&nbsp;</td>
 				<td>${user.name}&nbsp;</td>
 				<td>${user.email}&nbsp;</td>
-				<td>${user.departmentId}&nbsp;</td>
+				<td>&nbsp;</td>
 				<td>${user.status}&nbsp;</td>
 				<td>
 						<a href="${ctx}/account/update/${user.id}" id="editLink-${user.id}">修改</a>

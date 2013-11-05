@@ -60,6 +60,39 @@
 		</where>
 	</select>
 
+	<resultMap id="userDetailMap" type="User">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		<result property="email" column="email" />
+		<result property="phoneNum" column="phoneNum" />
+		<result property="address" column="address" />
+		<result property="hometown" column="hometown" />
+		<result property="birthday" column="birthday" />
+		<result property="registerDate" column="registerDate" />
+		<result property="status" column="status" />
+		<result property="comment" column="comment" />
+		<association property="department" column="master_id" javaType="Department">
+			<id property="id" column="department_id" />
+			<result property="name" column="department_name" />
+			<result property="description" column="department_description" />
+		</association>
+		<collection property="roles" javaType="Role">
+			<id property="id" column="role_id" />
+			<result property="name" column="role_name" />
+			<result property="description" column="role_description" />
+		</collection>
+	</resultMap>
+	
+	<select id="getUser" resultMap="userDetailMap">
+	select u.id, u.name,u.sex,u.email,u.phone_num as phoneNum,u.address,u.hometown,u.birthday,
+	u.register_date as registerDate,u.status,u.comment,
+	d.department_id,d.name as department_name,d.description as department_description,
+	r.role_id, r.name as role_name,r.description as role_description 
+	from users u, departments d,user_role ur, roles r 
+	where u.id=#{id} and u.department_id=d.department_id and u.id=ur.user_id and ur.role_id=r.role_id
+	</select>
+
 
 	<!-- 删除用户 -->
 	<!-- delete id="delete" parameterType="int">

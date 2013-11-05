@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 
 /**
  * 分页功能基类
@@ -49,5 +51,22 @@ public abstract class PageableService<T> {
 	 * @return 符合查询条件的总数
 	 */
 	public abstract Long getCount(Map parameters);
+	
+	/**
+	 * 目前在Sort.order里面只保存了一个排序用对象，所以只取第一个的value。如有需要，今后可以扩展。
+	 */
+	protected String getOrderValue(Sort sort) {
+		if (sort == null)
+			return null;
+		
+		Iterator<Order> iterator = sort.iterator();
+		String orderBy = null;
+		if (iterator.hasNext()) {
+			Order order = iterator.next();
+			orderBy = order.getProperty();
+		}
+		
+		return orderBy;		
+	}
 
 }
