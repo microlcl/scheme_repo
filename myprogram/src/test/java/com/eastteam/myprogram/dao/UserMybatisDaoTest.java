@@ -27,7 +27,8 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		logger.info(user.toString());
 		assertNotNull("User not found", user);
 		User user2 = userDao.getUser("userid2");
-		assertNull(user2);
+		logger.info(user2.toString());
+		assertNotNull(user2);
 	}
 
 	@Test
