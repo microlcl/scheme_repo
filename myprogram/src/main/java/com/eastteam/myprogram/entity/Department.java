@@ -7,11 +7,11 @@ public class Department extends BaseEntity {
 	private Department parent;	
 	private String description;
 
-	public String getDepartmentId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setDepartmentId(String departmentId) {
+	public void setId(String departmentId) {
 		this.id = departmentId;
 	}
 

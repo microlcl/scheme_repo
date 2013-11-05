@@ -25,6 +25,19 @@ insert into roles(role_id, name, description) values('R6', '销售部员工','�
 insert into user_role(user_id, role_id) values('userid1','R1');
 insert into user_role(user_id, role_id) values('userid1','R2');
 insert into user_role(user_id, role_id) values('userid1','R3');
+insert into user_role(user_id, role_id) values('userid2','R3');
+
+insert into functions(function_id, module_id, name, description, path) values('F1','M1','用户：查看','有权限查看用户列表','account/list');
+insert into functions(function_id, module_id, name, description, path) values('F2','M1','用户：修改','有权限修改用户信息','account/update');
+insert into functions(function_id, module_id, name, description, path) values('F3','M1','用户：增加','有权限修增加用户','account/add');
+insert into functions(function_id, module_id, name, description, path) values('F4','M2','资料：上传','有权限上传资料','assert/upload');
+insert into functions(function_id, module_id, name, description, path) values('F5','M2','资料：修改','有权限修改资料','assert/update');
+insert into functions(function_id, module_id, name, description, path) values('F6','M2','资料：删除','有权限删除资料','assert/delete');
+
+insert into role_function(role_id, function_id, description) values('R1','F1','');
+insert into role_function(role_id, function_id, description) values('R1','F2','');
+insert into role_function(role_id, function_id, description) values('R2','F4','');
+insert into role_function(role_id, function_id, description) values('R3','F6','');
 
 insert into category(id, pid, name, created_date, trashed, comment) values('1','','类别','2012-06-04 02:00:00','F','分类根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','视频','2012-06-04 02:00:00','F','视频根节点');
