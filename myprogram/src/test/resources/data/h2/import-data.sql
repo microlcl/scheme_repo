@@ -1,15 +1,15 @@
-insert into users(id, name, password, email, register_date, department_id) values('myloginname','admin','691b14d79bf0fa2215f155235df5e670b64394cc','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00','D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid1@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid2','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid2@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid3@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid4@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid5@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid6@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid7@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid8@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid9@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','userid10@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯','userid1','userid1@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid2','乔布斯','userid2','userid2@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯','userid3','userid3@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯','userid4','userid4@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯','userid5','userid5@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','userid6','userid6@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯','userid7','userid7@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','userid8','userid8@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','userid9','userid9@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯','userid99','userid10@gmail.com', now(),'D1-2');
 
 insert into departments(department_id, name, pid, description) values('D1','EastTeam','','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
