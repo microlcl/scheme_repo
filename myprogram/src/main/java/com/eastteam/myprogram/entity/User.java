@@ -20,7 +20,7 @@ public class User extends BaseEntity{
 	private String phoneNum;
 	private String address;
 	private String hometown;
-	private Date birthday;
+	private String birthday;
 	private Date registerDate;
 	private String status;	
 	private String comment;	
@@ -85,11 +85,11 @@ public class User extends BaseEntity{
 		this.hometown = hometown;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
