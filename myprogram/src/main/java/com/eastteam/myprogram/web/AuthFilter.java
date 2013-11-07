@@ -10,8 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +25,9 @@ import com.eastteam.myprogram.service.account.AccountService;
 public class AuthFilter implements Filter {
 	
 	private final String[] LOGIN_URL = {"/login", "/"};
+	
+	private static Logger logger = LoggerFactory.getLogger(AuthFilter.class);
+	
 	@Autowired
 	AccountService accountService;
 
@@ -34,24 +40,29 @@ public class AuthFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest)request;
-		String uri = WebUtils.getPathWithinApplication(req);
+		HttpServletRequest httpServletRequest = (HttpServletRequest)request;
+		HttpServletResponse httpServletResponse = (HttpServletResponse)response;
+		String uri = WebUtils.getPathWithinApplication(httpServletRequest);
 //		User user = accountService.getUser("userid1");
-		System.out.println("in filter: uri=" + uri);
+		logger.info("in filter: uri=" + uri);
 		if (uri.equalsIgnoreCase(LOGIN_URL[0]) || uri.equalsIgnoreCase(LOGIN_URL[1])) {
 			chain.doFilter(request, response);
 		} else {
-			User user = (User)req.getSession().getAttribute("user");
+			User user = (User)httpServletRequest.getSession().getAttribute("user");
 			if (user == null) {
-				// TODO 重定向到login界面
-				throw new ServletException("authorization failed: please login firstly.");
+				logger.info("没有登陆，即将跳转到登陆页面");				
+				httpServletResponse.sendRedirect(WebUtils.getContextPath(httpServletRequest) + "/login");
 			}
 			
 			if (isAccessable(uri, user)) {
 				chain.doFilter(request, response);
 			} else {
-				// TODO 405 error，重定向到405 error 页面
-				throw new ServletException("auth failed:" + uri);
+				// TODO 401 error，重定向到405 error 页面
+				logger.info("没有授权访问此资源");	
+//				httpServletResponse.setHeader("status", "404");
+				
+//				chain.doFilter(request, httpServletResponse);
+				throw new AuthorizationException("auth failed:" + uri);
 			}
 		}
 //		

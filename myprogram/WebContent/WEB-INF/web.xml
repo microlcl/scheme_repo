@@ -54,7 +54,8 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthFilter</filter-name>
-		<url-pattern>/*.abc</url-pattern>
+		<url-pattern>/account/*</url-pattern>
+		<url-pattern>/category/*</url-pattern>
 	</filter-mapping>
 
 	<filter>
@@ -83,6 +84,11 @@
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>
+	
+	<error-page>
+		<exception-type>com.eastteam.myprogram.web.AuthorizationException</exception-type>
+		<location>/WEB-INF/views/error/401.jsp</location>
+	</error-page>
 
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
