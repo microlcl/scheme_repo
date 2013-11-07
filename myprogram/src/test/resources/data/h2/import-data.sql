@@ -42,6 +42,7 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F4','M1-1','类别：查看','有权限查看类别','/category/');
 insert into functions(function_id, module_id, name, description, path) values('F5','M1-1','类别：修改','有权限新增类别','/category/api/save');
 insert into functions(function_id, module_id, name, description, path) values('F6','M1-1','类别：删除','有权限删除类别','/category/api/delete');
+insert into functions(function_id, module_id, name, description, path) values('F7','M1-1','角色：查看','有权限查看角色列表','/role');
 
 insert into role_function(role_id, function_id, description) values('R0','F0','');
 insert into role_function(role_id, function_id, description) values('R0','F1','');
@@ -50,6 +51,7 @@ insert into role_function(role_id, function_id, description) values('R0','F3',''
 insert into role_function(role_id, function_id, description) values('R0','F4','');
 insert into role_function(role_id, function_id, description) values('R0','F5','');
 insert into role_function(role_id, function_id, description) values('R0','F6','');
+insert into role_function(role_id, function_id, description) values('R0','F7','');
 insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1','');
 insert into role_function(role_id, function_id, description) values('R1','F2','');
