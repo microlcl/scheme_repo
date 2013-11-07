@@ -15,7 +15,8 @@ insert into departments(department_id, name, pid, description) values('D1','East
 insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-2','销售部','D1','EastTeam公司');
 
-insert into roles(role_id, name, description) values('R1', '管理员','超级用户');
+insert into roles(role_id, name, description) values('R0', '管理员','超级用户');
+insert into roles(role_id, name, description) values('R1', '管理员1','超级用户1');
 insert into roles(role_id, name, description) values('R2', '总经理','角色：总经理');
 insert into roles(role_id, name, description) values('R3', '研发部经理','角色：研发经理');
 insert into roles(role_id, name, description) values('R4', '研发部员工','角色：员工');
@@ -26,21 +27,35 @@ insert into user_role(user_id, role_id) values('userid1','R1');
 insert into user_role(user_id, role_id) values('userid1','R2');
 insert into user_role(user_id, role_id) values('userid1','R3');
 insert into user_role(user_id, role_id) values('userid2','R3');
+insert into user_role(user_id, role_id) values('admin','R0');
 
 insert into modules(module_id, pid, name, description, path) values('M1','','方案管理系统','方案管理系统','');
 insert into modules(module_id, pid, name, description, path) values('M1-1','M1','管理模块','针对管理员进行操作的系统管理模块','');
 insert into modules(module_id, pid, name, description, path) values('M1-2','M1','资料管理','资料的上传及管理','');
 
-insert into functions(function_id, module_id, name, description, path) values('F1','M1-1','用户：查看','有权限查看用户列表','account/list');
-insert into functions(function_id, module_id, name, description, path) values('F2','M1-1','用户：修改','有权限修改用户信息','account/update');
-insert into functions(function_id, module_id, name, description, path) values('F3','M1-1','用户：增加','有权限修增加用户','account/add');
-insert into functions(function_id, module_id, name, description, path) values('F4','M1-2','资料：上传','有权限上传资料','assert/upload');
-insert into functions(function_id, module_id, name, description, path) values('F5','M1-2','资料：修改','有权限修改资料','assert/update');
-insert into functions(function_id, module_id, name, description, path) values('F6','M1-2','资料：删除','有权限删除资料','assert/delete');
 
+
+insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
+insert into functions(function_id, module_id, name, description, path) values('F1','M1-1','用户：查看','有权限查看用户列表','/account/list');
+insert into functions(function_id, module_id, name, description, path) values('F2','M1-1','用户：修改','有权限修改用户信息','/account/update');
+insert into functions(function_id, module_id, name, description, path) values('F3','M1-1','用户：增加','有权限修增加用户','account/add');
+insert into functions(function_id, module_id, name, description, path) values('F4','M1-1','类别：查看','有权限查看类别','/category/');
+insert into functions(function_id, module_id, name, description, path) values('F5','M1-1','类别：修改','有权限新增类别','/category/api/save');
+insert into functions(function_id, module_id, name, description, path) values('F6','M1-1','类别：删除','有权限删除类别','/category/api/delete');
+
+insert into role_function(role_id, function_id, description) values('R0','F0','');
+insert into role_function(role_id, function_id, description) values('R0','F1','');
+insert into role_function(role_id, function_id, description) values('R0','F2','');
+insert into role_function(role_id, function_id, description) values('R0','F3','');
+insert into role_function(role_id, function_id, description) values('R0','F4','');
+insert into role_function(role_id, function_id, description) values('R0','F5','');
+insert into role_function(role_id, function_id, description) values('R0','F6','');
+insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1','');
 insert into role_function(role_id, function_id, description) values('R1','F2','');
+insert into role_function(role_id, function_id, description) values('R2','F0','');
 insert into role_function(role_id, function_id, description) values('R2','F4','');
+insert into role_function(role_id, function_id, description) values('R3','F0','');
 insert into role_function(role_id, function_id, description) values('R3','F6','');
 
 insert into category(id, pid, name, created_date, trashed, comment) values('1','','类别','2012-06-04 02:00:00','F','分类根节点');

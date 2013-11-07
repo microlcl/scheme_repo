@@ -1,7 +1,11 @@
 package com.eastteam.myprogram.service.account;
 
+import java.text.Collator;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -9,9 +13,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.UserMybatisDao;
+import com.eastteam.myprogram.entity.Function;
+import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 @Component
 @Transactional
@@ -51,6 +59,25 @@ public class AccountService extends PageableService {
 	
 	public User getUser(String id) {
 		return this.userDao.getUser(id);
+	}
+	
+	public List<String> getAuthorizedUriList(User user) {
+		if (user == null || user.getRoles() == null)
+			return null;
+		
+		Set<String> uriSet = Sets.newHashSet();
+		for (Role role : user.getRoles()) {
+			if (role.getFunctions() == null)
+				continue;
+			for (Function function : role.getFunctions()) {
+				uriSet.add(function.getPath());
+			}
+			
+		}		
+		ArrayList<String> uriList = Lists.newArrayList(uriSet);
+		Collections.sort(uriList, Collator.getInstance());		
+		
+		return Collections.unmodifiableList(uriList);
 	}
 	
 

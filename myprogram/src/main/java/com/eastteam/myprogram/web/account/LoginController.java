@@ -1,5 +1,7 @@
 package com.eastteam.myprogram.web.account;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -47,6 +49,9 @@ public class LoginController {
 			return "redirect:/login";
 		}
 		logger.info("set user in session");
+		List<String> authorizedUriList = accountService.getAuthorizedUriList(u);
+		System.out.println(authorizedUriList);
+		u.setAuthorizedUriList(authorizedUriList);
 		session.setAttribute("user", u);
 		return "redirect:/index.jsp";
 	}

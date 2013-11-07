@@ -51,7 +51,7 @@ public class CategoryController {
 		return nextSubId;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST,value = "/api/create")
+	@RequestMapping(method = RequestMethod.POST,value = "/api/save")
 	@ResponseBody
 	public ResponseEntity<?> save(Category category) {
 

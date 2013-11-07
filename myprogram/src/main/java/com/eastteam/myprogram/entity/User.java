@@ -27,7 +27,8 @@ public class User extends BaseEntity{
 	
 	private Department department;
 	private List<Role> roles = Lists.newArrayList();
-
+	private List<String> authorizedUriList;
+	
 	public User() {
 	}
 
@@ -166,6 +167,14 @@ public class User extends BaseEntity{
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<String> getAuthorizedUriList() {
+		return authorizedUriList;
+	}
+
+	public void setAuthorizedUriList(List<String> authorizedUriList) {
+		this.authorizedUriList = authorizedUriList;
 	}
 	
 }
