@@ -28,6 +28,7 @@ insert into roles(role_id, name, description) values('R6', '销售部员工','�
 insert into user_role(user_id, role_id) values('userid1','R1');
 insert into user_role(user_id, role_id) values('userid1','R2');
 insert into user_role(user_id, role_id) values('userid1','R3');
+insert into user_role(user_id, role_id) values('userid2','R3');
 insert into user_role(user_id, role_id) values('ydq','R3');
 insert into user_role(user_id, role_id) values('admin','R0');
 
