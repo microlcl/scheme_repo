@@ -2,18 +2,15 @@ package com.eastteam.myprogram.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.util.StringUtils;
+
 public class WebUtils {
 	
 	public static final String INCLUDE_REQUEST_URI_ATTRIBUTE = "javax.servlet.include.request_uri";
+    public static final String INCLUDE_CONTEXT_PATH_ATTRIBUTE = "javax.servlet.include.context_path";
 	
     /**
-     * Return the request URI for the given request, detecting an include request
-     * URL if called within a RequestDispatcher include.
-     * <p>As the value returned by <code>request.getRequestURI()</code> is <i>not</i>
-     * decoded by the servlet container, this method will decode it.
-     * <p>The URI that the web container resolves <i>should</i> be correct, but some
-     * containers like JBoss/Jetty incorrectly include ";" strings like ";jsessionid"
-     * in the URI. This method cuts off such incorrect appendices.
+     * Return the request URI for the given request
      *
      * @param request current HTTP request
      * @return the request URI
@@ -24,6 +21,32 @@ public class WebUtils {
             uri = request.getRequestURI();
         }
         return uri;
+    }
+    
+    public static String getContextPath(HttpServletRequest request) {
+        String contextPath = (String) request.getAttribute(INCLUDE_CONTEXT_PATH_ATTRIBUTE);
+        if (contextPath == null) {
+            contextPath = request.getContextPath();
+        }
+        if ("/".equals(contextPath)) {
+            // Invalid case, but happens for includes on Jetty: silently adapt it.
+            contextPath = "";
+        }
+        
+        return contextPath;
+    }
+    
+    public static String getPathWithinApplication(HttpServletRequest request) {
+        String contextPath = getContextPath(request);
+        String requestUri = getRequestUri(request);
+        if (StringUtils.startsWithIgnoreCase(requestUri, contextPath)) {
+            // Normal case: URI contains context path.
+            String path = requestUri.substring(contextPath.length());
+            return (StringUtils.hasText(path) ? path : "/");
+        } else {
+            // Special case: rather unusual.
+            return requestUri;
+        }
     }
 
 }
