@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.web.account;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.account.AccountService;
 import com.eastteam.myprogram.web.Servlets;
@@ -96,6 +98,13 @@ public class AccountController {
 //		this.accountService.save(user);
 		redirectAttributes.addFlashAttribute("message", "更新任务成功");
 		return "redirect:/account/list/";
+	}
+	
+	private List<RoleBean> getAllRolesList(User user) {
+		List<Role> assignedRoles = user.getRoles();
+		// TODO 用RoleService.getAll()方法在这里得到所有的role列表，并且产生List<RoleBean>并返回。
+		// 用户拥有的，checked属性为true，不拥有的role，checked为false。方便在页面展示。
+		return null;
 	}
 
 }

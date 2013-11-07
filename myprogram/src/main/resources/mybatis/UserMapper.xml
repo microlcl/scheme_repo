@@ -63,6 +63,7 @@
 	<resultMap id="userDetailMap" type="User">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
+		<result property="password" column="password" />
 		<result property="sex" column="sex" />
 		<result property="email" column="email" />
 		<result property="phoneNum" column="phoneNum" />
@@ -81,16 +82,27 @@
 			<id property="id" column="role_id" />
 			<result property="name" column="role_name" />
 			<result property="description" column="role_description" />
+			<collection property="functions" column="role_id" ofType="Function" select="selectFunction">				
+			</collection>
 		</collection>
 	</resultMap>
 	
+	
+	<select id="selectFunction" resultType="Function">
+	    select f.function_id as id, f.module_id as moduleId, f.name, f.description, f.path 
+	    from functions f, role_function rf 
+	    where rf.function_id=f.function_id and rf.role_id=#{role_id}
+	</select>
 	<select id="getUser" resultMap="userDetailMap">
-	select u.id, u.name,u.sex,u.email,u.phone_num as phoneNum,u.address,u.hometown,u.birthday,
-	u.register_date as registerDate,u.status,u.comment,
-	d.department_id,d.name as department_name,d.description as department_description,
-	r.role_id, r.name as role_name,r.description as role_description 
-	from users u, departments d,user_role ur, roles r 
-	where u.id=#{id} and u.department_id=d.department_id and u.id=ur.user_id and ur.role_id=r.role_id
+		select u.id, u.name,u.password, u.sex,u.email,u.phone_num as phoneNum,u.address,u.hometown,u.birthday,
+		u.register_date as registerDate,u.status,u.comment,
+		d.department_id,d.name as department_name,d.description as department_description,
+		r.role_id, r.name as role_name,r.description as role_description 
+		from users u 
+	    left join departments d on u.department_id=d.department_id 
+	    left join user_role ur on u.id=ur.user_id
+	    left join roles r on ur.role_id=r.role_id
+		where u.id=#{id}
 	</select>
 
 

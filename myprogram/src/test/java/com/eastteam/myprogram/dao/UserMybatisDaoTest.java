@@ -29,6 +29,11 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		User user2 = userDao.getUser("userid2");
 		logger.info(user2.toString());
 		assertNotNull(user2);
+		User user5 = userDao.getUser("userid5");
+		logger.info(user5.toString());
+		assertNotNull(user5);
+		assertNull(userDao.getUser("userid888"));
+
 	}
 
 	@Test

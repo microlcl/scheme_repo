@@ -35,4 +35,12 @@ public class Role extends BaseEntity {
 		this.description = description;
 	}
 
+	public List<Function> getFunctions() {
+		return functions;
+	}
+
+	public void setFunctions(List<Function> functions) {
+		this.functions = functions;
+	}
+
 }

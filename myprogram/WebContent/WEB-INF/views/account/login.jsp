@@ -8,8 +8,12 @@
 </head>
 
 <body>
+
 	<form id="loginForm" action="${ctx}/login" method="post"
 		class="form-horizontal">
+		<c:if test="${not empty message}">
+			<div id="message" class="alert alert-error input-medium controls"><button data-dismiss="alert" class="close">×</button>${message}</div>
+		</c:if>
 		<c:if test="${not empty user.id}">
 			<div class="alert alert-error input-medium controls">
 				<button class="close" data-dismiss="alert">×</button>
