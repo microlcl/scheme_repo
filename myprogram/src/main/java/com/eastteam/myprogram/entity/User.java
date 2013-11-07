@@ -77,12 +77,12 @@ public class User extends BaseEntity{
 		this.address = address;
 	}
 
-	public String getHowmtown() {
+	public String getHometown() {
 		return hometown;
 	}
 
-	public void setHowmtown(String howmtown) {
-		this.hometown = howmtown;
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
 	}
 
 	public Date getBirthday() {
