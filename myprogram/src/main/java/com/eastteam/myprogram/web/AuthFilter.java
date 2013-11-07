@@ -24,7 +24,7 @@ import com.eastteam.myprogram.service.account.AccountService;
 @Component("AuthFilter")
 public class AuthFilter implements Filter {
 	
-	private final String[] LOGIN_URL = {"/login", "/"};
+	private final String[] IGNORED_URL = {"/account/register"};
 	
 	private static Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 	
@@ -45,7 +45,7 @@ public class AuthFilter implements Filter {
 		String uri = WebUtils.getPathWithinApplication(httpServletRequest);
 //		User user = accountService.getUser("userid1");
 		logger.info("in filter: uri=" + uri);
-		if (uri.equalsIgnoreCase(LOGIN_URL[0]) || uri.equalsIgnoreCase(LOGIN_URL[1])) {
+		if (uri.equalsIgnoreCase(IGNORED_URL[0])) {
 			chain.doFilter(request, response);
 		} else {
 			User user = (User)httpServletRequest.getSession().getAttribute("user");
