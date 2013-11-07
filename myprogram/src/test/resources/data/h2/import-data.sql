@@ -10,6 +10,8 @@ insert into users(id, name, password, email, register_date, department_id) value
 insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','userid8','userid8@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','userid9','userid9@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯','userid99','userid10@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, sex, register_date, department_id) values('ydq','ydq','ydq','ydq@gmail.com','男','2012-06-04 02:00:00','D1-1');
+
 
 insert into departments(department_id, name, pid, description) values('D1','EastTeam','','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
@@ -26,7 +28,7 @@ insert into roles(role_id, name, description) values('R6', '销售部员工','�
 insert into user_role(user_id, role_id) values('userid1','R1');
 insert into user_role(user_id, role_id) values('userid1','R2');
 insert into user_role(user_id, role_id) values('userid1','R3');
-insert into user_role(user_id, role_id) values('userid2','R3');
+insert into user_role(user_id, role_id) values('ydq','R3');
 insert into user_role(user_id, role_id) values('admin','R0');
 
 insert into modules(module_id, pid, name, description, path) values('M1','','方案管理系统','方案管理系统','');
