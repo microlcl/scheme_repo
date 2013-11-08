@@ -1,3 +1,14 @@
+delete from users;
+delete from departments;
+delete from roles;
+delete from user_role;
+delete from modules;
+delete from functions;
+delete from role_function;
+delete from category;
+
+
+
 insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00','D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯','userid1','userid1@gmail.com', now(),'D1-1');
