@@ -36,6 +36,7 @@
 			<th>姓名</th>
 			<th>电邮</th>
 			<th>部门</th>
+			<th>角色</th>
 			<th>状态</th>
 			<th>操作</th>
 		</tr>
@@ -46,7 +47,12 @@
 				<td>${user.id}&nbsp;</td>
 				<td>${user.name}&nbsp;</td>
 				<td>${user.email}&nbsp;</td>
-				<td>&nbsp;</td>
+				<td>${user.department.name}</td>
+				<td>
+				<c:forEach items="${user.roles}" var="role">
+					${role.name}&nbsp;
+				</c:forEach>
+				</td>
 				<td>${user.status}&nbsp;</td>
 				<td>
 						<a href="${ctx}/account/update/${user.id}" id="editLink-${user.id}">修改</a>

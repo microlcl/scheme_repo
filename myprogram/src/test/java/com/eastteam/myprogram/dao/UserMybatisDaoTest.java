@@ -47,7 +47,7 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		
 		List<User> result2 = userDao.search(null);
 		logger.info("result2=" + result2);
-		assertEquals(12, result2.size());
+		assertEquals(13, result2.size());
 		
 		Map<String, Object> parameter3 = Maps.newHashMap();
 		parameter3.put("email", "userid1@gmail.com");
@@ -63,9 +63,7 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		parameter4.put("sort", "id");
 		List<User> result4 = userDao.search(parameter4);
 		logger.info("result4=" + result4);
-		assertEquals(2, result4.size());
-		
-		
+		assertEquals(4, result4.size());		
 		
 	}
 	
