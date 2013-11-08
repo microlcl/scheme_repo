@@ -1,10 +1,13 @@
 package com.eastteam.myprogram.entity;
 
+import java.util.List;
+
 public class Department extends BaseEntity {
 	
 	private String id;	
 	private String name;
 	private Department parent;	
+	private List<Department> children;	
 	private String description;
 
 	public String getId() {
@@ -37,6 +40,14 @@ public class Department extends BaseEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Department> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Department> children) {
+		this.children = children;
 	}
 	
 	

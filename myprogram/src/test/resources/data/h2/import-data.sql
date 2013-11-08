@@ -27,6 +27,7 @@ insert into users(id, name, password, email, sex, register_date, department_id) 
 insert into departments(department_id, name, pid, description) values('D1','EastTeam','','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-2','销售部','D1','EastTeam公司');
+insert into departments(department_id, name, pid, description) values('D1-2-1','渠道销售部','D1-2','EastTeam公司');
 
 insert into roles(role_id, name, description) values('R0', '管理员','超级用户');
 insert into roles(role_id, name, description) values('R1', '管理员1','超级用户1');
