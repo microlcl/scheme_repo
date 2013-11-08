@@ -38,7 +38,7 @@ function save() {
 		t.treegrid('endEdit', editingId);
 		console.log('in save(), node.id=' + node.id);
 		$.ajax({
-			url : './api/create',
+			url : './api/save',
 			type: 'post',
 			data:{
 				id:node.id,

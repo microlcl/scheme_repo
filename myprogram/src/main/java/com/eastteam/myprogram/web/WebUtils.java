@@ -2,7 +2,7 @@ package com.eastteam.myprogram.web;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.shiro.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class WebUtils {
 	
@@ -42,7 +42,7 @@ public class WebUtils {
         if (StringUtils.startsWithIgnoreCase(requestUri, contextPath)) {
             // Normal case: URI contains context path.
             String path = requestUri.substring(contextPath.length());
-            return (StringUtils.hasText(path) ? path : "/");
+            return (StringUtils.isNotBlank(path) ? path : "/");
         } else {
             // Special case: rather unusual.
             return requestUri;

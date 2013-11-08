@@ -20,14 +20,15 @@ public class User extends BaseEntity{
 	private String phoneNum;
 	private String address;
 	private String hometown;
-	private Date birthday;
+	private String birthday;
 	private Date registerDate;
 	private String status;	
 	private String comment;	
 	
 	private Department department;
 	private List<Role> roles = Lists.newArrayList();
-
+	private List<String> authorizedUriList;
+	
 	public User() {
 	}
 
@@ -76,19 +77,19 @@ public class User extends BaseEntity{
 		this.address = address;
 	}
 
-	public String getHowmtown() {
+	public String getHometown() {
 		return hometown;
 	}
 
-	public void setHowmtown(String howmtown) {
-		this.hometown = howmtown;
+	public void setHometown(String hometown) {
+		this.hometown = hometown;
 	}
 
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -166,6 +167,14 @@ public class User extends BaseEntity{
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+
+	public List<String> getAuthorizedUriList() {
+		return authorizedUriList;
+	}
+
+	public void setAuthorizedUriList(List<String> authorizedUriList) {
+		this.authorizedUriList = authorizedUriList;
 	}
 	
 }
