@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.RoleMybatisDao;
+import com.eastteam.myprogram.entity.Role;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -33,4 +35,15 @@ public class RoleService extends PageableService {
 		return roleDao.getCount(parameters);
 	}
 
+	public void save(Role role) {
+		roleDao.save(role);
+	}
+	
+	public List findRoleByName(String name) {
+		return roleDao.findRoleByName(name);
+	}
+	
+	public Role getRole(String id) {
+		return roleDao.getRole(id);
+	}
 }

@@ -20,13 +20,11 @@
 	
 	<div class="row">
 		<div class="span">
-		<!-- 
 			<form class="form-search" action="#">
-			 	<label>登录名：</label> <input type="text" name="search_id"   class="input-small"  value="${param.search_id}"> 
-			    <label>邮件名：</label> <input type="text" name="search_email" class="input-small" value="${param.search_email}">
+			 	<label>角色名：</label> <input type="text" name="search_name"   class="input-small"  value="${param.search_name}"> 
+		 	    <label>描述：</label> <input type="text" name="search_description" class="input-small" value="${param.search_description}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 		    </form>
-		     -->
 	    </div>
 	    <tags:sort/>
 	</div>	

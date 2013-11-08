@@ -52,7 +52,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-2','M1',
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
 insert into functions(function_id, module_id, name, description, path) values('F1','M1-1','用户：查看','有权限查看用户列表','/account/list');
-insert into functions(function_id, module_id, name, description, path) values('F2','M1-1','用户：修改','有权限修改用户信息','/account/update');
+insert into functions(function_id, module_id, name, description, path) values('F2','M1-1','用户：修改','有权限修改用户信息','/account/show');
 insert into functions(function_id, module_id, name, description, path) values('F3','M1-1','用户：增加','有权限修增加用户','account/add');
 insert into functions(function_id, module_id, name, description, path) values('F4','M1-1','类别：查看','有权限查看类别','/category/');
 insert into functions(function_id, module_id, name, description, path) values('F5','M1-1','类别：修改','有权限新增类别','/category/api/save');
