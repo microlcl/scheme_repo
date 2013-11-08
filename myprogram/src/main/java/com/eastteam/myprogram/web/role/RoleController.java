@@ -1,17 +1,35 @@
 package com.eastteam.myprogram.web.role;
 
-import javax.servlet.http.HttpSession;
-
+import java.util.Map;
+import javax.servlet.ServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import com.eastteam.myprogram.entity.Role;
+import com.eastteam.myprogram.service.role.RoleService;
+import com.eastteam.myprogram.web.Servlets;
+import com.google.common.collect.Maps;
 
 
 @Controller
 @RequestMapping(value = "/role")
 public class RoleController {
+	private static final int PAGE_SIZE = 5;
+	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
+	static {
+		sortTypes.put("name", "角色名");
+		sortTypes.put("description", "描述");
+	}
+	
+	@Autowired
+	private RoleService roleService;
+	
 	
 	private static Logger logger = LoggerFactory.getLogger(RoleController.class);
 	
@@ -21,4 +39,19 @@ public class RoleController {
 		return "role/list";
 	}
 
+	@RequestMapping(value="list",method = RequestMethod.GET)
+	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
+			@RequestParam(value = "sortType", defaultValue = "role_id") String sortType,
+			Model model, ServletRequest request) {
+		logger.info("in list");
+		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		logger.info(searchParams.toString());		
+		Page<Role> roles = roleService.getCurrentPageContent(searchParams, pageNumber, PAGE_SIZE, sortType);
+		model.addAttribute("roles", roles);
+		model.addAttribute("sortType", sortType);
+		model.addAttribute("sortTypes", sortTypes);
+		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
+		logger.info("searchParams=" + searchParams);
+		return "role/list";
+	}
 }

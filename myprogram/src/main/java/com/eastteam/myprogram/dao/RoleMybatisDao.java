@@ -16,5 +16,5 @@ public interface RoleMybatisDao {
 	void save(Role role);
 	List<Role> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
-	Role getRole(String id);
+//	Role getRole(String id);
 }
