@@ -14,7 +14,10 @@ import com.eastteam.myprogram.entity.Role;
 @MyBatisRepository
 public interface RoleMybatisDao {
 	void save(Role role);
+	void delete(String id);
 	List<Role> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
-//	Role getRole(String id);
+	Role getRole(String id);
+	List<Role> findRoleByName(String name);
+	List<Role> findRole(Role role);
 }

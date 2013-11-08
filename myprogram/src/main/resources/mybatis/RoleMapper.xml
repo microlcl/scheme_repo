@@ -8,15 +8,15 @@
     	<!-- 插入角色-->
 	<insert id="save" parameterType="Role">
 		insert into roles (role_id, name, description) 
-		values(#{role_id},#{name},#{description});
+		values(#{id},#{name},#{description});
 	</insert>
 	
 	<!-- 查询角色,演示: 1.输入用map传入多个参数 2.<where>语句, 智能添加where和and关键字 3.输出直接映射对象 -->
 	<select id="search" parameterType="map" resultType="Role">
 		select role_id as id, name, description from roles
 		<where>
-		    <if test="role_id != null">
-				role_id=#{role_id}
+		    <if test="id != null">
+				role_id=#{id}
 			</if>
 			<if test="name != null">
 				and name=#{name}
@@ -37,8 +37,8 @@
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from roles
 		<where>
-		    <if test="role_id != null">
-				role_id=#{role_id}
+		    <if test="id != null">
+				role_id=#{id}
 			</if>
 			<if test="name != null">
 				and name=#{name}
