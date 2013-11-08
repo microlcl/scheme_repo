@@ -20,7 +20,7 @@
 					<input type="text" id="name" name="name"  value="${user.name}" class="input-large required" rangelength="2,20"/>
 				</div>
 			</div>	
-			<div class="control-group">
+<!-- 			<div class="control-group">
 				<label for="password" class="control-label">密码:</label>
 				<div class="controls">
 					<input type="password" id="password" name="password" class="input-large required"/>
@@ -32,6 +32,7 @@
 					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#password"/>
 				</div>
 			</div>
+ -->
 			<div class="control-group">
 				<label for="sex" class="control-label">性别:</label>
 				<div class="controls">
@@ -92,7 +93,7 @@
 				</div>
 			</div>	
 			<div class="control-group">
-				<label for="role" class="control-label">当前职务:</label>
+				<label for="role" class="control-label">当前角色:</label>
 				<div class="controls">
 					<c:forEach items="${user.roles}" var="myrole">
 						<label class="checkbox inline">

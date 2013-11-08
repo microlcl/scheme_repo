@@ -86,7 +86,7 @@ public class AccountController {
 		return "account/list";
 	}
 	
-	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") String id, Model model) {
 		model.addAttribute("user", this.accountService.getUser(id));
 		return "account/userForm";
