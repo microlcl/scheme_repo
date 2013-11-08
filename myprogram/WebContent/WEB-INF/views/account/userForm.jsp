@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<form id="inputForm" action="${ctx}/account/update" method="post" class="form-horizontal">
+	<form id="inputForm" action="${ctx}/account/show" method="post" class="form-horizontal">
 		<input type="hidden" name="id" value="${user.id}"/>
 		<fieldset>
 			<legend><small>用户管理</small></legend>

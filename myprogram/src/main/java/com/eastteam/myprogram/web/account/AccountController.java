@@ -92,7 +92,7 @@ public class AccountController {
 		return "account/userForm";
 	}
 	
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "show", method = RequestMethod.POST)
 	public String update(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
 //		this.accountService.save(user);
