@@ -5,6 +5,10 @@
 <html>
 <head>
 	<title>用户管理</title>
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			$("#account-tab").addClass("active");
@@ -23,6 +27,7 @@
 			<form class="form-search" action="#">
 			 	<label>登录名：</label> <input type="text" name="search_id"   class="input-small"  value="${param.search_id}"> 
 			    <label>邮件名：</label> <input type="text" name="search_email" class="input-small" value="${param.search_email}">
+			    <input class="easyui-combotree input-middle" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 		    </form>
 	    </div>
