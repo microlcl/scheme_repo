@@ -21,7 +21,7 @@
 				</div>
 			</div>	
 			<div class="control-group">
-				<label for="description" class="control-label">联系地址:</label>
+				<label for="description" class="control-label">角色描述:</label>
 				<div class="controls">
 					<input type="text" id="address" name="description"  value="${role.description} class="input-large required" minlength="3"/>
 				</div>
