@@ -1,16 +1,20 @@
 package com.eastteam.myprogram.web.role;
 
 import java.util.Map;
+
 import javax.servlet.ServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.service.role.RoleService;
 import com.eastteam.myprogram.web.Servlets;
@@ -53,5 +57,11 @@ public class RoleController {
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("searchParams=" + searchParams);
 		return "role/list";
+	}
+	
+	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+	public String update(@PathVariable("id") String id, Model model) {
+		model.addAttribute("role", this.roleService.getRole(id));
+		return "role/roleForm";
 	}
 }
