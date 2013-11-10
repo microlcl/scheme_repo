@@ -86,3 +86,21 @@ CREATE TABLE `users` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `medias` (
+  `media_id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) NOT NULL,
+  `description` varchar(128) DEFAULT NULL,
+  `media_type` varchar(10) NOT NULL,
+  `path` varchar(128) DEFAULT NULL,
+  `trashed` varchar(1) DEFAULT NULL,
+  `upload_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`media_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `media_category` (
+  `media_id` bigint(11) NOT NULL,
+  `category_id` varchar(64) NOT NULL,
+  PRIMARY KEY (`media_id`,`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
