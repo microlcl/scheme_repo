@@ -78,4 +78,8 @@
 		where r.role_id=#{id}
 	</select>
 	
+	<select id="selectAll" resultType="Role">
+		select role_id as id, name from roles
+	</select>
+	
 </mapper> 

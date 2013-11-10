@@ -2,6 +2,7 @@ package com.eastteam.myprogram.service.role;
 
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -9,15 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.RoleMybatisDao;
 import com.eastteam.myprogram.entity.Role;
-import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
 @Component
 @Transactional
 public class RoleService extends PageableService {
+
 	@Autowired
 	private RoleMybatisDao roleDao;
+
 	
 	@Override
 	public List search(Map parameters, Pageable pageRequest) {
@@ -46,4 +48,9 @@ public class RoleService extends PageableService {
 	public Role getRole(String id) {
 		return roleDao.getRole(id);
 	}
+	
+	public List<Role> getAllRoles() {
+		return roleDao.selectAll();
+	}
+
 }

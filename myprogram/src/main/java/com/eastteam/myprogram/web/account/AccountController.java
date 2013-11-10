@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.web.account;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.account.AccountService;
+import com.eastteam.myprogram.service.role.RoleService;
 import com.eastteam.myprogram.web.Servlets;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 @Controller
@@ -43,6 +46,8 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService accountService;
+	@Autowired
+	private RoleService roleService;
 	
 	@RequestMapping(value="register",method = RequestMethod.GET)
 	public String registerForm() {
@@ -89,6 +94,7 @@ public class AccountController {
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") String id, Model model) {
 		model.addAttribute("user", this.accountService.getUser(id));
+		model.addAttribute("allRoles", this.getAllRolesList(this.accountService.getUser(id)));
 		return "account/userForm";
 	}
 	
@@ -104,7 +110,20 @@ public class AccountController {
 		List<Role> assignedRoles = user.getRoles();
 		// TODO 用RoleService.getAll()方法在这里得到所有的role列表，并且产生List<RoleBean>并返回。
 		// 用户拥有的，checked属性为true，不拥有的role，checked为false。方便在页面展示。
-		return null;
+		
+		List<Role> allRoles = roleService.getAllRoles();
+		RoleBean roleBean = new RoleBean();
+		List<RoleBean> roleList = roleBean.roleList(allRoles);		
+
+		for(int i=0; i<assignedRoles.size(); i++){
+			String assignedRolesid = assignedRoles.get(i).getId();
+			for(int j=0; j<roleList.size(); j++){				
+				String roleListid = roleList.get(j).getId();
+				if(assignedRolesid.equals(roleListid))
+					roleList.get(j).setChecked(true);
+			}
+		}
+		return roleList;
 	}
 
 }

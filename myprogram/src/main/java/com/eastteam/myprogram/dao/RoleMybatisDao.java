@@ -20,4 +20,5 @@ public interface RoleMybatisDao {
 	Role getRole(String id);
 	List<Role> findRoleByName(String name);
 	List<Role> findRole(Role role);
+	List<Role> selectAll();
 }
