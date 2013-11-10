@@ -49,4 +49,33 @@
 		</where>
 	</select>
 	
+	<resultMap id="roleDetailMap" type="Role">
+		<id property="id" column="role_id" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<collection property="functions" column="role_id" ofType="Function" select="selectFunction">				
+		</collection>
+		<!-- collection property="functions" javaType="Function">
+			<id property="id" column="function_id" />
+			<result property="name" column="function_name" />
+			<result property="description" column="function_description" />
+			<result property="moduleId" column="module_id" />
+			<collection property="functions" column="role_id" ofType="Function" select="selectFunction">				
+			</collection>
+		</collection-->
+		
+	</resultMap>
+	
+	<select id="selectFunction" resultType="Function">
+	    select f.function_id as id, f.module_id as moduleId, f.name, f.description, f.path 
+	    from functions f, role_function rf 
+	    where rf.function_id=f.function_id and rf.role_id=#{role_id}
+	</select>
+	
+	<select id="getRole" resultMap="roleDetailMap">
+		select r.role_id, r.name, r.description
+		from roles r
+		where r.role_id=#{id}
+	</select>
+	
 </mapper> 

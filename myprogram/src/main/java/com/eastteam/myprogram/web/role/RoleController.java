@@ -10,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Role;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.role.RoleService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
@@ -63,5 +66,13 @@ public class RoleController {
 	public String update(@PathVariable("id") String id, Model model) {
 		model.addAttribute("role", this.roleService.getRole(id));
 		return "role/roleForm";
+	}
+	
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	public String update(@ModelAttribute("role") Role role, RedirectAttributes redirectAttributes) {
+		logger.info("in role update action");
+//		this.accountService.save(role);
+		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
+		return "redirect:/role/list/";
 	}
 }

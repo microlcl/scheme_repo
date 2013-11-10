@@ -10,22 +10,35 @@
 </head>
 
 <body>
-	<form id="roleForm" action="${ctx}/account/show" method="post" class="form-horizontal">
+	<form id="roleForm" action="${ctx}/role/save" method="post" class="form-horizontal">
 		<input type="hidden" name="id" value="${role.id}"/>
 		<fieldset>
-			<legend><small>角色管理</small></legend>
+			<legend><small>角色权限管理</small></legend>
 			<div class="control-group">
-				<label for="name" class="control-label">角色名</label>
+				<label for="name" class="control-label">角色名：</label>
 				<div class="controls">
-					<input type="text" id="rolename" name="rolename"  value="${role.name}" class="input-large required" rangelength="2,20"/>
+					<p type="text" id="rolename" name="rolename"/> ${role.name}</p>
 				</div>
 			</div>	
 			<div class="control-group">
-				<label for="description" class="control-label">角色描述:</label>
+				<label for="description" class="control-label">角色描述：</label>
 				<div class="controls">
-					<input type="text" id="address" name="description"  value="${role.description} class="input-large required" minlength="3"/>
+					<input type="text" id="address" name="description"  value="${role.description}" class="input-large required" minlength="3"/>
 				</div>
-			</div>			
+			</div>
+			
+			<div class="control-group">
+				<label for="function" class="control-label">当前权限:</label>
+				<div class="controls">
+					<c:forEach items="${role.functions}" var="function">
+						<label class="checkbox inline">
+							<input type="checkbox" name="function" id="function-${function.id}">${function.name}</input>
+						</label>
+						<br>
+	
+					</c:forEach>
+				</div>
+			</div>						
 			
 			<div class="form-actions">
 				<input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;	
