@@ -10,6 +10,7 @@
 			<a id="category-tab" href="${ctx}/category/">类别管理</a>
 			<a id="account-tab" href="${ctx}/account/list">人员管理</a>
 			<a id="role-tab" href="${ctx}/role/list">角色管理</a>
+			<a id="media-tab" href="${ctx}/media/list">多媒体资源管理</a>
 		</div>
 		<h1>菜单2</h1>
 		<div class="submenu">
