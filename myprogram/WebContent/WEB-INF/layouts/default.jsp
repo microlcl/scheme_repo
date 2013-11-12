@@ -37,6 +37,9 @@
 		</div>
 		<%@ include file="/WEB-INF/layouts/footer.jsp"%>
 	</div>
-	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>	
+	<!-- plupload和bootstrap.min.js有冲突，所以加载上传组件时，把这个js排除掉 -->
+	<% if(request.getRequestURI().indexOf("media/add") < 0){%>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
+	<%} %>
 </body>
 </html>
