@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.RoleMybatisDao;
+import com.eastteam.myprogram.entity.Function;
+import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -52,5 +54,8 @@ public class RoleService extends PageableService {
 	public List<Role> getAllRoles() {
 		return roleDao.selectAll();
 	}
-
+	
+	public List<Module> getAllModule(){
+		return roleDao.getAllModule();
+	}
 }

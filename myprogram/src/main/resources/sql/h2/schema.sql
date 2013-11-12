@@ -39,7 +39,7 @@ create table modules (
 	name varchar(64) not null,
 	description varchar(128),
 	path varchar(128),
-	primary key (moduleId)
+	primary key (module_id)
 );
 
 create table functions (

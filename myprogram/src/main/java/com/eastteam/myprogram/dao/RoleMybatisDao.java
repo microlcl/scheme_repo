@@ -3,6 +3,8 @@ package com.eastteam.myprogram.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.eastteam.myprogram.entity.Function;
+import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
 
 
@@ -21,4 +23,5 @@ public interface RoleMybatisDao {
 	List<Role> findRoleByName(String name);
 	List<Role> findRole(Role role);
 	List<Role> selectAll();
+	List<Module> getAllModule();
 }

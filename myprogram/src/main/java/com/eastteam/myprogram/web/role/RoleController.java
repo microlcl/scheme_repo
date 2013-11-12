@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.web.role;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.role.RoleService;
@@ -65,6 +67,8 @@ public class RoleController {
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") String id, Model model) {
 		model.addAttribute("role", this.roleService.getRole(id));
+		List<Module> modules=this.roleService.getAllModule();
+		model.addAttribute("moduleList",modules);
 		return "role/roleForm";
 	}
 	

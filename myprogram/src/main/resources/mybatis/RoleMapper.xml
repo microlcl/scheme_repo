@@ -82,4 +82,33 @@
 		select role_id as id, name from roles
 	</select>
 	
+	<resultMap id="moduleDetailMap" type="Module">
+		<id property="module_id" column="module_id" />
+		<result property="pid" column="pid" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="path" column="path" />
+		<collection property="functions" column="module_id" ofType="Function" select="mouduleSelectFunction">				
+		</collection>
+		<collection property="modules" column="pid" ofType="Module" select="mouduleSelectModule">				
+		</collection>
+	</resultMap>
+	
+	<select id="mouduleSelectFunction" resultType="Function">
+	    select f.function_id as id, f.module_id as moduleId, f.name, f.description, f.path 
+	    from functions f
+	    where f.module_id=#{module_id}
+	</select>
+	
+	<select id="mouduleSelectModule" resultType="Module">
+	    select m.module_id, m.pid, m.name, m.description, m.path
+	    from modules m
+	    where m.module_id=#{pid}
+	</select>
+	
+	<select id="getAllModule" resultMap="moduleDetailMap">
+	  select m.module_id, m.pid, m.name, m.description, m.path
+	    from modules m
+	</select>
+	
 </mapper> 
