@@ -53,10 +53,10 @@ public class MediaController {
 	}
 
 	
-	@RequestMapping(value="add",method = RequestMethod.GET)
-	public String add() {
-		logger.info("in add");
-		return "media/add";
+	@RequestMapping(value="upload",method = RequestMethod.GET)
+	public String showUplaodPage() {
+		logger.info("in upload page");
+		return "media/upload";
 	}
 	
 	/**
@@ -70,6 +70,8 @@ public class MediaController {
 	@ResponseBody
 	@RequestMapping(value="upload",method=RequestMethod.POST)	
 	public String plupload(@RequestParam MultipartFile file, HttpSession session, String name) {
+		logger.info("文件保存路径：" + MEDIA_PATH);
+		logger.info("文件名称：" + name);
 		try {
 			//检查文件目录，不存在则创建
 			File folder = new File(MEDIA_PATH);
@@ -124,5 +126,17 @@ public class MediaController {
 				logger.error(e.getMessage());
 			}
 		}
+	}
+	
+	@RequestMapping(value="add",method = RequestMethod.POST)
+	public String showAddPage() {
+		logger.info("show add page");
+		return "media/add";
+	}
+	
+	@RequestMapping(value="save",method = RequestMethod.POST)
+	public String save() {
+
+		return "media/list";
 	}
 }

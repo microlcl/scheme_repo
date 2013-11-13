@@ -24,7 +24,7 @@
 			 	<label>类别</label> <input type="text" name="search_type"   class="input-small"  value="${param.search_type}"> 
 			    <label>Title：</label> <input type="text" name="search_title" class="input-small" value="${param.search_title}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
-			    <a class="btn" href="${ctx}/media/add">上传</a>
+			    <a class="btn" href="${ctx}/media/upload">上传</a>
 					</span>
 		    </form>
 	    </div>
