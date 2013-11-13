@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.eastteam.myprogram.dao.MediaMybatisDao">
+	<insert id="insert" parameterType="Media" useGeneratedKeys="true" keyProperty="id">
+		insert into medias (title, description,media_type,path,trashed,upload_timestamp) 
+		values(#{title},#{description},#{mediaType},#{path},#{trashed},now());
+	</insert>
+	
+</mapper> 

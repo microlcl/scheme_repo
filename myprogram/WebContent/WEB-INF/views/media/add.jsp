@@ -24,6 +24,8 @@
 </head>
 
 <body>
+
+
 	<form id="inputForm" action="${ctx}/account/register" method="post"
 		enctype="multipart/form-data" class="form-horizontal">
 		<fieldset>
