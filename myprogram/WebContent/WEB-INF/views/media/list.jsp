@@ -24,8 +24,7 @@
 			 	<label>类别</label> <input type="text" name="search_type"   class="input-small"  value="${param.search_type}"> 
 			    <label>Title：</label> <input type="text" name="search_title" class="input-small" value="${param.search_title}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
-			    <a class="btn" href="${ctx}/media/upload">上传</a>
-					</span>
+			    <a class="offset2 span2 btn pull-right" href="${ctx}/media/upload">添加新资源</a>
 		    </form>
 	    </div>
 	</div>	
@@ -50,10 +49,11 @@
 				<td>&nbsp;</td>
 				<td>${user.status}&nbsp;</td>
 				<td>
-						<a href="${ctx}/resource/show/${resource.id}" id="editLink-${resource.id}">修改</a>
+						<a href="${ctx}/resource/show/${resource.id}" id="editLink-${resource.id}"><i class="icon-pencil"></i> 修改</a>
 				</td>
 			</tr>
 		</tbody>		
 	</table>
+	
 </body>
 </html>

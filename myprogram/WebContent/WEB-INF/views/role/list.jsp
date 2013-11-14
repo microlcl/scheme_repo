@@ -43,7 +43,7 @@
 				<td>${role.name}&nbsp;</td>
 				<td>${role.description}&nbsp;</td>
 				<td>
-						<a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}">修改</a>
+						<a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}"><i class="icon-pencil"></i> 修改</a>
 				</td>
 			</tr>
 		</c:forEach>

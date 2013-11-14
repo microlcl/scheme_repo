@@ -18,9 +18,9 @@
 				id="webservice-tab" href="${ctx}/story/webservice">子菜单2</a> <a
 				id="jmx-tab" href="${ctx}/story/jmx">子菜单3</a>
 		</div>
-		<h1>菜单3</h1>
+		<h1>页面效果测试</h1>
 		<div class="submenu">
-			<a id="persistence-tab" href="${ctx}/story/persistence">子菜单1</a> <a
+			<a id="persistence-tab" href="${ctx}/demo/list">bootstrap demo</a> <a
 				id="jms-tab" href="${ctx}/story/jms">子菜单2</a> <a id="reids-tab"
 				href="${ctx}/story/redis">子菜单3</a> <a id="cache-tab"
 				href="${ctx}/story/cache">子菜单4</a>

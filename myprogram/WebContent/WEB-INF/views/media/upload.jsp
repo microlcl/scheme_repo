@@ -39,10 +39,6 @@
 		<div id="uploader" class="control-group">
 			<p>你的浏览器不支持 Flash, Silverlight or HTML5.</p>
 		</div>
-
-		<input id="submit_btn" class="btn btn-primary" type="submit"
-			value="提交" />
-
 	</form>
 
 	<script type="text/javascript">
@@ -103,23 +99,11 @@
 				// Silverlight settings
 				silverlight_xap_url : '${ctx}/static/plupload/js/Moxie.xap'
 			});
-
-			// Handle the case when form was submitted before uploading has finished
-			$('#form').submit(function(e) {
-				// Files in queue upload them first
-				if ($('#uploader').plupload('getFiles').length > 0) {
-
-					// When all files are uploaded submit form
-					$('#uploader').on('complete', function() {
+			
+			$('#uploader').on('complete', function() {
 						$('#form')[0].submit();
 					});
 
-					$('#uploader').plupload('start');
-				} else {
-					alert("You must have at least one file in the queue.");
-				}
-				return false; // Keep the form from submitting
-			});
 		});
 	</script>
 </body>

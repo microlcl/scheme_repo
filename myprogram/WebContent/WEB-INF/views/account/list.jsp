@@ -60,7 +60,7 @@
 				</td>
 				<td>${user.status}&nbsp;</td>
 				<td>
-						<a href="${ctx}/account/show/${user.id}" id="editLink-${user.id}">修改</a>
+						<a href="${ctx}/account/show/${user.id}" id="editLink-${user.id}"><i class="icon-pencil"></i> 修改</a>
 				</td>
 			</tr>
 		</c:forEach>
