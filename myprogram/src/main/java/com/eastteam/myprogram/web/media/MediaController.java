@@ -7,13 +7,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.MessageFormat;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +25,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.eastteam.myprogram.dao.MediaMybatisDao;
+import com.eastteam.myprogram.entity.Media;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.web.Servlets;
+import com.eastteam.myprogram.web.WebUtils;
 
 @Controller
 @RequestMapping(value = "/media")
@@ -30,11 +37,11 @@ public class MediaController {
 	
 	private static final int PAGE_SIZE = 5;
 	private static final int BUFFER_SIZE = 100 * 1024; 
-	// TODO 后续这个参数应该可配置
-	private static final String MEDIA_PATH = "c:/temp/myprogram"; 
-	
+
 	private static Logger logger = LoggerFactory.getLogger(MediaController.class);
 	
+	@Autowired
+	MediaMybatisDao mediaDao;
 	
 	@RequestMapping(value="list",method = RequestMethod.GET)
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
@@ -70,11 +77,14 @@ public class MediaController {
 	@ResponseBody
 	@RequestMapping(value="upload",method=RequestMethod.POST)	
 	public String plupload(@RequestParam MultipartFile file, HttpSession session, String name) {
-		logger.info("文件保存路径：" + MEDIA_PATH);
+		String relativePath = "/plupload/files/";
+		String realPath = WebUtils.getRealPath(session);
+		String mediafolder = realPath + relativePath;
+		logger.info("文件保存路径：" + mediafolder);
 		logger.info("文件名称：" + name);
 		try {
 			//检查文件目录，不存在则创建
-			File folder = new File(MEDIA_PATH);
+			File folder = new File(mediafolder);
 			if (!folder.exists()) {
 				folder.mkdirs();
 			}
@@ -129,8 +139,26 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String showAddPage() {
+	public String showAddPage(HttpSession session, HttpServletRequest request, @RequestParam("uploader_count")int count) {
 		logger.info("show add page");
+		User user = (User)session.getAttribute("user");
+		for(int i = 0; i < count; i++) {
+			String nameKey = MessageFormat.format("uploader_{0}_name", i);
+			String statusKey = MessageFormat.format("uploader_{0}_status", i);;
+			String fileName = request.getParameter(nameKey);
+			String status = request.getParameter(statusKey);
+			logger.info("file={},status={}", fileName, status);
+			if (status.equalsIgnoreCase("done")) {
+				Media media = new Media();
+				media.setPath(fileName);
+				media.setStatus("上传成功");
+				if (user != null) {
+					media.setUserId(user.getId());
+				}
+				mediaDao.insert(media);				
+			}
+		}
+		
 		return "media/add";
 	}
 	

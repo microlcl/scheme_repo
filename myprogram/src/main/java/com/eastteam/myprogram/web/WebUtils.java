@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.web;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,6 +48,10 @@ public class WebUtils {
             // Special case: rather unusual.
             return requestUri;
         }
+    }
+    
+    public static String getRealPath(HttpSession session) {
+    	return session.getServletContext().getRealPath("");
     }
 
 }

@@ -6,9 +6,11 @@ public class Media extends IdEntity{
 	private String title;
 	private String mediaType;
 	private String path;
-	private String trashed;
+	private String status;
 	private String description;
 	private Date uploadTimestamp;
+	private String userId;
+	private String categoryId;
 	
 	public String getTitle() {
 		return title;
@@ -28,12 +30,6 @@ public class Media extends IdEntity{
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public String getTrashed() {
-		return trashed;
-	}
-	public void setTrashed(String trashed) {
-		this.trashed = trashed;
-	}
 	public Date getUploadTimestamp() {
 		return uploadTimestamp;
 	}
@@ -45,6 +41,24 @@ public class Media extends IdEntity{
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}	
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}
 
 }

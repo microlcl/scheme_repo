@@ -4,7 +4,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<title>用户管理</title>
+<link rel="stylesheet" href="${ctx}/static/styles/mystyle.css" type="text/css" />
 	<script>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
@@ -54,6 +54,26 @@
 			</tr>
 		</tbody>		
 	</table>
-	
+	<img src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-01.jpg" class="img-polaroid mypic">
+	<img src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-02.jpg" class="img-polaroid mypic">
+	<img src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-03.jpg" class="img-polaroid mypic">
+
+	<ul class="media-list">
+		<li class="media">
+		<a class="pull-left" href="#"> <img class="media-object mypic" src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-03.jpg"></a>
+			<div class="media-body">
+				<h4 class="media-heading">Media heading</h4>
+				产品介绍
+			</div></li>
+			
+					<li class="media">
+		<a class="pull-left" href="#"> <img class="media-object mypic" src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-02.jpg"></a>
+			<div class="media-body">
+				<h4 class="media-heading">Media heading2</h4>
+				产品介绍2
+			</div></li>
+	</ul>
+
+
 </body>
 </html>

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -42,13 +43,24 @@ public class AccountService extends PageableService {
 	public List<User> search(Map parameters, Pageable pageRequest) {
 		//这里必须new一个新的Map作为Mybatis的传入参数，以防改变parameters的values，进而影响URL的生成。
 		Map param = Maps.newHashMap(parameters);
+		checkDepartment(param);
 		param.put("offset", pageRequest.getOffset());
 		param.put("pageSize", pageRequest.getPageSize());
 		param.put("sort", this.getOrderValue(pageRequest.getSort()));
 		return userDao.search(param);
 	}
 	
+	private void checkDepartment(Map param) {
+		String depId = (String)param.get("department_id");
+		//如果department id为根节点，则表明用户选择了全公司，所以应该把它去掉，以便显示所有人员信息
+		if(StringUtils.isNotBlank(depId) && depId.equals("D1")) {
+			param.put("department_id", null);
+		}
+	}
+	
 	public Long getCount(Map parameters) {
+		Map param = Maps.newHashMap(parameters);
+		checkDepartment(param);
 		return userDao.getCount(parameters);
 	}
 	

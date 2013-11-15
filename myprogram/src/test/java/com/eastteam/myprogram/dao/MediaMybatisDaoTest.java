@@ -21,14 +21,15 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		media.setMediaType("pic");
 		media.setPath("c:/media");
 		media.setTitle("pic test");
-		media.setTrashed("F");
+		media.setStatus("available");
+		media.setUserId("lichlei");
 		mediaDao.insert(media);
 		
 		Media media1 = new Media();
 		media1.setMediaType("pic");
 		media1.setPath("c:/media");
 		media1.setTitle("pic test");
-		media1.setTrashed("F");
+		media1.setStatus("unavailable");
 		mediaDao.insert(media1);
 		assertTrue(media1.getId() > 1);
 	}

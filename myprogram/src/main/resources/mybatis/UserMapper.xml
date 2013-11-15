@@ -41,6 +41,10 @@
 			<if test="email != null">
 				and u.email=#{email}
 			</if>
+			<if test="department_id != null">
+				and u.department_id=#{department_id}
+			</if>
+			
 		</where>
 		<if test="sort != null">
 			order by ${sort}
@@ -63,7 +67,9 @@
 			<if test="email != null">
 				and email=#{email}
 			</if>
-
+			<if test="department_id != null">
+				and department_id=#{department_id}
+			</if>
 		</where>
 	</select>
 
