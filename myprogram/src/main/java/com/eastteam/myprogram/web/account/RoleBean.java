@@ -22,7 +22,6 @@ public class RoleBean extends Role {
 			
 			roleBean.setId(role.get(i).getId());
 			roleBean.setName(role.get(i).getName());	
-			roleBean.setChecked(false);
 			roleList.add(roleBean);
 		}
 		return roleList;
