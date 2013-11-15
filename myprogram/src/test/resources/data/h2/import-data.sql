@@ -16,7 +16,7 @@ insert into users(id, name, password, email, register_date, department_id) value
 insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯','userid3','userid3@gmail.com', now(),'D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯','userid4','userid4@gmail.com', now(),'D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯','userid5','userid5@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','userid6','userid6@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','userid6','userid6@gmail.com', now(),'D1-2-1');
 insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯','userid7','userid7@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','userid8','userid8@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','userid9','userid9@gmail.com', now(),'D1-2');

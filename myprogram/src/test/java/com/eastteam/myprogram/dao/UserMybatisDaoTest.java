@@ -61,6 +61,7 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		parameter4.put("pageSize", "5");
 		parameter4.put("name", "乔布斯");
 		parameter4.put("sort", "id");
+		parameter4.put("department_id", "D1");
 		List<User> result4 = userDao.search(parameter4);
 		logger.info("result4=" + result4);
 		assertEquals(4, result4.size());		
@@ -90,5 +91,12 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		assertTrue(10L == count2);
 		
 		assertTrue( userDao.getCount(null) > 12);
+		
+		Map<String, Object> parameter3 = Maps.newHashMap();
+		parameter3.put("department_id", "D1-1");
+		Long count3 = userDao.getCount(parameter3);
+		System.out.println(count3);
+		
+		
 	}
 }
