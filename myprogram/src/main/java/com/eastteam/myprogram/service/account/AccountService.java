@@ -3,6 +3,7 @@ package com.eastteam.myprogram.service.account;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -37,6 +38,21 @@ public class AccountService extends PageableService {
 	public void registerUser(User user) {
 //		user.setRoles("user");
 		userDao.save(user);
+	}
+	
+	public void updateUserInfo(User user){
+		userDao.updateUser(user);
+	}
+	
+	public void deleteUserRole(User user){
+		userDao.deleteUserRole(user);
+	}
+	
+	public void updateUserRole(String userId, List selectedRoles){
+		Map param = new HashMap();
+		param.put("userId", userId);
+		param.put("roleList", selectedRoles);
+		userDao.updateUserRole(param);		
 	}
 	
 	public List<User> search(Map parameters, Pageable pageRequest) {

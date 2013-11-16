@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -97,18 +98,19 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "show", method = RequestMethod.POST)
-	public String update(@ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+	public String update(@ModelAttribute("user") User user, @RequestParam(value="role")List selectedRoles, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
-//		this.accountService.save(user);
+//		String[] selectedRoles = request.getParameterValues("role");
+		this.accountService.updateUserInfo(user);
+		this.accountService.deleteUserRole(user);
+		this.accountService.updateUserRole(user.getId(), selectedRoles);
+		
 		redirectAttributes.addFlashAttribute("message", "更新任务成功");
 		return "redirect:/account/list/";
 	}
 	
 	private List<RoleBean> getAllRolesList(User user) {
-		List<Role> assignedRoles = user.getRoles();
-		// TODO 用RoleService.getAll()方法在这里得到所有的role列表，并且产生List<RoleBean>并返回。
-		// 用户拥有的，checked属性为true，不拥有的role，checked为false。方便在页面展示。
-		
+		List<Role> assignedRoles = user.getRoles();		
 		List<Role> allRoles = roleService.getAllRoles();
 		RoleBean roleBean = new RoleBean();
 		List<RoleBean> roleList = roleBean.roleList(allRoles);		

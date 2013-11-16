@@ -14,6 +14,9 @@ import com.eastteam.myprogram.entity.User;
 @MyBatisRepository
 public interface UserMybatisDao {
 	void save(User user);
+	void updateUser(User user);
+	void deleteUserRole(User user);
+	void updateUserRole(Map<String, List> userRoleMap);
 	List<User> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
 //	User findByLoginName(String loginName);

@@ -5,6 +5,10 @@
 <head>
 	<title>用户管理</title>
 	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 </head>
@@ -34,7 +38,7 @@
 			</div>
  -->
 			<div class="control-group">
-				<label for="sex" class="control-label">性别:</label>
+				<label for="sex" class="control-label required">性别:</label>
 				<div class="controls">
 					<label class="radio inline">
 						<input type="radio" name="sex" id="sex" value="男" >男
@@ -88,21 +92,27 @@
 					</label>
 					<label class="radio inline">
 						<input type="radio" name="status" id="status" value="停薪留职" >停薪留职
-					</label>	
-					<input type="button" value="button" onclick="test()">									
+					</label>									
 				</div>
 			</div>	
 			<div class="control-group">
-				<label for="role" class="control-label">当前角色:</label>
+				<label for="department_id" class="control-label">所在部门:</label>
 				<div class="controls">
-					<c:forEach items="${user.roles}" var="myrole">
-						<label class="checkbox inline">
-							<input type="checkbox" name="role" id="role" value="${myrole.id}" >${myrole.name}
-						</label>
+				    <input id="department_id" name="department.id" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+				</div>
+			</div>	
 	
+			<div class="control-group">
+				<label for="role" class="control-label required">当前角色:</label>
+				<div class="controls">
+					<c:forEach items="${allRoles}" var="allRole">
+						<label class="checkbox inline">
+							<input type="checkbox" name="role" id="role" value="${allRole.id}" <c:if test="${allRole.checked==true }">checked="true"</c:if> >${allRole.name}
+						</label>
 					</c:forEach>
 				</div>
-			</div>				
+			</div>	
+					
 			<div class="control-group">
 				<label for="comment" class="control-label">备注:</label>
 				<div class="controls">
@@ -134,10 +144,18 @@
 			$("#username").focus();
 			//为inputForm注册validate函数
 			$("#inputForm").validate();
+		//	$('#cc').combotree('setValue', '销售部');
+
 			 
 	});
 	$("input[name='sex'][value=${user.sex}]").prop("checked", true);
-	
+	//$('D1').combotree('setValue', '销售部');
+	var roleList="";
+	$("input[type='checkbox'][name='role']:checked").each(function(){
+		roleList += this.value;
+	//	${user.roles}.add(this.value);
+	});
+
 	function test(){
 		
 		 alert($('input[type="radio"][name="sex"]:checked').val());
