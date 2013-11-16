@@ -67,4 +67,9 @@ public class RoleService extends PageableService {
 	public List<Module> getAllModule(){
 		return roleDao.getAllModule();
 	}
+	
+	public void delete(String id){
+		roleDao.deleteRole_Function(id);
+		 roleDao.delete(id);
+	}
 }

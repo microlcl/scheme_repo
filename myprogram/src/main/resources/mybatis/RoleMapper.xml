@@ -16,6 +16,11 @@
 		update roles set role_id=#{id}, name=#{name}, description=#{description} where role_id=#{id};
 	</update>
 	
+		<!-- 根据roleId删除roles-->
+	<delete id="delete" parameterType="String">
+		delete from roles where role_id=#{roleId};
+	</delete>
+	
 	 	<!-- 根据roleId删除role_function-->
 	<delete id="deleteRole_Function" parameterType="String">
 		delete from role_function where role_id=#{roleId};
@@ -126,5 +131,4 @@
 	  select m.module_id, m.pid, m.name, m.description, m.path
 	    from modules m
 	</select>
-	
 </mapper> 

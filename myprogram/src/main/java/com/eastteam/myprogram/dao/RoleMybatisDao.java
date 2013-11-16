@@ -18,7 +18,7 @@ import com.eastteam.myprogram.entity.RoleFunction;
 public interface RoleMybatisDao {
 	void save(Role role);
 	void update(Role role);
-	void delete(String id);
+	void delete(String roleId);
 	List<Role> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
 	Role getRole(String id);

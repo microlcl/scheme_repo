@@ -9,6 +9,12 @@
 		$(document).ready(function() {
 			$("#role-tab").addClass("active");
 		});
+		
+		function fn(){
+		      if(confirm("确定删除吗")){
+		          location.href="${ctx}/role/update/${role.id}";
+		      }
+		}
 	</script>
 </head>
 
@@ -24,6 +30,8 @@
 			 	<label>角色名：</label> <input type="text" name="search_name"   class="input-small"  value="${param.search_name}"> 
 		 	    <label>描述：</label> <input type="text" name="search_description" class="input-small" value="${param.search_description}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
+			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+			    <a href="${ctx}/role/add/" ><i class="icon-pencil"></i>新增</a>
 		    </form>
 	    </div>
 	    <tags:sort/>
@@ -43,7 +51,8 @@
 				<td>${role.name}&nbsp;</td>
 				<td>${role.description}&nbsp;</td>
 				<td>
-						<a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}"><i class="icon-pencil"></i> 修改</a>
+						<a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}"><i class="icon-edit"></i> 修改</a>
+						<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/role/delete/${role.id}';}" id="editLink-${role.id}"><i class="icon-remove-circle"></i> 删除</a>
 				</td>
 			</tr>
 		</c:forEach>

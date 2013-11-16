@@ -85,4 +85,12 @@ public class RoleController {
 		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
 		return "redirect:/role/list/";
 	}
+	
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+	public String delete(@ModelAttribute Role role,  RedirectAttributes redirectAttributes) {
+		logger.info("delete role action");
+		this.roleService.delete(role.getId());
+		redirectAttributes.addFlashAttribute("message", "角色删除成功");
+		return "redirect:/role/list/";
+	}
 }
