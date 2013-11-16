@@ -12,6 +12,7 @@ import com.eastteam.myprogram.dao.RoleMybatisDao;
 import com.eastteam.myprogram.entity.Function;
 import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
+import com.eastteam.myprogram.entity.RoleFunction;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -39,8 +40,16 @@ public class RoleService extends PageableService {
 		return roleDao.getCount(parameters);
 	}
 
-	public void save(Role role) {
-		roleDao.save(role);
+	public void save(Role role,List<String []> functions) {
+		roleDao.update(role);
+		roleDao.deleteRole_Function(role.getId());
+		for (int i = 0; i < functions.size(); i++) {
+			RoleFunction roleFunction=new RoleFunction();
+			roleFunction.setRole_id(role.getId());
+			String [] function_id= (String[]) functions.get(i);
+			roleFunction.setFunction_id(function_id[0]);
+			roleDao.saveRole_Function(roleFunction);
+		}
 	}
 	
 	public List findRoleByName(String name) {

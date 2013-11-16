@@ -1,10 +1,15 @@
 package com.eastteam.myprogram.web.role;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jetty.server.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.Function;
 import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.entity.User;
@@ -73,9 +79,9 @@ public class RoleController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String update(@ModelAttribute("role") Role role, RedirectAttributes redirectAttributes) {
+	public String save(@ModelAttribute Role role,  @RequestParam(value="functionList") List<String[]> functionList, RedirectAttributes redirectAttributes) {
 		logger.info("in role update action");
-//		this.accountService.save(role);
+		this.roleService.save(role,functionList);
 		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
 		return "redirect:/role/list/";
 	}

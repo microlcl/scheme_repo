@@ -17,7 +17,7 @@
 			<div class="control-group">
 				<label for="name" class="control-label">角色名：</label>
 				<div class="controls">
-					<p type="text" id="rolename" name="rolename"/> ${role.name}</p>
+					<input type="text" id="name" name="name" value=" ${role.name}"/> 
 				</div>
 			</div>	
 			
@@ -25,7 +25,7 @@
 			<div class="control-group">
 				<label for="description" class="control-label">角色描述：</label>
 				<div class="controls">
-					<input type="text" id="address" name="description"  value="${role.description}" class="input-large required" minlength="3"/>
+					<input type="text" id="description" name="description"  value="${role.description}" class="input-large required" />
 				</div>
 			</div>
 			<div class="control-group">
@@ -35,11 +35,12 @@
 				
 			<c:forEach items="${moduleList}" var="module">
 			<div class="control-group">
-				<label for="function" class="control-label"><c:forEach items="${module.modules}" var="parentmodule">${parentmodule.name}-></c:forEach>&nbsp;${module.name}</label>
+			<!--有父节点的暂时停用 	<label for="function" class="control-label"><c:forEach items="${module.modules}" var="parentmodule">${parentmodule.name}-></c:forEach>&nbsp;${module.name}</label> -->
+			<label for="function" class="control-label">${module.name}</label>
 				<div class="controls">
 				<c:forEach items="${module.functions}" var="module_function" >
 						<label class="checkbox inline">
-							<input type="checkbox" name="function" id="function-${module_function.id}" <c:forEach items="${role.functions}" var="role_function"><c:if test="${module_function.id==role_function.id}">checked</c:if></c:forEach>>${module_function.name}</input>
+							<input type="checkbox" name="functionList" id="functionList" value="${module_function.id}" <c:forEach items="${role.functions}" var="role_function"><c:if test="${module_function.id==role_function.id}">checked</c:if></c:forEach>>${module_function.name}
 						</label>
 				</c:forEach>
 				</div>

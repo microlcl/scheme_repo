@@ -6,6 +6,7 @@ import java.util.Map;
 import com.eastteam.myprogram.entity.Function;
 import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
+import com.eastteam.myprogram.entity.RoleFunction;
 
 
 /**
@@ -16,6 +17,7 @@ import com.eastteam.myprogram.entity.Role;
 @MyBatisRepository
 public interface RoleMybatisDao {
 	void save(Role role);
+	void update(Role role);
 	void delete(String id);
 	List<Role> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
@@ -24,4 +26,6 @@ public interface RoleMybatisDao {
 	List<Role> findRole(Role role);
 	List<Role> selectAll();
 	List<Module> getAllModule();
+	void deleteRole_Function(String roleId);
+	void saveRole_Function(RoleFunction roleFunction);
 }
