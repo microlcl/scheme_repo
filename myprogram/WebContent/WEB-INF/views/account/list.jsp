@@ -14,6 +14,18 @@
 			$("#account-tab").addClass("active");
 		});
 	</script>
+<style>
+	.combo {
+		height: 28px !important;
+		border-radius: 4px 4px 4px 4px !important;
+	}
+	
+	.combo .combo-text {
+		font-size: 14px !important;
+	}
+	
+	
+</style>
 </head>
 
 <body>
