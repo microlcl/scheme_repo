@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -100,6 +99,7 @@ public class AccountController {
 	@RequestMapping(value = "show", method = RequestMethod.POST)
 	public String update(@ModelAttribute("user") User user, @RequestParam(value="role")List selectedRoles, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
+		logger.info(selectedRoles.toString());
 //		String[] selectedRoles = request.getParameterValues("role");
 		this.accountService.updateUserInfo(user);
 		this.accountService.deleteUserRole(user);

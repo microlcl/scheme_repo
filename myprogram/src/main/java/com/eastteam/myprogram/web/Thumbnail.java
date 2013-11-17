@@ -25,7 +25,7 @@ public class Thumbnail {
 		File file = new File(fileName); // 读入文件
 		this.srcFile = file.getAbsolutePath();
 		this.destFile = this.srcFile
-				.substring(0, this.srcFile.lastIndexOf(".")) + "_s.jpg";
+				.substring(0, this.srcFile.lastIndexOf(".")).replaceAll("large", "small") + ".jpg";
 		img = javax.imageio.ImageIO.read(file); // 构造Image对象
 		width = img.getWidth(null); // 得到源图宽
 		height = img.getHeight(null); // 得到源图长
@@ -39,12 +39,12 @@ public class Thumbnail {
 	 * @throws IOException
 	 */
 	public void resize(int w, int h) throws IOException {
-		BufferedImage _image = new BufferedImage(w, h,
+		BufferedImage image = new BufferedImage(w, h,
 				BufferedImage.TYPE_INT_RGB);
-		_image.getGraphics().drawImage(img, 0, 0, w, h, null); // 绘制缩小后的图
+		image.getGraphics().drawImage(img, 0, 0, w, h, null); // 绘制缩小后的图
 		FileOutputStream out = new FileOutputStream(destFile); // 输出到文件流
 		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-		encoder.encode(_image); // 近JPEG编码
+		encoder.encode(image); // 近JPEG编码
 		out.close();
 	}
 

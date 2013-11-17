@@ -4,12 +4,95 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
+
+		<!-- optionally include helper plugins -->
+		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.mousewheel.min.js"></script>
+		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.touchSwipe.min.js"></script>
+		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.transit.min.js"></script>
+		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.ba-throttle-debounce.min.js"></script>
+		
 <link rel="stylesheet" href="${ctx}/static/styles/mystyle.css" type="text/css" />
 	<script>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
 		});
+		
+		$(function() {
+			$("#foo1").carouFredSel({
+				items		: 1,
+				scroll		: {
+					fx			: "crossfade"
+				},
+				auto		: false,
+				pagination	: {
+					container		: "#foo1_pag",
+					anchorBuilder	: function( nr ) {
+						var src = $("img", this).attr( "src" );
+							src = src.replace( "/large/", "/small/");
+						return '<img src="' + src + '" class="smallpic"' + '/>';
+					}
+				}
+			});
+});
+
 	</script>
+	
+			<style type="text/css" media="all">
+		.html_carousel {
+	padding: 15px 0 15px 40px;
+}
+.html_carousel div.slide {
+	position: relative;
+}
+.html_carousel div.slide div {
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100%;
+	display: none;
+	position: absolute;
+	bottom: 0;
+}
+.html_carousel div.slide h4 {
+	font-size: 35px;
+	padding: 30px 0 0 100px;
+}
+.html_carousel div.slide p {
+	font-size: 16px;
+	padding: 0 0 30px 100px;
+}
+.html_carousel div.slide h4, .html_carousel div.slide p {
+	color: white;
+	margin: 0;
+}
+div.thumbnails {
+	text-align: center;
+}
+div.thumbnails img {
+	cursor: pointer;
+	border: 1px solid #ccc;
+	background-color: white;
+	padding: 9px;
+	margin: 7px;
+	display: inline-block;
+}
+div.thumbnails img:hover {
+	background-color: #eee;
+}
+div.thumbnails img.selected {
+	background-color: #ccc;
+}
+.clearfix {
+	float: none;
+	clear: both;
+}
+
+.smallpic {
+	width: 100px;
+	height: 100px;
+}
+
+
+		</style>
 </head>
 
 <body>
@@ -29,50 +112,43 @@
 	    </div>
 	</div>	
 			
-	<table id="contentTable" class="table table-striped table-bordered table-condensed">
-		<thead>
-		<tr>
-			<th>ID</th>
-			<th>Title</th>
-			<th>简介</th>
-			<th>类别</th>
-			<th>状态</th>
-			<th>操作</th>
-		</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>${user.status}&nbsp;</td>
-				<td>
-						<a href="${ctx}/resource/show/${resource.id}" id="editLink-${resource.id}"><i class="icon-pencil"></i> 修改</a>
-				</td>
-			</tr>
-		</tbody>		
-	</table>
-	<img src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-01.jpg" class="img-polaroid mypic">
-	<img src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-02.jpg" class="img-polaroid mypic">
-	<img src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-03.jpg" class="img-polaroid mypic">
+<div class="html_carousel">
+<div class="thumbnails" id="foo1_pag"></div>
+	<div id="foo1">
+		<div class="slide">
+			<img src="${ctx}/plupload/files/large/mypic2.jpg" alt="carousel 1" width="870" height="400" />
+			<div style="display: block;">
+				<h4>Infinity</h4>
+				<p>A concept that in many fields refers to a quantity without bound or end.</p>
+			</div>
+		</div>
+		<div class="slide">
+			<img src="${ctx}/plupload/files/large/mypic1.jpg" alt="carousel 2" width="870" height="400" />
+			<div style="display: block;">
+				<h4>Circular journey</h4>
+				<p>An excursion in which the final destination is the same as the starting point.</p>
+			</div>
+		</div>
+		<div class="slide">
+			<img src="${ctx}/plupload/files/large/mypic3.jpg" alt="carousel 3" width="870" height="400" />
+			<div style="display: block;">
+				<h4>jQuery</h4>
+				<p>jQuery is a JavaScript library designed to simplify the client-side scripting.</p>
+			</div>
+		</div>
+		<div class="slide">
+			<img src="${ctx}/plupload/files/large/mypic4.jpg" alt="carousel 4" width="870" height="400" />
+			<div style="display: block;">
+				<h4>美女</h4>
+				<p>jQuery is a JavaScript library designed to simplify the client-side scripting.</p>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	
+</div>
 
-	<ul class="media-list">
-		<li class="media">
-		<a class="pull-left" href="#"> <img class="media-object mypic" src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-03.jpg"></a>
-			<div class="media-body">
-				<h4 class="media-heading">Media heading</h4>
-				产品介绍
-			</div></li>
-			
-					<li class="media">
-		<a class="pull-left" href="#"> <img class="media-object mypic" src="http://v2.bootcss.com/assets/img/bootstrap-mdo-sfmoma-02.jpg"></a>
-			<div class="media-body">
-				<h4 class="media-heading">Media heading2</h4>
-				产品介绍2
-			</div></li>
-	</ul>
+
 
 
 </body>
