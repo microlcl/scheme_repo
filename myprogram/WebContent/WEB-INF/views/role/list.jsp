@@ -31,7 +31,7 @@
 		 	    <label>描述：</label> <input type="text" name="search_description" class="input-small" value="${param.search_description}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-			    <a href="${ctx}/role/add/" ><i class="icon-pencil"></i>新增</a>
+			    <button class="btn btn-danger" href="${ctx}/role/add/">创建新角色</button>
 		    </form>
 	    </div>
 	    <tags:sort/>
