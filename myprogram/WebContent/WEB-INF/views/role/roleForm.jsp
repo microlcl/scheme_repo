@@ -29,23 +29,25 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="function" class="control-label">当前权限:</label>
-				<div class="controls"></div>
-			</div>		
-				
-			<c:forEach items="${moduleList}" var="module">
-			<div class="control-group">
-			<!--有父节点的暂时停用 	<label for="function" class="control-label"><c:forEach items="${module.modules}" var="parentmodule">${parentmodule.name}-></c:forEach>&nbsp;${module.name}</label> -->
-			<label for="function" class="control-label">${module.name}</label>
+				<label for="function" class="control-label">当前权限：</label>
 				<div class="controls">
-				<c:forEach items="${module.functions}" var="module_function" >
-						<label class="checkbox inline">
-							<input type="checkbox" name="functionList" id="functionList" value="${module_function.id}" <c:forEach items="${role.functions}" var="role_function"><c:if test="${module_function.id==role_function.id}">checked</c:if></c:forEach>>${module_function.name}
-						</label>
-				</c:forEach>
+				<br>
+					<c:forEach items="${moduleList}" var="module">
+					<div class="control-group">
+					<!--有父节点的暂时停用 	<label for="function" class="control-label"><c:forEach items="${module.modules}" var="parentmodule">${parentmodule.name}-></c:forEach>&nbsp;${module.name}</label> -->
+					<label for="function" class="control-label" style="width:100px;">${module.name}：</label>
+						<div class="controls span2"  style="margin-left:20px">
+						<c:forEach items="${module.functions}" var="module_function" >
+								<label class="checkbox inline pull-left" style="margin-left:10px">
+									<input type="checkbox" name="functionList" id="functionList" value="${module_function.id}" <c:forEach items="${role.functions}" var="role_function"><c:if test="${module_function.id==role_function.id}">checked</c:if></c:forEach>>${module_function.name}
+								</label>
+						</c:forEach>
+						</div>
+					</div>						
+					</c:forEach>	
+					
 				</div>
-			</div>						
-			</c:forEach>
+			</div>		
 			<div class="form-actions">
 				<input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
