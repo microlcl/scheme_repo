@@ -9,7 +9,7 @@ package com.eastteam.myprogram.entity;
  * @author lichlei
  *
  */
-public abstract class IdEntity {
+public abstract class IdEntity extends BaseEntity{
 
 	protected Long id;
 
