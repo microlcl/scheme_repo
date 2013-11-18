@@ -43,7 +43,7 @@
 						</c:forEach>
 					</div>						
 					</c:forEach>	
-				</div>
+				</div> 
 			</div>		
 			<div class="form-actions">
 				<input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;	
