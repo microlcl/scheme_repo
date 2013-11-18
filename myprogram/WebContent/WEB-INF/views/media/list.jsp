@@ -4,95 +4,31 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1-packed.js"></script>
+	<!-- First, add jQuery (and jQuery UI if using custom easing or animation -->
+	<!-- script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script-->
+	<!--script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script-->
+	
+	<!-- Second, add the Timer and Easing plugins -->
+	<script type="text/javascript" src="${ctx}/static/jackwanders-GalleryView-cfeeb10/js/jquery.timers-1.2.js"></script>
+	<script type="text/javascript" src="${ctx}/static/jackwanders-GalleryView-cfeeb10/js/jquery.easing.1.3.js"></script>
+	
+	<!-- Third, add the GalleryView Javascript and CSS files -->
+	<script type="text/javascript" src="${ctx}/static/jackwanders-GalleryView-cfeeb10/js/jquery.galleryview-3.0-dev.js"></script>
+	<link type="text/css" rel="stylesheet" href="${ctx}/static/jackwanders-GalleryView-cfeeb10/css/jquery.galleryview-3.0-dev.css" />	
 
-		<!-- optionally include helper plugins -->
-		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.mousewheel.min.js"></script>
-		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.touchSwipe.min.js"></script>
-		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.transit.min.js"></script>
-		<script type="text/javascript" language="javascript" src="${ctx}/static/carouFredSel-6.2.1/helper-plugins/jquery.ba-throttle-debounce.min.js"></script>
-		
-<link rel="stylesheet" href="${ctx}/static/styles/mystyle.css" type="text/css" />
+	<link rel="stylesheet" href="${ctx}/static/styles/mystyle.css" type="text/css" />
 	<script>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
 		});
 		
-		$(function() {
-			$("#foo1").carouFredSel({
-				items		: 1,
-				scroll		: {
-					fx			: "crossfade"
-				},
-				auto		: false,
-				pagination	: {
-					container		: "#foo1_pag",
-					anchorBuilder	: function( nr ) {
-						var src = $("img", this).attr( "src" );
-							src = src.replace( "/large/", "/small/");
-						return '<img src="' + src + '" class="smallpic"' + '/>';
-					}
-				}
-			});
-});
+		$(function(){
+		$('#myGallery').galleryView();
+	});
 
 	</script>
 	
-			<style type="text/css" media="all">
-		.html_carousel {
-	padding: 15px 0 15px 40px;
-}
-.html_carousel div.slide {
-	position: relative;
-}
-.html_carousel div.slide div {
-	background-color: rgba(0, 0, 0, 0.6);
-	width: 100%;
-	display: none;
-	position: absolute;
-	bottom: 0;
-}
-.html_carousel div.slide h4 {
-	font-size: 35px;
-	padding: 30px 0 0 100px;
-}
-.html_carousel div.slide p {
-	font-size: 16px;
-	padding: 0 0 30px 100px;
-}
-.html_carousel div.slide h4, .html_carousel div.slide p {
-	color: white;
-	margin: 0;
-}
-div.thumbnails {
-	text-align: center;
-}
-div.thumbnails img {
-	cursor: pointer;
-	border: 1px solid #ccc;
-	background-color: white;
-	padding: 9px;
-	margin: 7px;
-	display: inline-block;
-}
-div.thumbnails img:hover {
-	background-color: #eee;
-}
-div.thumbnails img.selected {
-	background-color: #ccc;
-}
-.clearfix {
-	float: none;
-	clear: both;
-}
-
-.smallpic {
-	width: 100px;
-	height: 100px;
-}
-
-
-		</style>
+			
 </head>
 
 <body>
@@ -112,42 +48,22 @@ div.thumbnails img.selected {
 	    </div>
 	</div>	
 			
-<div class="html_carousel">
-<div class="thumbnails" id="foo1_pag"></div>
-	<div id="foo1">
-		<div class="slide">
-			<img src="${ctx}/plupload/files/large/mypic2.jpg" alt="carousel 1" width="870" height="400" />
-			<div style="display: block;">
-				<h4>Infinity</h4>
-				<p>A concept that in many fields refers to a quantity without bound or end.</p>
-			</div>
-		</div>
-		<div class="slide">
-			<img src="${ctx}/plupload/files/large/mypic1.jpg" alt="carousel 2" width="870" height="400" />
-			<div style="display: block;">
-				<h4>Circular journey</h4>
-				<p>An excursion in which the final destination is the same as the starting point.</p>
-			</div>
-		</div>
-		<div class="slide">
-			<img src="${ctx}/plupload/files/large/mypic3.jpg" alt="carousel 3" width="870" height="400" />
-			<div style="display: block;">
-				<h4>jQuery</h4>
-				<p>jQuery is a JavaScript library designed to simplify the client-side scripting.</p>
-			</div>
-		</div>
-		<div class="slide">
-			<img src="${ctx}/plupload/files/large/mypic4.jpg" alt="carousel 4" width="870" height="400" />
-			<div style="display: block;">
-				<h4>美女</h4>
-				<p>jQuery is a JavaScript library designed to simplify the client-side scripting.</p>
-			</div>
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	
-</div>
 
+	<ul id="myGallery">
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp1.jpg" alt="Lone Tree Yellowstone" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp2.jpg" alt="Is He Still There?!" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp4.jpg" alt="Noni Nectar For Green Gecko" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp7.jpg" alt="Flight of an Eagle Owl" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp14.jpg" alt="Winter Lollipops" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp26.jpg" alt="Day of Youth" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp27.jpg" alt="Sunbathing Underwater" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp28.jpg" alt="Untitled" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp41.jpg" alt="New Orleans Streetcar" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp49.jpg" alt="By The Wind of Chance" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp52.jpg" alt="Fishing on the Cloud" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp53.jpg" alt="Blue Lagoon" />
+		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp54.jpg" alt="Time" />
+	</ul>
 
 
 
