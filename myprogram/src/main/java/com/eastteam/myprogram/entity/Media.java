@@ -3,7 +3,6 @@ package com.eastteam.myprogram.entity;
 import java.util.Date;
 
 public class Media extends IdEntity{
-	private String title;
 	private String mediaType;
 	private String path;
 	private String status;
@@ -12,12 +11,15 @@ public class Media extends IdEntity{
 	private String userId;
 	private String categoryId;
 	
-	public String getTitle() {
-		return title;
+	public Media() {
+		
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	
+	public Media(String path, String status) {
+		this.path = path;
+		this.status = status;
 	}
+
 	public String getMediaType() {
 		return mediaType;
 	}

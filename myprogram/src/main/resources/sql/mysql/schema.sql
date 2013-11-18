@@ -5,7 +5,8 @@ drop table if exists functions;
 drop table if exists role_function;
 drop table if exists departments;
 drop table if exists user_department;
-
+drop table if exists medias;
+drop table if exists user_role;
 
 CREATE TABLE `category` (
   `id` varchar(64) NOT NULL,
@@ -88,19 +89,15 @@ CREATE TABLE `users` (
 
 CREATE TABLE `medias` (
   `media_id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(64) NOT NULL,
   `description` varchar(128) DEFAULT NULL,
-  `media_type` varchar(10) NOT NULL,
+  `media_type` varchar(10) DEFAULT NULL,
   `path` varchar(128) DEFAULT NULL,
-  `trashed` varchar(1) DEFAULT NULL,
+  `status` varchar(64) DEFAULT NULL,
   `upload_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `category_id` varchar(64) DEFAULT NULL,
+  `user_id` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`media_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `media_category` (
-  `media_id` bigint(11) NOT NULL,
-  `category_id` varchar(64) NOT NULL,
-  PRIMARY KEY (`media_id`,`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

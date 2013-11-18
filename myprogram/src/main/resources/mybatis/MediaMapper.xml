@@ -4,8 +4,39 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.MediaMybatisDao">
 	<insert id="insert" parameterType="Media" useGeneratedKeys="true" keyProperty="id">
-		insert into medias (title, description,media_type,path,status,user_id,category_id,upload_timestamp) 
-		values(#{title},#{description},#{mediaType},#{path},#{status},#{userId},#{categoryId},now());
+		insert into medias (description,media_type,path,status,user_id,category_id,upload_timestamp) 
+		values(#{description},#{mediaType},#{path},#{status},#{userId},#{categoryId},now());
 	</insert>
+	
+	<select id="search" parameterType="map" resultType="Media">
+		select description,media_type as mediaType,path,status,user_id as userId,category_id as categoryId,upload_timestamp as uploadTimestamp
+		from medias
+		<where>
+		    <if test="categoryId != null">
+				category_id=#{categoryId}
+			</if>
+			<if test="mediaType != null">
+				and media_type=#{mediaType}
+			</if>
+		</where>
+		<if test="sort != null">
+			order by ${sort}
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0) from medias
+		<where>
+		    <if test="categoryId != null">
+				category_id=#{categoryId}
+			</if>
+			<if test="mediaType != null">
+				and media_type=#{mediaType}
+			</if>
+		</where>
+	</select>
 	
 </mapper> 
