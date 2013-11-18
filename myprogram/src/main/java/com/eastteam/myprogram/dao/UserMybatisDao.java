@@ -16,7 +16,7 @@ public interface UserMybatisDao {
 	void save(User user);
 	void updateUser(User user);
 	void deleteUserRole(User user);
-	void updateUserRole(Map<String, List> userRoleMap);
+	void updateUserRole(Map<String, Object> userRoleMap);
 	List<User> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
 //	User findByLoginName(String loginName);
