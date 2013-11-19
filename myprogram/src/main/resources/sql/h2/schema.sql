@@ -87,13 +87,7 @@ create table medias (
 	status varchar(64),
 	user_id varchar(64),
 	upload_timestamp timestamp,
-	title varchar(64),
 	description varchar(128),
 	primary key (media_id)
 );
 
-create table media_category (
-	media_id bigint not null,
-	category_id varchar(64) not null,
-	primary key (media_id,category_id)
-);

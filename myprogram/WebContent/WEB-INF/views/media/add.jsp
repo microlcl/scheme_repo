@@ -27,11 +27,29 @@
 			<h4>提示：</h4>
 			你已经上传了多媒体资源，请在此填写必要信息进行描述
 		</div>
-			<div class="control-group">
-				<label for="mediaTitle" class="control-label">名称:</label>
+
+
+		
+		<div class="control-group">
+				<label for="files" class="control-label">上传文件：</label>
 				<div class="controls">
-					<input type="text" id="mediaTitle" name="title"
-						class="input-large required" minlength="3" />
+							<table class="table table-hover">
+			<thead class="success">
+				<tr>
+					<th>文件名</th>
+					<th>状态</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach items="${mediaList}" var="media" varStatus="status">
+				<tr>
+					<td>${status.index}:${media.path} <input type="hidden"  name="medias[${status.index}].path" value="${media.path}"/></td>
+					<td>${media.status} <input type="hidden"  name="medias[${status.index}].status" value="${media.status}"/></td>
+				</tr>
+			</c:forEach>
+
+			</tbody>
+		</table>
 				</div>
 			</div>
 			<div class="control-group">

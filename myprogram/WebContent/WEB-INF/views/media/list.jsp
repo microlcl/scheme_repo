@@ -38,34 +38,44 @@
 	</c:if>
 	
 	<div class="row">
-		<div class="span">
-			<form class="form-search" action="#">
-			 	<label>类别</label> <input type="text" name="search_type"   class="input-small"  value="${param.search_type}"> 
-			    <label>Title：</label> <input type="text" name="search_title" class="input-small" value="${param.search_title}">
+		<div class="span10">
+			<form class="form-search form-inline" action="#">
+			 	<label>类别</label> <input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"> 
+
+					<label class="radio inline">
+						<input type="radio" name="search_mediaType" value="图片" checked>图片
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="search_mediaType" value="视频" >视频
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="search_mediaType" value="音频" >音频
+					</label>									
+
+
 			    <button type="submit" class="btn" id="search_btn">Search</button>
-			    <a class="offset2 span2 btn pull-right" href="${ctx}/media/upload">添加新资源</a>
+			    <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a>
 		    </form>
 	    </div>
-	</div>	
-			
+	</div>
 
-	<ul id="myGallery">
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp1.jpg" alt="Lone Tree Yellowstone" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp2.jpg" alt="Is He Still There?!" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp4.jpg" alt="Noni Nectar For Green Gecko" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp7.jpg" alt="Flight of an Eagle Owl" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp14.jpg" alt="Winter Lollipops" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp26.jpg" alt="Day of Youth" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp27.jpg" alt="Sunbathing Underwater" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp28.jpg" alt="Untitled" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp41.jpg" alt="New Orleans Streetcar" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp49.jpg" alt="By The Wind of Chance" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp52.jpg" alt="Fishing on the Cloud" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp53.jpg" alt="Blue Lagoon" />
-		<li><img src="http://www.spaceforaname.com/galleryview/img/photos/bp54.jpg" alt="Time" />
-	</ul>
+	<div class="row">
+		<div class="span">
+			<ul id="myGallery">
+				<c:forEach items="${medias.content}" var="media">
+					<li>
+						<img src="${ctx}/plupload/files/large/${media.path}" alt="${media.description}" />
+				</c:forEach>
+
+			</ul>
+		</div>
+		<div class="span2"></div>
+
+	</div>
 
 
+
+	<tags:pagination page="${medias}" paginationSize="4"/>
 
 </body>
 </html>
