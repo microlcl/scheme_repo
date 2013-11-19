@@ -1,12 +1,5 @@
 package com.eastteam.myprogram.web.media;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +32,7 @@ import com.google.common.collect.Lists;
 public class MediaController {
 	
 	private static final int PAGE_SIZE = 10;
-	private static final int BUFFER_SIZE = 100 * 1024; 
+	
 
 	private static Logger logger = LoggerFactory.getLogger(MediaController.class);
 	
@@ -86,63 +79,13 @@ public class MediaController {
 		//加上sessionId作为上传文件名
 		String filename = session.getId() + "_" + name;
 		logger.info("文件保存路径：" + mediafolder);
-		logger.info("文件名称：" + filename);
-		
-		try {
-			//检查文件目录，不存在则创建
-			File folder = new File(mediafolder);
-			if (!folder.exists()) {
-				folder.mkdirs();
-			}
-			
-			//目标文件 
-			File destFile = new File(folder, filename);
-			//文件已存在删除旧文件（上传了同名的文件） 
-	        if (destFile.exists()) {  
-	        	destFile.delete();  
-	        	destFile = new File(folder, filename);
-	        }
-	        //合成文件
-	        appendFile(file.getInputStream(), destFile);  
-			
-		} catch (IOException e) {
-			logger.error(e.getMessage());
-		}
+		logger.info("文件名称：" + filename);		
+		mediaService.saveFile(file, mediafolder, filename);
 		
 		return "";
 	}
 	
-	private void appendFile(InputStream in, File destFile) {
-		OutputStream out = null;
-		try {
-			// plupload 配置了chunk的时候新上传的文件append到文件末尾
-			if (destFile.exists()) {
-				out = new BufferedOutputStream(new FileOutputStream(destFile, true), BUFFER_SIZE); 
-			} else {
-				out = new BufferedOutputStream(new FileOutputStream(destFile),BUFFER_SIZE);
-			}
-			in = new BufferedInputStream(in, BUFFER_SIZE);
-			
-			int len = 0;
-			byte[] buffer = new byte[BUFFER_SIZE];			
-			while ((len = in.read(buffer)) > 0) {
-				out.write(buffer, 0, len);
-			}
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		} finally {		
-			try {
-				if (null != in) {
-					in.close();
-				}
-				if(null != out){
-					out.close();
-				}
-			} catch (IOException e) {
-				logger.error(e.getMessage());
-			}
-		}
-	}
+
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
 	public String showAddPage(Model model, HttpServletRequest request, @RequestParam("uploader_count")int count) {
@@ -177,6 +120,7 @@ public class MediaController {
 			media.setDescription(mediaFormBean.getDescription());
 			if (user != null) {
 				media.setUserId(user.getId());
+				media.setPath(session.getId() + "_" + media.getPath());
 				// TODO hardcode here:
 				media.setMediaType("图片");
 			}
