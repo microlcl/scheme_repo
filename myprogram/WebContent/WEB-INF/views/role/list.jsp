@@ -9,11 +9,8 @@
 		$(document).ready(function() {
 			$("#role-tab").addClass("active");
 		});
-		
 		function fn(){
-		      if(confirm("确定删除吗")){
-		          location.href="${ctx}/role/update/${role.id}";
-		      }
+			location.href='${ctx}/role/add/';
 		}
 	</script>
 </head>
@@ -31,7 +28,8 @@
 		 	    <label>描述：</label> <input type="text" name="search_description" class="input-small" value="${param.search_description}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-			    <button class="btn btn-danger" href="${ctx}/role/add/">创建新角色</button>
+		 <!--	<button class="btn btn-danger" onclick="fn()">创建新角色</button>	 -->
+				<a href="${ctx}/role/add/" >创建新角色</a>
 		    </form>
 	    </div>
 	    <tags:sort/>

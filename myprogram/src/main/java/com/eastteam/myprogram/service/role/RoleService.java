@@ -2,6 +2,7 @@ package com.eastteam.myprogram.service.role;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -41,7 +42,12 @@ public class RoleService extends PageableService {
 	}
 
 	public void save(Role role,List<String []> functions) {
-		roleDao.update(role);
+		if(role.getId()!=null){
+			roleDao.update(role);
+		}else{
+			role.setId(UUID.randomUUID().toString());
+			roleDao.save(role);
+		}
 		roleDao.deleteRole_Function(role.getId());
 		for (int i = 0; i < functions.size(); i++) {
 			RoleFunction roleFunction=new RoleFunction();

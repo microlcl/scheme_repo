@@ -4,9 +4,8 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.RoleMybatisDao">
     
-    
     	<!-- 插入角色-->
-	<insert id="save" parameterType="Role">
+	<insert id="save" parameterType="Role" >
 		insert into roles (role_id, name, description) 
 		values(#{id},#{name},#{description});
 	</insert>

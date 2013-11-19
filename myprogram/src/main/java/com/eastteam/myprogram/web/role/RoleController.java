@@ -93,4 +93,19 @@ public class RoleController {
 		redirectAttributes.addFlashAttribute("message", "角色删除成功");
 		return "redirect:/role/list/";
 	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add(Model model) {
+		List<Module> modules=this.roleService.getAllModule();
+		model.addAttribute("moduleList",modules);
+		return "role/addRole";
+	}
+	
+	@RequestMapping(value = "doAdd", method = RequestMethod.POST)
+	public String doAdd(@ModelAttribute Role role,  @RequestParam(value="functionList") List<String[]> functionList, RedirectAttributes redirectAttributes) {
+		logger.info("in role update action");
+		this.roleService.save(role,functionList);
+		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
+		return "redirect:/role/list/";
+	}
 }
