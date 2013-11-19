@@ -1,5 +1,7 @@
 package com.eastteam.myprogram.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class User extends BaseEntity{
 	private String phoneNum;
 	private String address;
 	private String hometown;
-	private String birthday;
+	private Date birthday;
 	private Date registerDate;
 	private String status;	
 	private String comment;	
@@ -85,12 +87,20 @@ public class User extends BaseEntity{
 		this.hometown = hometown;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
 	public void setBirthday(String birthday) {
-		this.birthday = birthday;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = new Date();
+		try {
+			 date = sdf.parse(birthday);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.birthday = date;
 	}
 
 	public String getStatus() {

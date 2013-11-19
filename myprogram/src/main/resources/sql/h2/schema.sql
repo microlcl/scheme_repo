@@ -16,7 +16,7 @@ create table users (
 	phone_num varchar(20),
 	address varchar(64),
 	hometown varchar(64),
-	birthday timestamp,
+	birthday date,
 	register_date timestamp,
 	status varchar(20),
 	comment varchar(128),

@@ -1,5 +1,7 @@
 package com.eastteam.myprogram.web.account;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -91,16 +93,22 @@ public class AccountController {
 	
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") String id, Model model) {
-		model.addAttribute("user", this.accountService.getUser(id));
+		User user =  this.accountService.getUser(id);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String userBirthday = sdf.format(user.getBirthday());
+		model.addAttribute("user", user);
+		model.addAttribute("userBirthday", userBirthday);
 		model.addAttribute("allRoles", this.getAllRolesList(this.accountService.getUser(id)));
 		return "account/userForm";
 	}
 	
 	@RequestMapping(value = "show", method = RequestMethod.POST)
-	public String update(@ModelAttribute("user") User user, @RequestParam(value="role")List selectedRoles, RedirectAttributes redirectAttributes) {
+	public String update(@ModelAttribute("user") User user, @RequestParam(value="userBirthday") String birthday,  @RequestParam(value="role") List selectedRoles, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
 		logger.info(selectedRoles.toString());
 //		String[] selectedRoles = request.getParameterValues("role");
+		user.setBirthday(birthday);
+
 		this.accountService.updateUserInfo(user);
 		this.accountService.deleteUserRole(user);
 		this.accountService.updateUserRole(user.getId(), selectedRoles);

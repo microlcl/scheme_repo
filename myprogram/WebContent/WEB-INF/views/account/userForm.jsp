@@ -15,11 +15,16 @@
 
 <body>
 	<form id="inputForm" action="${ctx}/account/show" method="post" class="form-horizontal">
-		<input type="hidden" name="id" value="${user.id}"/>
 		<fieldset>
 			<legend><small>用户管理</small></legend>
 			<div class="control-group">
-				<label for="name" class="control-label">用户名</label>
+				<label for="id" class="control-label">登录名：</label>
+				<div class="controls">
+					<input type="text" id="id" name="id"  value="${user.id}" readonly/>
+				</div>
+			</div>	
+			<div class="control-group">
+				<label for="name" class="control-label">用户名：</label>
 				<div class="controls">
 					<input type="text" id="name" name="name"  value="${user.name}" class="input-large required" rangelength="2,20"/>
 				</div>
@@ -51,31 +56,31 @@
             <div class="control-group">
   				  <label class="control-label" for="email">邮箱:</label>
   				  <div class="controls">
-   				     <input type="email" id="email" name="email" required="" placeholder="test@example.com" class="span3">
+   				     <input type="email" id="email" name="email" required="" value="${user.email}" class="span3">
                   </div>
             </div>	
 			<div class="control-group">
 				<label for="phoneNum" class="control-label">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" minlength="3"/>
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" value="${user.phoneNum}" minlength="3"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large required" minlength="3"/>
+					<input type="text" id="address" name="address" class="input-large required" value="${user.address}" minlength="3"/>
 				</div>
 			</div>			
 		    <div class="control-group">
-				<label for="hometown" class="control-label">家乡:</label>
+				<label for="hometown" class="control-label">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large required" minlength="3"/>
+					<input type="text" id="hometown" name="hometown" class="input-large required" value="${user.hometown}" minlength="3"/>
 				</div>
 			</div>			
 			<div class="control-group">
-                <label for="birthday" class="control-label">出身日期:</label>
+                <label for="userBirthday" class="control-label">出身日期:</label>
                 <div class="input-append date form_date" style="margin-left:20px" >
-                    <input size="16" type="text" id="birthday" name="birthday" style="width:160px" value="1980-01-01" readonly>
+                    <input size="16" type="text" id="userBirthday" name="userBirthday" style="width:160px" value="${userBirthday}" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
@@ -98,15 +103,15 @@
 			<div class="control-group">
 				<label for="department_id" class="control-label">所在部门:</label>
 				<div class="controls">
-				    <input id="department_id" name="department.id" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+				    <input id="department_id" name="department.id" value="${user.department.id}" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
 				</div>
 			</div>	
 	
 			<div class="control-group">
 				<label for="role" class="control-label required">当前角色:</label>
-				<div class="controls">
+				<div class="controls" style="width:500px">
 					<c:forEach items="${allRoles}" var="allRole">
-						<label class="checkbox inline">
+						<label class="checkbox inline" style="margin-left:10px;width:80px;">
 							<input type="checkbox" name="role" id="role" value="${allRole.id}" <c:if test="${allRole.checked==true }">checked="true"</c:if> >${allRole.name}
 						</label>
 					</c:forEach>
@@ -149,18 +154,8 @@
 			 
 	});
 	$("input[name='sex'][value=${user.sex}]").prop("checked", true);
-	//$('D1').combotree('setValue', '销售部');
-	var roleList="";
-	$("input[type='checkbox'][name='role']:checked").each(function(){
-		roleList += this.value;
-	//	${user.roles}.add(this.value);
-	});
+	$("input[name='status'][value=${user.status}]").prop("checked", true);
 
-	function test(){
-		
-		 alert($('input[type="radio"][name="sex"]:checked').val());
-
-	}
 	</script>
 </body>
 </html>
