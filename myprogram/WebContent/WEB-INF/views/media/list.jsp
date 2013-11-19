@@ -17,14 +17,19 @@
 	<link type="text/css" rel="stylesheet" href="${ctx}/static/jackwanders-GalleryView-cfeeb10/css/jquery.galleryview-3.0-dev.css" />	
 
 	<link rel="stylesheet" href="${ctx}/static/styles/mystyle.css" type="text/css" />
+	<!-- combotreee -->
+		<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<script>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
+			$('#cc').combotree({cascadeCheck:false});
+			$('#myGallery').galleryView();
 		});
-		
-		$(function(){
-		$('#myGallery').galleryView();
-	});
+
 
 	</script>
 	
@@ -40,7 +45,8 @@
 	<div class="row">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
-			 	<label>类别</label> <input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"> 
+			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
+			 	<select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;"></select>
 
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="图片" checked>图片

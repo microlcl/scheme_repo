@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.CategoryMybatisDao;
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.CategoryLiteBean;
+import com.google.common.collect.Lists;
 
 @Component
 @Transactional
@@ -53,4 +55,20 @@ public class CategoryService {
 	public void delete(String id) {
 		this.categoryDao.delete(id);
 	} 
+	
+	/**
+	 * 提供给Comobotree使用，不展示根节点
+	 * @param id
+	 * @return
+	 */
+	public List<CategoryLiteBean> getAll(String id) {
+		
+		List<CategoryLiteBean> firstLevelChildrenList = categoryDao.getFirstLevelChildren("1");
+		List<CategoryLiteBean> categoryList = Lists.newArrayList();
+		for(CategoryLiteBean firstLevelChildren : firstLevelChildrenList) {
+			CategoryLiteBean category = categoryDao.getAll(firstLevelChildren.getId());
+			categoryList.add(category);
+		}
+		return categoryList;
+	}
 }

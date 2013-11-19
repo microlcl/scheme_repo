@@ -3,6 +3,7 @@ package com.eastteam.myprogram.dao;
 import java.util.List;
 
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.CategoryLiteBean;
 
 @MyBatisRepository
 public interface CategoryMybatisDao {
@@ -17,4 +18,8 @@ public interface CategoryMybatisDao {
 	 * @param ParentId Parent category ID
 	 */
 	public String getMaxSubId(String pid);
+	
+	public CategoryLiteBean getAll(String id);
+	
+	public List<CategoryLiteBean> getFirstLevelChildren(String id);
 }

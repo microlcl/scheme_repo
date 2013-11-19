@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.service.category.CategoryService;
 
 @Controller
@@ -65,5 +66,12 @@ public class CategoryController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
 		categoryService.delete(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/api/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<CategoryLiteBean> getAll() {
+		
+		return categoryService.getAll("1");
 	}
 }

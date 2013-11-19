@@ -11,18 +11,6 @@
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
-	<style>
-		.combo {
-			height: 28px !important;
-			border-radius: 4px 4px 4px 4px !important;
-		}
-		
-		.combo .combo-text {
-			font-size: 14px !important;
-		}
-		
-		
-	</style>
 </head>
 
 <body>

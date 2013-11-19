@@ -33,4 +33,34 @@
 	<select id="getSubNodeCount" resultType="int">
 		select count(0) from category where pid=#{pid}
 	</select>
+	
+	
+	
+	<resultMap id="categoryDetailMap" type="CategoryLiteBean">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<collection property="children" column="id" ofType="CategoryLiteBean" select="selectCategory">	
+		    <id property="id" column="id" />
+			<result property="name" column="name" />
+			<collection property="children" column="id" ofType="CategoryLiteBean" select="selectCategory"/>				
+		</collection>
+	</resultMap>
+	
+	
+	<select id="selectCategory" resultMap="categoryDetailMap">
+		select id, name
+		from category
+		where pid=#{id}
+	</select>
+	<select id="getAll" resultMap="categoryDetailMap">
+		select id, name
+		from category
+		where id=#{id}
+	</select>
+	<select id="getFirstLevelChildren" resultType="CategoryLiteBean">
+		select id, name
+		from category
+		where pid=#{id}
+	</select>
+	
 </mapper> 

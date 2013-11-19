@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.CategoryLiteBean;
 
 public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 	
@@ -29,7 +30,7 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 	public void testInsert() {
 		int size = categoryDao.search().size();
 		Category category = new Category();
-		category.setId("1-2");
+		category.setId("1-5");
 		category.setPid("1");
 		category.setName("道具");
 		category.setTrashed("F");
@@ -67,6 +68,18 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 	public void testGetSubNodeCount() {
 		assertTrue(this.categoryDao.getSubNodeCount("1-1") == 2);
 		assertTrue(this.categoryDao.getSubNodeCount("6") == 0);
+	}
+	
+	@Test
+	public void getAll() {
+		CategoryLiteBean categorys = categoryDao.getAll("1");
+		logger.info(categorys.toString());
+	}
+	
+	@Test
+	public void getFirstLevelChildren() {
+		List<CategoryLiteBean> categorys = categoryDao.getFirstLevelChildren("1");
+		logger.info(categorys.toString());
 	}
 
 }
