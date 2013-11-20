@@ -26,8 +26,28 @@
 	<script>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
-			$('#cc').combotree({cascadeCheck:false});
+			//$('#cc').combotree({cascadeCheck:false});
+			//$('#cc').combotree('setValue', '1-1-1');
+			
+			
+			//var mynode=$('#cc').combotree('tree').tree('find','1-1-1');
+			//console.log("begin print========mynode:");
+			//console.log(mynode);
+			//$('#cc').combotree('tree').tree('check',mynode.target);
+
+			//$('#cc').combotree({ 
+			//	onLoadSuccess:function(node){//数据加载成功触发 
+			//		$('#cc').combotree('setValues', ['1-1-1','1-1-2']); 
+			//	}
+			//});
+
+			
 		});
+		
+		function setValue(n) {
+			console.log("in setValue:---" + n);
+			$('#cc').combotree('setValues', ['1-1-1','1-1-2']);
+		}
 		
 		$(function(){
 			$('#myGallery').galleryView({
@@ -81,16 +101,16 @@
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
 			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
-			 	<select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;"></select>
-
+			 	<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
+				<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
 					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="图片" checked>图片
+						<input type="radio" name="search_mediaType" value="图片" <c:if test="${param.search_mediaType eq '图片'}">checked</c:if> >图片
 					</label>
 					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="视频" >视频
+						<input type="radio" name="search_mediaType" value="视频" <c:if test="${param.search_mediaType eq '视频'}">checked</c:if>>视频
 					</label>
 					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="音频" >音频
+						<input type="radio" name="search_mediaType" value="音频" <c:if test="${param.search_mediaType eq '音频'}">checked</c:if>>音频
 					</label>									
 
 

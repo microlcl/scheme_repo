@@ -37,9 +37,8 @@ public class MediaService extends PageableService {
 	private MediaMybatisDao medaiDao;
 	
 	  @Value("${pagesize}")	
-//		@Value("#{configProperties['pagesize]}")
 //	  @Value("#{configProperties['pagesize]}")
-	private String pageSize;
+	private int pageSize;
 	  
 	  
 	@Value("${jdbc.url}")	

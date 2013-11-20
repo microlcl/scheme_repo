@@ -52,6 +52,7 @@ public class AuthFilter implements Filter {
 			if (user == null) {
 				logger.info("没有登陆，即将跳转到登陆页面");				
 				httpServletResponse.sendRedirect(WebUtils.getContextPath(httpServletRequest) + "/login");
+				return;
 			}
 			
 			if (isAccessable(uri, user)) {

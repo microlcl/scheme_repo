@@ -13,7 +13,7 @@
 		from medias
 		<where>
 		    <if test="categoryId != null">
-				category_id=#{categoryId}
+				category_id like '${categoryId}%'
 			</if>
 			<if test="mediaType != null">
 				and media_type=#{mediaType}
@@ -31,7 +31,7 @@
 		select count(0) from medias
 		<where>
 		    <if test="categoryId != null">
-				category_id=#{categoryId}
+				category_id like '${categoryId}%'
 			</if>
 			<if test="mediaType != null">
 				and media_type=#{mediaType}

@@ -13,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,12 +37,6 @@ public class MediaController {
   	@Qualifier("configProperties")
   	private Properties configProperties;
 	
-	  
-//	  @Value("#{configProperties['pagesize]}")
-	@Value("${pagesize}")	
-	private String pageSize;
-	
-
 	private static Logger logger = LoggerFactory.getLogger(MediaController.class);
 	
 	@Autowired
@@ -53,11 +46,10 @@ public class MediaController {
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "sortType", defaultValue = "media_id") String sortType,
 			Model model, ServletRequest request) {
-		logger.info("in list, pageSize=" + this.pageSize);
 		logger.info("from property file: pagesize=====" + configProperties.getProperty("pagesize"));
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		logger.info(searchParams.toString());		
-		Page<Media> medias = mediaService.getCurrentPageContent(searchParams, pageNumber, 7, sortType);
+		Page<Media> medias = mediaService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("pagesize")), sortType);
 		model.addAttribute("medias", medias);
 		model.addAttribute("sortType", sortType);
 //		model.addAttribute("sortTypes", sortTypes);
@@ -144,16 +136,6 @@ public class MediaController {
 		
 		return "redirect:list";
 	}
-
-
-//	public String getPageSize() {
-//		return pageSize;
-//	}
-//
-//
-//	public void setPageSize(String pageSize) {
-//		this.pageSize = pageSize;
-//	}
 	
 	
 }
