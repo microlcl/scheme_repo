@@ -76,6 +76,6 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		parameter.put("categoryId", "1-1-1");
 		Long count = mediaDao.getCount(parameter);
 		logger.info("count=" + count);
-		assertTrue(count > 5);
+		assertTrue(count > 2);
 	}
 }

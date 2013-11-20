@@ -25,6 +25,7 @@ import com.eastteam.myprogram.service.account.AccountService;
 public class AuthFilter implements Filter {
 	
 	private final String[] IGNORED_URL = {"/account/register"};
+	private final String LOGOUT_URL="/account/logout";
 	
 	private static Logger logger = LoggerFactory.getLogger(AuthFilter.class);
 	
@@ -48,6 +49,10 @@ public class AuthFilter implements Filter {
 		if (uri.equalsIgnoreCase(IGNORED_URL[0])) {
 			chain.doFilter(request, response);
 		} else {
+			if (uri.equalsIgnoreCase(LOGOUT_URL)) {
+				logger.info("logout: invalidate session");
+				httpServletRequest.getSession().invalidate();
+			}
 			User user = (User)httpServletRequest.getSession().getAttribute("user");
 			if (user == null) {
 				logger.info("没有登陆，即将跳转到登陆页面");				

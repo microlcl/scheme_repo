@@ -18,7 +18,7 @@
 						<li class="divider"></li>
 
 					<li><a href="${ctx}/profile">Edit Profile</a></li>
-					<li><a href="${ctx}/logout">Logout</a></li>
+					<li><a href="${ctx}/account/logout">Logout</a></li>
 				</ul>
 			</div>
 		</h1>
