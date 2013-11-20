@@ -13,6 +13,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +35,19 @@ public class MediaService extends PageableService {
 
 	@Autowired
 	private MediaMybatisDao medaiDao;
+	
+	  @Value("${pagesize}")	
+//		@Value("#{configProperties['pagesize]}")
+//	  @Value("#{configProperties['pagesize]}")
+	private String pageSize;
+	  
+	  
+	@Value("${jdbc.url}")	
+	private String dburl;
 
 	public List<Media> search(Map parameters, Pageable pageRequest) {
+		logger.info("in service, pagesize = " + pageSize);
+		logger.info("in service, dburl = " + dburl);
 		Map param = Maps.newHashMap(parameters);
 		param.put("offset", pageRequest.getOffset());
 		param.put("pageSize", pageRequest.getPageSize());

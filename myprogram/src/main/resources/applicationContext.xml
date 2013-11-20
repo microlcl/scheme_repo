@@ -46,12 +46,24 @@
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
 	
 	<!-- 定义aspectj -->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>	
 	
+
+
 		<!-- production环境 -->
  	<beans profile="production">
- 		<context:property-placeholder ignore-unresolvable="true"
-			location="classpath*:/application.properties" />	
+ 		<!--context:property-placeholder ignore-unresolvable="true"
+			location="classpath*:application.properties" /-->
+		<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		  <property name="ignoreResourceNotFound" value="true"/>
+		  <property name="locations">
+		    <list>
+		      <value>classpath*:/application.properties</value>
+		    </list>
+		  </property>
+		</bean>
+	
+		<context:property-placeholder ignore-resource-not-found="true" properties-ref="configProperties" />		
 		
 		<!-- 数据源配置, 使用Tomcat JDBC连接池 -->
 		<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
@@ -76,9 +88,18 @@
 
 	<!-- unit test环境 -->
 	<beans profile="test">
-		<context:property-placeholder ignore-resource-not-found="true"
-			location="classpath*:/application.properties,
-          			  classpath*:/application.test.properties" />	
+	    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		  <property name="ignoreResourceNotFound" value="true"/>
+		  <property name="locations">
+		    <list>
+		      <value>classpath*:/application.properties</value>
+		      <value>classpath*:/application.test.properties</value>		      		      
+		      <!--value>/WEB-INF/properties/config.#{systemProperties[‘ENV']}.properties</value-->
+		    </list>
+		  </property>
+		</bean>
+	
+		<context:property-placeholder ignore-resource-not-found="true" properties-ref="configProperties" />	
 		
 		<!-- Spring Simple连接池 -->
 		<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
