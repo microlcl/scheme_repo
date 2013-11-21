@@ -97,5 +97,22 @@ public class AccountService extends PageableService {
 		return Collections.unmodifiableList(uriList);
 	}
 	
+	public List<String> getAuthorizedFunctionList(User user) {
+		if (user == null || user.getRoles() == null)
+			return null;
+		
+		Set<String> functionIdSet = Sets.newHashSet();
+		for (Role role : user.getRoles()) {
+			if (role.getFunctions() == null)
+				continue;
+			for (Function function : role.getFunctions()) {
+				functionIdSet.add(function.getId());
+			}
+			
+		}		
+		ArrayList<String> functionidList = Lists.newArrayList(functionIdSet);
+		return Collections.unmodifiableList(functionidList);
+	}
+	
 
 }

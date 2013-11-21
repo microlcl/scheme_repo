@@ -50,8 +50,11 @@ public class LoginController {
 		}
 		logger.info("set user in session");
 		List<String> authorizedUriList = accountService.getAuthorizedUriList(u);
+		List<String> authorizedFunctionIdList = accountService.getAuthorizedFunctionList(u);
 		System.out.println(authorizedUriList);
 		u.setAuthorizedUriList(authorizedUriList);
+		u.setAuthorizedFunctionList(authorizedFunctionIdList);
+		logger.info(u.getAuthorizedFunctionList().toString());
 		session.setAttribute("user", u);
 		return "redirect:/index.jsp";
 	}

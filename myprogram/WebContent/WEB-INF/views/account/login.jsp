@@ -46,8 +46,9 @@
 					</span>
 				</div>
 			</div>
+		</c:if>
 	</form>
-	</c:if>
+	
 	<script>
 		$(document).ready(function() {
 			$("#loginForm").validate();

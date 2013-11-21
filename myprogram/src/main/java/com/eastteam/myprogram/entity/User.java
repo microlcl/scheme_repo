@@ -30,6 +30,7 @@ public class User extends BaseEntity{
 	private Department department;
 	private List<Role> roles = Lists.newArrayList();
 	private List<String> authorizedUriList;
+	private List<String> authorizedFunctionList;
 	
 	public User() {
 	}
@@ -185,6 +186,22 @@ public class User extends BaseEntity{
 
 	public void setAuthorizedUriList(List<String> authorizedUriList) {
 		this.authorizedUriList = authorizedUriList;
+	}	
+		
+	public List<String> getAuthorizedFunctionList() {
+		return authorizedFunctionList;
+	}
+
+	public void setAuthorizedFunctionList(List<String> authorizedFunctionList) {
+		this.authorizedFunctionList = authorizedFunctionList;
+	}
+
+	public boolean checkPermission(String functionId) {
+		if (authorizedFunctionList == null || authorizedFunctionList.isEmpty()) {
+			return false;
+		}
+		
+		return authorizedFunctionList.contains(functionId);
 	}
 	
 }
