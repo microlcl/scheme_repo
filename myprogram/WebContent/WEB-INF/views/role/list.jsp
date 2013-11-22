@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://localhost" prefix="mytag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -20,7 +21,7 @@
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-	
+	<mytag:PermssionTag functionId="111"><a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}"><i class="icon-edit"></i> 修改</a></mytag:PermssionTag>
 	<div class="row">
 		<div class="span">
 			<form class="form-search" action="#">

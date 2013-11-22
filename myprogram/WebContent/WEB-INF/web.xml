@@ -102,4 +102,22 @@
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error/404.jsp</location>
 	</error-page>
+	
+	<jsp-config>
+
+<!--定义标签库-->
+
+<taglib>
+
+<!--确定标签库的URI-->
+
+<taglib-uri>http://localhost</taglib-uri>
+
+<!-- 确定标签库定义文件的位置 -->
+
+<taglib-location>/WEB-INF/tags/mytaglib.tld</taglib-location>
+
+</taglib>
+
+</jsp-config> 
 </web-app>
