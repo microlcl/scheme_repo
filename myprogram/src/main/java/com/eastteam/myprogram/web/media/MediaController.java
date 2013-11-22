@@ -91,7 +91,7 @@ public class MediaController {
 
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String showAddPage(Model model, HttpServletRequest request, @RequestParam("uploader_count")int count) {
+	public String showAddPage(Model model, HttpServletRequest request, HttpSession session, @RequestParam("uploader_count")int count) {
 		logger.info("show add page");
 
 		List<Media> mediaList = Lists.newArrayList();
@@ -103,7 +103,7 @@ public class MediaController {
 			logger.info("file={},status={}", fileName, status);
 			if (status.equalsIgnoreCase("done")) {
 				Media media = new Media();
-				media.setPath(fileName);
+				media.setPath(session.getId() + "_" + fileName);
 				media.setStatus("上传成功");
 				mediaList.add(media);	
 			}
@@ -123,7 +123,7 @@ public class MediaController {
 			media.setDescription(mediaFormBean.getDescription());
 			if (user != null) {
 				media.setUserId(user.getId());
-				media.setPath(session.getId() + "_" + media.getPath());
+				media.setPath(media.getPath());
 				// TODO hardcode here:
 				media.setMediaType("图片");
 			}

@@ -10,6 +10,8 @@ public class MediaFormBean extends BaseFormBean {
 	private List<Media> medias;
 	
 	private String description;
+	
+	private String categoryId;
 
 	public List<Media> getMedias() {
 		return medias;
@@ -26,7 +28,13 @@ public class MediaFormBean extends BaseFormBean {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
+	public String getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
+	}	
 
 }

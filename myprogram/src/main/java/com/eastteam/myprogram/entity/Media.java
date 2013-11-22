@@ -10,6 +10,7 @@ public class Media extends IdEntity{
 	private Date uploadTimestamp;
 	private String userId;
 	private String categoryId;
+	private String title;
 	
 	public Media() {
 		
@@ -62,5 +63,15 @@ public class Media extends IdEntity{
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 
 }
