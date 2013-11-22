@@ -21,7 +21,6 @@
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-	<mytag:PermssionTag functionId="111" content="" ><a href='${ctx}/role/update/${role.id}' id='editLink-${role.id}'><i class='icon-edit'></i> 修改</a></mytag:PermssionTag>
 	<div class="row">
 		<div class="span">
 			<form class="form-search" action="#">
@@ -30,7 +29,7 @@
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		 <!--	<button class="btn btn-danger" onclick="fn()">创建新角色</button>	 -->
-				<a href="${ctx}/role/add/" >创建新角色</a>
+				<mytag:PermssionTag functionId="F7"><a href="${ctx}/role/add/" >创建新角色</a></mytag:PermssionTag>
 		    </form>
 	    </div>
 	    <tags:sort/>
@@ -50,8 +49,8 @@
 				<td>${role.name}&nbsp;</td>
 				<td>${role.description}&nbsp;</td>
 				<td>
-						<a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}"><i class="icon-edit"></i> 修改</a>
-						<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/role/delete/${role.id}';}" id="editLink-${role.id}"><i class="icon-remove-circle"></i> 删除</a>
+					<mytag:PermssionTag functionId="F8"><a href='${ctx}/role/update/${role.id}' id='editLink-${role.id}'><i class='icon-edit'></i> 修改</a></mytag:PermssionTag>
+					<mytag:PermssionTag functionId="F9"><a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/role/delete/${role.id}';}" id="editLink-${role.id}"><i class="icon-remove-circle"></i> 删除</a></mytag:PermssionTag>
 				</td>
 			</tr>
 		</c:forEach>

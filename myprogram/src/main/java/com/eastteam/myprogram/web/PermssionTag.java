@@ -34,7 +34,10 @@ public class PermssionTag extends SimpleTagSupport {
 		User user = (User)b.getAttribute("user",3);
 		boolean temp = user.checkPermission(functionId);
 		if(temp){
-			getJspContext().getOut().write("aaa"); 
+			   JspFragment jf=this.getJspBody();
+	              jf.invoke(null);
 		}
+		
+//		String a = b.getOut().toString();
 	}
 }

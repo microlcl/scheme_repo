@@ -48,7 +48,7 @@ insert into user_role(user_id, role_id) values('admin','R0');
 insert into modules(module_id, pid, name, description, path) values('M1','','方案管理系统','方案管理系统','');
 insert into modules(module_id, pid, name, description, path) values('M1-1','M1','管理模块','针对管理员进行操作的系统管理模块','');
 insert into modules(module_id, pid, name, description, path) values('M1-2','M1','资料管理','资料的上传及管理','');
-
+insert into modules(module_id, pid, name, description, path) values('M1-3','M1','角色管理','角色管理','');
 
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
@@ -58,7 +58,10 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F4','M1-1','类别：查看','有权限查看类别','/category/');
 insert into functions(function_id, module_id, name, description, path) values('F5','M1-1','类别：修改','有权限新增类别','/category/api/save');
 insert into functions(function_id, module_id, name, description, path) values('F6','M1-1','类别：删除','有权限删除类别','/category/api/delete');
-insert into functions(function_id, module_id, name, description, path) values('F7','M1-1','角色：查看','有权限查看角色列表','/role');
+insert into functions(function_id, module_id, name, description, path) values('F7','M1-3','角色：创建新角色','有权限查看角色列表','/role/add');
+insert into functions(function_id, module_id, name, description, path) values('F8','M1-3','角色：修改角色权限','有权限修改角色','/role/api/update');
+insert into functions(function_id, module_id, name, description, path) values('F9','M1-3','角色：删除角色','有权限删除角色','/role/api/delete');
+
 
 insert into role_function(role_id, function_id, description) values('R0','F0','');
 insert into role_function(role_id, function_id, description) values('R0','F1','');
@@ -68,6 +71,8 @@ insert into role_function(role_id, function_id, description) values('R0','F4',''
 insert into role_function(role_id, function_id, description) values('R0','F5','');
 insert into role_function(role_id, function_id, description) values('R0','F6','');
 insert into role_function(role_id, function_id, description) values('R0','F7','');
+insert into role_function(role_id, function_id, description) values('R0','F8','');
+insert into role_function(role_id, function_id, description) values('R0','F9','');
 insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1','');
 insert into role_function(role_id, function_id, description) values('R1','F2','');
