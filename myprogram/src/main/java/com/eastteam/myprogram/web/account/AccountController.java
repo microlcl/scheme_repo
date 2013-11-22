@@ -94,12 +94,29 @@ public class AccountController {
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String update(@PathVariable("id") String id, Model model) {
 		User user =  this.accountService.getUser(id);
+		String userBirthday = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String userBirthday = sdf.format(user.getBirthday());
+		if(user.getBirthday() != null){
+		    userBirthday = sdf.format(user.getBirthday());
+		}
 		model.addAttribute("user", user);
 		model.addAttribute("userBirthday", userBirthday);
-		model.addAttribute("allRoles", this.getAllRolesList(this.accountService.getUser(id)));
+		model.addAttribute("allRoles", this.getAllRolesList(user));
 		return "account/userForm";
+	}
+	
+	@RequestMapping(value = "show/userInfo/{id}", method = RequestMethod.GET)
+	public String dispalyUserInfo(@PathVariable("id") String id, Model model) {
+		User user =  this.accountService.getUser(id);
+		String userBirthday = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if(user.getBirthday() != null){
+		    userBirthday = sdf.format(user.getBirthday());
+		}
+		model.addAttribute("user", user);
+		model.addAttribute("userBirthday", userBirthday);
+		model.addAttribute("allRoles", this.getAllRolesList(user));
+		return "account/userInfo";
 	}
 	
 	@RequestMapping(value = "show", method = RequestMethod.POST)
