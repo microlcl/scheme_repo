@@ -21,7 +21,7 @@
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-	<mytag:PermssionTag functionId="111"><a href="${ctx}/role/update/${role.id}" id="editLink-${role.id}"><i class="icon-edit"></i> 修改</a></mytag:PermssionTag>
+	<mytag:PermssionTag functionId="111" content="" ><a href='${ctx}/role/update/${role.id}' id='editLink-${role.id}'><i class='icon-edit'></i> 修改</a></mytag:PermssionTag>
 	<div class="row">
 		<div class="span">
 			<form class="form-search" action="#">
