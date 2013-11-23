@@ -111,11 +111,11 @@
 
 <!--确定标签库的URI-->
 
-<taglib-uri>http://localhost</taglib-uri>
+<taglib-uri>http://com.eastteam.myprogram/mytaglib</taglib-uri>
 
 <!-- 确定标签库定义文件的位置 -->
 
-<taglib-location>/WEB-INF/tags/mytaglib.tld</taglib-location>
+<taglib-location>/WEB-INF/mytaglib.tld</taglib-location>
 
 </taglib>
 

@@ -1,4 +1,4 @@
-package com.eastteam.myprogram.web;
+package com.eastteam.myprogram.web.tags;
 
 import java.io.IOException;
 import javax.servlet.jsp.JspContext;

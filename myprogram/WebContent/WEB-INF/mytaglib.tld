@@ -11,7 +11,7 @@
 		<!-- 定义标签名 -->
 		<name>PermssionTag</name>
 		<!-- 定义标签处理类 -->
-		<tag-class>com.eastteam.myprogram.web.PermssionTag</tag-class>
+		<tag-class>com.eastteam.myprogram.web.tags.PermssionTag</tag-class>
 		<!-- 定义标签体为空 -->
 		<body-content>scriptless</body-content>
 		<attribute>
