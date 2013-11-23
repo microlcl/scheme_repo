@@ -95,7 +95,7 @@ public class AccountController {
 	public String update(@PathVariable("id") String id, Model model) {
 		User user =  this.accountService.getUser(id);
 
-		model.addAttribute("user", user);
+		model.addAttribute("formUser", user);
 		model.addAttribute("allRoles", this.getAllRolesList(user));
 		return "account/userForm";
 	}
@@ -104,7 +104,7 @@ public class AccountController {
 	public String dispalyUserInfo(@PathVariable("id") String id, Model model) {
 		User user =  this.accountService.getUser(id);
 
-		model.addAttribute("user", user);
+		model.addAttribute("infoUser", user);
 		model.addAttribute("allRoles", this.getAllRolesList(user));
 		return "account/userInfo";
 	}

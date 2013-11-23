@@ -21,13 +21,13 @@
 			<div class="control-group">
 				<label for="id" class="control-label">登录名：</label>
 				<div class="controls">
-					<input type="text" id="id" name="id"  value="${user.id}" readonly/>
+					<input type="text" id="id" name="id"  value="${formUser.id}" readonly/>
 				</div>
 			</div>	
 			<div class="control-group">
 				<label for="name" class="control-label">用户名：</label>
 				<div class="controls">
-					<input type="text" id="name" name="name"  value="${user.name}" class="input-large required" rangelength="2,20"/>
+					<input type="text" id="name" name="name"  value="${formUser.name}" class="input-large required" rangelength="2,20"/>
 				</div>
 			</div>	
 <!-- 			<div class="control-group">
@@ -57,31 +57,31 @@
             <div class="control-group">
   				  <label class="control-label" for="email">邮箱:</label>
   				  <div class="controls">
-   				     <input type="email" id="email" name="email" required="" value="${user.email}" class="span3">
+   				     <input type="email" id="email" name="email" required="" value="${formUser.email}" class="span3">
                   </div>
             </div>	
 			<div class="control-group">
 				<label for="phoneNum" class="control-label">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" value="${user.phoneNum}" minlength="3"/>
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" value="${formUser.phoneNum}" minlength="3"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large required" value="${user.address}" minlength="3"/>
+					<input type="text" id="address" name="address" class="input-large required" value="${formUser.address}" minlength="3"/>
 				</div>
 			</div>			
 		    <div class="control-group">
 				<label for="hometown" class="control-label">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large required" value="${user.hometown}" minlength="3"/>
+					<input type="text" id="hometown" name="hometown" class="input-large required" value="${formUser.hometown}" minlength="3"/>
 				</div>
 			</div>			
 			<div class="control-group">
                 <label for="userBirthday" class="control-label">出身日期:</label>
                 <div class="input-append date form_date" style="margin-left:20px" >
-                    <input size="16" type="text" id="userBirthday" name="userBirthday" style="width:160px" value="<fmt:formatDate value='${user.birthday}' pattern='yyyy-MM-dd'/>" readonly>
+                    <input size="16" type="text" id="userBirthday" name="userBirthday" style="width:160px" value="<fmt:formatDate value='${formUser.birthday}' pattern='yyyy-MM-dd'/>" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
@@ -105,7 +105,7 @@
 			<div class="control-group">
 				<label for="department_id" class="control-label">所在部门:</label>
 				<div class="controls">
-				    <input id="department_id" name="department.id" value="${user.department.id}" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+				    <input id="department_id" name="department.id" value="${formUser.department.id}" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
 				</div>
 			</div>	
 	
@@ -123,7 +123,7 @@
 			<div class="control-group">
 				<label for="comment" class="control-label">备注:</label>
 				<div class="controls">
-					<textarea id="comment" name="comment" class="input-large">${user.comment}</textarea>
+					<textarea id="comment" name="comment" class="input-large">${formUser.comment}</textarea>
 				</div>
 			</div>	
 			
@@ -148,15 +148,15 @@
     });
 	$(document).ready(function() {
 			//聚焦第一个输入框
-			$("#username").focus();
+			$("#formUsername").focus();
 			//为inputForm注册validate函数
 			$("#inputForm").validate();
 		//	$('#cc').combotree('setValue', '销售部');
 
 			 
 	});
-	$("input[name='sex'][value=${user.sex}]").prop("checked", true);
-	$("input[name='status'][value=${user.status}]").prop("checked", true);
+	$("input[name='sex'][value=${formUser.sex}]").prop("checked", true);
+	$("input[name='status'][value=${formUser.status}]").prop("checked", true);
 
 	</script>
 </body>

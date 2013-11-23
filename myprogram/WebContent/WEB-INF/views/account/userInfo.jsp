@@ -42,45 +42,45 @@
 			<tbody>
 				<tr>
 					<td style="width:63px">用户名：</td>
-					<td style="color:#A1A1A1">${user.name}</td>
+					<td style="color:#A1A1A1">${infoUser.name}</td>
 				</tr>
 				<tr>
 					<td>性别：</td>
-					<td style="color:#A1A1A1">${user.sex}</td>
+					<td style="color:#A1A1A1">${infoUser.sex}</td>
 				</tr>
 				<tr>
 					<td>邮箱：</td>
-					<td style="color:#A1A1A1">${user.email}</td>
+					<td style="color:#A1A1A1">${infoUser.email}</td>
 				</tr>
 				<tr>
 					<td>电话号码：</td>
-					<td style="color:#A1A1A1">${user.phoneNum}</td>
+					<td style="color:#A1A1A1">${infoUser.phoneNum}</td>
 				</tr>
 				<tr>
 					<td>联系地址：</td>
-					<td style="color:#A1A1A1">${user.address}</td>
+					<td style="color:#A1A1A1">${infoUser.address}</td>
 				</tr>
 				<tr>
 					<td>籍贯：</td>
-					<td style="color:#A1A1A1">${user.hometown}</td>
+					<td style="color:#A1A1A1">${infoUser.hometown}</td>
 				</tr>
 				<tr>
 					<td>出身日期：</td>
-					<td style="color:#A1A1A1"><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd"/> </td>
+					<td style="color:#A1A1A1"><fmt:formatDate value="${infoUser.birthday}" pattern="yyyy-MM-dd"/> </td>
 				</tr>
 				<tr>
 					<td>目前情况：</td>
-					<td style="color:#A1A1A1">${user.status}</td>
+					<td style="color:#A1A1A1">${infoUser.status}</td>
 				</tr>
 				<tr>
 					<td>所在部门：</td>
-					<td style="color:#A1A1A1">${user.department.name}</td>
+					<td style="color:#A1A1A1">${infoUser.department.name}</td>
 				</tr>
 				<tr>
 					<td style="padding-top: 13px;">当前角色：</td>
 					<td style="color:#A1A1A1">
 					<div class="controls" style="width:500px">
-					<c:forEach items="${user.roles}" var="userRole">
+					<c:forEach items="${infoUser.roles}" var="userRole">
 						<label class="checkbox inline" style="width:80px;margin-left:0">
 							<input type="checkbox" name="role" id="role" value="${userRole.id}" checked="true" disabled="true">${userRole.name}
 						</label>
@@ -90,7 +90,7 @@
 				</tr>
 				<tr>
 					<td>备注：</td>
-					<td style="color:#A1A1A1">${user.comment}</td>
+					<td style="color:#A1A1A1">${infoUser.comment}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -101,8 +101,8 @@
 
 	<script type="text/javascript">
 	
-	$("input[name='sex'][value=${user.sex}]").prop("checked", true);
-	$("input[name='status'][value=${user.status}]").prop("checked", true);
+	$("input[name='sex'][value=${infoUser.sex}]").prop("checked", true);
+	$("input[name='status'][value=${infoUser.status}]").prop("checked", true);
 
 	</script>
 </body>
