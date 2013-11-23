@@ -62,6 +62,7 @@
 				<td>${user.status}&nbsp;</td>
 				<td>
 						<a href="${ctx}/account/show/${user.id}" id="editLink-${user.id}"><i class="icon-pencil"></i> 修改</a>
+						<a href="${ctx}/account/show/userInfo/${user.id}" id="info-${user.id}"><i class="icon-pencil"></i> 查看</a>
 				</td>
 			</tr>
 		</c:forEach>

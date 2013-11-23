@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -80,11 +81,12 @@
 			<div class="control-group">
                 <label for="userBirthday" class="control-label">出身日期:</label>
                 <div class="input-append date form_date" style="margin-left:20px" >
-                    <input size="16" type="text" id="userBirthday" name="userBirthday" style="width:160px" value="${userBirthday}" readonly>
+                    <input size="16" type="text" id="userBirthday" name="userBirthday" style="width:160px" value="<fmt:formatDate value='${user.birthday}' pattern='yyyy-MM-dd'/>" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
 				<input type="hidden" id="dtp_input2" value="" /><br/>
+				
             </div>				
 			<div class="control-group">
 				<label for="status" class="control-label">目前情况:</label>
