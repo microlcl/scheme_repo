@@ -89,6 +89,9 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-1-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-2','1','庆祝生日','2012-06-04 02:00:00','F','生日根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-2-1','1-2','生日：搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-2-2','1-2','生日：浪漫','2012-06-04 02:00:00','F','温馨的媒体资源');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-3','1','图片','2012-06-04 02:00:00','F','图片根节点');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-3-1','1-3','桌花','2012-06-04 02:00:00','F','桌花');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-3-2','1-3','舞台','2012-06-04 02:00:00','F','舞台');
 
 insert into medias (description,media_type,path,status,user_id,category_id,upload_timestamp) values('description 1','图片','bp1.jpg','可用','admin','1-1-1',now());
 insert into medias (description,media_type,path,status,user_id,category_id,upload_timestamp) values('description 1','图片','bp2.jpg','可用','admin','1-1-1',now());
