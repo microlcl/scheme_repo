@@ -44,6 +44,10 @@ public class AccountService extends PageableService {
 		userDao.updateUser(user);
 	}
 	
+	public void updateUserPersonalInfo(User user){
+		userDao.updatePersonalInfo(user);
+	}
+	
 	public void deleteUserRole(User user){
 		userDao.deleteUserRole(user);
 	}

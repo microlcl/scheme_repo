@@ -17,7 +17,7 @@
 						<li><a href="${ctx}/admin/user">Admin Users</a></li>
 						<li class="divider"></li>
 
-					<li><a href="${ctx}/profile">Edit Profile</a></li>
+					<li><a href="${ctx}/account/editProfile/${user.id}">Edit Profile</a></li>
 					<li><a href="${ctx}/account/logout">Logout</a></li>
 				</ul>
 			</div>

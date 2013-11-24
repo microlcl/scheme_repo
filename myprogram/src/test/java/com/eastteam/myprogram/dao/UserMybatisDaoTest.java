@@ -144,4 +144,23 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		
 		userDao.updateUserRole(param);
 	}
+	
+	@Test
+	public void updateUserPersonal() throws Exception {
+		logger.info("update personal user information");
+		User user = new User();
+		Department department = new Department();
+		user.setId("YDQ");
+		user.setName("Devin");
+		user.setPassword("asdfsafsafdsdf");
+		user.setSex("男");
+		user.setAddress("ABC");
+		user.setEmail("a@cn.abc");
+		user.setBirthday("1980-01-01");
+		user.setPhoneNum("123123");
+		user.setHometown("asdfas");
+		
+		userDao.updatePersonalInfo(user);
+		
+	}
 }

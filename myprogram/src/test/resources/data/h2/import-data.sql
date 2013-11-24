@@ -61,7 +61,7 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F7','M1-3','角色：创建新角色','有权限查看角色列表','/role/add');
 insert into functions(function_id, module_id, name, description, path) values('F8','M1-3','角色：修改角色权限','有权限修改角色','/role/api/update');
 insert into functions(function_id, module_id, name, description, path) values('F9','M1-3','角色：删除角色','有权限删除角色','/role/api/delete');
-
+insert into functions(function_id, module_id, name, description, path) values('F10','M1-1','用户：修改个人信息','有权限修改个人信息','/account/editProfile');
 
 insert into role_function(role_id, function_id, description) values('R0','F0','');
 insert into role_function(role_id, function_id, description) values('R0','F1','');
@@ -73,6 +73,7 @@ insert into role_function(role_id, function_id, description) values('R0','F6',''
 insert into role_function(role_id, function_id, description) values('R0','F7','');
 insert into role_function(role_id, function_id, description) values('R0','F8','');
 insert into role_function(role_id, function_id, description) values('R0','F9','');
+insert into role_function(role_id, function_id, description) values('R0','F10','');
 insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1','');
 insert into role_function(role_id, function_id, description) values('R1','F2','');

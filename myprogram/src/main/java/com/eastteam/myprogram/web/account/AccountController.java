@@ -110,7 +110,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value = "show", method = RequestMethod.POST)
-	public String update(@ModelAttribute("user") User user, @RequestParam(value="userBirthday") String birthday,  @RequestParam(value="role") List selectedRoles, RedirectAttributes redirectAttributes) {
+	public String adminUpdate(@ModelAttribute("user") User user, @RequestParam(value="userBirthday") String birthday,  @RequestParam(value="role") List selectedRoles, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
 		logger.info(selectedRoles.toString());
 //		String[] selectedRoles = request.getParameterValues("role");
@@ -121,6 +121,26 @@ public class AccountController {
 		this.accountService.updateUserRole(user.getId(), selectedRoles);
 		
 		redirectAttributes.addFlashAttribute("message", "更新任务成功");
+		return "redirect:/account/list/";
+	}
+	
+	@RequestMapping(value = "editProfile/{id}", method = RequestMethod.GET)
+	public String editProfile(@PathVariable("id") String id, Model model) {
+		User user =  this.accountService.getUser(id);
+
+		model.addAttribute("updateUser", user);
+		model.addAttribute("allRoles", this.getAllRolesList(user));
+		return "account/updateUserInfo";
+	}
+	
+	@RequestMapping(value = "editProfile", method = RequestMethod.POST)
+	public String updatePersonalInfo(@ModelAttribute("user") User user, @RequestParam(value="userBirthday") String birthday, RedirectAttributes redirectAttributes) {
+		logger.info("in update action");
+		user.setBirthday(birthday);
+
+		this.accountService.updateUserPersonalInfo(user);
+		
+		redirectAttributes.addFlashAttribute("message", "个人信息修改成功！");
 		return "redirect:/account/list/";
 	}
 	
