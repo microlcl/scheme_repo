@@ -7,8 +7,8 @@
     
     	<!-- 插入用户-->
 	<insert id="save" parameterType="User">
-		insert into users (id, name, password,register_date) 
-		values(#{id},#{name},#{password},now());
+		insert into users (id, name, password, sex, email, phone_num, address, hometown, birthday, register_date) 
+		values(#{id},#{name},#{password}, #{sex}, #{email}, #{phoneNum}, #{address}, #{hometown}, #{birthday}, now());
 	</insert>
 	<!--
 		获取用户: 输出直接映射到对象, login_name列要"as loginName"以方便映射 ,team_id as "team.id"创建team对象并赋值

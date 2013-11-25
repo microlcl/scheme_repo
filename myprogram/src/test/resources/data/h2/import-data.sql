@@ -66,7 +66,8 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F2-2','M1-2','人员：查看','有权限查看','/account/list');
 insert into functions(function_id, module_id, name, description, path) values('F2-3','M1-2','人员：增加','有权限增加','/account/show');
 insert into functions(function_id, module_id, name, description, path) values('F2-4','M1-2','人员：修改','有权限修改','account/add');
-insert into functions(function_id, module_id, name, description, path) values('F2-4','M1-2','人员：删除','有权限删除','/category/');
+insert into functions(function_id, module_id, name, description, path) values('F2-5','M1-2','人员：修改','有权限修改','/account/editProfile');
+insert into functions(function_id, module_id, name, description, path) values('F2-6','M1-2','人员：删除','有权限删除','/category/');
 insert into functions(function_id, module_id, name, description, path) values('F2-5','M1-2','人员：查询','有权限查询','/category/api/save');
 insert into functions(function_id, module_id, name, description, path) values('F3-1','M1-3','角色：菜单','菜单','/role/list');
 insert into functions(function_id, module_id, name, description, path) values('F3-2','M1-3','角色：创建','有权限查看角色列表','/role/add');

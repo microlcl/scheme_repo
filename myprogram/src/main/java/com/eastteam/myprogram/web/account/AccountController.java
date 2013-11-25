@@ -55,8 +55,9 @@ public class AccountController {
 	}
 	
 	@RequestMapping(value="register", method = RequestMethod.POST)
-	public String register(@Valid User user, RedirectAttributes redirectAttributes) {
+	public String register(@Valid User user, @RequestParam(value="userBirthday") String birthday, RedirectAttributes redirectAttributes) {
 		logger.info("user=" + user);
+		user.setBirthday(birthday);
 		accountService.registerUser(user);
 		redirectAttributes.addFlashAttribute("username", user.getId());
 		return "redirect:/login";
@@ -65,7 +66,7 @@ public class AccountController {
 	/**
 	 * Ajax请求校验loginName是否唯一。
 	 */
-	@RequestMapping(value = "checkLoginName")
+	@RequestMapping(value="checkLoginName", method = RequestMethod.GET)
 	@ResponseBody
 	public String checkLoginName(@RequestParam("loginName") String loginName) {
 		if (accountService.findUserByLoginName(loginName) == null) {

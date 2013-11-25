@@ -5,25 +5,14 @@
 <html>
 <head>
 	<title>用户注册</title>
-	<script/>
-		$(document).ready(function() {
-			//聚焦第一个输入框
-			$("#loginName").focus();
-			//为inputForm注册validate函数
-			$("#inputForm").validate({
-				rules: {
-					loginName: {
-						remote: "${ctx}/account/register/checkLoginName"
-					}
-				},
-				messages: {
-					loginName: {
-						remote: "用户登录名已存在"
-					}
-				}
-			});
-		});
-	</script>
+	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -45,20 +34,100 @@
 			<div class="control-group">
 				<label for="plainPassword" class="control-label">密码:</label>
 				<div class="controls">
-					<input type="password" id="plainPassword" name="plainPassword" class="input-large required"/>
+					<input type="password" id="password" name="password" class="input-large required"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="confirmPassword" class="control-label">确认密码:</label>
 				<div class="controls">
-					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#plainPassword"/>
+					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#password"/>
 				</div>
 			</div>
+			<div class="control-group">
+				<label for="sex" class="control-label">性别:</label>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="sex" id="sex" value="男" >男
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="sex" id="sex" value="女" >女
+					</label>
+				</div>
+			</div>	
+            <div class="control-group">
+  				  <label class="control-label" for="email">邮箱:</label>
+  				  <div class="controls">
+   				     <input type="email" id="email" name="email" required="" placeholder="abc@gmail.com" class="input-large">
+                  </div>
+            </div>	
+			<div class="control-group">
+				<label for="phoneNum" class="control-label">电话号码:</label>
+				<div class="controls">
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large"  minlength="3"/>
+				</div>
+			</div>
+						<div class="control-group">
+				<label for="address" class="control-label">联系地址:</label>
+				<div class="controls">
+					<input type="text" id="address" name="address" class="input-large"  minlength="3"/>
+				</div>
+			</div>			
+		    <div class="control-group">
+				<label for="hometown" class="control-label">籍贯:</label>
+				<div class="controls">
+					<input type="text" id="hometown" name="hometown" class="input-large"  minlength="2"/>
+				</div>
+			</div>			
+			<div class="control-group">
+                <label for="userBirthday" class="control-label">出身日期:</label>
+                <div class="input-append date form_date" style="margin-left:20px" >
+                    <input size="16" type="text" id="userBirthday" name="userBirthday" style="width:160px"  readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+                </div>
+				<input type="hidden" id="dtp_input2" value="" /><br/>
+				
+            </div>	
 			<div class="form-actions">
 				<input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
 		</fieldset>
 	</form>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//聚焦第一个输入框
+			$("#loginName").focus();
+			//为inputForm注册validate函数
+			$("#inputForm").validate({
+				rules: {
+					loginName: {
+						remote: {
+							url:"${ctx}/account/checkLoginName"
+						}
+					}
+				},
+				messages: {
+					loginName: {
+						remote: "用户登录名已存在"
+					}
+				}
+			});
+		});
+		
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  true,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0,
+		format: 'yyyy-mm-dd',
+		pickerPosition: "top-right"
+    });
+	</script>
 </body>
 </html>

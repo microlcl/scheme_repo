@@ -30,19 +30,7 @@
 					<input type="text" id="name" name="name"  value="${formUser.name}" class="input-large required" rangelength="2,20"/>
 				</div>
 			</div>	
-<!-- 			<div class="control-group">
-				<label for="password" class="control-label">密码:</label>
-				<div class="controls">
-					<input type="password" id="password" name="password" class="input-large required"/>
-				</div>
-			</div>
-			<div class="control-group">
-				<label for="confirmPassword" class="control-label">确认密码:</label>
-				<div class="controls">
-					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#password"/>
-				</div>
-			</div>
- -->
+
 			<div class="control-group">
 				<label for="sex" class="control-label required">性别:</label>
 				<div class="controls">
