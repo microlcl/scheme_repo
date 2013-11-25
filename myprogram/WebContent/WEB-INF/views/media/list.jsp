@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -60,8 +61,8 @@
 					</label>									
 
 
-			    <button type="submit" class="btn" id="search_btn">Search</button>
-			    <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a>
+			   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+			   <mytag:PermssionTag functionId="F4-2"> <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a></mytag:PermssionTag>
 		    </form>
 	    </div>
 	</div>

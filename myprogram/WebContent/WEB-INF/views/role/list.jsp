@@ -26,10 +26,10 @@
 			<form class="form-search" action="#">
 			 	<label>角色名：</label> <input type="text" name="search_name"   class="input-small"  value="${param.search_name}"> 
 		 	    <label>描述：</label> <input type="text" name="search_description" class="input-small" value="${param.search_description}">
-			    <button type="submit" class="btn" id="search_btn">Search</button>
+			   <mytag:PermssionTag functionId="F3-2"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
 			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		 <!--	<button class="btn btn-danger" onclick="fn()">创建新角色</button>	 -->
-				<mytag:PermssionTag functionId="F7"><a href="${ctx}/role/add/" >创建新角色</a></mytag:PermssionTag>
+				<mytag:PermssionTag functionId="F3-2"><a href="${ctx}/role/add/" >创建新角色</a></mytag:PermssionTag>
 		    </form>
 	    </div>
 	    <tags:sort/>
@@ -49,8 +49,8 @@
 				<td>${role.name}&nbsp;</td>
 				<td>${role.description}&nbsp;</td>
 				<td>
-					<mytag:PermssionTag functionId="F8"><a href='${ctx}/role/update/${role.id}' id='editLink-${role.id}'><i class='icon-edit'></i> 修改</a></mytag:PermssionTag>
-					<mytag:PermssionTag functionId="F9"><a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/role/delete/${role.id}';}" id="editLink-${role.id}"><i class="icon-remove-circle"></i> 删除</a></mytag:PermssionTag>
+					<mytag:PermssionTag functionId="F3-3"><a href='${ctx}/role/update/${role.id}' id='editLink-${role.id}'><i class='icon-edit'></i> 修改</a></mytag:PermssionTag>
+					<mytag:PermssionTag functionId="F3-4"><a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/role/delete/${role.id}';}" id="editLink-${role.id}"><i class="icon-remove-circle"></i> 删除</a></mytag:PermssionTag>
 				</td>
 			</tr>
 		</c:forEach>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <html>
@@ -65,12 +66,12 @@
 		</thead>
 	</table>
 	<div id="mm" class="easyui-menu" style="width: 120px;">
-		<div onclick="edit()" data-options="iconCls:'icon-edit'">编辑</div>
-		<div onclick="append()" data-options="iconCls:'icon-add'">添加</div>
-		<div onclick="removeIt()" data-options="iconCls:'icon-remove'">移除</div>
+		<mytag:PermssionTag functionId="F1-4"><div onclick="edit()" data-options="iconCls:'icon-edit'">编辑</div></mytag:PermssionTag>
+		<mytag:PermssionTag functionId="F1-3"><div onclick="append()" data-options="iconCls:'icon-add'">添加</div></mytag:PermssionTag>
+		<mytag:PermssionTag functionId="F1-5"><div onclick="removeIt()" data-options="iconCls:'icon-remove'">移除</div></mytag:PermssionTag>
 		<div class="menu-sep"></div>
-		<div onclick="collapse()">折叠</div>
-		<div onclick="expand()">展开</div>
+		<mytag:PermssionTag functionId="F1-7"><div onclick="collapse()">折叠</div></mytag:PermssionTag>
+		<mytag:PermssionTag functionId="F1-8"><div onclick="expand()">展开</div></mytag:PermssionTag>
 	</div>
 </body>
 </html>
