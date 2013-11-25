@@ -6,21 +6,41 @@
 	<div id="title">
 	    <h1><a href="${ctx}">方案管理系统</a><small>--程序骨架</small>
 
-			<div class="btn-group pull-right">
-				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-					<i class="icon-user"></i> ${user.name}
-					<span class="caret"></span>
-				</a>
-			
-				<ul class="dropdown-menu">
 
-						<li><a href="${ctx}/admin/user">Admin Users</a></li>
-						<li class="divider"></li>
-
-					<li><a href="${ctx}/account/editProfile/${user.id}">Edit Profile</a></li>
-					<li><a href="${ctx}/account/logout">Logout</a></li>
-				</ul>
-			</div>
 		</h1>
+	</div>	
+</div>
+<c:if test="${not empty user.id}">
+<div class="navbar">
+	<div class="navbar-inner">
+		<a class="brand" href="#">方案管理系统</a>
+		<ul class="nav">
+			<li class="active"><a href="#" data-toggle="dropdown">管理</a>
+				<ul class="dropdown-menu">
+					<li><a href="${ctx}/category/">类别</a></li>
+					<li><a href="${ctx}/account/list">人员</a></li>
+					<li><a href="${ctx}/role/list">角色</a></li>
+					<li><a href="${ctx}/media/list?search_mediaTyep=图片">资源</a></li>
+				</ul></li>
+			<li><a href="#">模块1</a></li>
+			<li><a href="#">模块2</a></li>
+		</ul>
+
+		<div class="btn-group pull-right">
+			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i
+				class="icon-user"></i> ${user.name} <span class="caret"></span>
+			</a>
+
+			<ul class="dropdown-menu">
+
+				<li><a href="${ctx}/admin/user">Admin Users</a></li>
+				<li class="divider"></li>
+
+				<li><a href="${ctx}/account/editProfile/${user.id}">Edit
+						Profile</a></li>
+				<li><a href="${ctx}/account/logout">Logout</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
+</c:if>
