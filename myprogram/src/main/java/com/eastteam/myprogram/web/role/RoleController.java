@@ -1,15 +1,10 @@
 package com.eastteam.myprogram.web.role;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.server.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.eastteam.myprogram.entity.Function;
 import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Role;
-import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.role.RoleService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
@@ -38,8 +31,8 @@ public class RoleController {
 	private static final int PAGE_SIZE = 5;
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 	static {
-		sortTypes.put("name", "角色名");
-		sortTypes.put("description", "描述");
+		sortTypes.put("name", "è§’è‰²å��");
+		sortTypes.put("description", "æ��è¿°");
 	}
 	
 	@Autowired
@@ -82,7 +75,7 @@ public class RoleController {
 	public String save(@ModelAttribute Role role,  @RequestParam(value="functionList") List<String[]> functionList, RedirectAttributes redirectAttributes) {
 		logger.info("in role update action");
 		this.roleService.save(role,functionList);
-		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
+		redirectAttributes.addFlashAttribute("message", "è§’è‰²æ�ƒé™�æ›´æ–°æˆ�åŠŸ");
 		return "redirect:/role/list/";
 	}
 	
@@ -90,7 +83,7 @@ public class RoleController {
 	public String delete(@ModelAttribute Role role,  RedirectAttributes redirectAttributes) {
 		logger.info("delete role action");
 		this.roleService.delete(role.getId());
-		redirectAttributes.addFlashAttribute("message", "角色删除成功");
+		redirectAttributes.addFlashAttribute("message", "è§’è‰²åˆ é™¤æˆ�åŠŸ");
 		return "redirect:/role/list/";
 	}
 	
@@ -105,7 +98,7 @@ public class RoleController {
 	public String doAdd(@ModelAttribute Role role,  @RequestParam(value="functionList") List<String[]> functionList, RedirectAttributes redirectAttributes) {
 		logger.info("in role update action");
 		this.roleService.save(role,functionList);
-		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
+		redirectAttributes.addFlashAttribute("message", "è§’è‰²æ�ƒé™�æ›´æ–°æˆ�åŠŸ");
 		return "redirect:/role/list/";
 	}
 }
