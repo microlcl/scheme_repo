@@ -66,9 +66,10 @@ public class AccountController {
 	/**
 	 * Ajax请求校验loginName是否唯一。
 	 */
-	@RequestMapping(value="checkLoginName", method = RequestMethod.GET)
+	@RequestMapping(value="checkLoginName")
 	@ResponseBody
-	public String checkLoginName(@RequestParam("loginName") String loginName) {
+	public String checkLoginName(@RequestParam("id") String loginName) {
+		logger.info("检查用户名是否已被注册");
 		if (accountService.findUserByLoginName(loginName) == null) {
 			return "true";
 		} else {

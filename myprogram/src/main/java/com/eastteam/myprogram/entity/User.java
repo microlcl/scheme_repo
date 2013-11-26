@@ -93,15 +93,19 @@ public class User extends BaseEntity{
 	}
 
 	public void setBirthday(String birthday) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = new Date();
-		try {
-			 date = sdf.parse(birthday);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(birthday != null){	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			try {
+				date = sdf.parse(birthday);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.birthday = date;
 		}
-		this.birthday = date;
+		else 
+			this.birthday = null;
 	}
 
 	public String getStatus() {

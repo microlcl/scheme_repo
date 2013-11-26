@@ -144,5 +144,11 @@
 			(#{userId},#{role})
 		</foreach>
 	</insert>
+	<!-- 验证用户是否已被注册 -->
+	<select id="findByLoginName"  resultType="User">
+		select r.id
+		from users r
+		where r.id=#{loginName}
+	</select>
 	
 </mapper> 

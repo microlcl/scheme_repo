@@ -57,13 +57,13 @@
 			<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large required" value="${formUser.address}" minlength="3"/>
+					<input type="text" id="address" name="address" class="input-large required" value="${formUser.address}" />
 				</div>
 			</div>			
 		    <div class="control-group">
 				<label for="hometown" class="control-label">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large required" value="${formUser.hometown}" minlength="3"/>
+					<input type="text" id="hometown" name="hometown" class="input-large required" value="${formUser.hometown}" minlength="2"/>
 				</div>
 			</div>			
 			<div class="control-group">
@@ -105,6 +105,7 @@
 							<input type="checkbox" name="role" id="role" value="${allRole.id}" <c:if test="${allRole.checked==true }">checked="true"</c:if> >${allRole.name}
 						</label>
 					</c:forEach>
+					<br>
 				</div>
 			</div>	
 					
@@ -138,8 +139,75 @@
 			//聚焦第一个输入框
 			$("#formUsername").focus();
 			//为inputForm注册validate函数
-			$("#inputForm").validate();
-		//	$('#cc').combotree('setValue', '销售部');
+			$("#inputForm").validate({
+				rules: {
+					name: {
+						rangelength: [2,10]
+					},
+					password: {
+						required: true,
+						rangelength: [5,20]
+					},
+					address: {
+						rangelength: [5,50]
+					},
+					sex: {
+                        required: function (element) {
+                            return $("input:radio[name='sex']:checked").val() != "";
+                        }
+                    },
+                    status: {
+                    	required: function (element) {
+                            return $("input:radio[name='status']:checked").val() != "";
+                        }
+                    },
+                    role: {
+                    	required: function (element) {
+                            return $("input:checkbox[name='status']:checked").val() != "";
+                        }
+                    },
+                    comment: {
+                    	rangelength: [0,128]
+                    }
+				},
+				messages: {
+					name: {
+						rangelength: jQuery.validator.format("用户名必须在 {0} 和 {1} 个字符之间")
+					},
+					password: {
+						rangelength: jQuery.validator.format("密码长度必须在 {0} 和 {1} 个字符之间")
+					},
+					address: {
+						rangelength: jQuery.validator.format("地址长度必须在 {0} 和 {1} 个字符之间")
+					},
+					sex: {
+                        required: "请选择性别!"
+                    },
+                    status: {
+                    	required: "请选择当前情况!"
+                    },
+                    role: {
+                    	required: "请选择至少一个角色!"
+                    },
+                    comment: {
+                    	rangelength: jQuery.validator.format("备注必须在 {0} 和 {1} 个字符之间")
+                    }
+                   
+				},
+				errorElement: "span",
+	//			success: function () {
+                    //正确时的样式
+    //                label.text(" ").removeClass("error");
+    //              label.text("ss ").addClass("success");
+    //        },
+				errorPlacement: function (error, element) {
+	                if(element.is(":radio")||element.is(":checkbox"))
+                 	   error.appendTo(element.parent().parent());   
+	                else
+	                	error.insertAfter(element); 
+               
+        	    }
+			});
 
 			 
 	});

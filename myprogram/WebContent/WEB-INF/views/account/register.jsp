@@ -22,7 +22,7 @@
 			<div class="control-group">
 				<label for="loginName" class="control-label">登录名:</label>
 				<div class="controls">
-					<input type="text" id="loginName" name="id" class="input-large required" minlength="3"/>
+					<input type="text" id="id" name="id" class="input-large required"/>
 				</div>
 			</div>
 			<div class="control-group">
@@ -47,7 +47,7 @@
 				<label for="sex" class="control-label">性别:</label>
 				<div class="controls">
 					<label class="radio inline">
-						<input type="radio" name="sex" id="sex" value="男" >男
+						<input type="radio" name="sex" id="sex" value="男" checked>男
 					</label>
 					<label class="radio inline">
 						<input type="radio" name="sex" id="sex" value="女" >女
@@ -63,13 +63,13 @@
 			<div class="control-group">
 				<label for="phoneNum" class="control-label">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large"  minlength="3"/>
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large" />
 				</div>
 			</div>
 						<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large"  minlength="3"/>
+					<input type="text" id="address" name="address" class="input-large" />
 				</div>
 			</div>			
 		    <div class="control-group">
@@ -102,15 +102,36 @@
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
-					loginName: {
+					id: {
+						rangelength: [2,10],
 						remote: {
 							url:"${ctx}/account/checkLoginName"
 						}
+					},
+					name: {
+						rangelength: [2,10]
+					},
+					password: {
+						required: true,
+						rangelength: [5,20]
+					},
+					address: {
+						rangelength: [5,50]
 					}
 				},
 				messages: {
-					loginName: {
+					id: {
+						rangelength: jQuery.validator.format("登录名必须在 {0} 和 {1} 个字符之间"),
 						remote: "用户登录名已存在"
+					},
+					name: {
+						rangelength: jQuery.validator.format("用户名必须在 {0} 和 {1} 个字符之间")
+					},
+					password: {
+						rangelength: jQuery.validator.format("密码长度必须在 {0} 和 {1} 个字符之间")
+					},
+					address: {
+						rangelength: jQuery.validator.format("地址长度必须在 {0} 和 {1} 个字符之间")
 					}
 				}
 			});

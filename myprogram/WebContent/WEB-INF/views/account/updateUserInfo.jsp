@@ -27,7 +27,7 @@
 			<div class="control-group">
 				<label for="name" class="control-label">用户名：</label>
 				<div class="controls">
-					<input type="text" id="name" name="name"  value="${updateUser.name}" class="input-large required" rangelength="2,20"/>
+					<input type="text" id="name" name="name"  value="${updateUser.name}" class="input-large required" />
 				</div>
 			</div>	
  			<div class="control-group">
@@ -63,19 +63,19 @@
 			<div class="control-group">
 				<label for="phoneNum" class="control-label">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" value="${updateUser.phoneNum}" minlength="3"/>
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" value="${updateUser.phoneNum}" />
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large required" value="${updateUser.address}" minlength="3"/>
+					<input type="text" id="address" name="address" class="input-large required" value="${updateUser.address}" />
 				</div>
 			</div>			
 		    <div class="control-group">
 				<label for="hometown" class="control-label">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large required" value="${updateUser.hometown}" minlength="3"/>
+					<input type="text" id="hometown" name="hometown" class="input-large required" value="${updateUser.hometown}" minlength="2"/>
 				</div>
 			</div>			
 			<div class="control-group">
@@ -144,8 +144,31 @@
 			//聚焦第一个输入框
 			$("#updateUsername").focus();
 			//为inputForm注册validate函数
-			$("#inputForm").validate();
-		//	$('#cc').combotree('setValue', '销售部');
+			$("#inputForm").validate({
+				rules: {
+					name: {
+						rangelength: [2,10]
+					},
+					password: {
+						required: true,
+						rangelength: [5,20]
+					},
+					address: {
+						rangelength: [5,50]
+					}
+				},
+				messages: {
+					name: {
+						rangelength: jQuery.validator.format("用户名必须在 {0} 和 {1} 个字符之间")
+					},
+					password: {
+						rangelength: jQuery.validator.format("密码长度必须在 {0} 和 {1} 个字符之间")
+					},
+					address: {
+						rangelength: jQuery.validator.format("地址长度必须在 {0} 和 {1} 个字符之间")
+					}
+				}
+			});
 
 			 
 	});

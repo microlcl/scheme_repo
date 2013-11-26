@@ -18,8 +18,8 @@ public interface UserMybatisDao {
 	void updatePersonalInfo(User user);
 	void deleteUserRole(User user);
 	void updateUserRole(Map<String, Object> userRoleMap);
+	User findByLoginName(String loginName);
 	List<User> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
-//	User findByLoginName(String loginName);
 	User getUser(String id);
 }

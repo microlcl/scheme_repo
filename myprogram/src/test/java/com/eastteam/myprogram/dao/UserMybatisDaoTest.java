@@ -163,4 +163,12 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 		userDao.updatePersonalInfo(user);
 		
 	}
+	
+	@Test
+	public void findByLoginName() throws Exception {
+		logger.info("find user information");
+		
+		User user = userDao.findByLoginName("ydq");
+		logger.info(user.getId());
+	}
 }

@@ -74,8 +74,7 @@ public class AccountService extends PageableService {
 	}
 	
 	public User findUserByLoginName(String loginName) {
-//		return userDao.findByLoginName(loginName);
-		return null;
+		return userDao.findByLoginName(loginName);
 	}
 	
 	public User getUser(String id) {
