@@ -45,7 +45,7 @@
 	</c:if>
 	
 	<div class="row">
-		<div class="span10">
+		<div class="span12">
 			<form class="form-search form-inline" action="#">
 			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 	<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
@@ -68,13 +68,13 @@
 	</div>
 
 	<div class="row">
-		<div class="span9">
+		<div class="span12">
 			<ul class="thumbnails">
 				<c:forEach items="${medias.content}" var="media">
 					<li class="span3">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail">
-							<img src="${ctx}/plupload/files/large/${media.path}" alt="">
+							<img src="${ctx}/plupload/files/small/${media.path}" alt="">
 							<h5>My Title</h5>
 							<p>${media.description}</p>
 						</div>
@@ -82,7 +82,6 @@
 				</c:forEach>
 			</ul>
 		</div>
-		<div class="span1"><h5>导航菜单<h5></div>
 
 	</div>
 

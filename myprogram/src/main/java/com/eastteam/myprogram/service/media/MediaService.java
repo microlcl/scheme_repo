@@ -36,17 +36,18 @@ public class MediaService extends PageableService {
 	@Autowired
 	private MediaMybatisDao medaiDao;
 	
-	  @Value("${pagesize}")	
+	  @Value("${media.pic.pagesize}")	
 //	  @Value("#{configProperties['pagesize]}")
 	private int pageSize;
 	  
+	@Value("${thumbnail.width}")	
+	private int thumbnailWidth;
 	  
-	@Value("${jdbc.url}")	
-	private String dburl;
+	@Value("${thumbnail.height}")	
+	private int thumbnailHeight;	  
 
 	public List<Media> search(Map parameters, Pageable pageRequest) {
 		logger.info("in service, pagesize = " + pageSize);
-		logger.info("in service, dburl = " + dburl);
 		Map param = Maps.newHashMap(parameters);
 		param.put("offset", pageRequest.getOffset());
 		param.put("pageSize", pageRequest.getPageSize());
@@ -115,7 +116,8 @@ public class MediaService extends PageableService {
 		//生成缩略图
 		try {
 			Thumbnail thum = new Thumbnail(folder + "/" + filename);
-			thum.resizeFix(100, 100);
+			logger.info("thumbnail size = " + this.thumbnailWidth + ":" + this.thumbnailHeight);
+			thum.resizeFix(this.thumbnailWidth, this.thumbnailHeight);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

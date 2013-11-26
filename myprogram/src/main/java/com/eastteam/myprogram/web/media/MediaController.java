@@ -46,10 +46,10 @@ public class MediaController {
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "sortType", defaultValue = "media_id") String sortType,
 			Model model, ServletRequest request) {
-		logger.info("from property file: pagesize=====" + configProperties.getProperty("pagesize"));
+		logger.info("from property file: pagesize=====" + configProperties.getProperty("media.pic.pagesize"));
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		logger.info(searchParams.toString());		
-		Page<Media> medias = mediaService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("pagesize")), sortType);
+		Page<Media> medias = mediaService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
 		model.addAttribute("medias", medias);
 		model.addAttribute("sortType", sortType);
 //		model.addAttribute("sortTypes", sortTypes);

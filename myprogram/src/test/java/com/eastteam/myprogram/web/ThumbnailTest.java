@@ -16,7 +16,7 @@ public class ThumbnailTest {
 		for (String filename : largefileNames) {
 			String file = largeFolder + filename;
 			Thumbnail thum = new Thumbnail(file);
-			thum.resizeFix(100, 100);		
+			thum.resizeFix(300, 200);		
 		}
 
 		
