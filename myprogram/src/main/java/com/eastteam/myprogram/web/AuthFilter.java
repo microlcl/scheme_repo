@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ import com.eastteam.myprogram.service.account.AccountService;
 @Component("AuthFilter")
 public class AuthFilter implements Filter {
 	
-	private final String[] IGNORED_URL = {"/account/register"};
+	private final String[] IGNORED_URLS = {"/account/register","/account/checkLoginName"};
 	private final String LOGOUT_URL="/account/logout";
 	
 	private static Logger logger = LoggerFactory.getLogger(AuthFilter.class);
@@ -46,7 +47,8 @@ public class AuthFilter implements Filter {
 		String uri = WebUtils.getPathWithinApplication(httpServletRequest);
 //		User user = accountService.getUser("userid1");
 		logger.info("in filter: uri=" + uri);
-		if (uri.equalsIgnoreCase(IGNORED_URL[0])) {
+		
+		if (ArrayUtils.contains(IGNORED_URLS, uri)) {
 			chain.doFilter(request, response);
 		} else {
 			if (uri.equalsIgnoreCase(LOGOUT_URL)) {

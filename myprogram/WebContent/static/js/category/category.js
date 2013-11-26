@@ -1,5 +1,13 @@
 var editingId;
 
+function formatTrashed(value) {
+	if (value=='F') {
+		return "可用";
+	} else {
+		return "不可用";
+	}
+}
+
 function showBtn(value) {
 	var btn = '<a href="javascript:void(0)"  onclick="save()">保存</a>'
 	return btn;

@@ -16,7 +16,7 @@
 
 <link type="image/x-icon" href="${ctx}/static/images/favicon.ico" rel="shortcut icon">
 <link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
+
 <link href="${ctx}/static/jquery-validation/1.11.1/validate.css" type="text/css" rel="stylesheet" />
 <!-- link href="${ctx}/static/styles/default.css" type="text/css" rel="stylesheet" /-->
 <link href="${ctx}/static/styles/default.min.css" type="text/css" rel="stylesheet" />
@@ -39,6 +39,7 @@
 		</div>
 		<%@ include file="/WEB-INF/layouts/footer.jsp"%>
 	</div>
+	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
 	<!-- plupload和bootstrap.min.js有冲突，所以加载上传组件时，把这个js排除掉 -->
 	<% if(request.getRequestURI().indexOf("media/upload") < 0){%>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
