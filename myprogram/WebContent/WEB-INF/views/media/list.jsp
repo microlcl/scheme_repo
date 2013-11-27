@@ -74,7 +74,7 @@
 					<li class="span3">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail">
-							<img src="${ctx}/plupload/files/small/${media.path}" alt="">
+							<img src="${ctx}/plupload/files/small/${media.path}" style="width:300px;height:200px;" alt="">
 							<h5>My Title</h5>
 							<p>${media.description}</p>
 						</div>
