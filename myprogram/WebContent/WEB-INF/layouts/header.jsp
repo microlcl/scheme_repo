@@ -21,6 +21,7 @@
 					<mytag:PermssionTag functionId="F2-1"><li><a href="${ctx}/account/list">人员</a></li></mytag:PermssionTag>
 					<mytag:PermssionTag functionId="F3-1"><li><a href="${ctx}/role/list">角色</a></li></mytag:PermssionTag>
 					<mytag:PermssionTag functionId="F4-1"><li><a href="${ctx}/media/list?search_mediaType=图片">资源</a></li></mytag:PermssionTag>
+					<mytag:PermssionTag functionId="F5-1"><li><a href="${ctx}/product/list">产品</a></li></mytag:PermssionTag>
 				</ul></li>
 			<li><a href="#">模块1</a></li>
 			<li><a href="#">模块2</a></li>

@@ -50,6 +50,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-1','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-2','M1','人员管理','人员管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-3','M1','角色管理','角色管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-4','M1','多媒体资源管理','多媒体资源管理','');
+insert into modules(module_id, pid, name, description, path) values('M1-5','M1','产品管理','产品管理','');
 
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
@@ -79,6 +80,7 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F4-3','M1-4','多媒体：修改','有权限修改','/role/api/update');
 insert into functions(function_id, module_id, name, description, path) values('F4-4','M1-4','多媒体：删除','有权限删除','/role/api/delete');
 insert into functions(function_id, module_id, name, description, path) values('F4-5','M1-4','多媒体：查询','有权限查询','/role/api/delete');
+insert into functions(function_id, module_id, name, description, path) values('F5-1','M1-5','产品：菜单','菜单','/product/add');
 
 insert into role_function(role_id, function_id, description) values('R0','F0','');
 insert into role_function(role_id, function_id, description) values('R0','F1-1','');
@@ -107,6 +109,7 @@ insert into role_function(role_id, function_id, description) values('R0','F4-3',
 insert into role_function(role_id, function_id, description) values('R0','F4-4','');
 insert into role_function(role_id, function_id, description) values('R0','F4-5','');
 insert into role_function(role_id, function_id, description) values('R0','F4-6','');
+insert into role_function(role_id, function_id, description) values('R0','F5-1','');
 insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1-1','');
 insert into role_function(role_id, function_id, description) values('R1','F1-2','');
@@ -168,4 +171,17 @@ insert into media_category (media_id,category_id) values(10,'1-3-1');
 insert into media_category (media_id,category_id) values(11,'1-3-1');
 insert into media_category (media_id,category_id) values(12,'1-3-2');
 insert into media_category (media_id,category_id) values(13,'1-3-2');
+
+insert into products (product_id,title,status,description,price) values(1,'1','1','1',1.11);
+insert into products (product_id,title,status,description,price) values(2,'2','2','2',2.22);
+insert into products (product_id,title,status,description,price) values(3,'3','3','3',3.33);
+insert into products (product_id,title,status,description,price) values(4,'4','4','4',4.44);
+insert into products (product_id,title,status,description,price) values(5,'5','5','5',5.55);
+
+insert into product_categoryid(product_id,category_id,picture_id) values(1,'1-1-1',1);
+insert into product_categoryid(product_id,category_id,picture_id) values(2,'1-1-1',2);
+insert into product_categoryid(product_id,category_id,picture_id) values(3,'1-1-1',3);
+insert into product_categoryid(product_id,category_id,picture_id) values(4,'1-1-1',4);
+insert into product_categoryid(product_id,category_id,picture_id) values(5,'1-1-1',5);
+
 

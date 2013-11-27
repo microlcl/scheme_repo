@@ -103,7 +103,7 @@ create table products (
 	status varchar(64),
 	description varchar(128),
 	price decimal(10,2),
-	primary key (media_id)
+	primary key (product_id)
 );
 
 create table product_categoryid (

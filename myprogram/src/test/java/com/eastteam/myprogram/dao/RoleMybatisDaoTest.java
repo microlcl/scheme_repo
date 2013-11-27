@@ -13,7 +13,7 @@ import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.entity.RoleFunction;
 
 public class RoleMybatisDaoTest extends SpringTransactionalTestCase {
-	private static Logger logger = LoggerFactory.getLogger(UserMybatisDaoTest.class);
+	private static Logger logger = LoggerFactory.getLogger(RoleMybatisDaoTest.class);
 
 	@Autowired
 	private RoleMybatisDao roleDao;
@@ -22,6 +22,7 @@ public class RoleMybatisDaoTest extends SpringTransactionalTestCase {
 	public void getAllRole() throws Exception{
 		List<Role> allRole = roleDao.selectAll();
 		logger.info(allRole.toString());
+		System.out.println(allRole.size());
 		assertNotNull("allRole not null", allRole);
 	}
 	
