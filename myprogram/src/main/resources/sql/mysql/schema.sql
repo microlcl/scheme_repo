@@ -90,7 +90,6 @@ CREATE TABLE `users` (
 CREATE TABLE `medias` (
   `media_id` bigint(11) NOT NULL AUTO_INCREMENT,
   `media_type` varchar(10) DEFAULT NULL,
-  `category_id` varchar(64) DEFAULT NULL,
   `path` varchar(128) DEFAULT NULL,
   `status` varchar(64) DEFAULT NULL,
   `user_id` varchar(64) DEFAULT NULL,
@@ -98,6 +97,12 @@ CREATE TABLE `medias` (
   `description` varchar(128) DEFAULT NULL,
   `title` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`media_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `media_category` (
+  `media_id` bigint(20) NOT NULL DEFAULT '0',
+  `category_id` varchar(64) NOT NULL DEFAULT '',
+  PRIMARY KEY (`media_id`,`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

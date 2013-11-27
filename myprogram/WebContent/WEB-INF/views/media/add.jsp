@@ -72,6 +72,13 @@
 			</table>
 
 			<div class="control-group">
+				<label for="mytitle" class="control-label">默认标题:</label>
+				<div class="controls">
+					<input type="text" name="title"	value="${title}" />
+				</div>
+			</div>
+			
+			<div class="control-group">
 				<label for="description" class="control-label">默认简介:</label>
 				<div class="controls">
 					<textarea id="description" name="description" class="input-large"></textarea>

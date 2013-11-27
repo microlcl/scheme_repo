@@ -9,6 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,15 @@ public class MediaController {
 		User user = (User)session.getAttribute("user");
 		List<MediaWrapper> medias = mediaFormBean.getMedias();
 		for(MediaWrapper media : medias) {
-			media.setDescription(mediaFormBean.getDescription());
+			if (StringUtils.isBlank(media.getTitle())) {
+				media.setTitle(mediaFormBean.getTitle());
+			}
+			if (StringUtils.isBlank(media.getDescription())) {
+				media.setDescription(mediaFormBean.getDescription());
+			}
+			if (StringUtils.isBlank(media.getCategoryIds())) {
+				media.setCategoryIds(mediaFormBean.getCategoryId());
+			}
 			logger.info("categoryid=======" + media.getCategoryIds());
 			if (user != null) {
 				media.setUserId(user.getId());

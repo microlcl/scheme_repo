@@ -4,8 +4,8 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.MediaMybatisDao">
 	<insert id="insert" parameterType="Media" useGeneratedKeys="true" keyProperty="id">
-		insert into medias (description,media_type,path,status,user_id,upload_timestamp) 
-		values(#{description},#{mediaType},#{path},#{status},#{userId},now());
+		insert into medias (description,title,media_type,path,status,user_id,upload_timestamp) 
+		values(#{description},#{title},#{mediaType},#{path},#{status},#{userId},now());
 	</insert>
 	
 	<insert id="insertCategory" parameterType="map">

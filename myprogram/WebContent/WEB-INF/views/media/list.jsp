@@ -83,7 +83,7 @@
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail">
 						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;">
-							<h5>My Title</h5>
+							<h5>${media.title}</h5>
 							<p>${media.description}</p>
 						</div>
 					</a></li>
