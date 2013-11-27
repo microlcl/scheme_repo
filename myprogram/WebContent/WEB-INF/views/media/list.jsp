@@ -35,14 +35,11 @@
 
 		$(function() {          
 		    $("img.lazy").lazyload({
-		        event : "sporty",
+		        event : "scroll",
 				effect : "fadeIn",
 				threshold : 0,
 				effectspeed: 2000
 		    });
-		});
-		$(window).bind("load", function() { 
-		    var timeout = setTimeout(function() {$("img.lazy").trigger("sporty")}, 3000);
 		});
 	</script>
 	
