@@ -89,15 +89,15 @@ CREATE TABLE `users` (
 
 CREATE TABLE `medias` (
   `media_id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(128) DEFAULT NULL,
   `media_type` varchar(10) DEFAULT NULL,
+  `category_id` varchar(64) DEFAULT NULL,
   `path` varchar(128) DEFAULT NULL,
   `status` varchar(64) DEFAULT NULL,
-  `upload_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `category_id` varchar(64) DEFAULT NULL,
   `user_id` varchar(64) DEFAULT NULL,
+  `upload_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` varchar(128) DEFAULT NULL,
+  `title` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`media_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 

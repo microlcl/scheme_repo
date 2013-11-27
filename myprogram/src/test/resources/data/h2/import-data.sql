@@ -155,6 +155,7 @@ insert into medias (media_id,description,media_type,path,status,user_id,category
 insert into medias (media_id,description,media_type,path,status,user_id,category_id,upload_timestamp) values(13,'description 1','视频','bp13.jpg','可用','admin','1-2-1',now());
 
 insert into media_category (media_id,category_id) values(1,'1-1-1');
+insert into media_category (media_id,category_id) values(1,'1-1-2');
 insert into media_category (media_id,category_id) values(2,'1-1-1');
 insert into media_category (media_id,category_id) values(3,'1-1-1');
 insert into media_category (media_id,category_id) values(4,'1-1-2');

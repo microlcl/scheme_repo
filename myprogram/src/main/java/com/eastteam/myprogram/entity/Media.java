@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Media extends IdEntity{
 	private String mediaType;
@@ -9,7 +10,7 @@ public class Media extends IdEntity{
 	private String description;
 	private Date uploadTimestamp;
 	private String userId;
-	private String categoryId;
+	private List<Category> categorys;
 	private String title;
 	
 	public Media() {
@@ -57,12 +58,6 @@ public class Media extends IdEntity{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	public String getCategoryId() {
-		return categoryId;
-	}
-	public void setCategoryId(String categoryId) {
-		this.categoryId = categoryId;
-	}
 
 	public String getTitle() {
 		return title;
@@ -71,7 +66,14 @@ public class Media extends IdEntity{
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
+	public List<Category> getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorys(List<Category> categorys) {
+		this.categorys = categorys;
+	}	
 	
 
 }

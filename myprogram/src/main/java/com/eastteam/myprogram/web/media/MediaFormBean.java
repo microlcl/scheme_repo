@@ -2,22 +2,21 @@ package com.eastteam.myprogram.web.media;
 
 import java.util.List;
 
-import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.web.BaseFormBean;
 
 public class MediaFormBean extends BaseFormBean {
 	
-	private List<Media> medias;
+	private List<MediaWrapper> medias;
 	
 	private String description;
 	
 	private String categoryId;
 
-	public List<Media> getMedias() {
+	public List<MediaWrapper> getMedias() {
 		return medias;
 	}
 
-	public void setMedias(List<Media> medias) {
+	public void setMedias(List<MediaWrapper> medias) {
 		this.medias = medias;
 	}
 

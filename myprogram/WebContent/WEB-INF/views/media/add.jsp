@@ -57,7 +57,7 @@
 								name="medias[${status.index}].path" value="${media.path}" /></td>
 							<td><select class="easyui-combotree"
 								data-options="url:'${ctx}/category/api/getAll',method:'get'"
-								multiple name="medias[${status.index}].categoryId"></select></td>
+								multiple name="medias[${status.index}].categoryIds"></select></td>
 							<td><input type="text" name="medias[${status.index}].title"
 								value="${media.title}" /></td>
 							<td><textarea type="text" class="input-large"

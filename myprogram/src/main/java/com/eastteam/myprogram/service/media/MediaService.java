@@ -7,9 +7,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import com.eastteam.myprogram.dao.MediaMybatisDao;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.service.PageableService;
 import com.eastteam.myprogram.web.Thumbnail;
+import com.eastteam.myprogram.web.media.MediaWrapper;
 import com.google.common.collect.Maps;
 
 @Component
@@ -34,7 +37,7 @@ public class MediaService extends PageableService {
 	private static Logger logger = LoggerFactory.getLogger(MediaService.class);
 
 	@Autowired
-	private MediaMybatisDao medaiDao;
+	private MediaMybatisDao mediaDao;
 	
 	  @Value("${media.pic.pagesize}")	
 //	  @Value("#{configProperties['pagesize]}")
@@ -52,19 +55,30 @@ public class MediaService extends PageableService {
 		param.put("offset", pageRequest.getOffset());
 		param.put("pageSize", pageRequest.getPageSize());
 		param.put("sort", this.getOrderValue(pageRequest.getSort()));
-		return medaiDao.search(param);
+		return mediaDao.search(param);
 	}
 
 	public Long getCount(Map parameters) {
 		Map param = Maps.newHashMap(parameters);
-		return medaiDao.getCount(param);
+		return mediaDao.getCount(param);
 	}
 
-	public void insert(List<Media> mediaList) {
-		for (Media media : mediaList) {
-			medaiDao.insert(media);
+	public void insert(List<MediaWrapper> mediaList) {
+		for (MediaWrapper media : mediaList) {
+			mediaDao.insert(media);
+			String categoryIds = media.getCategoryIds();
+			if (!StringUtils.isBlank(categoryIds)) {
+				for (String categoryId : categoryIds.split(",")) {
+					HashMap<String, Object> map = Maps.newHashMap(); 
+					map.put("mediaId", media.getId());
+					map.put("categoryId", categoryId);
+					mediaDao.insertCategory(map);
+				}
+			}
+			
 		}
 	}
+	
 
 	public void saveFile(MultipartFile file, String mediafolder, String filename) {
 		// 检查文件目录，不存在则创建

@@ -118,9 +118,10 @@ public class MediaController {
 	public String save(MediaFormBean mediaFormBean, HttpSession session) {
 		logger.info("in medai save" + mediaFormBean.toString());
 		User user = (User)session.getAttribute("user");
-		List<Media> medias = mediaFormBean.getMedias();
-		for(Media media : medias) {
+		List<MediaWrapper> medias = mediaFormBean.getMedias();
+		for(MediaWrapper media : medias) {
 			media.setDescription(mediaFormBean.getDescription());
+			logger.info("categoryid=======" + media.getCategoryIds());
 			if (user != null) {
 				media.setUserId(user.getId());
 				media.setPath(media.getPath());

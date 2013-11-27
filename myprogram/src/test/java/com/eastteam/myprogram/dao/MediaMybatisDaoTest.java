@@ -2,6 +2,7 @@ package com.eastteam.myprogram.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,12 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		mediaDao.insert(media1);
 		logger.info("media.id=" + media1.getId());
 		assertTrue(media1.getId() > 1);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		logger.info("media1.getId()=====" + media1.getId());
+		map.put("mediaId", media1.getId());
+		map.put("categoryId", "1-3-1");
+		mediaDao.insertCategory(map);		
 	}
 	
 	@Test
@@ -73,7 +80,7 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 	@Test
 	public void getCount() throws Exception {	
 		Map<String, Object> parameter = Maps.newHashMap();
-		parameter.put("categoryId", "1-1-1");
+		parameter.put("categoryId", "1-1");
 		Long count = mediaDao.getCount(parameter);
 		logger.info("count=" + count);
 		assertTrue(count > 2);
