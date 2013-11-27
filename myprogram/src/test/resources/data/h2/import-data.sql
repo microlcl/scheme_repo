@@ -172,11 +172,11 @@ insert into media_category (media_id,category_id) values(11,'1-3-1');
 insert into media_category (media_id,category_id) values(12,'1-3-2');
 insert into media_category (media_id,category_id) values(13,'1-3-2');
 
-insert into products (product_id,title,status,description,price) values(1,'1','1','1',1.11);
-insert into products (product_id,title,status,description,price) values(2,'2','2','2',2.22);
-insert into products (product_id,title,status,description,price) values(3,'3','3','3',3.33);
-insert into products (product_id,title,status,description,price) values(4,'4','4','4',4.44);
-insert into products (product_id,title,status,description,price) values(5,'5','5','5',5.55);
+insert into products (product_id,title,status,description,price) values(1,'产品1','1','description1',1.11);
+insert into products (product_id,title,status,description,price) values(2,'产品2','2','description2',2.22);
+insert into products (product_id,title,status,description,price) values(3,'产品3','3','description3',3.33);
+insert into products (product_id,title,status,description,price) values(4,'产品4','4','description4',4.44);
+insert into products (product_id,title,status,description,price) values(5,'产品5','5','description5',5.55);
 
 insert into product_categoryid(product_id,category_id,picture_id) values(1,'1-1-1',1);
 insert into product_categoryid(product_id,category_id,picture_id) values(2,'1-1-1',2);

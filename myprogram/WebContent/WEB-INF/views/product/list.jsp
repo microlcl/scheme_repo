@@ -89,9 +89,7 @@
 			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 	<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
 				<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
-
 			   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
-			   <mytag:PermssionTag functionId="F4-2"> <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a></mytag:PermssionTag>
 		    </form>
 	    </div>
 	</div>
@@ -102,10 +100,11 @@
 				<c:forEach items="${products.content}" var="product">
 					<li class="span3">
 						 <div class="thumbnail">
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.medias[0].path}" alt="" style="width:300px;height:200px;">
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 						</div>
-					</a></li>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>
