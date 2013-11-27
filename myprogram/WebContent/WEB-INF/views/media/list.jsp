@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<script>
 		$(document).ready(function() {
@@ -32,7 +33,17 @@
 			
 		});
 
-
+		$(function() {          
+		    $("img.lazy").lazyload({
+		        event : "sporty",
+				effect : "fadeIn",
+				threshold : 0,
+				effectspeed: 2000
+		    });
+		});
+		$(window).bind("load", function() { 
+		    var timeout = setTimeout(function() {$("img.lazy").trigger("sporty")}, 3000);
+		});
 	</script>
 	
 			
@@ -74,7 +85,7 @@
 					<li class="span3">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail">
-							<img src="${ctx}/plupload/files/small/${media.path}" style="width:300px;height:200px;" alt="">
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;">
 							<h5>My Title</h5>
 							<p>${media.description}</p>
 						</div>
