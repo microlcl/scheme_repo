@@ -42,6 +42,37 @@
 		    });
 		});
 	</script>
+<style>
+.affix {
+  top: 50px;
+}
+.affix-top {
+  top: 240px;
+  position:absolute;
+}
+.affix-bottom {
+  bottom: 40px;
+  position:absolute;
+}
+
+#affix_test {
+	background-color:#FAFAFA;
+	border: 1px solid #D4D4D4;
+	border-radius: 6px 6px 6px 6px;
+	margin: 30px 0 0;
+	list-style: none outside none;
+}
+
+.mynav {
+	border: 1px solid #E5E5E5;
+    display: block;
+    margin: 0 0 -1px;
+    padding: 8px 14px;
+    line-height: 30px !important;
+    width:100%;
+}
+
+</style>
 	
 			
 </head>
@@ -89,6 +120,17 @@
 					</a></li>
 				</c:forEach>
 			</ul>
+		</div>
+		
+		<div class="row">
+	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1250px !important;">
+		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
+	          <li><a href="#" class="mynav">测试1</a></li>
+	          <li><a href="#" class="mynav">测试2</a></li>
+	          <li><a href="#" class="mynav">测试3</a></li>
+	          <li><a href="#" class="mynav">测试4</a></li>
+	        </ul>
+		  </div>
 		</div>
 
 	</div>
