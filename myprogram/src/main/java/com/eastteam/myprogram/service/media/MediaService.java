@@ -131,7 +131,8 @@ public class MediaService extends PageableService {
 		try {
 			Thumbnail thum = new Thumbnail(folder + "/" + filename);
 			logger.info("thumbnail size = " + this.thumbnailWidth + ":" + this.thumbnailHeight);
-			thum.resizeFix(this.thumbnailWidth, this.thumbnailHeight);
+//			thum.resizeFix(this.thumbnailWidth, this.thumbnailHeight);
+			thum.resizeByHeight(this.thumbnailHeight);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
