@@ -4,6 +4,7 @@
 <%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
+<%	org.springframework.data.domain.Page pageObj = (org.springframework.data.domain.Page)request.getAttribute("medias"); %>
 <head>
 <!-- combotreee -->
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
@@ -13,6 +14,7 @@
 <script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<script>
+		var currentPage = <%=pageObj.getNumber() + 1%>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
 			//$('#cc').combotree({cascadeCheck:false});
@@ -43,8 +45,31 @@
 		});
 
 		function loadMore() {
-			alert(111);
-			return false;
+			var nextPage = currentPage + 1;
+			console.log("next pageNum:" + nextPage);
+			var queryString = '<%=request.getQueryString()%>';
+			console.log(queryString);
+			$.ajax({
+				url : './api/search?' + queryString,
+				type: 'get',
+				data:{
+					page:nextPage
+				},
+				success : function(resp) {
+					currentPage++;
+					console.log('in success function, currentPage = ' + currentPage);
+					console.log(resp);
+					if (resp.lastPage) {
+						console.log("it's the last page");
+						$('#loadMore').hide();
+					}
+					$.each(resp.content, function(i, media){
+						console.log(i + "===" + media.path);
+						var img = '<li class="span3"><div class="thumbnail"><img class="lazy" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px;"><h5>' + media.title+'</h5><p>'+media.description+'</p></div></a></li>';
+						$('#thumbnailContainer').append(img);					
+					});
+				}
+		});
 		}
 	</script>
 <style>
@@ -113,7 +138,7 @@
 
 	<div class="row">
 		<div class="span10">
-			<ul class="thumbnails">
+			<ul id="thumbnailContainer" class="thumbnails">
 				<c:forEach items="${medias.content}" var="media">
 					<li class="span3">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
@@ -138,11 +163,11 @@
 		  </div>
 		</div>
 	</div>	
-	<div class="pagination pagination-centered">
+		<%if (pageObj.hasNextPage()) {%>
+
+	<div id="loadMore" class="pagination pagination-centered">
 	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
     </div>
-    <tags:pagination page="${medias}" paginationSize="4"/>
-
-
+    <% }%>
 </body>
 </html>
