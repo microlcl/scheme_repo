@@ -5,8 +5,17 @@
 <div id="header">
 	<div id="title">
 	    <h1><a href="${ctx}">方案管理系统</a><small>--程序骨架</small>
-
-
+		    <div class="btn-group pull-right">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i
+					class="icon-user"></i> ${user.name} <span class="caret"></span>
+				</a>
+	
+				<ul class="dropdown-menu">	
+					<li><a href="${ctx}/account/editProfile/${user.id}">修改个人信息</a></li>
+					<li class="divider"></li>
+					<li><a href="${ctx}/account/logout">退出</a></li>
+				</ul>
+			</div>
 		</h1>
 	</div>	
 </div>
@@ -27,21 +36,7 @@
 			<li><a href="#">模块2</a></li>
 		</ul>
 
-		<div class="btn-group pull-right">
-			<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i
-				class="icon-user"></i> ${user.name} <span class="caret"></span>
-			</a>
 
-			<ul class="dropdown-menu">
-
-				<li><a href="${ctx}/admin/user">Admin Users</a></li>
-				<li class="divider"></li>
-
-				<li><a href="${ctx}/account/editProfile/${user.id}">Edit
-						Profile</a></li>
-				<li><a href="${ctx}/account/logout">Logout</a></li>
-			</ul>
-		</div>
 	</div>
 </div>
 </c:if>

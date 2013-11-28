@@ -5,8 +5,8 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<!-- combotreee -->
-		<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<!-- combotreee -->
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
@@ -41,6 +41,11 @@
 				effectspeed: 2000
 		    });
 		});
+
+		function loadMore() {
+			alert(111);
+			return false;
+		}
 	</script>
 <style>
 .affix {
@@ -84,7 +89,7 @@
 	</c:if>
 	
 	<div class="row">
-		<div class="span12">
+		<div class="span10">
 			<form class="form-search form-inline" action="#">
 			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 	<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
@@ -107,7 +112,7 @@
 	</div>
 
 	<div class="row">
-		<div class="span12">
+		<div class="span10">
 			<ul class="thumbnails">
 				<c:forEach items="${medias.content}" var="media">
 					<li class="span3">
@@ -123,7 +128,7 @@
 		</div>
 		
 		<div class="row">
-	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1250px !important;">
+	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
 	          <li><a href="#" class="mynav">测试1</a></li>
 	          <li><a href="#" class="mynav">测试2</a></li>
@@ -132,13 +137,11 @@
 	        </ul>
 		  </div>
 		</div>
-
-	</div>
-
-
-
-
-	<tags:pagination page="${medias}" paginationSize="4"/>
+	</div>	
+	<div class="pagination pagination-centered">
+	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
+    </div>
+    <tags:pagination page="${medias}" paginationSize="4"/>
 
 
 </body>

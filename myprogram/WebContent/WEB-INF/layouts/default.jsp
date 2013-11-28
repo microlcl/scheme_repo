@@ -32,7 +32,8 @@
 	<div class="container">
 		<%@ include file="/WEB-INF/layouts/header.jsp"%>
 		<div class="row">
-			<div id="main" class="span12">
+		<%@ include file="/WEB-INF/layouts/left.jsp"%>
+			<div id="main" class="span10">
 				<sitemesh:body />
 			</div>
 		</div>
