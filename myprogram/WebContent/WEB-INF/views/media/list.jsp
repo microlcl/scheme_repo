@@ -17,21 +17,22 @@
 		var currentPage = <%=pageObj.getNumber() + 1%>
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
-			//$('#cc').combotree({cascadeCheck:false});
-			//$('#cc').combotree('setValue', '1-1-1');
+			$('.photoBox').mouseover(function(){
+				console.log('Mouse is on this image');
+				$(this).children('.check').show();
+				console.log($(this).children('.check').children('.photoCheck').prop('checked'));
+			});
 			
-			
-			//var mynode=$('#cc').combotree('tree').tree('find','1-1-1');
-			//console.log("begin print========mynode:");
-			//console.log(mynode);
-			//$('#cc').combotree('tree').tree('check',mynode.target);
-
-			//$('#cc').combotree({ 
-			//	onLoadSuccess:function(node){//数据加载成功触发 
-			//		$('#cc').combotree('setValues', ['1-1-1','1-1-2']); 
-			//	}
-			//});
-
+			$('.photoBox').mouseout(function(){
+								
+				if($(this).children('.check').children('.photoCheck').prop('checked')==true){										
+					$(this).children('.check').show();
+				}else
+				{
+					$(this).children('.check').hide();
+				}
+															
+			});
 			
 		});
 
@@ -65,11 +66,31 @@
 					}
 					$.each(resp.content, function(i, media){
 						console.log(i + "===" + media.path);
-						var img = '<li class="span3"><div class="thumbnail"><img class="lazy" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px;"><h5>' + media.title+'</h5><p>'+media.description+'</p></div></a></li>';
+						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px;"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						$('#thumbnailContainer').append(img);					
 					});
 				}
 		});
+			
+			
+			
+				$('.photoBox').mouseover(function(){
+					console.log('Mouse is on this image');
+					$(this).children('.check').show();
+					console.log($(this).children('.check').children('.photoCheck').prop('checked'));
+				});
+				
+				$('.photoBox').mouseout(function(){
+									
+					if($(this).children('.check').children('.photoCheck').prop('checked')==true){										
+						$(this).children('.check').show();
+					}else
+					{
+						$(this).children('.check').hide();
+					}
+																
+				
+			});
 		}
 	</script>
 <style>
@@ -142,10 +163,13 @@
 				<c:forEach items="${medias.content}" var="media">
 					<li class="span3">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
-						 <div class="thumbnail">
+						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
 						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;">
 							<h5>${media.title}</h5>
 							<p>${media.description}</p>
+							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
+								<input class="photoCheck" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/>
+							</div>
 						</div>
 					</a></li>
 				</c:forEach>
@@ -155,7 +179,7 @@
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
-	          <li><a href="#" class="mynav">测试1</a></li>
+	          <li><a href="#" class="mynav">修改图片信息</a></li>
 	          <li><a href="#" class="mynav">测试2</a></li>
 	          <li><a href="#" class="mynav">测试3</a></li>
 	          <li><a href="#" class="mynav">测试4</a></li>
