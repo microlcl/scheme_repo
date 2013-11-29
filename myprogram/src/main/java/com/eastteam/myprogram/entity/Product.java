@@ -5,17 +5,17 @@ import java.math.BigInteger;
 import java.util.List;
 
 public class Product extends IdEntity{
-	private BigInteger product_id;
+	private Long product_id;
 	private String title;
 	private String status;
 	private String description;
 	private BigDecimal price;
 	private List<Category> categorys;
 	private List<Media> medias; 
-	public BigInteger getProduct_id() {
+	public Long getProduct_id() {
 		return product_id;
 	}
-	public void setProduct_id(BigInteger product_id) {
+	public void setProduct_id(Long product_id) {
 		this.product_id = product_id;
 	}
 	public String getTitle() {

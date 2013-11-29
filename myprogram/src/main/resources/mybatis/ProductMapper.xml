@@ -54,4 +54,52 @@
 		</if>) t
 	</select>
 	
+	<!-- 插入产品-->
+	<insert id="save" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id" >
+		insert into products (title,status,description,price)
+		values(#{title},#{status},#{description},#{price});
+	</insert>
+	
+	<!-- 插入product_categoryid-->
+	<insert id="saveProduct_categoryid" parameterType="Product_categoryid">
+		insert into product_categoryid (product_id,category_id,picture_id)
+		values(#{product_id},#{category_id},#{picture_id});
+	</insert>
+	
+	<insert id="saveMedia" parameterType="Media" useGeneratedKeys="true" keyProperty="id">
+		insert into medias (description,title,media_type,path,status,user_id,upload_timestamp) 
+		values(#{description},#{title},#{mediaType},#{path},#{status},#{userId},now());
+	</insert>
+	
+	 	<!-- 修改产品-->
+	<update id="update" parameterType="Product">
+		update products set title=#{title}, status=#{status}, description=#{description},price=#{price} where product_id=#{product_id};
+	</update>
+	
+	<!-- 修改产品-->
+	<update id="updateProduct_categoryid" parameterType="Product_categoryid">
+		update product_categoryid set product_id=#{product_id}, category_id=#{category_id}, picture_id=#{picture_id} where product_id=#{product_id} and category_id=#{category_id};
+	</update>
+	
+	<!-- 修改Media-->
+	<update id="updateMedia" parameterType="Media">
+		update Media set description=#{description}, title=#{title}, mediaType=#{mediaType},path=#{path}, status=#{status}, userId=#{userId},upload_timestamp=now()
+		 where id=#{id};
+	</update>
+	
+		<!-- 删除产品-->
+	<delete id="delete" parameterType="Product">
+		delete from products where product_id=#{product_id};
+	</delete>
+	
+	<!-- 删除Product_categoryid-->
+	<delete id="deleteProduct_categoryid" parameterType="Product_categoryid">
+		delete from Product_categoryid where product_id=#{product_id} and category_id=#{category_id};
+	</delete>
+	
+	<!-- 删除Media-->
+	<delete id="deleteMedia" parameterType="Media">
+		delete from medias where id=#{id};
+	</delete>
+	
 </mapper> 
