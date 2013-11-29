@@ -67,15 +67,15 @@
 						$('#loadMore').hide();
 					}
 					$.each(resp.content, function(i, media){
-					    $("img.lazy1").lazyload({
+						console.log(i + "===" + media.path);
+						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px; " id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						$('#thumbnailContainer').append(img);
+					    $("#"+media.id).lazyload({
 					        event : "scroll",
 							effect : "fadeIn",
 							threshold : 0,
 							effectspeed: 2000
 					    });
-						console.log(i + "===" + media.path);
-						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px;"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
-						$('#thumbnailContainer').append(img);
 						
 					});
 				}
@@ -158,11 +158,11 @@
 					<li class="span3">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;">
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;" id="${media.id}">
 							<h5>${media.title}</h5>
 							<p>${media.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-								<input class="photoCheck" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/>
+								<input class="photoCheck" value="${media.id}" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
 						</div>
 					</a></li>
