@@ -15,8 +15,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<script>
 		var currentPage = <%=pageObj.getNumber() + 1%>
-		$(document).ready(function() {
-			$("#media-tab").addClass("active");
+		function check() {
 			$('.photoBox').mouseover(function(){
 				console.log('Mouse is on this image');
 				$(this).children('.check').show();
@@ -33,9 +32,12 @@
 				}
 															
 			});
+		}
+		$(document).ready(function() {
+			$("#media-tab").addClass("active");
+			check();
 			
 		});
-
 		$(function() {          
 		    $("img.lazy").lazyload({
 		        event : "scroll",
@@ -65,32 +67,23 @@
 						$('#loadMore').hide();
 					}
 					$.each(resp.content, function(i, media){
+					    $("img.lazy1").lazyload({
+					        event : "scroll",
+							effect : "fadeIn",
+							threshold : 0,
+							effectspeed: 2000
+					    });
 						console.log(i + "===" + media.path);
-						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px;"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
-						$('#thumbnailContainer').append(img);					
+						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px;"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						$('#thumbnailContainer').append(img);
+						
 					});
 				}
 		});
+			setTimeout(function(){
+				$('#test').click();
+			},3000);
 			
-			
-			
-				$('.photoBox').mouseover(function(){
-					console.log('Mouse is on this image');
-					$(this).children('.check').show();
-					console.log($(this).children('.check').children('.photoCheck').prop('checked'));
-				});
-				
-				$('.photoBox').mouseout(function(){
-									
-					if($(this).children('.check').children('.photoCheck').prop('checked')==true){										
-						$(this).children('.check').show();
-					}else
-					{
-						$(this).children('.check').hide();
-					}
-																
-				
-			});
 		}
 	</script>
 <style>
@@ -153,6 +146,7 @@
 
 			   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
 			   <mytag:PermssionTag functionId="F4-2"> <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a></mytag:PermssionTag>
+			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
 		    </form>
 	    </div>
 	</div>
@@ -184,6 +178,7 @@
 	          <li><a href="#" class="mynav">测试3</a></li>
 	          <li><a href="#" class="mynav">测试4</a></li>
 	        </ul>
+	      
 		  </div>
 		</div>
 	</div>	
