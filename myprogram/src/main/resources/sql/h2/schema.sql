@@ -106,7 +106,7 @@ create table products (
 	primary key (product_id)
 );
 
-create table product_categoryid (
+create table product_category (
 	product_id bigint,
 	category_id varchar(64),
 	picture_id bigint,

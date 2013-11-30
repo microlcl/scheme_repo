@@ -178,10 +178,10 @@ insert into products (product_id,title,status,description,price) values(3,'产�
 insert into products (product_id,title,status,description,price) values(4,'产品4','4','description4',4.44);
 insert into products (product_id,title,status,description,price) values(5,'产品5','5','description5',5.55);
 
-insert into product_categoryid(product_id,category_id,picture_id) values(1,'1-1-1',1);
-insert into product_categoryid(product_id,category_id,picture_id) values(2,'1-1-1',2);
-insert into product_categoryid(product_id,category_id,picture_id) values(3,'1-1-1',3);
-insert into product_categoryid(product_id,category_id,picture_id) values(4,'1-1-1',4);
-insert into product_categoryid(product_id,category_id,picture_id) values(5,'1-1-1',5);
+insert into product_category(product_id,category_id,picture_id) values(1,'1-1-1',1);
+insert into product_category(product_id,category_id,picture_id) values(2,'1-1-1',2);
+insert into product_category(product_id,category_id,picture_id) values(3,'1-1-1',3);
+insert into product_category(product_id,category_id,picture_id) values(4,'1-1-1',4);
+insert into product_category(product_id,category_id,picture_id) values(5,'1-1-1',5);
 
 

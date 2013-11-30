@@ -16,17 +16,17 @@
 	</resultMap>
 	<select id="selectCategory" resultType="Category">
 	    select c.id, c.name 
-	    from product_categoryid pc, category c 
+	    from product_category pc, category c 
 	    where pc.category_id=c.id and pc.product_id=#{product_id}
 	</select>
 	<select id="selectMedia" resultType="Media">
 	    select m.media_id, m.path 
-	    from product_categoryid pc, medias m 
+	    from product_category pc, medias m 
 	    where pc.picture_id=m.media_id and pc.product_id=#{product_id}
 	</select> 
 	<select id="search" parameterType="map" resultMap="productDetailMap">
 		select distinct p.product_id, p.title,p.status, p.description,p.price
-		from products p left join product_categoryid pc on p.product_id=pc.product_id 
+		from products p left join product_category pc on p.product_id=pc.product_id 
 		<where>
 		    <if test="categoryId != null">
 				pc.category_id like '${categoryId}%'
@@ -40,7 +40,7 @@
 		</if>
 	</select>
 	<select id="getCount" parameterType="map" resultType="Long">
-		select count(0) from (select distinct p.product_id from products p left join product_categoryid pc on p.product_id=pc.product_id 
+		select count(0) from (select distinct p.product_id from products p left join product_category pc on p.product_id=pc.product_id 
 		<where>
 		    <if test="categoryId != null">
 				pc.category_id like '${categoryId}%'
