@@ -62,5 +62,10 @@
 		from category
 		where pid=#{id}
 	</select>
+	<select id="getModuleCategorys" resultType="CategoryLiteBean">
+		select category_id as id
+		from module_category
+		where module_id=#{moduleId}
+	</select>
 	
 </mapper> 

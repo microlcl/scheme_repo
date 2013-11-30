@@ -75,7 +75,7 @@
 						<label for="cc" class="control-label" style="width:100px;padding-right:20px">照片类别：</label>
 						<div class="controls">
 							<select id="cc" class="easyui-combotree"
-							data-options="url:'${ctx}/category/api/getAll',method:'get'"
+							data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
 							multiple style="width: 200px;" name="categoryId"></select>
 						</div>
 					</div> 
@@ -108,7 +108,7 @@
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
 										<select class="easyui-combotree"
-											data-options="url:'${ctx}/category/api/getAll',method:'get'"
+											data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
 											multiple name="medias[${status.index}].categoryIds"></select>
 									</div>
 									<div style="margin-bottom:5px;">

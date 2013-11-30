@@ -57,16 +57,16 @@ public class CategoryService {
 	} 
 	
 	/**
-	 * 提供给Comobotree使用，不展示根节点
-	 * @param id
+	 * 提供给Comobotree使用，根据moduleId动态产生分类下拉菜单
+	 * @param moduleId
 	 * @return
 	 */
-	public List<CategoryLiteBean> getAll(String id) {
+	public List<CategoryLiteBean> getModuleCategorys(String moduleId) {
 		
-		List<CategoryLiteBean> firstLevelChildrenList = categoryDao.getFirstLevelChildren("1");
+		List<CategoryLiteBean> moduleCategorys = categoryDao.getModuleCategorys(moduleId);
 		List<CategoryLiteBean> categoryList = Lists.newArrayList();
-		for(CategoryLiteBean firstLevelChildren : firstLevelChildrenList) {
-			CategoryLiteBean category = categoryDao.getAll(firstLevelChildren.getId());
+		for(CategoryLiteBean moduleCategory : moduleCategorys) {
+			CategoryLiteBean category = categoryDao.getAll(moduleCategory.getId());
 			categoryList.add(category);
 		}
 		return categoryList;

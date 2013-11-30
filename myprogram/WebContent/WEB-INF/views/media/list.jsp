@@ -132,7 +132,7 @@
 			<form class="form-search form-inline" action="#">
 			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 	<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
-				<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+				<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="图片" <c:if test="${param.search_mediaType eq '图片'}">checked</c:if> >图片
 					</label>
