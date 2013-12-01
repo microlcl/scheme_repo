@@ -22,10 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.eastteam.myprogram.dao.MediaMybatisDao;
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.service.PageableService;
 import com.eastteam.myprogram.web.Thumbnail;
 import com.eastteam.myprogram.web.media.MediaWrapper;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 @Component
@@ -138,6 +140,38 @@ public class MediaService extends PageableService {
 			e.printStackTrace();
 		}
 			
+	}
+	
+	public List<Media> getMediaList(String[] mediaIds){
+		List<Media> mediaList = Lists.newArrayList();
+		for(int i=0; i<mediaIds.length; i++){
+			Media media = mediaDao.getMedia(mediaIds[i]);
+			media.setId(Long.parseLong(mediaIds[i]));
+			Category category = mediaDao.selectCategory(mediaIds[i]);
+			List<Category> categorys = Lists.newArrayList();
+			categorys.add(category);
+			media.setCategorys(categorys);
+			mediaList.add(media);
+		}
+		return mediaList;
+	}
+
+	public void updateMedias(List<MediaWrapper> medias) {
+		// TODO Auto-generated method stub
+		for(MediaWrapper media: medias){
+			mediaDao.update(media);
+			String categoryIds = media.getCategoryIds();
+			if (!StringUtils.isBlank(categoryIds)) {
+				for (String categoryId : categoryIds.split(",")) {
+					HashMap<String, Object> map = Maps.newHashMap(); 
+					map.put("mediaId", media.getId());
+					map.put("categoryId", categoryId);
+					
+					mediaDao.deleteMediaCategory(Long.toString(media.getId()));
+					mediaDao.insertCategory(map);
+				}
+			}
+		}
 	}
 
 }

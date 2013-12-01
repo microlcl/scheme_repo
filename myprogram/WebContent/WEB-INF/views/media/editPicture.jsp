@@ -48,52 +48,24 @@
 <body>
 <div>
 
-	<form id="inputForm" action="${ctx}/media/save" method="post"
+	<form id="inputForm" action="${ctx}/media/updatePicture" method="post"
 		class="form-horizontal">
 		<fieldset>
 			<legend>
-				<small>资源上传</small>
+				<small>修改图片信息</small>
 			</legend>
-			<div class="alert alert-block">
-				<h4>提示：</h4>
-				你已经上传了多媒体资源，请在此填写必要信息进行描述
-			</div>
+
 			<div class="all_photo_edit">
-				<div>
-					<h4>
-						统一添加照片信息
-					</h4>
-					<div class="control-group" style="float:left;margin-bottom:0px">
-						<label for="title" class="control-label">照片名称:</label>
-						<div class="controls">
-							<input type="text" name="title"	value="${title}" maxlength="20" placeholder="0~20个字符"/>
-						</div>
-					</div>			
-					<div class="control-group" style="margin-bottom:10px">
-						<label for="cc" class="control-label" style="width:100px;padding-right:20px">照片类别：</label>
-						<div class="controls">
-							<select id="cc" class="easyui-combotree"
-							data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
-							multiple style="width: 200px;" name="categoryId"></select>
-						</div>
-					</div> 
-					<div class="control-group">
-						<label for="description" class="control-label">照片描述:</label>
-						<div class="controls">
-							<textarea id="description" name="description" class="all_photo_textarea" maxlength="200" placeholder="0~200个字符"></textarea>
-						</div>
-					</div>
-					  
-				</div>
-			
+				
 			    <div>
 					<table class="table table-striped">
 						<tbody>
 						<c:forEach items="${mediaList}" var="media" varStatus="status">
 							<tr>
+								<td style="display:none"><input type="text" name="medias[${status.index}].id" value="${media.id}"/></td>
 								<td>
 									<div class="control-group">
-										<img src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"
+										<img id="${media.id}" src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"
 										name="medias[${status.index}].path" value="${media.path}" />
 									</div>
 								</td>
@@ -107,13 +79,13 @@
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
 										<select class="easyui-combotree"
 											data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
-											multiple name="medias[${status.index}].categoryIds"></select>
+											multiple name="medias[${status.index}].categoryIds" ></select>
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
 										<textarea type="text" class="single_photo_textarea "
 										name="medias[${status.index}].description"
-										value="${media.description}" maxlength="100" placeholder="0~100个字符" /></textarea>
+										value="${media.description}" maxlength="100" placeholder="0~100个字符" />${media.description}</textarea>
 									</div>
 								</div>
 								</td>

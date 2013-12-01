@@ -36,7 +36,11 @@
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
 			check();
-			
+
+			$("#update").click(function(){
+				$("#updatePic").attr("action", "${ctx}/media/editPicture");
+				$("#updatePic").submit();
+			});
 		});
 		$(function() {          
 		    $("img.lazy").lazyload({
@@ -150,7 +154,8 @@
 		    </form>
 	    </div>
 	</div>
-
+	
+	<form id="updatePic" action="">
 	<div class="row">
 		<div class="span10">
 			<ul id="thumbnailContainer" class="thumbnails">
@@ -162,7 +167,7 @@
 							<h5>${media.title}</h5>
 							<p>${media.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-								<input class="photoCheck" value="${media.id}" type="checkbox" name="checkbox" style="margin-left: 10px;margin-top:10px;"/>
+								<input class="photoCheck" value="${media.id}" type="checkbox" name="picture" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
 						</div>
 					</a></li>
@@ -173,7 +178,7 @@
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
-	          <li><a href="#" class="mynav">修改图片信息</a></li>
+	          <li><a href="#" id="update" class="mynav">修改图片信息</a></li>
 	          <li><a href="#" class="mynav">测试2</a></li>
 	          <li><a href="#" class="mynav">测试3</a></li>
 	          <li><a href="#" class="mynav">测试4</a></li>
@@ -181,7 +186,8 @@
 	      
 		  </div>
 		</div>
-	</div>	
+	</div>
+	</form>	
 		<%if (pageObj.hasNextPage()) {%>
 
 	<div id="loadMore" class="pagination pagination-centered">

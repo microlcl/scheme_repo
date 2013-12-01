@@ -8,10 +8,19 @@
 		values(#{description},#{title},#{mediaType},#{path},#{status},#{userId},now());
 	</insert>
 	
+	<update id="update" parameterType="Media">
+		update medias set title=#{title}, description=#{description} 
+		where media_id=#{id} 
+	</update>
+	
 	<insert id="insertCategory" parameterType="map">
 		insert into media_category (media_id,category_id) 
 		values(#{mediaId},#{categoryId});
 	</insert>
+	
+	<update id="deleteMediaCategory" parameterType="Long">
+		delete from media_category where media_id=#{media_id}
+	</update>
 	
 	<resultMap id="mediaDetailMap" type="Media">
 		<id property="id" column="media_id" />
@@ -68,4 +77,7 @@
 		</if>) t
 	</select>
 	
+	<select id="getMedia" resultType="Media">
+		select title, description, path from medias where media_id=#{media_id}
+	</select>
 </mapper> 
