@@ -60,9 +60,9 @@
 		values(#{title},#{status},#{description},#{price});
 	</insert>
 	
-	<!-- 插入product_categoryid-->
-	<insert id="saveProduct_categoryid" parameterType="Product_categoryid">
-		insert into product_categoryid (product_id,category_id,picture_id)
+	<!-- 插入product_category-->
+	<insert id="saveProduct_category" parameterType="Product_category">
+		insert into product_category (product_id,category_id,picture_id)
 		values(#{product_id},#{category_id},#{picture_id});
 	</insert>
 	
@@ -77,8 +77,8 @@
 	</update>
 	
 	<!-- 修改产品-->
-	<update id="updateProduct_categoryid" parameterType="Product_categoryid">
-		update product_categoryid set product_id=#{product_id}, category_id=#{category_id}, picture_id=#{picture_id} where product_id=#{product_id} and category_id=#{category_id};
+	<update id="updateProduct_category" parameterType="Product_category">
+		update product_category set product_id=#{product_id}, category_id=#{category_id}, picture_id=#{picture_id} where product_id=#{product_id} and category_id=#{category_id};
 	</update>
 	
 	<!-- 修改Media-->
@@ -92,9 +92,9 @@
 		delete from products where product_id=#{product_id};
 	</delete>
 	
-	<!-- 删除Product_categoryid-->
-	<delete id="deleteProduct_categoryid" parameterType="Product_categoryid">
-		delete from Product_categoryid where product_id=#{product_id} and category_id=#{category_id};
+	<!-- 删除product_category-->
+	<delete id="deleteProduct_category" parameterType="product_category">
+		delete from product_category where product_id=#{product_id} and category_id=#{category_id};
 	</delete>
 	
 	<!-- 删除Media-->
