@@ -77,7 +77,9 @@
 		</if>) t
 	</select>
 	
-	<select id="getMedia" resultType="Media">
-		select title, description, path from medias where media_id=#{media_id}
+	<select id="getMedia" resultMap="mediaDetailMap">
+		select distinct m.media_id, m.title, m.description,m.media_type as mediaType,m.path,m.status,m.user_id as userId,m.upload_timestamp as uploadTimestamp
+		from medias m left join media_category mc on m.media_id=mc.media_id 
+		where m.media_id= #{media_id}
 	</select>
 </mapper> 

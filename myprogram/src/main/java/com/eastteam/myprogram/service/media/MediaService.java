@@ -146,11 +146,6 @@ public class MediaService extends PageableService {
 		List<Media> mediaList = Lists.newArrayList();
 		for(int i=0; i<mediaIds.length; i++){
 			Media media = mediaDao.getMedia(mediaIds[i]);
-			media.setId(Long.parseLong(mediaIds[i]));
-			Category category = mediaDao.selectCategory(mediaIds[i]);
-			List<Category> categorys = Lists.newArrayList();
-			categorys.add(category);
-			media.setCategorys(categorys);
 			mediaList.add(media);
 		}
 		return mediaList;
