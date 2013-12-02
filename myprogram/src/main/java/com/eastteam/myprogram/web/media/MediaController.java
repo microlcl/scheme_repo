@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.web.media;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -159,5 +160,45 @@ public class MediaController {
 		return "redirect:list";
 	}
 	
+	@RequestMapping(value="editPicture",method = RequestMethod.GET)
+	public String showEditPic(Model model, HttpServletRequest request) {
+		String[] mediaIds = request.getParameterValues("picture");
+		List<Media> mediaList = this.mediaService.getMediaList(mediaIds);
+		List mediaCategoryList = new ArrayList();
+		for(int i=0; i< mediaList.size(); i++){
+			for(int j=0; j<mediaList.get(i).getCategorys().size(); j++){
+				
+			}
+		}
+		
+		model.addAttribute("mediaList", mediaList);
+		
+		return "media/editPicture";
+	}
 	
+	@RequestMapping(value="updatePicture",method = RequestMethod.POST)
+	public String updatePicture(MediaFormBean mediaFormBean, HttpSession session) {
+		logger.info("in medai update" + mediaFormBean.toString());
+		List<MediaWrapper> medias = mediaFormBean.getMedias();
+		for(MediaWrapper media : medias) {
+			if (StringUtils.isBlank(media.getTitle())) {
+				media.setTitle(mediaFormBean.getTitle());
+			}
+			if (StringUtils.isBlank(media.getDescription())) {
+				media.setDescription(mediaFormBean.getDescription());
+			}
+			if (StringUtils.isBlank(media.getCategoryIds())) {
+				media.setCategoryIds(mediaFormBean.getCategoryId());
+			}
+			logger.info("categoryid=======" + media.getCategoryIds());
+
+		}
+		
+		if (!medias.isEmpty()) {
+			mediaService.updateMedias(medias);
+			logger.info("Save media to DB finished.");
+		}
+		
+		return "redirect:list";
+	}
 }

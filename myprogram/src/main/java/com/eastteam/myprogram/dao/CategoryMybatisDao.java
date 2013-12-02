@@ -22,4 +22,12 @@ public interface CategoryMybatisDao {
 	public CategoryLiteBean getAll(String id);
 	
 	public List<CategoryLiteBean> getFirstLevelChildren(String id);
+	
+	/**
+	 * 从module_category table 读取指定module的category信息，用于产生特定于某一模块的category下拉菜单
+	 * @param moduleId
+	 * @return
+	 */
+	public List<CategoryLiteBean> getModuleCategorys(String moduleId);
+	
 }

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.google.common.collect.Maps;
 
@@ -84,5 +85,41 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		Long count = mediaDao.getCount(parameter);
 		logger.info("count=" + count);
 		assertTrue(count > 2);
+	}
+	
+	@Test
+	public void getMedia() throws Exception {
+		Media m = new Media();
+		m = mediaDao.getMedia("10");
+		logger.info("mediaTitle="+m.getTitle());
+		logger.info("mediaDescription="+m.getDescription());
+	}
+	
+	@Test
+	public void getCategory() throws Exception {
+		Category c = new Category();
+		c = mediaDao.selectCategory("10");
+		logger.info("mediaTitle="+c.getId());
+		logger.info("mediaDescription="+c.getName());
+	}
+	
+	@Test
+	public void updateMedia() throws Exception {
+		Media m = new Media();
+		m.setTitle("test1");
+		m.setId((long) 10);
+		m.setDescription("testingDes");
+		
+		mediaDao.update(m);
+		
+		m = mediaDao.getMedia("10");
+		logger.info("mediaTitle="+m.getTitle());
+		logger.info("mediaDescription="+m.getDescription());
+	}
+	
+	@Test
+	public void deleteMediaCategory() throws Exception {
+		logger.info("delte media's category");
+		mediaDao.deleteMediaCategory("13");
 	}
 }
