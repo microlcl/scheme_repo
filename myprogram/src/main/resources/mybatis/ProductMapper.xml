@@ -4,7 +4,7 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.ProductMybatisDao">
 	<resultMap id="productDetailMap" type="Product">
-		<id property="product_id" column="product_id" />
+		<id property="id" column="product_id" />
 		<result property="description" column="description" />
 		<result property="title" column="title" />
 		<result property="status" column="status" />
@@ -55,7 +55,7 @@
 	</select>
 	
 	<!-- 插入产品-->
-	<insert id="save" parameterType="Product" useGeneratedKeys="true" keyProperty="product_id" >
+	<insert id="save" parameterType="Product" useGeneratedKeys="true" keyProperty="id" >
 		insert into products (title,status,description,price)
 		values(#{title},#{status},#{description},#{price});
 	</insert>
@@ -73,7 +73,7 @@
 	
 	 	<!-- 修改产品-->
 	<update id="update" parameterType="Product">
-		update products set title=#{title}, status=#{status}, description=#{description},price=#{price} where product_id=#{product_id};
+		update products set title=#{title}, status=#{status}, description=#{description},price=#{price} where product_id=#{id};
 	</update>
 	
 	<!-- 修改产品-->
@@ -89,7 +89,7 @@
 	
 		<!-- 删除产品-->
 	<delete id="delete" parameterType="Product">
-		delete from products where product_id=#{product_id};
+		delete from products where product_id=#{id};
 	</delete>
 	
 	<!-- 删除product_category-->
