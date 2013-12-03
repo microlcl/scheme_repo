@@ -164,13 +164,7 @@ public class MediaController {
 	public String showEditPic(Model model, HttpServletRequest request) {
 		String[] mediaIds = request.getParameterValues("picture");
 		List<Media> mediaList = this.mediaService.getMediaList(mediaIds);
-		List mediaCategoryList = new ArrayList();
-		for(int i=0; i< mediaList.size(); i++){
-			for(int j=0; j<mediaList.get(i).getCategorys().size(); j++){
-				
-			}
-		}
-		
+
 		model.addAttribute("mediaList", mediaList);
 		
 		return "media/editPicture";
@@ -196,7 +190,7 @@ public class MediaController {
 		
 		if (!medias.isEmpty()) {
 			mediaService.updateMedias(medias);
-			logger.info("Save media to DB finished.");
+			logger.info("update media to DB finished.");
 		}
 		
 		return "redirect:list";

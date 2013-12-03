@@ -155,6 +155,8 @@ public class MediaService extends PageableService {
 		// TODO Auto-generated method stub
 		for(MediaWrapper media: medias){
 			mediaDao.update(media);
+			//先删除media的分类，重新写入
+			mediaDao.deleteMediaCategory(Long.toString(media.getId()));
 			String categoryIds = media.getCategoryIds();
 			if (!StringUtils.isBlank(categoryIds)) {
 				for (String categoryId : categoryIds.split(",")) {
@@ -162,7 +164,6 @@ public class MediaService extends PageableService {
 					map.put("mediaId", media.getId());
 					map.put("categoryId", categoryId);
 					
-					mediaDao.deleteMediaCategory(Long.toString(media.getId()));
 					mediaDao.insertCategory(map);
 				}
 			}

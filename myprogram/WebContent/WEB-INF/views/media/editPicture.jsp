@@ -22,6 +22,7 @@
 	$(document).ready(function() {
 		//聚焦第一个输入框 
 		//$("#loginName").focus();
+
 	});
 </script>
 
@@ -77,9 +78,23 @@
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
-										<select class="easyui-combotree"
+										<select id="cc_${status.index}" class="easyui-combotree"
 											data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
 											multiple name="medias[${status.index}].categoryIds" ></select>
+									<script type="text/javascript">
+										//var selectId = 'cc_${status.index}';
+										var categoryIds_${status.index} = [];
+										<c:forEach items="${media.categorys}" var="category" varStatus="ctgStatus">
+											var categoryId = '${category.id}';
+											categoryIds_${status.index}.push(categoryId);
+										</c:forEach>
+										$("#cc_${status.index}").combotree({ 
+											onLoadSuccess:function(node){//数据加载成功触发 
+												$("#cc_${status.index}").combotree('setValues', categoryIds_${status.index});
+											}
+										});
+									</script>
+																				
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>

@@ -146,6 +146,7 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-3-
 insert into module_category(module_id,category_id) values('M1-4','1-1');
 insert into module_category(module_id,category_id) values('M1-4','1-2');
 
+
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(1,'title1','description 1','图片','bp1.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(2,'title2','description 2','图片','bp2.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(3,'title3','description 3','图片','bp3.jpg','可用','admin',now());
@@ -170,10 +171,10 @@ insert into media_category (media_id,category_id) values(6,'1-1-2');
 insert into media_category (media_id,category_id) values(7,'1-2-1');
 insert into media_category (media_id,category_id) values(8,'1-2-1');
 insert into media_category (media_id,category_id) values(9,'1-2-2');
-insert into media_category (media_id,category_id) values(10,'1-3-1');
-insert into media_category (media_id,category_id) values(11,'1-3-1');
-insert into media_category (media_id,category_id) values(12,'1-3-2');
-insert into media_category (media_id,category_id) values(13,'1-3-2');
+insert into media_category (media_id,category_id) values(10,'1-1-1');
+insert into media_category (media_id,category_id) values(11,'1-2-1');
+insert into media_category (media_id,category_id) values(12,'1-1-2');
+insert into media_category (media_id,category_id) values(13,'1-2-2');
 
 insert into products (product_id,title,status,description,price) values(1,'产品1','1','description1',1.11);
 insert into products (product_id,title,status,description,price) values(2,'产品2','2','description2',2.22);
