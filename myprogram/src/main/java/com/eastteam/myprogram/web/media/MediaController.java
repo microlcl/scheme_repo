@@ -122,7 +122,7 @@ public class MediaController {
 				if (media.getPath().toLowerCase().endsWith(".jpg")) {
 					media.setMediaType("picture");
 				}else if (media.getPath().toLowerCase().endsWith(".mp3")) {
-					media.setMediaType("音频");
+					media.setMediaType("audio");
 				}
 				logger.info("======media Type:"+ media.getMediaType());
 				media.setStatus("上传成功");

@@ -99,7 +99,7 @@
 										</div>
 									</td>
 								</c:if>
-								<c:if test="${media.mediaType=='音频'}">
+								<c:if test="${media.mediaType=='audio'}">
 									<td>
 										<div class="control-group">
 											<img src="${ctx}/plupload/files/small/audio.jpg" alt=""><input type="hidden"

@@ -160,6 +160,7 @@ insert into medias (media_id,title,description,media_type,path,status,user_id,up
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(11,'title11','description 11','picture','bp11.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(12,'title12','description 12','picture','bp12.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(13,'title13','description 13','视频','bp13.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(14,'心愿','四个女生主唱','audio','心愿.mp3','可用','admin',now());
 
 insert into media_category (media_id,category_id) values(1,'1-1-1');
 insert into media_category (media_id,category_id) values(1,'1-1-2');
