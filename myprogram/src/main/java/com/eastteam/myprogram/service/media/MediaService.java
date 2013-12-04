@@ -58,7 +58,7 @@ public class MediaService extends PageableService {
 	@Value("${media.pic.small.path}")
 	private String picSmallPath;	
 	
-	@Value("${media.pic.path}")
+	@Value("${media.audio.pat}")
 	private String audioPath;
 	
 	public List<Media> search(Map parameters, Pageable pageRequest) {
