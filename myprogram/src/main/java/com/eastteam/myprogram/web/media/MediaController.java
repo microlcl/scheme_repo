@@ -120,7 +120,7 @@ public class MediaController {
 				media.setPath(session.getId() + "_" + fileName);
 				logger.info("======Media.path:" + media.getPath());
 				if (media.getPath().toLowerCase().endsWith(".jpg")) {
-					media.setMediaType("图片");
+					media.setMediaType("picture");
 				}else if (media.getPath().toLowerCase().endsWith(".mp3")) {
 					media.setMediaType("音频");
 				}
@@ -154,7 +154,7 @@ public class MediaController {
 			if (user != null) {
 				media.setUserId(user.getId());
 				media.setPath(media.getPath());
-				media.setMediaType("图片");
+				media.setMediaType("picture");
 			}
 		}
 		

@@ -91,7 +91,7 @@
 						<tbody>
 						<c:forEach items="${mediaList}" var="media" varStatus="status">
 							<tr>
-								<c:if test="${media.mediaType=='图片'}">
+								<c:if test="${media.mediaType=='picture'}">
 									<td>
 										<div class="control-group">
 											<img src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"

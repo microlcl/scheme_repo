@@ -56,7 +56,7 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		assertTrue(result.get(0).getPath().indexOf("jpg") > 0);
 		
 		Map<String, Object> parameter0 = Maps.newHashMap();
-		parameter0.put("mediaType", "图片");
+		parameter0.put("mediaType", "picture");
 		List<Media> result0 = mediaDao.search(parameter0);
 		logger.info("result0=" + result);
 		logger.info("result0.size=" + result0.size());
@@ -70,7 +70,7 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		Map<String, Object> parameter4 = Maps.newHashMap();
 		parameter4.put("offset", "3");
 		parameter4.put("pageSize", "5");
-		parameter4.put("mediaType", "图片");
+		parameter4.put("mediaType", "picture");
 		parameter4.put("sort", "media_id");
 		List<Media> result4 = mediaDao.search(parameter4);
 		logger.info("result4=" + result4);

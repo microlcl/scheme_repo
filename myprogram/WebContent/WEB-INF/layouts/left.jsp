@@ -11,7 +11,7 @@
 			<mytag:PermssionTag functionId="F1-1"><a id="category-tab" href="${ctx}/category/">类别管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F2-1"><a id="account-tab" href="${ctx}/account/list">人员管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F3-1"><a id="role-tab" href="${ctx}/role/list">角色管理</a></mytag:PermssionTag>
-			<mytag:PermssionTag functionId="F4-1"><a id="media-tab" href="${ctx}/media/list?search_mediaType=%E5%9B%BE%E7%89%87">多媒体资源管理</a></mytag:PermssionTag>
+			<mytag:PermssionTag functionId="F4-1"><a id="media-tab" href="${ctx}/media/list?search_mediaType=picture">多媒体资源管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F5-1"><a id="product-tab" href="${ctx}/product/list">产品</a></mytag:PermssionTag>
 		</div>
 		<h1>菜单2</h1>

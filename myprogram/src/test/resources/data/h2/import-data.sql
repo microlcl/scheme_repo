@@ -147,18 +147,18 @@ insert into module_category(module_id,category_id) values('M1-4','1-1');
 insert into module_category(module_id,category_id) values('M1-4','1-2');
 
 
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(1,'title1','description 1','图片','bp1.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(2,'title2','description 2','图片','bp2.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(3,'title3','description 3','图片','bp3.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(4,'title4','description 4','图片','bp4.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(5,'title5','description 5','图片','bp5.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(6,'title6','description 6','图片','bp6.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(7,'title7','description 7','图片','bp7.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(8,'title8','description 8','图片','bp8.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(9,'title9','description 9','图片','bp9.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(10,'title10','description 10','图片','bp10.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(11,'title11','description 11','图片','bp11.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(12,'title12','description 12','图片','bp12.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(2,'title2','description 2','picture','bp2.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(3,'title3','description 3','picture','bp3.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(4,'title4','description 4','picture','bp4.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(5,'title5','description 5','picture','bp5.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(6,'title6','description 6','picture','bp6.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(7,'title7','description 7','picture','bp7.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(8,'title8','description 8','picture','bp8.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(9,'title9','description 9','picture','bp9.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(10,'title10','description 10','picture','bp10.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(11,'title11','description 11','picture','bp11.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(12,'title12','description 12','picture','bp12.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(13,'title13','description 13','视频','bp13.jpg','可用','admin',now());
 
 insert into media_category (media_id,category_id) values(1,'1-1-1');

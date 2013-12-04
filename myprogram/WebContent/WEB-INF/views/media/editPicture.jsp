@@ -53,7 +53,7 @@
 		class="form-horizontal">
 		<fieldset>
 			<legend>
-				<small>修改图片信息</small>
+				<small>修改资源信息</small>
 			</legend>
 
 			<div class="all_photo_edit">
