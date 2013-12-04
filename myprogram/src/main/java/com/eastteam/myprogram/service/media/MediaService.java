@@ -26,6 +26,7 @@ import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.service.PageableService;
 import com.eastteam.myprogram.web.Thumbnail;
+import com.eastteam.myprogram.web.WebUtils;
 import com.eastteam.myprogram.web.media.MediaWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -50,7 +51,16 @@ public class MediaService extends PageableService {
 	  
 	@Value("${thumbnail.height}")	
 	private int thumbnailHeight;	  
-
+	
+	@Value("${media.pic.large.path}")
+	private String picLargePath;
+	
+	@Value("${media.pic.small.path}")
+	private String picSmallPath;	
+	
+	@Value("${media.pic.path}")
+	private String audioPath;
+	
 	public List<Media> search(Map parameters, Pageable pageRequest) {
 		logger.info("in service, pagesize = " + pageSize);
 		Map param = Maps.newHashMap(parameters);
@@ -82,7 +92,16 @@ public class MediaService extends PageableService {
 	}
 	
 
-	public void saveFile(MultipartFile file, String mediafolder, String filename) {
+	public void saveFile(MultipartFile file, String realPath, String filename) {
+		String mediafolder = "";
+		if (filename.toLowerCase().endsWith(".mp3")){
+			mediafolder = realPath + this.audioPath;
+			logger.info("=====Audio Path:" + mediafolder);
+		} else if (filename.toLowerCase().endsWith(".jpg")) {
+			mediafolder = realPath + this.picLargePath;
+			logger.info("=====Pic Path:" + mediafolder);
+		}
+			
 		// 检查文件目录，不存在则创建
 		File folder = new File(mediafolder);
 		if (!folder.exists()) {
@@ -130,14 +149,16 @@ public class MediaService extends PageableService {
 			}
 		}
 		//生成缩略图
-		try {
-			Thumbnail thum = new Thumbnail(folder + "/" + filename);
-			logger.info("thumbnail size = " + this.thumbnailWidth + ":" + this.thumbnailHeight);
-			thum.resizeFix(this.thumbnailWidth, this.thumbnailHeight);
-//			thum.resizeByHeight(this.thumbnailHeight);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (filename.toLowerCase().endsWith(".jpg")) {
+				try {
+					Thumbnail thum = new Thumbnail(folder + "/" + filename);
+					logger.info("thumbnail size = " + this.thumbnailWidth + ":" + this.thumbnailHeight);
+					thum.resizeFix(this.thumbnailWidth, this.thumbnailHeight);
+	//			thum.resizeByHeight(this.thumbnailHeight);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 			
 	}

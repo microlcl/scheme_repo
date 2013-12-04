@@ -97,7 +97,7 @@ public class MediaController {
 		String filename = session.getId() + "_" + name;
 		logger.info("文件保存路径：" + mediafolder);
 		logger.info("文件名称：" + filename);		
-		mediaService.saveFile(file, mediafolder, filename);
+		mediaService.saveFile(file, realPath, filename);
 		
 		return "";
 	}
@@ -118,6 +118,13 @@ public class MediaController {
 			if (status.equalsIgnoreCase("done")) {
 				Media media = new Media();
 				media.setPath(session.getId() + "_" + fileName);
+				logger.info("======Media.path:" + media.getPath());
+				if (media.getPath().toLowerCase().endsWith(".jpg")) {
+					media.setMediaType("图片");
+				}else if (media.getPath().toLowerCase().endsWith(".mp3")) {
+					media.setMediaType("音频");
+				}
+				logger.info("======media Type:"+ media.getMediaType());
 				media.setStatus("上传成功");
 				mediaList.add(media);	
 			}
@@ -147,7 +154,6 @@ public class MediaController {
 			if (user != null) {
 				media.setUserId(user.getId());
 				media.setPath(media.getPath());
-				// TODO hardcode here:
 				media.setMediaType("图片");
 			}
 		}

@@ -74,6 +74,9 @@
 					}, {
 						title : "Zip files",
 						extensions : "zip"
+					},{
+						title: "Audio",
+						extensions : "mp3"
 					} ]
 				},
 

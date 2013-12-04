@@ -91,18 +91,24 @@
 						<tbody>
 						<c:forEach items="${mediaList}" var="media" varStatus="status">
 							<tr>
-								<td>
-									<div class="control-group">
-										<img src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"
-										name="medias[${status.index}].path" value="${media.path}" />
-									</div>
-								</td>
+								<c:if test="${media.mediaType=='图片'}">
+									<td>
+										<div class="control-group">
+											<img src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"
+											name="medias[${status.index}].path" value="${media.path}" />
+										</div>
+									</td>
+								</c:if>
 								<td>
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
 										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="20" placeholder="0~20个字符" />
 									</div>
+									<div style="margin-bottom:5px;"">
+										<label for="mediaType" class="control-label" style="width:40px;padding-right:10px">类型:</label>
+										<input type="text" id="mediaType" name="mediaType"  value="${media.mediaType}" readonly/>
+									</div>	
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
 										<select class="easyui-combotree"
