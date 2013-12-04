@@ -22,11 +22,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.eastteam.myprogram.dao.MediaMybatisDao;
-import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.service.PageableService;
 import com.eastteam.myprogram.web.Thumbnail;
-import com.eastteam.myprogram.web.WebUtils;
 import com.eastteam.myprogram.web.media.MediaWrapper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -58,7 +56,7 @@ public class MediaService extends PageableService {
 	@Value("${media.pic.small.path}")
 	private String picSmallPath;	
 	
-	@Value("${media.audio.pat}")
+	@Value("${media.audio.path}")
 	private String audioPath;
 	
 	public List<Media> search(Map parameters, Pageable pageRequest) {
