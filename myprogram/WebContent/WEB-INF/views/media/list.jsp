@@ -173,7 +173,7 @@
 						</li>
 					</c:if>
 					<c:if test="${media.mediaType eq 'audio'}">
-							
+					
 					</c:if>
 				</c:forEach>
 			</ul>
