@@ -160,17 +160,21 @@
 		<div class="span10">
 			<ul id="thumbnailContainer" class="thumbnails">
 				<c:forEach items="${medias.content}" var="media">
-					<li class="span3">
-						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
-						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;" id="${media.id}">
-							<h5>${media.title}</h5>
-							<p>${media.description}</p>
-							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-								<input class="photoCheck" value="${media.id}" type="checkbox" name="picture" style="margin-left: 10px;margin-top:10px;"/>
+					<c:if test="${media.mediaType eq 'picture'}">
+						<li class="span3">
+							 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
+							 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;" id="${media.id}">
+								<h5>${media.title}</h5>
+								<p>${media.description}</p>
+								<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
+									<input class="photoCheck" value="${media.id}" type="checkbox" name="picture" style="margin-left: 10px;margin-top:10px;"/>
+								</div>
 							</div>
-						</div>
-					</a></li>
+						</li>
+					</c:if>
+					<c:if test="${media.mediaType eq 'audio'}">
+						
+					</c:if>
 				</c:forEach>
 			</ul>
 		</div>
