@@ -141,7 +141,7 @@
 						<input type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >图片
 					</label>
 					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="视频" <c:if test="${param.search_mediaType eq '视频'}">checked</c:if>>视频
+						<input type="radio" name="search_mediaType" value="video" <c:if test="${param.search_mediaType eq 'video'}">checked</c:if>>视频
 					</label>
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>音频
