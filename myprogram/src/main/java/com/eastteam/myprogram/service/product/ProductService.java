@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.ProductMybatisDao;
 import com.eastteam.myprogram.entity.Media;
+import com.eastteam.myprogram.entity.Product;
+import com.eastteam.myprogram.entity.Product_category;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -50,5 +52,13 @@ public class ProductService extends PageableService {
 		}
 		return mediaList;
 	}
-
+	public void delete(Long productId,String catetoryId){
+		Product_category product_category=new Product_category();
+		product_category.setCategory_id(catetoryId);
+		product_category.setProduct_id(productId);
+		productMybatisDao.deleteProduct_category(product_category);
+		Product product=new Product();
+		product.setId(productId);
+		productMybatisDao.delete(product);
+	}
 }

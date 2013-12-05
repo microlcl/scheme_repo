@@ -93,7 +93,7 @@
 	</delete>
 	
 	<!-- 删除product_category-->
-	<delete id="deleteProduct_category" parameterType="product_category">
+	<delete id="deleteProduct_category" parameterType="Product_category">
 		delete from product_category where product_id=#{product_id} and category_id=#{category_id};
 	</delete>
 	

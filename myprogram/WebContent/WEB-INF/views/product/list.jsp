@@ -45,8 +45,10 @@
 				$("#updateProduct").submit();
 			});
 			$("#delete").click(function(){
-				$("#updateProduct").attr("action", "${ctx}/product/delete");
-				$("#updateProduct").submit();
+				if(confirm('确定删除吗')){
+					$("#updateProduct").attr("action", "${ctx}/product/delete");
+					$("#updateProduct").submit();
+				}
 			});
 		});
 		$(function() {          
@@ -170,6 +172,7 @@
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
+								<input type="hidden" name="catetoryId" value="${producut.catetorys[0].id }">
 								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
 						</div>
@@ -183,7 +186,7 @@
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
 	          <li><mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/add/" >增加产品</a></mytag:PermssionTag></li>
 	          <li><mytag:PermssionTag functionId="F5-3"><a href="#" id="update" class="mynav">修改</a></mytag:PermssionTag></li>
-	          <li><mytag:PermssionTag functionId="F5-4"><a href="${ctx}/product/delete/" >删除</a></mytag:PermssionTag></li>
+	          <li><mytag:PermssionTag functionId="F5-4"><a href="#" id="delete" class="mynav">删除</a></mytag:PermssionTag></li>
 	        </ul>
 		  </div>
 		</div>
