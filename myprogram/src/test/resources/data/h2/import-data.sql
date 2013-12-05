@@ -81,6 +81,9 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F4-4','M1-4','多媒体：删除','有权限删除','/role/api/delete');
 insert into functions(function_id, module_id, name, description, path) values('F4-5','M1-4','多媒体：查询','有权限查询','/role/api/delete');
 insert into functions(function_id, module_id, name, description, path) values('F5-1','M1-5','产品：菜单','菜单','/product/add');
+insert into functions(function_id, module_id, name, description, path) values('F5-2','M1-5','产品：增加','增加','/product/add');
+insert into functions(function_id, module_id, name, description, path) values('F5-3','M1-5','产品：修改','修改','/product/update');
+insert into functions(function_id, module_id, name, description, path) values('F5-4','M1-5','产品：删除','删除','/product/delete');
 
 insert into role_function(role_id, function_id, description) values('R0','F0','');
 insert into role_function(role_id, function_id, description) values('R0','F1-1','');
@@ -110,6 +113,9 @@ insert into role_function(role_id, function_id, description) values('R0','F4-4',
 insert into role_function(role_id, function_id, description) values('R0','F4-5','');
 insert into role_function(role_id, function_id, description) values('R0','F4-6','');
 insert into role_function(role_id, function_id, description) values('R0','F5-1','');
+insert into role_function(role_id, function_id, description) values('R0','F5-2','');
+insert into role_function(role_id, function_id, description) values('R0','F5-3','');
+insert into role_function(role_id, function_id, description) values('R0','F5-4','');
 insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1-1','');
 insert into role_function(role_id, function_id, description) values('R1','F1-2','');

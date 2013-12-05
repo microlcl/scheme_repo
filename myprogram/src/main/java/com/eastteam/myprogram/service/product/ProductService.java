@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.ProductMybatisDao;
+import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.service.PageableService;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 @Component
@@ -38,6 +40,15 @@ public class ProductService extends PageableService {
 		// TODO Auto-generated method stub
 		Map param = Maps.newHashMap(parameters);
 		return productMybatisDao.getCount(param);
+	}
+	
+	public List<Media> getProductList(String[] ids){
+		List<Media> mediaList = Lists.newArrayList();
+		for(int i=0; i<ids.length; i++){
+//			Product product = productMybatisDao.getProduct(ids[i]);
+//			mediaList.add(product);
+		}
+		return mediaList;
 	}
 
 }

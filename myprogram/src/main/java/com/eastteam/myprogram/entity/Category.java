@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,6 +14,7 @@ public class Category extends BaseEntity {
 	private String name;
 	private String trashed;
 	private String comment;
+	private List<Media> medias;
 	// 设定JSON序列化时的日期格式
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	private Date createdDate;
@@ -53,4 +55,11 @@ public class Category extends BaseEntity {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+	public List<Media> getMedias() {
+		return medias;
+	}
+	public void setMedias(List<Media> medias) {
+		this.medias = medias;
+	}
+	
 }

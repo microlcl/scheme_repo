@@ -1,7 +1,6 @@
 package com.eastteam.myprogram.entity;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 public class Product extends IdEntity{
@@ -10,7 +9,8 @@ public class Product extends IdEntity{
 	private String description;
 	private BigDecimal price;
 	private List<Category> categorys;
-	private List<Media> medias; 
+	private List<Media> medias;
+	
 	public String getTitle() {
 		return title;
 	}
