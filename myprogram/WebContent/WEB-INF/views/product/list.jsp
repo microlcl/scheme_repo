@@ -172,7 +172,6 @@
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-								<input type="hidden" name="catetoryId" value="${producut.catetorys[0].id }">
 								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
 						</div>

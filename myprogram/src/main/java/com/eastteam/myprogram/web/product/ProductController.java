@@ -76,9 +76,10 @@ public class ProductController {
 	public String delete(Model model, HttpServletRequest request) {
 		String[] ids = request.getParameterValues("productId");
 		if (ids.length > 0) {
-			Long id = Long.parseLong(ids[0]);
-			String catetoryId = request.getParameter("catetoryId");
-			this.productService.delete(id,catetoryId);
+			for (int i =0; i < ids.length; i++) {
+				Long id = Long.parseLong(ids[i]);
+				this.productService.delete(id);
+			}
 		}
 		return "redirect:/product/list/";
 	}

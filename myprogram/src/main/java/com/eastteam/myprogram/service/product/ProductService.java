@@ -52,11 +52,8 @@ public class ProductService extends PageableService {
 		}
 		return mediaList;
 	}
-	public void delete(Long productId,String catetoryId){
-		Product_category product_category=new Product_category();
-		product_category.setCategory_id(catetoryId);
-		product_category.setProduct_id(productId);
-		productMybatisDao.deleteProduct_category(product_category);
+	public void delete(Long productId){
+		productMybatisDao.deleteProduct_category(productId);
 		Product product=new Product();
 		product.setId(productId);
 		productMybatisDao.delete(product);

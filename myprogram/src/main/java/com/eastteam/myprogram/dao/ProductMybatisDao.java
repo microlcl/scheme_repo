@@ -18,7 +18,7 @@ public interface ProductMybatisDao {
 	public void updateProduct_category(Product_category product_category);
 	public void updateMedia(Media media);
 	public void delete(Product product);
-	public void deleteProduct_category(Product_category product_category);
+	public void deleteProduct_category(Long  product_id);
 	public void deleteMedia(Media media);
 	public Product getProduct(String product_id,String category_id);
 }
