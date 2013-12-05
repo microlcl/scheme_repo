@@ -22,7 +22,52 @@
 function topwin(){
 	window.showModalDialog("${ctx}/product/list","","dialogWidth:300px;dialogHeight:300px;scroll:no;status:no");
 }
+function clearNoNum(obj)
+{
+	 
+    //先把非数字的都替换掉，除了数字和.
+    obj.value = obj.value.replace(/[^\d.]/g,"");
+    //必须保证第一个为数字而不是.
+    obj.value = obj.value.replace(/^\./g,"");
+    //保证只有出现一个.而没有多个.
+    obj.value = obj.value.replace(/\.{2,}/g,".");
+    //保证.只出现一次，而不能出现两次以上
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    if(obj.value.indexOf(".")>-1){
+   		obj.value = obj.value.substring(0,obj.value.indexOf(".")+3);
+    }
+}
 
+
+
+
+	var row_count = 0;
+	function addNew() {
+		var table1 = $('#table1');
+		var firstTr = table1.find('tbody>tr:first');
+		var row = $("<tr></tr>");
+		var td = $("<td></td>");
+		td.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
+		
+		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
+		
+		var td2 = $("<td></td>");
+		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="cc" class="easyui-combotree" data-options="url:'+'${ctx}/category/api/getAll/M1-5'+',method:'+'get'+',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" /></div></div>'));
+		row.append(td);
+		row.append(td2);
+		table1.append(row);
+		row_count++;
+	}
+	function del() {
+		var checked = $("input[type='checkbox'][name='count']");
+		$(checked).each(function() {
+			if ($(this).attr("checked") == true) //注意：此处判断不能用$(this).attr("checked")==‘true'来判断。
+			{
+				$(this).parent().parent().remove();
+			}
+		});
+	}
 </script>
 
 <style type="text/css">
@@ -58,12 +103,11 @@ function topwin(){
 			<div class="all_photo_edit">
 				
 			    <div>
-					<table class="table table-striped">
+					<table class="table table-striped" id="table1">
 						<tbody>
 							<tr>
 								<td>
-									<div class="control-group">
-									<img id="1" src="${ctx}/plupload/files/small/bp1.jpg" alt="">
+									<div class="span2">
 									</div>
 								</td>
 								<td>
@@ -80,17 +124,37 @@ function topwin(){
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" onclick="topwin()" />
+										<input type="text" name="price"  maxlength="20" placeholder="" onkeyup="clearNoNum(this)"/>
 									</div>
+									<input type="button" value="添加类别" onclick="addFile('dvTitles','file')">&nbsp;&nbsp;
+									<input name='txtTRLastIndex' type='hidden' id='txtTRLastIndex' value="1" />
+									<input type="button" value="Add" onclick="addNew();">
+									<input type="button" value="Delete" onclick="del();"> 
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="span2" >
+									<img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt="">
+									<input type="hidden" name="pid_2" value="11">
+									</div>
+								</td>
+								<td>
+								<div style="margin-top:25px;" >
 									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
-										<select class="easyui-combotree" 
-											data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
-											 name="a" onclick="topwin()"></select>
+										<label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label>
+										<input id="cc" class="easyui-combotree"
+											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false"
+											style="width: 200px;" name="search_categoryId_2"
+											value="${param.search_categoryId}" />
 									</div>
 								</div>
 								</td>
 							</tr>
+							
+							
+								
 						</tbody>
 					</table>
 				</div>

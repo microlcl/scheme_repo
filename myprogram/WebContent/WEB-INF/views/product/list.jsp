@@ -148,7 +148,7 @@
 						<!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"-->
 						<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
 						<input id="cc" class="easyui-combotree"
-							data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false"
+							data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false"
 							style="width: 200px;" name="search_categoryId"
 							value="${param.search_categoryId}" />
 						<mytag:PermssionTag functionId="F4-5">

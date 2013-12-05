@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.service.product;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -52,10 +53,23 @@ public class ProductService extends PageableService {
 		}
 		return mediaList;
 	}
+	//删除Product，以及Product_category
 	public void delete(Long productId){
 		productMybatisDao.deleteProduct_category(productId);
 		Product product=new Product();
 		product.setId(productId);
 		productMybatisDao.delete(product);
+	}
+	
+	public void doAdd(Product product,List<Product_category> list){
+		productMybatisDao.save(product);
+		
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Product_category product_category = (Product_category) iterator
+					.next();
+			product_category.setProduct_id(product.getId());
+			productMybatisDao.saveProduct_category(product_category);
+		}
+		
 	}
 }

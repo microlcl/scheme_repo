@@ -52,7 +52,7 @@ public class ProductMybatisDaoTest extends SpringTransactionalTestCase {
 		Product_category product_category=new Product_category();
 		product_category.setProduct_id(1l);
 		product_category.setCategory_id("1-1-2");
-		product_category.setPicture_id("1");
+		product_category.setPicture_id(1l);
 		productMybatisDao.saveProduct_category(product_category);
 		
 		Map<String, Object> parameter = Maps.newHashMap();

@@ -148,9 +148,14 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-2-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-3','1','图片','2012-06-04 02:00:00','F','图片根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-3-1','1-3','桌花','2012-06-04 02:00:00','F','桌花');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-3-2','1-3','舞台','2012-06-04 02:00:00','F','舞台');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-5','1','产品分类','2012-06-04 02:00:00','F','图片根节点');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-5-1','1-5','颜色','2012-06-04 02:00:00','F','桌花');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-5-2','1-5','大小','2012-06-04 02:00:00','F','舞台');
+
 
 insert into module_category(module_id,category_id) values('M1-4','1-1');
 insert into module_category(module_id,category_id) values('M1-4','1-2');
+insert into module_category(module_id,category_id) values('M1-5','1-5');
 
 
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now());
@@ -189,12 +194,12 @@ insert into products (product_id,title,status,description,price) values(3,'产�
 insert into products (product_id,title,status,description,price) values(4,'产品4','4','description4',4.44);
 insert into products (product_id,title,status,description,price) values(5,'产品5','5','description5',5.55);
 
-insert into product_category(product_id,category_id,picture_id) values(1,'1-1-1',1);
-insert into product_category(product_id,category_id,picture_id) values(1,'1-1-2',2);
-insert into product_category(product_id,category_id,picture_id) values(1,'1-1-3',3);
-insert into product_category(product_id,category_id,picture_id) values(2,'1-1-2',2);
-insert into product_category(product_id,category_id,picture_id) values(3,'1-1-3',3);
-insert into product_category(product_id,category_id,picture_id) values(4,'1-1-4',4);
-insert into product_category(product_id,category_id,picture_id) values(5,'1-1-5',5);
+insert into product_category(product_id,category_id,picture_id) values(1,'1-5-1',1);
+insert into product_category(product_id,category_id,picture_id) values(1,'1-5-2',2);
+insert into product_category(product_id,category_id,picture_id) values(1,'1-5-1',3);
+insert into product_category(product_id,category_id,picture_id) values(2,'1-5-1',2);
+insert into product_category(product_id,category_id,picture_id) values(3,'1-5-1',3);
+insert into product_category(product_id,category_id,picture_id) values(4,'1-5-1',4);
+insert into product_category(product_id,category_id,picture_id) values(5,'1-5-2',5);
 
 
