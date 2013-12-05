@@ -11,6 +11,7 @@ import com.eastteam.myprogram.entity.Media;
 public interface MediaMybatisDao {
 	public void insert(Media media);
 	public void update(Media media);
+	public void delete(String media_id);
 	public void insertCategory(Map<String, Object> parameters);
 	public void deleteMediaCategory(String media_id);
 	public List<Media> search(Map<String, Object> parameters);

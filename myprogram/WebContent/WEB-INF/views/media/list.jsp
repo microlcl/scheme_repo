@@ -48,6 +48,15 @@
 						$("#updatePic").submit();
 				}
 			});
+			
+			$("#delete").click(function(){
+				if($("input:checkbox[name='picture']").is(':checked') == false){
+					$("#warning-block").show();
+				}else{
+						$("#updatePic").attr("action", "${ctx}/media/deletePicture");
+						$("#updatePic").submit();
+				}
+			});
 		});
 		$(function() {          
 		    $("img.lazy").lazyload({
@@ -194,8 +203,8 @@
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
-	          <li><a href="#" id="update" class="mynav">修改资源信息</a></li>
-	          <li><a href="#" class="mynav">测试2</a></li>
+	          <li><a href="#" id="update" class="mynav">修改资源</a></li>
+	          <li><a href="#" id="delete" class="mynav">删除资源</a></li>
 	          <li><a href="#" class="mynav">测试3</a></li>
 	          <li><a href="#" class="mynav">测试4</a></li>
 	        </ul>

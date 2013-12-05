@@ -188,5 +188,11 @@ public class MediaService extends PageableService {
 			}
 		}
 	}
-
+	
+	public void deleteMedias(String[] mediaIds){
+		for(int i=0; i<mediaIds.length; i++){
+			mediaDao.delete(mediaIds[i]);
+			mediaDao.deleteMediaCategory(mediaIds[i]);
+		}
+	}
 }

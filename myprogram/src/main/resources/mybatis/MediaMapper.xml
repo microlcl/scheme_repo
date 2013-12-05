@@ -13,12 +13,16 @@
 		where media_id=#{id} 
 	</update>
 	
+	<delete id="delete" parameterType="String">
+		delete from medias where media_id=#{media_id}
+	</delete>
+	
 	<insert id="insertCategory" parameterType="map">
 		insert into media_category (media_id,category_id) 
 		values(#{mediaId},#{categoryId});
 	</insert>
 	
-	<update id="deleteMediaCategory" parameterType="Long">
+	<update id="deleteMediaCategory" parameterType="String">
 		delete from media_category where media_id=#{media_id}
 	</update>
 	

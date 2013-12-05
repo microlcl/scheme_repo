@@ -122,4 +122,10 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 		logger.info("delte media's category");
 		mediaDao.deleteMediaCategory("13");
 	}
+	
+	@Test
+	public void deleteMedia() throws Exception {
+		logger.info("delte media");
+		mediaDao.delete("2");
+	}
 }

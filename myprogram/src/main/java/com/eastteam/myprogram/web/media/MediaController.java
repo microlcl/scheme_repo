@@ -176,6 +176,14 @@ public class MediaController {
 		return "media/editPicture";
 	}
 	
+	@RequestMapping(value="deletePicture",method = RequestMethod.GET)
+	public String deletePic(HttpServletRequest request) {
+		String[] mediaIds = request.getParameterValues("picture");
+		this.mediaService.deleteMedias(mediaIds);
+		
+		return "redirect:list?search_mediaType=picture";
+	}
+	
 	@RequestMapping(value="updatePicture",method = RequestMethod.POST)
 	public String updatePicture(MediaFormBean mediaFormBean, HttpSession session) {
 		logger.info("in medai update" + mediaFormBean.toString());
