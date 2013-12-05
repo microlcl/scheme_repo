@@ -50,6 +50,9 @@
 			<if test="mediaType != null">
 				and m.media_type=#{mediaType}
 			</if>
+			<if test="keyword != null">
+				and m.description||m.title like '%${keyword}%'
+			</if>
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc
@@ -68,6 +71,9 @@
 			<if test="mediaType != null">
 				and m.media_type=#{mediaType}
 			</if>
+			<if test="keyword != null">
+				and m.description||m.title like '%${keyword}%'
+			</if>			
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc
