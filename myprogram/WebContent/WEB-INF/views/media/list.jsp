@@ -57,6 +57,25 @@
 						$("#updatePic").submit();
 				}
 			});
+			
+			$("#bigPic").click(function(){
+				if($("input:checkbox[name='bigPic']").is(':checked') == true){
+					$('#pictureSet').removeClass("span9");
+					$('#pictureSet').addClass("span10");
+					$('#thumbnailContainer li').removeClass("span2");
+					$('#thumbnailContainer li').addClass("span3");
+					$('#thumbnailContainer img').height("200px");
+					$('#thumbnailContainer img').width("300px");
+				}
+				else{
+					$('#pictureSet').removeClass("span10");
+					$('#pictureSet').addClass("span9");
+					$('#thumbnailContainer li').removeClass("span3");
+					$('#thumbnailContainer li').addClass("span2");
+					$('#thumbnailContainer img').height("120px");
+					$('#thumbnailContainer img').width("200px");
+				}
+			});
 		});
 		$(function() {          
 		    $("img.lazy").lazyload({
@@ -88,7 +107,12 @@
 					}
 					$.each(resp.content, function(i, media){
 						console.log(i + "===" + media.path);
-						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px; " id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						var img;
+						if($("input:checkbox[name='bigPic']").is(':checked') == true)
+							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt=""  style="width: 300px; height: 200px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						else
+							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt=""  style="width: 200px; height: 120px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
 					        event : "scroll",
@@ -170,6 +194,9 @@
 			   		</label>
 			   <input type="text" name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
 			   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+			   <label class="checkbox inline">									
+			   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
+			   </label>
 			   <mytag:PermssionTag functionId="F4-2"> <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a></mytag:PermssionTag>
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
 		    </form>
@@ -178,13 +205,13 @@
 	
 	<form id="updatePic" action="">
 	<div class="row">
-		<div class="span10">
+		<div id="pictureSet" class="span9">
 			<ul id="thumbnailContainer" class="thumbnails">
 				<c:forEach items="${medias.content}" var="media">
 					<c:if test="${media.mediaType eq 'picture'}">
-						<li class="span3">
+						<li class="span2">
 							 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-							 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width:300px;height:200px;" id="${media.id}">
+							 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px;" id="${media.id}">
 								<h5>${media.title}</h5>
 								<p>${media.description}</p>
 								<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
