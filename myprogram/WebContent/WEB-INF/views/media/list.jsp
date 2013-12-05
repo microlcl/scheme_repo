@@ -33,13 +33,20 @@
 															
 			});
 		}
+		function checkPicSelect() {
+			
+		}
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
 			check();
 
 			$("#update").click(function(){
-				$("#updatePic").attr("action", "${ctx}/media/editPicture");
-				$("#updatePic").submit();
+				if($("input:checkbox[name='picture']").is(':checked') == false){
+					$("#warning-block").show();
+				}else{
+						$("#updatePic").attr("action", "${ctx}/media/editPicture");
+						$("#updatePic").submit();
+				}
 			});
 		});
 		$(function() {          
@@ -126,6 +133,9 @@
 </head>
 
 <body>
+	<div class="alert hide" id="warning-block">
+  	   <strong>注意! </strong>请至少选中一个多媒体！
+	</div>
 	<h1>资源管理</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>

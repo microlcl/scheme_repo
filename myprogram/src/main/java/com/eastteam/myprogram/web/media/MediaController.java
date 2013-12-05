@@ -163,7 +163,7 @@ public class MediaController {
 			logger.info("Save media to DB finished.");
 		}
 		
-		return "redirect:list";
+		return "redirect:list?search_mediaType=picture";
 	}
 	
 	@RequestMapping(value="editPicture",method = RequestMethod.GET)
@@ -199,6 +199,6 @@ public class MediaController {
 			logger.info("update media to DB finished.");
 		}
 		
-		return "redirect:list";
+		return "redirect:list?search_mediaType=picture";
 	}
 }
