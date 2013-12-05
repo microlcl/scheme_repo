@@ -155,9 +155,11 @@
 					</label>
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>音频
-					</label>									
-
-			   <input type="text" name="search_keyword"   class="input-small"  value="${param.search_keyword}">
+					</label>
+					<label class="checkbox inline">									
+			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
+			   		</label>
+			   <input type="text" name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
 			   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
 			   <mytag:PermssionTag functionId="F4-2"> <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a></mytag:PermssionTag>
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>

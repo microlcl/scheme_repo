@@ -50,6 +50,9 @@
 			<if test="mediaType != null">
 				and m.media_type=#{mediaType}
 			</if>
+			<if test="userId != null">
+				and m.user_id=#{userId}
+			</if>			
 			<if test="keyword != null">
 				and m.description||m.title like '%${keyword}%'
 			</if>
@@ -71,6 +74,9 @@
 			<if test="mediaType != null">
 				and m.media_type=#{mediaType}
 			</if>
+			<if test="userId != null">
+				and m.user_id=#{userId}
+			</if>			
 			<if test="keyword != null">
 				and m.description||m.title like '%${keyword}%'
 			</if>			

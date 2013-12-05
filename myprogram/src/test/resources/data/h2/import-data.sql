@@ -162,10 +162,10 @@ insert into medias (media_id,title,description,media_type,path,status,user_id,up
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(7,'title7','description 7','picture','bp7.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(8,'title8','description 8','picture','bp8.jpg','可用','admin',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(9,'title9','description 9','picture','bp9.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(10,'title10','description 10','picture','bp10.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(11,'title11','description 11','picture','bp11.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(12,'title12','description 12','picture','bp12.jpg','可用','admin',now());
-insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(13,'title13','description 13','video','bp13.jpg','可用','admin',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(10,'title10','description 10','picture','bp10.jpg','可用','userid1',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(11,'title11','description 11','picture','bp11.jpg','可用','userid1',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(12,'title12','description 12','picture','bp12.jpg','可用','userid1',now());
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(13,'title13','description 13','video','bp13.jpg','可用','userid1',now());
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp) values(14,'心愿','四个女生主唱','audio','心愿.mp3','可用','admin',now());
 
 insert into media_category (media_id,category_id) values(1,'1-1-1');
