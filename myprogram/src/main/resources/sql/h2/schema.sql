@@ -102,6 +102,7 @@ create table products (
 	title varchar(64),
 	status varchar(64),
 	description varchar(128),
+	default_picture_id bigint,
 	price decimal(10,2),
 	primary key (product_id)
 );
