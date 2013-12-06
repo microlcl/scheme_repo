@@ -156,9 +156,9 @@
 						console.log(i + "===" + media.path);
 						var img;
 						if($("input:checkbox[name='bigPic']").is(':checked') == true)
-							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 300px; height: 200px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 300px; height: 200px; cursor: pointer;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						else
-							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 200px; height: 120px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 200px; height: 120px; cursor: pointer;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
@@ -207,6 +207,7 @@
     width:100%;
 }
 
+li a {cursor: pointer; }
 </style>
 	
 			
@@ -263,7 +264,9 @@
 					<c:forEach items="${medias.content}" var="media">
 							<li class="span2">
 								 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-								 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px;" id="${media.id}">
+								 	
+								 		<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px; cursor: pointer;" id="${media.id}">
+									
 									<h5>${media.title}</h5>
 									<p>${media.description}</p>
 									<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
