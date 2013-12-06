@@ -22,7 +22,17 @@
 function topwin(){
 	window.showModalDialog("${ctx}/product/list","","dialogWidth:300px;dialogHeight:300px;scroll:no;status:no");
 }
-
+function changePicture(obj) {
+	//alert("${ctx}/plupload/files/small/bp12.jpg");
+	var a=obj.value;
+	var b = document.getElementById(a).value;
+//	alert(document.getElementsById("a").value);
+//	var b=document.getElementByName("a").value;
+//	alert(document.getElementById(b).value);
+//	alert($("#a")[0].value);
+	$("#img1").attr("src","${ctx}/plupload/files/small/"+b+""); 
+	//document.getElementById("img1").src = "${ctx}/plupload/files/small/bp12.jpg";
+}
 </script>
 
 <style type="text/css">
@@ -63,7 +73,7 @@ function topwin(){
 							<tr>
 								<td>
 									<div class="control-group">
-									<img id="1" src="${ctx}/plupload/files/small/bp1.jpg" alt="">
+									<img id="img1" src="${ctx}/plupload/files/small/bp1.jpg" alt="">
 									</div>
 								</td>
 								<td>
@@ -85,7 +95,8 @@ function topwin(){
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
 										<c:forEach items="${product.categorys}" var="category">
-										${category.name}
+										<input type="button" value="${category.name}" name="a" onclick="changePicture(this);">
+								 		<input type="hidden" id="${category.name}" value="${category.media.path}"> 
 										</c:forEach>
 									</div>
 								</div>
