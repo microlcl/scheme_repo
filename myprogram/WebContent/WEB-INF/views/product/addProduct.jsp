@@ -164,7 +164,7 @@ function clearNoNum(obj)
 		</fieldset>
 	</form>
 </div>
-<button type="button" data-toggle="modal" data-target="#resourceModalWindow" data-backdrop="true">资源</button>
+<button type="button" data-toggle="modal" data-target="#resourceModalWindow" data-backdrop="true" onclick="search()">资源</button>
 <!-- resource 选择模态对话框 -->
 <div id="resourceModalWindow" class="modal hide fade">
    <div class="modal-header">

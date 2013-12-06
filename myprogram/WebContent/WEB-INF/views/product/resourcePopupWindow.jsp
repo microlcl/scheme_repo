@@ -11,60 +11,7 @@
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-	<script>
-		var currentPage = 0;
 
-		$(function() {          
-		    $("img.lazy").lazyload({
-		        event : "scroll",
-				effect : "fadeIn",
-				threshold : 0,
-				effectspeed: 2000
-		    });
-		});
-		
-		function search() {
-			console.log('in search');
-			return false;
-		}
-
-		function loadMore() {
-			var nextPage = currentPage + 1;
-			console.log("next pageNum:" + nextPage);
-			$.ajax({
-				url : '${ctx}/media/api/search?search_mediaType=picture',
-				type: 'get',
-				data:{
-					page:nextPage
-				},
-				success : function(resp) {
-					currentPage++;
-					console.log('in success function, currentPage = ' + currentPage);
-					console.log(resp);
-					if (resp.lastPage) {
-						console.log("it's the last page");
-						$('#loadMore').hide();
-					}
-					$.each(resp.content, function(i, media){
-						console.log(i + "===" + media.path);
-						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px; " id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
-						$('#thumbnailContainer').append(img);
-					    $("#"+media.id).lazyload({
-					        event : "scroll",
-							effect : "fadeIn",
-							threshold : 0,
-							effectspeed: 2000
-					    });
-						
-					});
-				}
-		});
-			setTimeout(function(){
-				$('#test').click();
-			},3000);
-			
-		}
-	</script>
 <style>
 .affix {
   top: 50px;
@@ -98,13 +45,13 @@
 </style>
 	
 	<form class="form-search form-inline" action="#">
-	<label class="inline">类别<%=request.getParameter("paramname")%>
-		<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+	<label class="inline">类别
+		<input id="categorySelector" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
 	</label>
 		<label class="checkbox inline">									
    			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
    		</label>
-	   <input type="text" name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
+	   <input type="text" id='searchKeyword' name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
 	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
     </form>
 	
@@ -116,4 +63,59 @@
 	<div id="loadMore" class="pagination pagination-centered">
 	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
     </div>
+	<script>
+		var currentPage = 0;		
 
+		$(function() {          
+		    $("img.lazy").lazyload({
+		        event : "scroll",
+				effect : "fadeIn",
+				threshold : 0,
+				effectspeed: 2000
+		    });
+		});
+		
+		function search() {
+			console.log('in search');
+			currentPage = 0;
+			$('#thumbnailContainer').empty();
+			loadMore();
+			return false;
+		}
+
+		function loadMore() {
+			var nextPage = currentPage + 1;
+			console.log("next pageNum:" + nextPage);
+			$.ajax({
+				url : '${ctx}/media/api/search?search_mediaType=picture',
+				type: 'get',
+				data:{
+					page:nextPage,
+					search_categoryId:$('#categorySelector').combotree('getValue'),
+					search_keyword:$('#searchKeyword').val()
+				},
+				success : function(resp) {
+					currentPage++;
+					console.log('in success function, currentPage = ' + currentPage);
+					console.log(resp);
+					if (resp.lastPage) {
+						console.log("it's the last page");
+						$('#loadMore').hide();
+					}
+					$.each(resp.content, function(i, media){
+						console.log(i + "===" + media.path);
+						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px; " id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						$('#thumbnailContainer').append(img);
+					    $("#"+media.id).lazyload({
+					        event : "scroll",
+							effect : "fadeIn",
+							threshold : 0,
+							effectspeed: 2000
+					    });
+						
+					});
+				}
+		});
+			
+		}
+	</script>
