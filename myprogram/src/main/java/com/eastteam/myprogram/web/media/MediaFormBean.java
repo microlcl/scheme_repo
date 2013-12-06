@@ -13,6 +13,8 @@ public class MediaFormBean extends BaseFormBean {
 	private String title;
 	
 	private String categoryId;
+	
+	private String mediaType;
 
 	public List<MediaWrapper> getMedias() {
 		return medias;
@@ -44,7 +46,16 @@ public class MediaFormBean extends BaseFormBean {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getMediaType() {
+		return mediaType;
+	}
+
+	public void setMediaType(String mediaType) {
+		this.mediaType = mediaType;
 	}	
+	
 	
 	
 

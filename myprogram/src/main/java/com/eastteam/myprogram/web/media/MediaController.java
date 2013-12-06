@@ -150,11 +150,15 @@ public class MediaController {
 			if (StringUtils.isBlank(media.getCategoryIds())) {
 				media.setCategoryIds(mediaFormBean.getCategoryId());
 			}
+			if (StringUtils.isBlank(media.getMediaType())) {
+				media.setMediaType(mediaFormBean.getMediaType());
+			}
 			logger.info("categoryid=======" + media.getCategoryIds());
 			if (user != null) {
 				media.setUserId(user.getId());
 				media.setPath(media.getPath());
-				media.setMediaType("picture");
+				logger.info("===== The media type of the uploading resource:"+ media.getMediaType());
+				media.setMediaType(media.getMediaType());
 			}
 		}
 		
