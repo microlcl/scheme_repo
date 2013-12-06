@@ -14,7 +14,7 @@ public class Category extends BaseEntity {
 	private String name;
 	private String trashed;
 	private String comment;
-	private List<Media> medias;
+	private Media media;
 	// 设定JSON序列化时的日期格式
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08:00")
 	private Date createdDate;
@@ -55,11 +55,12 @@ public class Category extends BaseEntity {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	public List<Media> getMedias() {
-		return medias;
+	public Media getMedia() {
+		return media;
 	}
-	public void setMedias(List<Media> medias) {
-		this.medias = medias;
+	public void setMedia(Media media) {
+		this.media = media;
 	}
+	
 	
 }

@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<title>编辑产品</title>
+<title>产品详细信息</title>
 
 <link rel="stylesheet" href="${ctx}/static/styles/mystyle.css"
 	type="text/css" />
@@ -52,7 +52,7 @@ function topwin(){
 		class="form-horizontal">
 		<fieldset>
 			<legend>
-				<small>增加产品</small>
+				<small>查看产品</small>
 			</legend>
 
 			<div class="all_photo_edit">
@@ -80,13 +80,13 @@ function topwin(){
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" value="${productList.price }"/>
+										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }"/>
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
-										<select class="easyui-combotree" 
-											data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
-											 name="a" onclick="topwin()"></select>
+										<c:forEach items="${product.categorys}" var="category">
+										${category.name}
+										</c:forEach>
 									</div>
 								</div>
 								</td>

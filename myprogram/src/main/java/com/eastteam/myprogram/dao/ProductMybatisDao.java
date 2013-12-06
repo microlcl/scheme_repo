@@ -3,6 +3,7 @@ package com.eastteam.myprogram.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.entity.Product;
 import com.eastteam.myprogram.entity.Product_category;
@@ -20,5 +21,8 @@ public interface ProductMybatisDao {
 	public void delete(Product product);
 	public void deleteProduct_category(Long  product_id);
 	public void deleteMedia(Media media);
-	public Product getProduct(String product_id,String category_id);
+	public Product getProduct(Long product_id);
+	public List<Product_category> getProduct_category(Long product_id);
+	public Category getCategory(String id);
+	public Media getMedia(Long media_id);
 }

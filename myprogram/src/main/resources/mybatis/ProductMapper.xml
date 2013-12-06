@@ -102,4 +102,24 @@
 		delete from medias where id=#{id};
 	</delete>
 	
+	<select id="getProduct" resultType="Product">
+		select p.product_id as id, p.title,p.status, p.description,p.price
+		from products p
+		where p.product_id=#{id}
+	</select>
+	<select id="getProduct_category" resultType="Product_category">
+		select pc.product_id, pc.category_id,pc.picture_id
+		from product_category pc
+		where pc.product_id=#{product_id}
+	</select>
+	<select id="getCategory" resultType="Category">
+		select c.id, c.pid,c.name,c.comment
+		from category c
+		where c.id=#{id}
+	</select>
+	<select id="getMedia" resultType="Media">
+		select m.media_id as id,m.media_type,m.path
+		from medias m
+		where m.media_id=#{media_id}
+	</select>
 </mapper> 

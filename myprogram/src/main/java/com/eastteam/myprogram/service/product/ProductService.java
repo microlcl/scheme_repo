@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.service.product;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.ProductMybatisDao;
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.entity.Product;
 import com.eastteam.myprogram.entity.Product_category;
@@ -45,13 +47,21 @@ public class ProductService extends PageableService {
 		return productMybatisDao.getCount(param);
 	}
 	
-	public List<Media> getProductList(String[] ids){
-		List<Media> mediaList = Lists.newArrayList();
-		for(int i=0; i<ids.length; i++){
-//			Product product = productMybatisDao.getProduct(ids[i]);
-//			mediaList.add(product);
-		}
-		return mediaList;
+	public Product getProductList(String id){
+		Product product=new Product();
+			if(id!=null&&!id.equals("")){
+				product = productMybatisDao.getProduct(Long.parseLong(id));
+				List<Product_category> productCategorys = productMybatisDao.getProduct_category(product.getId());
+				List<Category> categorys= new ArrayList<Category>();
+				for (Product_category productCategory : productCategorys) {
+					Category category = productMybatisDao.getCategory(productCategory.getCategory_id());
+					Media media = productMybatisDao.getMedia(productCategory.getPicture_id());
+					category.setMedia(media);
+					categorys.add(category);
+				}
+				product.setCategorys(categorys);
+			}
+		return product;
 	}
 	//删除Product，以及Product_category
 	public void delete(Long productId){

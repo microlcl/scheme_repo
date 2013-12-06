@@ -93,15 +93,21 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update(Model model, HttpServletRequest request) {
+	public String update(@ModelAttribute Product productTemp,Model model, HttpServletRequest request) {
 		String[] ids = request.getParameterValues("productId");
-		List<Media> productList = this.productService.getProductList(ids);
-		//
-		
-		model.addAttribute("productList", productList);
+		Product product = this.productService.getProductList(ids[0]);
+		model.addAttribute("product", product);
 		return "product/editProduct";
 	}
 
+	@RequestMapping(value = "view", method = RequestMethod.GET)
+	public String view(@ModelAttribute Product productTemp,Model model, HttpServletRequest request) {
+		String[] ids = request.getParameterValues("productId");
+		Product product = this.productService.getProductList(ids[0]);
+		model.addAttribute("product", product);
+		return "product/detailProduct";
+	}
+	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(Model model, HttpServletRequest request) {
 		String[] ids = request.getParameterValues("productId");

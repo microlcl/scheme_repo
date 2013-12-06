@@ -44,6 +44,10 @@
 				$("#updateProduct").attr("action", "${ctx}/product/update");
 				$("#updateProduct").submit();
 			});
+			$("#view").click(function(){
+				$("#updateProduct").attr("action", "${ctx}/product/view");
+				$("#updateProduct").submit();
+			});
 			$("#delete").click(function(){
 				if(confirm('确定删除吗')){
 					$("#updateProduct").attr("action", "${ctx}/product/delete");
@@ -183,6 +187,7 @@
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
+		 		<li><mytag:PermssionTag functionId="F5-2"><a href="#" id="view" class="mynav">查看产品</a></mytag:PermssionTag></li>
 	          <li><mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/add/" >增加产品</a></mytag:PermssionTag></li>
 	          <li><mytag:PermssionTag functionId="F5-3"><a href="#" id="update" class="mynav">修改</a></mytag:PermssionTag></li>
 	          <li><mytag:PermssionTag functionId="F5-4"><a href="#" id="delete" class="mynav">删除</a></mytag:PermssionTag></li>
