@@ -205,33 +205,45 @@
 	
 	<form id="updatePic" action="">
 	<div class="row">
-		<div id="pictureSet" class="span9">
-			<ul id="thumbnailContainer" class="thumbnails">
-				<c:forEach items="${medias.content}" var="media">
-					<c:if test="${media.mediaType eq 'picture'}">
-						<li class="span2">
-							 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-							 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px;" id="${media.id}">
-								<h5>${media.title}</h5>
-								<p>${media.description}</p>
-								<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-									<input class="photoCheck" value="${media.id}" type="checkbox" name="picture" style="margin-left: 10px;margin-top:10px;"/>
+		<c:if test="${param.search_mediaType eq 'picture'}">
+			<div id="pictureSet" class="span9">
+				<ul id="thumbnailContainer" class="thumbnails">
+					<c:forEach items="${medias.content}" var="media">
+							<li class="span2">
+								 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
+								 	<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px;" id="${media.id}">
+									<h5>${media.title}</h5>
+									<p>${media.description}</p>
+									<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
+										<input class="photoCheck" value="${media.id}" type="checkbox" name="picture" style="margin-left: 10px;margin-top:10px;"/>
+									</div>
 								</div>
-							</div>
-						</li>
-					</c:if>
-					<c:if test="${media.mediaType eq 'audio'}">
-						<li style="border: 1px solid #D4D4D4;background-color: #EEEEEE;">
-							<div>
-								<div class="span1">${media.title}</div>
-								<div class="span7">${media.description}</div>
-							</div>
-						</li>
-					</c:if>
-				</c:forEach>
-			</ul>
-		</div>
-		
+							</li>
+					</c:forEach>
+				</ul>
+			</div>
+		</c:if>
+		<c:if test="${param.search_mediaType eq 'audio'}">
+			<div style="text-align:center;margin-left:30px;">
+				
+				<table id="audioTable" class="table table-striped table-bordered table-condensed" style="width:80% !important;">
+					<thead>
+					<tr>
+						<th>音频名称</th>
+						<th>音频描述</th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${medias.content}" var="media">
+						<tr>
+							<td>${media.title}&nbsp;</td>
+							<td>${media.description}&nbsp;</td>
+						</tr>
+					</c:forEach>
+					</tbody>		
+				</table>
+			</div>
+		</c:if>
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
