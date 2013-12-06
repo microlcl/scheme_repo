@@ -72,23 +72,20 @@ public class ProductController {
 	@RequestMapping(value = "doAdd", method = RequestMethod.POST)
 	public String doAdd(@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		logger.info("in role update action");
-		String pid="pid_1";
-		Long pid_1 = Long.parseLong(request.getParameter(pid));
-		String search_categoryId_1 = request.getParameter("search_categoryId_1");
-		Product_category product_category1= new Product_category();
-		product_category1.setCategory_id(search_categoryId_1);
-		product_category1.setPicture_id(pid_1);
-		
-		Long pid_2 = Long.parseLong(request.getParameter("pid_2"));
-		String search_categoryId_2 = request.getParameter("search_categoryId_2");
-		Product_category product_category2= new Product_category();
-		product_category2.setCategory_id(search_categoryId_2);
-		product_category2.setPicture_id(pid_2);
-		
+//		String row_count = request.getParameter("row_count");
 		List<Product_category> list = new ArrayList<Product_category>();
-		list.add(product_category1);
-		list.add(product_category2);
-		
+		String[] pictures = request.getParameterValues("picture");
+		String[] searchCategoryIds = request.getParameterValues("searchCategoryId");
+		for (int i = 0; i < searchCategoryIds.length; i++) {
+			if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){
+				Long picture = Long.parseLong(pictures[i]);
+				String searchCategoryId = searchCategoryIds[i];
+				Product_category product_category= new Product_category();
+				product_category.setPicture_id(picture);
+				product_category.setCategory_id(searchCategoryId);
+				list.add(product_category);
+			}
+		}
 		this.productService.doAdd(product,list);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
 		

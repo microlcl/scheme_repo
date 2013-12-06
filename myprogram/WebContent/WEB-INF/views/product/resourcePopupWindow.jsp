@@ -98,7 +98,7 @@
 </style>
 	
 	<form class="form-search form-inline" action="#">
-	<label class="inline">类别
+	<label class="inline">类别<%=request.getParameter("paramname")%>
 		<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
 	</label>
 		<label class="checkbox inline">									
