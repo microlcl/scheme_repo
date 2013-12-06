@@ -33,9 +33,51 @@
 															
 			});
 		}
-		function checkPicSelect() {
-			
+
+		function lazyImgShow(obj){
+			var _this = $(obj);
+			imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
 		}
+		
+		function imgShow(outerdiv, innerdiv, bigimg, _this){
+			var src = _this.attr("src");
+			var bigImgSrc = src.replace("/small/","/large/");
+			$(bigimg).attr("src", bigImgSrc);
+			
+			$("<img/>").attr("src", bigImgSrc).load(function(){
+				var windowW = $(window).width();
+				var windowH = $(window).height();
+				var realWidth = this.width;
+				var realHeight = this.height;
+				var imgWidth, imgHeight;
+				var scale = 0.8;
+				
+				if(realHeight>windowH*scale) {
+					imgHeight = windowH*scale;
+					imgWidth = imgHeight/realHeight*realWidth;
+					if(imgWidth>windowW*scale) {
+						imgWidth = windowW*scale;
+					}
+				} else if(realWidth>windowW*scale) {
+					imgWidth = windowW*scale;
+					imgHeight = imgWidth/realWidth*realHeight;
+				} else {
+					imgWidth = realWidth;
+					imgHeight = realHeight;
+				}
+				$(bigimg).css("width",imgWidth);
+				
+				var w = (windowW-imgWidth)/2;
+				var h = (windowH-imgHeight)/2;
+				$(innerdiv).css({"top":h, "left":w});
+				$(outerdiv).fadeIn("fast");
+			});
+			
+			$(outerdiv).click(function(){
+				$(this).fadeOut("fast");
+			});
+		}
+
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
 			check();
@@ -76,6 +118,11 @@
 					$('#thumbnailContainer img').width("200px");
 				}
 			});
+			
+			$("img.lazy").click(function(){
+				var _this = $(this);
+				imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+			});
 		});
 		$(function() {          
 		    $("img.lazy").lazyload({
@@ -109,9 +156,9 @@
 						console.log(i + "===" + media.path);
 						var img;
 						if($("input:checkbox[name='bigPic']").is(':checked') == true)
-							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt=""  style="width: 300px; height: 200px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 300px; height: 200px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						else
-							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt=""  style="width: 200px; height: 120px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 200px; height: 120px;" id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
@@ -166,6 +213,11 @@
 </head>
 
 <body>
+	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+		<div id="innerdiv" style="position:absolute;">
+			<img id="bigimg" style="border:5px solid #fff;" src="" />
+		</div>
+	</div>
 	<div class="alert hide" id="warning-block">
   	   <strong>注意! </strong>请至少选中一个多媒体！
 	</div>
