@@ -221,7 +221,12 @@
 						</li>
 					</c:if>
 					<c:if test="${media.mediaType eq 'audio'}">
-					
+						<li style="border: 1px solid #D4D4D4;background-color: #EEEEEE;">
+							<div>
+								<div class="span1">${media.title}</div>
+								<div class="span7">${media.description}</div>
+							</div>
+						</li>
 					</c:if>
 				</c:forEach>
 			</ul>
