@@ -37,7 +37,7 @@
 			});
 		}
 		$(document).ready(function() {
-			$("#media-tab").addClass("active");
+			$("#product-tab").addClass("active");
 			check();
 
 			$("#update").click(function(){

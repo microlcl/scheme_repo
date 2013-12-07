@@ -250,7 +250,6 @@ li a {cursor: pointer; }
 			   <label class="checkbox inline">									
 			   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
 			   </label>
-			   <mytag:PermssionTag functionId="F4-2"> <a class="btn pull-right" href="${ctx}/media/upload">添加新资源</a></mytag:PermssionTag>
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
 		    </form>
 	    </div>
@@ -304,8 +303,7 @@ li a {cursor: pointer; }
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
 	          <li><a href="#" id="update" class="mynav">修改资源</a></li>
 	          <li><a href="#" id="delete" class="mynav">删除资源</a></li>
-	          <li><a href="#" class="mynav">测试3</a></li>
-	          <li><a href="#" class="mynav">测试4</a></li>
+	          <mytag:PermssionTag functionId="F4-2"><li><a href="${ctx}/media/upload" id="addMedio" class="mynav">上传资源</a></li></mytag:PermssionTag>
 	        </ul>
 	      
 		  </div>
