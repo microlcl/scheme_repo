@@ -46,17 +46,17 @@
 	
 	<form class="form-search form-inline" action="#">
 	<label class="inline">类别
-		<input id="categorySelector" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+		<input id="categorySelector" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" name="search_categoryId" value="${param.search_categoryId}"/>
 	</label>
 		<label class="checkbox inline">									
-   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
+   			我的资源<input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/>
    		</label>
 	   <input type="text" id='searchKeyword' name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
 	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
     </form>
 	
-	<div>
-			<ul id="thumbnailContainer" class="thumbnails">
+	<div style="margin-left: 60px">
+			<ul id="thumbnailContainer" class="thumbnails" style="text-align:center">
 			</ul>
 	</div>
 
@@ -92,7 +92,8 @@
 				data:{
 					page:nextPage,
 					search_categoryId:$('#categorySelector').combotree('getValue'),
-					search_keyword:$('#searchKeyword').val()
+					search_keyword:$('#searchKeyword').val(),
+					search_userId: $('#resourceUserId').is(':checked') ? $('#resourceUserId').val() : ''
 				},
 				success : function(resp) {
 					currentPage++;
@@ -101,10 +102,12 @@
 					if (resp.lastPage) {
 						console.log("it's the last page");
 						$('#loadMore').hide();
+					} else {
+						$('#loadMore').show();
 					}
 					$.each(resp.content, function(i, media){
 						console.log(i + "===" + media.path);
-						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px; " id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
 					        event : "scroll",
