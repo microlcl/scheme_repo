@@ -94,12 +94,17 @@
 			});
 			
 			$("#delete").click(function(){
-				if($("input:checkbox[name='picture']").is(':checked') == false){
+				if(($("input:checkbox[name='picture']").is(':checked') == false) && ($("input:checkbox[name='audio']").is(':checked') == false)){
 					$("#warning-block").show();
-				}else{
+				}else if ($("input:checkbox[name='picture']").is(':checked') == false){
 						$("#updatePic").attr("action", "${ctx}/media/deletePicture");
 						$("#updatePic").submit();
+				}else {
+					    $("#updatePic").attr("action", "${ctx}/media/deleteAudio");
+					    $("#updatePic").submit();
 				}
+				
+
 			});
 			
 			$("#bigPic").click(function(){
@@ -302,6 +307,7 @@ li a {cursor: pointer; }
 				<table id="audioTable" class="table table-striped table-bordered table-condensed" style="width:80% !important;">
 					<thead>
 					<tr>
+						<th></th>
 						<th>音频名称</th>
 						<th>音频描述</th>
 						<th>音频试听</th>
@@ -310,6 +316,7 @@ li a {cursor: pointer; }
 					<tbody>
 					<c:forEach items="${medias.content}" var="media">
 						<tr>
+							<td width="30px	"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/></td>
 							<td>${media.title}&nbsp;</td>
 							<td>${media.description}</td>
 							<td><audio src="${ctx}/plupload/audio/${media.path}" preload="auto" controls></audio></td>

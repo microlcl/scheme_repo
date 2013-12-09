@@ -182,10 +182,18 @@ public class MediaController {
 	
 	@RequestMapping(value="deletePicture",method = RequestMethod.GET)
 	public String deletePic(HttpServletRequest request) {
-		String[] mediaIds = request.getParameterValues("picture");
+		String[] mediaIds = request.getParameterValues("audio");
 		this.mediaService.deleteMedias(mediaIds);
 		
 		return "redirect:list?search_mediaType=picture";
+	}
+	
+	@RequestMapping(value="deleteAudio",method = RequestMethod.GET)
+	public String deleteAudio(HttpServletRequest request) {
+		String[] mediaIds = request.getParameterValues("audio");
+		this.mediaService.deleteMedias(mediaIds);
+		
+		return "redirect:list?search_mediaType=audio";
 	}
 	
 	@RequestMapping(value="updatePicture",method = RequestMethod.POST)
