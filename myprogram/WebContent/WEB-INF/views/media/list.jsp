@@ -104,16 +104,16 @@
 			
 			$("#bigPic").click(function(){
 				if($("input:checkbox[name='bigPic']").is(':checked') == true){
-					$('#pictureSet').removeClass("span9");
-					$('#pictureSet').addClass("span10");
+			//		$('#pictureSet').removeClass("span9");
+			//		$('#pictureSet').addClass("span10");
 					$('#thumbnailContainer li').removeClass("span2");
 					$('#thumbnailContainer li').addClass("span3");
 					$('#thumbnailContainer img').height("200px");
 					$('#thumbnailContainer img').width("300px");
 				}
 				else{
-					$('#pictureSet').removeClass("span10");
-					$('#pictureSet').addClass("span9");
+			//		$('#pictureSet').removeClass("span10");
+			//		$('#pictureSet').addClass("span9");
 					$('#thumbnailContainer li').removeClass("span3");
 					$('#thumbnailContainer li').addClass("span2");
 					$('#thumbnailContainer img').height("120px");

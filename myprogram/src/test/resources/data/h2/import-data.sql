@@ -194,6 +194,11 @@ insert into products (product_id,title,status,description,price) values(2,'产�
 insert into products (product_id,title,status,description,price) values(3,'产品3','3','description3',3.33);
 insert into products (product_id,title,status,description,price) values(4,'产品4','4','description4',4.44);
 insert into products (product_id,title,status,description,price) values(5,'产品5','5','description5',5.55);
+insert into products (product_id,title,status,description,price) values(6,'产品6','6','description6',6.55);
+insert into products (product_id,title,status,description,price) values(7,'产品7','7','description7',7.55);
+insert into products (product_id,title,status,description,price) values(8,'产品8','8','description8',8.55);
+insert into products (product_id,title,status,description,price) values(9,'产品9','9','description9',9.55);
+
 
 insert into product_category(product_id,category_id,picture_id) values(1,'1-5-1',1);
 insert into product_category(product_id,category_id,picture_id) values(1,'1-5-2',2);
@@ -202,5 +207,11 @@ insert into product_category(product_id,category_id,picture_id) values(2,'1-5-1'
 insert into product_category(product_id,category_id,picture_id) values(3,'1-5-1',3);
 insert into product_category(product_id,category_id,picture_id) values(4,'1-5-1',4);
 insert into product_category(product_id,category_id,picture_id) values(5,'1-5-2',5);
+insert into product_category(product_id,category_id,picture_id) values(6,'1-5-2',6);
+insert into product_category(product_id,category_id,picture_id) values(7,'1-5-2',7);
+insert into product_category(product_id,category_id,picture_id) values(8,'1-5-2',8);
+insert into product_category(product_id,category_id,picture_id) values(9,'1-5-2',9);
+
+
 
 
