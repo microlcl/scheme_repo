@@ -54,6 +54,25 @@
 					$("#updateProduct").submit();
 				}
 			});
+			
+			$("#bigPic").click(function(){
+				if($("input:checkbox[name='bigPic']").is(':checked') == true){
+				//	$('#productSet').removeClass("span9");
+				//	$('#productSet').addClass("span10");
+					$('#thumbnailContainer li').removeClass("span2");
+					$('#thumbnailContainer li').addClass("span3");
+					$('#thumbnailContainer img').height("200px");
+					$('#thumbnailContainer img').width("300px");
+				}
+				else{
+				//	$('#productSet').removeClass("span10");
+				//	$('#productSet').addClass("span9");
+					$('#thumbnailContainer li').removeClass("span3");
+					$('#thumbnailContainer li').addClass("span2");
+					$('#thumbnailContainer img').height("120px");
+					$('#thumbnailContainer img').width("200px");
+				}
+			});
 		});
 		$(function() {          
 		    $("img.lazy").lazyload({
@@ -83,11 +102,16 @@
 						console.log("it's the last page");
 						$('#loadMore').hide();
 					}
-					$.each(resp.content, function(i, media){
-						console.log(i + "===" + media.path);
-						var img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" style="width:300px;height:200px; " id="'+media.id+'"><h5>' + media.title+'</h5><p>'+media.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+					$.each(resp.content, function(i, product){
+						console.log(i + "===" + product.medias[0].path);
+						var img;
+						if($("input:checkbox[name='bigPic']").is(':checked') == true)
+							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.medias[0].path+'" src="${ctx}/plupload/files/small/'+product.medias[0].path+'" alt="" style="width:300px;height:200px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						else
+							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.medias[0].path+'" src="${ctx}/plupload/files/small/'+product.medias[0].path+'" alt="" style="width:200px;height:120px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+
 						$('#thumbnailContainer').append(img);
-					    $("#"+media.id).lazyload({
+					    $("#"+product.id).lazyload({
 					        event : "scroll",
 							effect : "fadeIn",
 							threshold : 0,
@@ -158,6 +182,9 @@
 						<mytag:PermssionTag functionId="F4-5">
 							<button type="submit" class="btn" id="search_btn">Search</button>
 						</mytag:PermssionTag>
+						<label class="checkbox inline">									
+			   	 		  <input id="bigPic" name="bigPic" type="checkbox" />大图模式
+			 		    </label>
 					</div>
 				</div>
 			</form>
@@ -166,13 +193,13 @@
 	
 	<form id="updateProduct" action="">
 	<div class="row">
-		<div class="span10">
+		<div id="prodcutSet" class="span9 well">
 			<ul id="thumbnailContainer" class="thumbnails">
 				<c:forEach items="${products.content}" var="product">
-					<li class="span3">
+					<li class="span2">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.medias[0].path}" alt="" style="width:300px;height:200px;">
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.medias[0].path}" alt="" style="width:200px;height:120px;">
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
@@ -197,10 +224,12 @@
 
 	</div>
 </form>	
+	<%if (pageObj.hasNextPage()) {%>
 
-
-
-	<tags:pagination page="${products}" paginationSize="4"/>
+	<div id="loadMore" class="pagination pagination-centered">
+	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
+    </div>
+    <% }%>
 
 
 </body>
