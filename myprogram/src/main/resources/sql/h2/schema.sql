@@ -88,6 +88,7 @@ create table medias (
 	upload_timestamp timestamp,
 	description varchar(128),
 	title varchar(64),
+	author varchar(32),
 	primary key (media_id)
 );
 
