@@ -46,7 +46,7 @@
 	
 	<form class="form-search form-inline" action="#">
 	<label class="inline">类别
-		<input id="categorySelector" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" name="search_categoryId" value="${param.search_categoryId}"/>
+		<input id="categorySelector"  class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" name="search_categoryId" value="${param.search_categoryId}"/>
 	</label>
 		<label class="checkbox inline">									
    			我的资源<input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/>
@@ -55,8 +55,8 @@
 	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
     </form>
 	
-	<div style="margin-left: 60px">
-			<ul id="thumbnailContainer" class="thumbnails" style="text-align:center">
+	<div class="well">
+			<ul id="thumbnailContainer" class="thumbnails" style="margin-left: 20px">
 			</ul>
 	</div>
 
