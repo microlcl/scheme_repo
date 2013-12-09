@@ -96,7 +96,7 @@
 			$("#delete").click(function(){
 				if(($("input:checkbox[name='picture']").is(':checked') == false) && ($("input:checkbox[name='audio']").is(':checked') == false)){
 					$("#warning-block").show();
-				}else if ($("input:checkbox[name='picture']").is(':checked') == false){
+				}else if ($("input:checkbox[name='picture']").is(':checked') == true){
 						$("#updatePic").attr("action", "${ctx}/media/deletePicture");
 						$("#updatePic").submit();
 				}else {
@@ -255,9 +255,10 @@ li a {cursor: pointer; }
 	<div class="row">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
-			 	<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
-			 	<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
-				<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+				<div>
+			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
+			 		<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
+					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >图片
 					</label>
@@ -267,19 +268,24 @@ li a {cursor: pointer; }
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>音频
 					</label>
+					<label class="checkbox inline" style="margin-left:440px">									
+				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
+				   </label>
+				</div>
+				<div style="padding-top:15px">
 					<label class="checkbox inline">									
 			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
 			   		</label>
-			   <input type="text" name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
-			   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
-			   <label class="checkbox inline">									
-			   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
-			   </label>
+				   <input type="text" name="search_keyword" value="${param.search_keyword}">			   
+				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+				   
+			   </div>
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
+			   	<HR style="width:80%;margin:10px 0">
 		    </form>
 	    </div>
 	</div>
-	
+
 	<form id="updatePic" action="">
 	<div class="row">
 		<c:if test="${param.search_mediaType eq 'picture'}">
@@ -329,9 +335,9 @@ li a {cursor: pointer; }
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
-	          <li><a href="#" id="update" class="mynav">修改资源</a></li>
-	          <li><a href="#" id="delete" class="mynav">删除资源</a></li>
-	          <mytag:PermssionTag functionId="F4-2"><li><a href="${ctx}/media/upload" id="addMedio" class="mynav">上传资源</a></li></mytag:PermssionTag>
+		 	  <mytag:PermssionTag functionId="F4-2"><li><a href="${ctx}/media/upload" id="addMedio" class="mynav">增加</a></li></mytag:PermssionTag>
+	          <li><a href="#" id="update" class="mynav">修改</a></li>
+	          <li><a href="#" id="delete" class="mynav">删除</a></li>
 	        </ul>
 	      
 		  </div>

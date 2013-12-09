@@ -116,6 +116,11 @@ public class ProductController {
 		return "product/editProduct";
 	}
 
+	@RequestMapping(value="saveUpdate",method = RequestMethod.POST)
+	public String saveUpdate (@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
+		return "redirect:/product/list/";
+	}
+	
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	public String view(@ModelAttribute Product productTemp,Model model, HttpServletRequest request) {
 		String[] ids = request.getParameterValues("productId");

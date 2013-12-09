@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.entity.User;
@@ -136,7 +137,7 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value="save",method = RequestMethod.POST)
-	public String save(MediaFormBean mediaFormBean, HttpSession session) {
+	public String save(MediaFormBean mediaFormBean, HttpSession session, RedirectAttributes redirectAttributes) {
 		logger.info("in medai save" + mediaFormBean.toString());
 		User user = (User)session.getAttribute("user");
 		List<MediaWrapper> medias = mediaFormBean.getMedias();
@@ -167,7 +168,8 @@ public class MediaController {
 			logger.info("Save media to DB finished.");
 		}
 		
-		return "redirect:list?search_mediaType=picture";
+		redirectAttributes.addAttribute("search_mediaType","picture");
+		return "redirect:list?search_mediaType={search_mediaType}";
 	}
 	
 	@RequestMapping(value="editPicture",method = RequestMethod.GET)
@@ -181,24 +183,27 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value="deletePicture",method = RequestMethod.GET)
-	public String deletePic(HttpServletRequest request) {
-		String[] mediaIds = request.getParameterValues("audio");
+	public String deletePic(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		String[] mediaIds = request.getParameterValues("picture");
 		this.mediaService.deleteMedias(mediaIds);
 		
-		return "redirect:list?search_mediaType=picture";
+		redirectAttributes.addAttribute("search_mediaType","picture");
+		return "redirect:list?search_mediaType={search_mediaType}";
 	}
 	
 	@RequestMapping(value="deleteAudio",method = RequestMethod.GET)
-	public String deleteAudio(HttpServletRequest request) {
+	public String deleteAudio(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		String[] mediaIds = request.getParameterValues("audio");
 		this.mediaService.deleteMedias(mediaIds);
 		
-		return "redirect:list?search_mediaType=audio";
+		redirectAttributes.addAttribute("search_mediaType","audio");
+		return "redirect:list?search_mediaType={search_mediaType}";
 	}
 	
 	@RequestMapping(value="updatePicture",method = RequestMethod.POST)
-	public String updatePicture(MediaFormBean mediaFormBean, HttpSession session) {
+	public String updatePicture(MediaFormBean mediaFormBean, RedirectAttributes redirectAttributes) {
 		logger.info("in medai update" + mediaFormBean.toString());
+
 		List<MediaWrapper> medias = mediaFormBean.getMedias();
 		for(MediaWrapper media : medias) {
 			if (StringUtils.isBlank(media.getTitle())) {
@@ -218,7 +223,7 @@ public class MediaController {
 			mediaService.updateMedias(medias);
 			logger.info("update media to DB finished.");
 		}
-		
-		return "redirect:list?search_mediaType=picture";
+		redirectAttributes.addAttribute("search_mediaType","picture");
+		return "redirect:list?search_mediaType={search_mediaType}";
 	}
 }

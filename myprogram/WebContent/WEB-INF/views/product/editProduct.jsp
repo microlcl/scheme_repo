@@ -48,7 +48,7 @@ function topwin(){
 <body>
 <div>
 
-	<form id="inputForm" action="${ctx}/product/doAdd" method="post"
+	<form id="inputForm" action="${ctx}/product/saveUpdate" method="post"
 		class="form-horizontal">
 		<fieldset>
 			<legend>
@@ -80,7 +80,7 @@ function topwin(){
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" value="${productList.price }"/>
+										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }"/>
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
