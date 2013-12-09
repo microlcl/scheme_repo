@@ -56,7 +56,14 @@ function clearNoNum(obj)
 			required: false,
 			valueField: 'id',
 			textField: 'text',
-			method:'get'
+			method:'get',
+			//只能选择叶子节点：
+			onBeforeSelect : function(node){ 
+				var tree = $(this).tree;
+				var isLeaf = tree('isLeaf', node.target);
+				console.log("isLeaf=" + isLeaf);
+				return isLeaf;
+			}
 		});
 		//$('#count')[0].value=row_count;
 		row_count++;
