@@ -12,8 +12,10 @@
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/jquery/audioplayer.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-	<script>
+<link rel="stylesheet" type="text/css" href="${ctx}/static/jquery/audioplayer.css">
+<script>
 		var currentPage = <%=pageObj.getNumber() + 1%>
 		function check() {
 			$('.photoBox').mouseover(function(){
@@ -176,7 +178,18 @@
 			},3000);
 			
 		}
-	</script>
+		
+	    $( function()
+	    	    {
+	    	    	$( 'audio' ).audioPlayer(
+	    	    			{
+	    	    			    classPrefix: 'audioplayer',
+	    	    			    strPlay: 'Play',
+	    	    			    strPause: 'Pause',
+	    	    			    strVolume: 'Volume'
+	    	    			});
+	    	    });
+</script>
 <style>
 .affix {
   top: 50px;
@@ -208,6 +221,13 @@
 }
 
 li a {cursor: pointer; }
+
+{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 </style>
 	
 			
@@ -284,12 +304,15 @@ li a {cursor: pointer; }
 					<tr>
 						<th>音频名称</th>
 						<th>音频描述</th>
+						<th>音频试听</th>
 					</tr>
 					</thead>
 					<tbody>
 					<c:forEach items="${medias.content}" var="media">
 						<tr>
-							<td>${media.description}&nbsp;</td>
+							<td>${media.title}&nbsp;</td>
+							<td>${media.description}</td>
+							<td><audio src="${ctx}/plupload/audio/${media.path}" preload="auto" controls></audio></td>
 						</tr>
 					</c:forEach>
 					</tbody>		
