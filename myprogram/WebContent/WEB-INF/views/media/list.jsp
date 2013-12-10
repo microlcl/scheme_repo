@@ -186,16 +186,19 @@
 			
 		}
 		
-	    $( function()
-	    	    {
-	    	    	$( 'audio' ).audioPlayer(
-	    	    			{
-	    	    			    classPrefix: 'audioplayer',
-	    	    			    strPlay: 'Play',
-	    	    			    strPause: 'Pause',
-	    	    			    strVolume: 'Volume'
-	    	    			});
-	    	    });
+		function testaudio(){
+			if ($("input:checkbox[name='audio']").is(':checked') == true) {
+				$("#audioplayer").attr("src", "${ctx}/plupload/audio/xinyuan.mp3");
+    	    	$( 'audio' ).audioPlayer(
+    	    			{
+    	    			    classPrefix: 'audioplayer',
+    	    			    strPlay: 'Play',
+    	    			    strPause: 'Pause',
+    	    			    strVolume: 'Volume'
+    	    			});
+			}		
+	
+		}
 </script>
 <style>
 .affix {
@@ -325,25 +328,25 @@ li a {cursor: pointer; }
 			<div style="text-align:center;margin-left:30px;">
 				
 				<table id="audioTable" class="table table-striped table-bordered table-condensed" style="width:80% !important;">
-					<thead>
-					<tr>
-						<th></th>
-						<th>音频名称</th>
-						<th>音频描述</th>
-						<th>音频试听</th>
-					</tr>
-					</thead>
 					<tbody>
-					<c:forEach items="${medias.content}" var="media">
-						<tr>
-							<td width="30px	"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/></td>
-							<td>${media.title}&nbsp;</td>
-							<td>${media.description}</td>
-							<td><audio src="${ctx}/plupload/audio/${media.path}" preload="auto" controls></audio></td>
-						</tr>
+					<c:forEach items="${medias.content}" var="media" varStatus="status">
+						
+						<c:if test="${status.count%3==1}">
+							<tr><td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;&nbsp;${media.description}<a onclick="testaudio();" style="float:right; padding-right:5px;"><i class='icon-play'></i></a></td>
+						</c:if>
+						<c:if test="${status.count%3==2}">
+							<td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;&nbsp;${media.description}<a onclick="testaudio();" style="float:right; padding-right:5px;"><i class='icon-play'></i></a></td>
+						</c:if>
+						<c:if test="${status.count%3==0}">
+							<td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;&nbsp;${media.description}<a onclick="testaudio();" style="float:right; padding-right:5px;"><i class='icon-play'></i></a></td><tr>
+						</c:if>
+						
 					</c:forEach>
 					</tbody>		
 				</table>
+			</div>
+			<div class="span3">
+				<audio id="audioplayer" preload="auto" controls autoplay loop></audio>
 			</div>
 		</c:if>
 		<div class="row">
