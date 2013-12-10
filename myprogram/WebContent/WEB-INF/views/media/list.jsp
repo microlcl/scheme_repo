@@ -345,11 +345,12 @@ li a {cursor: pointer; }
 					</c:forEach>
 					</tbody>		
 				</table>
+				
 			</div>
-			<div class="span3">
+			<div class="span8 offset3">
 				<audio id="audioplayer" preload="auto" controls autoplay></audio>
 			</div>
-		</c:if>
+		</c:if> 
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
