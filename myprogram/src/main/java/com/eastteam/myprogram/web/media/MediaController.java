@@ -154,12 +154,17 @@ public class MediaController {
 			if (StringUtils.isBlank(media.getMediaType())) {
 				media.setMediaType(mediaFormBean.getMediaType());
 			}
+			if (StringUtils.isBlank(media.getAuthor())) {
+				media.setAuthor(mediaFormBean.getAuthor()); 
+			}
 			logger.info("categoryid=======" + media.getCategoryIds());
 			if (user != null) {
 				media.setUserId(user.getId());
 				media.setPath(media.getPath());
 				logger.info("===== The media type of the uploading resource:"+ media.getMediaType());
 				media.setMediaType(media.getMediaType());
+				logger.info("===== The Author of the uploading resource:"+ media.getAuthor());
+				media.setAuthor(media.getAuthor());
 			}
 		}
 		

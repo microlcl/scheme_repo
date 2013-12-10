@@ -113,9 +113,13 @@
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
 										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="20" placeholder="0~20个字符" />
 									</div>
+									<c:if test="${media.mediaType=='audio'}">
+										<label class="control-label" style="width:40px;padding-right:10px">歌手:</label>
+										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="16" placeholder="歌手名字" />
+									</c:if>
 									<div style="margin-bottom:5px;">
 										<label for="mediaType" class="control-label" style="width:40px;padding-right:10px">类型:</label>
-										<input type="text" id="mediaType" name="mediaType"  value="${media.mediaType}" readonly/>
+										<input type="text" id="mediaType" name="medias[${status.index}].mediaType"  value="${media.mediaType}" readonly/>
 									</div>	
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>

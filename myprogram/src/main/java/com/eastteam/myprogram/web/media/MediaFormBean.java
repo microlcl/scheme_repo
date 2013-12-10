@@ -15,6 +15,8 @@ public class MediaFormBean extends BaseFormBean {
 	private String categoryId;
 	
 	private String mediaType;
+	
+	private String author;
 
 	public List<MediaWrapper> getMedias() {
 		return medias;
@@ -54,6 +56,14 @@ public class MediaFormBean extends BaseFormBean {
 
 	public void setMediaType(String mediaType) {
 		this.mediaType = mediaType;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}	
 	
 	

@@ -12,6 +12,7 @@ public class Media extends IdEntity{
 	private String userId;
 	private List<Category> categorys;
 	private String title;
+	private String author;
 	
 	public Media() {
 		
@@ -73,7 +74,15 @@ public class Media extends IdEntity{
 
 	public void setCategorys(List<Category> categorys) {
 		this.categorys = categorys;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}	
 	
-
+	
 }

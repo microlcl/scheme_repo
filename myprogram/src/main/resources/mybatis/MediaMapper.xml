@@ -4,8 +4,8 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.MediaMybatisDao">
 	<insert id="insert" parameterType="Media" useGeneratedKeys="true" keyProperty="id">
-		insert into medias (description,title,media_type,path,status,user_id,upload_timestamp) 
-		values(#{description},#{title},#{mediaType},#{path},#{status},#{userId},now());
+		insert into medias (description,title,media_type,path,status,user_id,upload_timestamp,author) 
+		values(#{description},#{title},#{mediaType},#{path},#{status},#{userId},now(),#{author});
 	</insert>
 	
 	<update id="update" parameterType="Media">
@@ -34,6 +34,7 @@
 		<result property="path" column="path" />
 		<result property="status" column="status" />
 		<result property="userId" column="userId" />
+		<result property="author" column="author" />
 		<result property="uploadTimestamp" column="uploadTimestamp" />
 		<collection property="categorys" column="media_id" ofType="Category" select="selectCategory">
 		</collection>
@@ -45,7 +46,7 @@
 	</select>
 	
 	<select id="search" parameterType="map" resultMap="mediaDetailMap">
-		select distinct m.media_id, m.title, m.description,m.media_type as mediaType,m.path,m.status,m.user_id as userId,m.upload_timestamp as uploadTimestamp
+		select distinct m.media_id, m.title, m.description,m.media_type as mediaType,m.path,m.status,m.user_id as userId,m.upload_timestamp as uploadTimestamp,m.author as author
 		from medias m left join media_category mc on m.media_id=mc.media_id 
 		<where>
 		    <if test="categoryId != null">
@@ -94,7 +95,7 @@
 	</select>
 	
 	<select id="getMedia" resultMap="mediaDetailMap">
-		select distinct m.media_id, m.title, m.description,m.media_type as mediaType,m.path,m.status,m.user_id as userId,m.upload_timestamp as uploadTimestamp
+		select distinct m.media_id, m.title, m.description,m.media_type as mediaType,m.path,m.status,m.user_id as userId,m.upload_timestamp as uploadTimestamp,m.author as author 
 		from medias m left join media_category mc on m.media_id=mc.media_id 
 		where m.media_id= #{media_id}
 	</select>
