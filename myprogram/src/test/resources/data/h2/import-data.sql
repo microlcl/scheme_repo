@@ -189,15 +189,15 @@ insert into media_category (media_id,category_id) values(11,'1-2-1');
 insert into media_category (media_id,category_id) values(12,'1-1-2');
 insert into media_category (media_id,category_id) values(13,'1-2-2');
 
-insert into products (product_id,title,status,description,price) values(1,'产品1','1','description1',1.11);
-insert into products (product_id,title,status,description,price) values(2,'产品2','2','description2',2.22);
-insert into products (product_id,title,status,description,price) values(3,'产品3','3','description3',3.33);
-insert into products (product_id,title,status,description,price) values(4,'产品4','4','description4',4.44);
-insert into products (product_id,title,status,description,price) values(5,'产品5','5','description5',5.55);
-insert into products (product_id,title,status,description,price) values(6,'产品6','6','description6',6.55);
-insert into products (product_id,title,status,description,price) values(7,'产品7','7','description7',7.55);
-insert into products (product_id,title,status,description,price) values(8,'产品8','8','description8',8.55);
-insert into products (product_id,title,status,description,price) values(9,'产品9','9','description9',9.55);
+insert into products (product_id,title,status,description,default_picture_id,price) values(1,'产品1','1','description1',1,1.11);
+insert into products (product_id,title,status,description,default_picture_id,price) values(2,'产品2','2','description2',2,2.22);
+insert into products (product_id,title,status,description,default_picture_id,price) values(3,'产品3','3','description3',3,3.33);
+insert into products (product_id,title,status,description,default_picture_id,price) values(4,'产品4','4','description4',4,4.44);
+insert into products (product_id,title,status,description,default_picture_id,price) values(5,'产品5','5','description5',5,5.55);
+insert into products (product_id,title,status,description,default_picture_id,price) values(6,'产品6','6','description6',6,6.55);
+insert into products (product_id,title,status,description,default_picture_id,price) values(7,'产品7','7','description7',7,7.55);
+insert into products (product_id,title,status,description,default_picture_id,price) values(8,'产品8','8','description8',8,8.55);
+insert into products (product_id,title,status,description,default_picture_id,price) values(9,'产品9','9','description9',9,9.55);
 
 
 insert into product_category(product_id,category_id,picture_id) values(1,'1-5-1',1);

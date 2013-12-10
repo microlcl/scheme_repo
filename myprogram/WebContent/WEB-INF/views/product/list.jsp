@@ -199,7 +199,7 @@
 					<li class="span2">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.medias[0].path}" alt="" style="width:200px;height:120px;">
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;">
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">

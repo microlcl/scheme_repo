@@ -9,7 +9,7 @@ public class Product extends IdEntity{
 	private String description;
 	private BigDecimal price;
 	private List<Category> categorys;
-	private List<Media> medias;
+	private Media media;
 	
 	public String getTitle() {
 		return title;
@@ -41,11 +41,12 @@ public class Product extends IdEntity{
 	public void setCategorys(List<Category> categorys) {
 		this.categorys = categorys;
 	}
-	public List<Media> getMedias() {
-		return medias;
+	public Media getMedia() {
+		return media;
 	}
-	public void setMedias(List<Media> medias) {
-		this.medias = medias;
+	public void setMedia(Media media) {
+		this.media = media;
 	}
+
 	
 }
