@@ -82,7 +82,7 @@
 
 		$(document).ready(function() {
 			$("#media-tab").addClass("active");
-			check();
+			check();				
 
 			$("#update").click(function(){
 				if($("input:checkbox[name='picture']").is(':checked') == false){
@@ -292,9 +292,11 @@ li a {cursor: pointer; }
 				<div>
 				   <input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">			   
 				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+				  <c:if test="${param.search_mediaType eq 'picture'}">
 				   <label class="checkbox inline" style="margin-left:80px">									
 				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
 				   </label>
+				   </c:if>
 			   </div>
 				<div style="padding-top:15px">
 			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
