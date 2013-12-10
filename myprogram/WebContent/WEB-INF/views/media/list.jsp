@@ -248,6 +248,15 @@ li a {cursor: pointer; }
     width: 170px;
 }
 
+.picture-panel {
+    background: url("${ctx}/static/bootstrap/2.3.2/img/picturepanel.jpg") repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+}
 </style>
 	
 			
@@ -304,7 +313,7 @@ li a {cursor: pointer; }
 	<form id="updatePic" action="">
 	<div class="row">
 		<c:if test="${param.search_mediaType eq 'picture'}">
-			<div id="pictureSet" class="span9 well">
+			<div id="pictureSet" class="span9 picture-panel">
 				<ul id="thumbnailContainer" class="thumbnails">
 					<c:forEach items="${medias.content}" var="media">
 							<li class="span2">
