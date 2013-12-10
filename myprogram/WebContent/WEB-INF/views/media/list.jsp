@@ -115,6 +115,7 @@
 					$('#thumbnailContainer li').addClass("span3");
 					$('#thumbnailContainer img').height("200px");
 					$('#thumbnailContainer img').width("300px");
+					$('#thumbnailContainer span').width("270px");
 				}
 				else{
 			//		$('#pictureSet').removeClass("span10");
@@ -123,6 +124,7 @@
 					$('#thumbnailContainer li').addClass("span2");
 					$('#thumbnailContainer img').height("120px");
 					$('#thumbnailContainer img').width("200px");
+					$('#thumbnailContainer span').width("170px");
 				}
 			});
 			
@@ -233,6 +235,18 @@ li a {cursor: pointer; }
     box-sizing: border-box;
 }
 
+.thumbnails span {
+    bottom: 0;
+    color: #FFFFFF;
+    display: block;
+    font: bold 12px/30px Verdana,Arial;
+    left: 0;
+    opacity: 0.6;
+    position: absolute;
+    text-align: center;
+    width: 170px;
+}
+
 </style>
 	
 			
@@ -297,7 +311,7 @@ li a {cursor: pointer; }
 								 	
 								 		<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px; cursor: pointer;" id="${media.id}">
 									
-									<p>${media.description}</p>
+									<span>${media.description}</span>
 									<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
 										<input class="photoCheck" value="${media.id}" type="checkbox" name="picture" style="margin-left: 10px;margin-top:10px;"/>
 									</div>
