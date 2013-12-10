@@ -193,11 +193,8 @@
 				    strVolume: 'Volume', // default value: 'Volume'
 				});		
 		function testaudio(path){
-			if ($("input:checkbox[name='audio']").is(':checked') == true) {
 				var audiopath= "${ctx}/plupload/audio/" + path;
 				$("#audioplayer").attr("src", audiopath);
-			}		
-	
 		}
 
 </script>
@@ -333,13 +330,13 @@ li a {cursor: pointer; }
 					<c:forEach items="${medias.content}" var="media" varStatus="status">
 						
 						<c:if test="${status.count%3==1}">
-							<tr><td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;-&nbsp;${media.author}<a onclick="testaudio('${media.path}');" style="float:right; padding-right:5px;"><i class='icon-play'></i></a></td>
+							<tr><td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;-&nbsp;${media.author}<a onclick="testaudio('${media.path}');" style="float:right; padding-right:5px;cursor: pointer;"><i class='icon-play'></i></a></td>
 						</c:if>
 						<c:if test="${status.count%3==2}">
-							<td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;-&nbsp;${media.author}<a onclick="testaudio('${media.path}');" style="float:right; padding-right:5px;"><i class='icon-play'></i></a></td>
+							<td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;-&nbsp;${media.author}<a onclick="testaudio('${media.path}');" style="float:right; padding-right:5px;cursor: pointer;"><i class='icon-play'></i></a></td>
 						</c:if>
 						<c:if test="${status.count%3==0}">
-							<td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;-&nbsp;${media.author}<a onclick="testaudio('${media.path}');" style="float:right; padding-right:5px;"><i class='icon-play'></i></a></td><tr>
+							<td style="line-height: 30px;"><input class="audioCheck" value="${media.id}" type="checkbox" name="audio" style="margin-left: 10px;"/>&nbsp;&nbsp;${media.title}&nbsp;-&nbsp;${media.author}<a onclick="testaudio('${media.path}');" style="float:right; padding-right:5px;cursor: pointer;"><i class='icon-play'></i></a></td><tr>
 						</c:if>
 						
 					</c:forEach>
