@@ -105,5 +105,20 @@ function topwin(){
 	</form>
 	
 </div>
+<button type="button" data-toggle="modal" data-target="#productModalWindow" data-backdrop="false" onclick="search()">资源</button>
+<!-- resource 选择模态对话框 -->
+<div id="productModalWindow" class="modal hide fade">
+   <div class="modal-header">
+	   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	   <h4>资源选择</h4>
+	</div>
+	<div class="modal-body">
+	   <%@ include file="productPopupWindow.jsp"%>
+	</div>
+	<div class="modal-footer">
+	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
+	   <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">确定</a>
+   </div>
+</div>
 </body>
 </html>

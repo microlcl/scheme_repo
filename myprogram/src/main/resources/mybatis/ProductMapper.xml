@@ -9,10 +9,15 @@
 		<result property="title" column="title" />
 		<result property="status" column="status" />
 		<result property="price" column="price" />
+		<association property="media" column="default_picture_id" javaType="Media" select="selectMedia">
+			<id property="id" column="media_id" />
+			<result property="path" column="path" />
+		</association>
 		<collection property="categorys" column="product_id" ofType="Category" select="selectCategory">
 		</collection>
+		<!-- 
 	 	<collection property="medias" column="product_id" ofType="Media" select="selectMedia">
-		</collection>
+		</collection> -->
 	</resultMap>
 	<select id="selectCategory" resultType="Category">
 	    select c.id, c.name 
@@ -20,13 +25,21 @@
 	    where pc.category_id=c.id and pc.product_id=#{product_id}
 	</select>
 	<select id="selectMedia" resultType="Media">
+	    select m.media_id as id, m.path 
+	    from  medias m 
+	    where m.media_id=#{default_picture_id} 
+	</select>
+	<!-- 
+	<select id="selectMedia" resultType="Media">
 	    select m.media_id, m.path 
 	    from product_category pc, medias m 
 	    where pc.picture_id=m.media_id and pc.product_id=#{product_id}
-	</select> 
+	</select> -->
 	<select id="search" parameterType="map" resultMap="productDetailMap">
-		select distinct p.product_id, p.title,p.status, p.description,p.price
-		from products p left join product_category pc on p.product_id=pc.product_id 
+		select distinct p.product_id, p.title,p.status, p.description,p.price,p.default_picture_id
+		from products p 
+		left join product_category pc on p.product_id=pc.product_id 
+		
 		<where>
 		    <if test="categoryId != null">
 				pc.category_id like '${categoryId}%'
