@@ -185,22 +185,21 @@
 			},3000);
 			
 		}
-		
+		$( 'audio' ).audioPlayer(
+				{
+				    classPrefix: 'player', // default value: 'audioplayer'
+				    strPlay: 'Play', // default value: 'Play'
+				    strPause: 'Pause', // default value: 'Pause'
+				    strVolume: 'Volume', // default value: 'Volume'
+				});		
 		function testaudio(path){
 			if ($("input:checkbox[name='audio']").is(':checked') == true) {
 				var audiopath= "${ctx}/plupload/audio/" + path;
-				console.log("=========Audio path"+ audiopath);
 				$("#audioplayer").attr("src", audiopath);
-    	    	$( 'audio' ).audioPlayer(
-    	    			{
-    	    			    classPrefix: 'audioplayer',
-    	    			    strPlay: 'Play',
-    	    			    strPause: 'Pause',
-    	    			    strVolume: 'Volume'
-    	    			});
 			}		
 	
 		}
+
 </script>
 <style>
 .affix {
