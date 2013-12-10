@@ -257,6 +257,16 @@ li a {cursor: pointer; }
     min-height: 20px;
     padding: 19px;
 }
+
+.search-panel {
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 10px;
+    padding: 19px;
+    width: 870px;
+    height: 70px;
+}
 </style>
 	
 			
@@ -276,10 +286,17 @@ li a {cursor: pointer; }
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
 	
-	<div class="row">
+	<div class="search-panel">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
 				<div>
+				   <input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">			   
+				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+				   <label class="checkbox inline" style="margin-left:80px">									
+				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
+				   </label>
+			   </div>
+				<div style="padding-top:15px">
 			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 		<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
 					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
@@ -292,20 +309,13 @@ li a {cursor: pointer; }
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>音频
 					</label>
-					<label class="checkbox inline" style="margin-left:440px">									
-				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
-				   </label>
-				</div>
-				<div style="padding-top:15px">
-					<label class="checkbox inline">									
+					<label class="checkbox inline" style="margin-left:20px">									
 			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
 			   		</label>
-				   <input type="text" name="search_keyword" value="${param.search_keyword}">			   
-				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
-				   
-			   </div>
+					
+				</div>
+
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
-			   	<HR style="width:80%;margin:10px 0">
 		    </form>
 	    </div>
 	</div>
