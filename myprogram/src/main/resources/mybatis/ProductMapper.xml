@@ -61,6 +61,9 @@
 		    <if test="categoryId != null">
 				pc.category_id like '${categoryId}%'
 			</if>
+			<if test="keyword != null">
+				and p.description||p.title like '%${keyword}%'
+			</if>
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc
