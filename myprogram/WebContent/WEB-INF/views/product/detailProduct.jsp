@@ -80,17 +80,17 @@ function changePicture(obj) {
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
-										<input type="text" name="title" value="${product.title }" maxlength="20" placeholder="0~20个字符" />
+										<input type="text" name="title" value="${product.title }" maxlength="20" placeholder="0~20个字符" readonly="readonly"/>
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
-										<textarea  class="single_photo_textarea "
+										<textarea  class="single_photo_textarea " readonly="readonly"
 										name="description" 
 										 maxlength="100" placeholder="0~100个字符" />${product.description }</textarea>
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }"/>
+										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }" readonly="readonly"/>
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>

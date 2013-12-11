@@ -3,6 +3,7 @@ package com.eastteam.myprogram.web.product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.eclipse.jetty.server.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,10 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+  	@Qualifier("configProperties")
+  	private Properties configProperties;
+	
 	private static Logger logger = LoggerFactory
 			.getLogger(ProductController.class);
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
@@ -44,7 +50,6 @@ public class ProductController {
 		sortTypes.put("product_id", "id");
 		sortTypes.put("title", "产品名");
 	}
-	private static final int PAGE_SIZE = 5;
 
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(
@@ -56,7 +61,7 @@ public class ProductController {
 				request, "search_");
 		logger.info(searchParams.toString());
 		Page<Product> products = productService.getCurrentPageContent(
-				searchParams, pageNumber, PAGE_SIZE, sortType);
+				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
 		model.addAttribute("products", products);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);
@@ -76,7 +81,7 @@ public class ProductController {
 				request, "search_");
 		logger.info(searchParams.toString());
 		Page<Product> products = productService.getCurrentPageContent(
-				searchParams, pageNumber, PAGE_SIZE, sortType);
+				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
 		return products;
 	}
 
