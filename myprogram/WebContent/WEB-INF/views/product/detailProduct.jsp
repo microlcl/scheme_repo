@@ -96,7 +96,7 @@ function changePicture(obj) {
 										<div class="control-group" style="margin-bottom:5px;">
 											<label class="control-label" style="width:40px;padding-right:10px">${categoryParent.name}:</label>
 											<c:forEach items="${product.categorys}" var="category">
-											<c:if test="">
+											<c:if test="${categoryParent.id==category.pid}">
 											<input type="button" value="${category.name}" name="a" onclick="changePicture(this);">
 								 			<input type="hidden" id="${category.name}" value="${category.media.path}"> 
 								 			</c:if>
@@ -110,12 +110,13 @@ function changePicture(obj) {
 					</table>
 				</div>
 			</div>	
-
+<!-- 
 			<div class="form-actions" style="padding-left:410px">
 				<input id="submit_btn" class="btn btn-primary" type="submit"
 					value="提交" />&nbsp; <input id="cancel_btn" class="btn"
 					type="button" value="返回" onclick="history.back()" />
 			</div>
+			 -->
 		</fieldset>
 	</form>
 	

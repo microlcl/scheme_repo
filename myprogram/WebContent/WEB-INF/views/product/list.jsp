@@ -45,8 +45,15 @@
 				$("#updateProduct").submit();
 			});
 			$("#view").click(function(){
-				$("#updateProduct").attr("action", "${ctx}/product/view");
-				$("#updateProduct").submit();
+				if(($("input:checkbox[name='productId']").is(':checked') == false)){
+					$("#warning-block").show();
+				}else{
+					//var temp=$("input[name='productId'][checked]");
+					//var temp=$("#productId").attr("value");
+					//alert(temp.length);
+					$("#updateProduct").attr("action", "${ctx}/product/view");
+					$("#updateProduct").submit();
+				}
 			});
 			$("#delete").click(function(){
 				if(confirm('确定删除吗')){
@@ -126,6 +133,18 @@
 			},3000);
 			
 		}
+		function chooseOne(cb){  
+	         //先取得同name的chekcBox的集合物件  
+	         var obj = document.getElementsByName("productId");  
+	         for (i=0; i<obj.length; i++){  
+	             //判斷obj集合中的i元素是否為cb，若否則表示未被點選  
+	             if (obj[i]!=cb) obj[i].checked = false;  
+	             //若是 但原先未被勾選 則變成勾選；反之 則變為未勾選  
+	             //else  obj[i].checked = cb.checked;  
+	             //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行  
+	             else obj[i].checked = true;  
+	         }  
+	     }   
 	</script>
 <style>
 .affix {
@@ -163,6 +182,9 @@
 </head>
 
 <body>
+<div class="alert hide" id="warning-block">
+  	   <strong>注意! </strong>请至少选中一个多媒体！
+</div>
 	<h1>产品管理</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
@@ -199,11 +221,12 @@
 					<li class="span2">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;">
+						 <mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/view?productId=${product.id}">
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;"></a></mytag:PermssionTag>
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;"/>
+								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;" onClick="chooseOne(this);"/>
 							</div>
 						</div>
 					</li>
