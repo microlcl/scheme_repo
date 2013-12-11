@@ -114,12 +114,12 @@
 						$('#loadMore').hide();
 					}
 					$.each(resp.content, function(i, product){
-						console.log(i + "===" + product.medias[0].path);
+						console.log(i + "===" + product.media.path);
 						var img;
 						if($("input:checkbox[name='bigPic']").is(':checked') == true)
-							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.medias[0].path+'" src="${ctx}/plupload/files/small/'+product.medias[0].path+'" alt="" style="width:300px;height:200px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:300px;height:200px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						else
-							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.medias[0].path+'" src="${ctx}/plupload/files/small/'+product.medias[0].path+'" alt="" style="width:200px;height:120px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:200px;height:120px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 
 						$('#thumbnailContainer').append(img);
 					    $("#"+product.id).lazyload({
@@ -180,6 +180,25 @@
     width:100%;
 }
 
+.picture-panel {
+    background: url("${ctx}/static/bootstrap/2.3.2/img/picturepanel.jpg") repeat scroll 0 0 #F7F7F7;
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+}
+
+.search-panel {
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 10px;
+    padding: 19px;
+    width: 870px;
+    height: 70px;
+}
 </style>
 	
 			
@@ -193,42 +212,44 @@
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-	<div class="row">
+	<div class="search-panel">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
-				<div class="row">
-					<div class="span12">
-						<label>类别</label>
-						<!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"-->
-						<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
-						<input id="cc" class="easyui-combotree"
-							data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false"
-							style="width: 200px;" name="search_categoryId"
-							value="${param.search_categoryId}" />
-						<mytag:PermssionTag functionId="F4-5">
-							<button type="submit" class="btn" id="search_btn">Search</button>
-						</mytag:PermssionTag>
-						<label class="checkbox inline">									
-			   	 		  <input id="bigPic" name="bigPic" type="checkbox" />大图模式
-			 		    </label>
-					</div>
+				<div>
+				   <input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">			   
+				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+				   <label class="checkbox inline" style="margin-left:80px">									
+				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
+				   </label>
+			   </div>
+				<div style="padding-top:15px">
+			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
+			 		<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
+					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+
+					<label class="checkbox inline" style="margin-left:20px">									
+			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
+			   		</label>
+					
 				</div>
-			</form>
-		</div>
+
+			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
+		    </form>
+	    </div>
 	</div>
 	
 	<form id="updateProduct" action="">
 	<div class="row">
-		<div id="prodcutSet" class="span9 well">
+		<div id="prodcutSet" class="span9 picture-panel">
 			<ul id="thumbnailContainer" class="thumbnails">
 				<c:forEach items="${products.content}" var="product">
 					<li class="span2">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
 						 <mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/view?productId=${product.id}">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;"></a></mytag:PermssionTag>
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;">
 							<h5>${product.title}</h5>
-							<p>${product.description}</p>
+							<p>${product.description}</p></a></mytag:PermssionTag>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
 								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
