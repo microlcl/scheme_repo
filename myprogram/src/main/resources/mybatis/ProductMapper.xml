@@ -115,8 +115,8 @@
 		delete from medias where id=#{id};
 	</delete>
 	
-	<select id="getProduct" resultType="Product">
-		select p.product_id as id, p.title,p.status, p.description,p.price
+	<select id="getProduct" resultMap="productDetailMap">
+		select p.product_id as id, p.title,p.status, p.description,p.price,p.default_picture_id
 		from products p
 		where p.product_id=#{id}
 	</select>

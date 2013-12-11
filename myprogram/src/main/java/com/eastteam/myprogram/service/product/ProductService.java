@@ -47,20 +47,21 @@ public class ProductService extends PageableService {
 		return productMybatisDao.getCount(param);
 	}
 	
-	public Product getProductList(String id){
-		Product product=new Product();
-			if(id!=null&&!id.equals("")){
-				product = productMybatisDao.getProduct(Long.parseLong(id));
-				List<Product_category> productCategorys = productMybatisDao.getProduct_category(product.getId());
-				List<Category> categorys= new ArrayList<Category>();
-				for (Product_category productCategory : productCategorys) {
-					Category category = productMybatisDao.getCategory(productCategory.getCategory_id());
-					Media media = productMybatisDao.getMedia(productCategory.getPicture_id());
-					category.setMedia(media);
-					categorys.add(category);
-				}
-				product.setCategorys(categorys);
-			}
+	public Product getProductList(Long id) {
+		Product product = new Product();
+		product = productMybatisDao.getProduct(id);
+		List<Product_category> productCategorys = productMybatisDao
+				.getProduct_category(product.getId());
+		List<Category> categorys = new ArrayList<Category>();
+		for (Product_category productCategory : productCategorys) {
+			Category category = productMybatisDao.getCategory(productCategory
+					.getCategory_id());
+			Media media = productMybatisDao.getMedia(productCategory
+					.getPicture_id());
+			category.setMedia(media);
+			categorys.add(category);
+		}
+		product.setCategorys(categorys);
 		return product;
 	}
 	//删除Product，以及Product_category

@@ -73,7 +73,7 @@ function changePicture(obj) {
 							<tr>
 								<td>
 									<div class="control-group">
-									<img id="img1" src="${ctx}/plupload/files/small/bp1.jpg" alt="">
+									<img id="img1" src="${ctx}/plupload/files/small/${product.media.path}" alt="">
 									</div>
 								</td>
 								<td>

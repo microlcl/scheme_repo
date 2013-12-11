@@ -111,9 +111,11 @@ public class ProductController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(@ModelAttribute Product productTemp,Model model, HttpServletRequest request) {
 		String[] ids = request.getParameterValues("productId");
-		Product product = this.productService.getProductList(ids[0]);
-		model.addAttribute("product", product);
-		return "product/editProduct";
+		if (ids[0] != null && !ids[0].equals("")) {
+			Product product = this.productService.getProductList(Long.parseLong(ids[0]));
+			model.addAttribute("product", product);
+		}
+		return "product/detailProduct";
 	}
 
 	@RequestMapping(value="saveUpdate",method = RequestMethod.POST)
@@ -122,9 +124,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "view", method = RequestMethod.GET)
-	public String view(@ModelAttribute Product productTemp,Model model, HttpServletRequest request) {
+	public String view(@ModelAttribute Product productTemp, Model model,
+			HttpServletRequest request) {
 		String[] ids = request.getParameterValues("productId");
-		Product product = this.productService.getProductList(ids[0]);
+		Product product=new Product();
+		if (ids[0] != null && !ids[0].equals("")) {
+			product = this.productService.getProductList(Long.parseLong(ids[0]));
+		}
 		model.addAttribute("product", product);
 		return "product/detailProduct";
 	}
