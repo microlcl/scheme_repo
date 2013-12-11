@@ -56,21 +56,29 @@
 	
 	
 	<select id="getCount" parameterType="map" resultType="Long">
-		select count(0) from users
+		select count(0) from (select u.id, u.name,u.password, u.sex,u.email,u.phone_num as phoneNum,u.address,u.hometown,u.birthday,
+		u.register_date as registerDate,u.status,u.comment,
+		d.department_id,d.name as department_name,d.description as department_description,
+		r.role_id, r.name as role_name,r.description as role_description 
+		from users u 
+	    left join departments d on u.department_id=d.department_id 
+	    left join user_role ur on u.id=ur.user_id
+	    left join roles r on ur.role_id=r.role_id
 		<where>
 		    <if test="id != null">
-				id=#{id}
+				u.id=#{id}
 			</if>
 			<if test="name != null">
-				and name=#{name}
+				and u.name=#{name}
 			</if>
 			<if test="email != null">
-				and email=#{email}
+				and u.email=#{email}
 			</if>
 			<if test="department_id != null">
-				and department_id like '${department_id}%'
+				and u.department_id like '${department_id}%'
 			</if>
-		</where>
+			
+		</where>) t
 	</select>
 
 	<resultMap id="userDetailMap" type="User">
