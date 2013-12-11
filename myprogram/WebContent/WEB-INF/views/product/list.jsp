@@ -199,6 +199,30 @@
     width: 870px;
     height: 70px;
 }
+
+.description {
+	white-space:nowrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.thumbnails a:link {
+    color: #666666;
+    text-decoration: none;
+}
+.thumbnails a:hover, a:active {
+    color: #E4393C;
+    text-decoration: underline;
+}
+
+.p-price{
+	height: 20px;
+    overflow: hidden;
+    color: #E4393C;
+    font-size: 14px;
+    font-family: verdana;
+}
 </style>
 	
 			
@@ -217,7 +241,7 @@
 			<form class="form-search form-inline" action="#">
 				<div>
 				   <input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">			   
-				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">搜索</button></mytag:PermssionTag>
 				   <label class="checkbox inline" style="margin-left:80px">									
 				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
 				   </label>
@@ -247,9 +271,16 @@
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
 						 <mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/view?productId=${product.id}">
-						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;">
-							<h5>${product.title}</h5>
-							<p>${product.description}</p></a></mytag:PermssionTag>
+						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;"></a></mytag:PermssionTag>
+							<div class="description">
+								<a href="${ctx}/product/view?productId=${product.id}" title="${product.description}">
+									<c:if test="${not empty product.description}">${product.description}</c:if>
+									<c:if test="${empty product.description}">${product.title}</c:if>
+								</a>
+							</div>
+							<div class="p-price">
+								<strong>￥${product.price}</strong>
+							</div>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
 								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
