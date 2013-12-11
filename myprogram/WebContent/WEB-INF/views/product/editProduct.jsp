@@ -52,7 +52,7 @@ function topwin(){
 		class="form-horizontal">
 		<fieldset>
 			<legend>
-				<small>增加产品</small>
+				<small>产品</small>
 			</legend>
 
 			<div class="all_photo_edit">
@@ -105,12 +105,12 @@ function topwin(){
 	</form>
 	
 </div>
-<button type="button" data-toggle="modal" data-target="#productModalWindow" data-backdrop="false" onclick="search()">资源</button>
+<button type="button" data-toggle="modal" data-target="#productModalWindow" data-backdrop="false" onclick="search()">产品</button>
 <!-- resource 选择模态对话框 -->
 <div id="productModalWindow" class="modal hide fade">
    <div class="modal-header">
 	   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	   <h4>资源选择</h4>
+	   <h4>产品选择</h4>
 	</div>
 	<div class="modal-body">
 	   <%@ include file="productPopupWindow.jsp"%>

@@ -19,9 +19,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
 <script>
-function topwin(){
-	window.showModalDialog("${ctx}/product/list","","dialogWidth:300px;dialogHeight:300px;scroll:no;status:no");
-}
 function changePicture(obj) {
 	//alert("${ctx}/plupload/files/small/bp12.jpg");
 	var a=obj.value;
