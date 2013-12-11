@@ -56,9 +56,13 @@
 				}
 			});
 			$("#delete").click(function(){
-				if(confirm('确定删除吗')){
-					$("#updateProduct").attr("action", "${ctx}/product/delete");
-					$("#updateProduct").submit();
+				if(($("input:checkbox[name='productId']").is(':checked') == false)){
+					$("#warning-block").show();
+				}else{
+					if(confirm('确定删除吗')){
+						$("#updateProduct").attr("action", "${ctx}/product/delete");
+						$("#updateProduct").submit();
+					}
 				}
 			});
 			
@@ -226,7 +230,7 @@
 							<h5>${product.title}</h5>
 							<p>${product.description}</p>
 							<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
-								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;" onClick="chooseOne(this);"/>
+								<input class="photoCheck" value="${product.id}" type="checkbox" name="productId" style="margin-left: 10px;margin-top:10px;"/>
 							</div>
 						</div>
 					</li>
@@ -237,7 +241,7 @@
 		<div class="row">
 	      <div id="affix_test"  class="span2" data-spy="affix" data-offset-top="200" style="margin-left:1000px !important;">
 		 	<ul class="nav nav-list bs-docs-sidenav nav-stacked">
-		 		<li><mytag:PermssionTag functionId="F5-2"><a href="#" id="view" class="mynav">查看产品</a></mytag:PermssionTag></li>
+		 	<!-- 	<li><mytag:PermssionTag functionId="F5-2"><a href="#" id="view" class="mynav">查看产品</a></mytag:PermssionTag></li> -->
 	          <li><mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/add/" >增加产品</a></mytag:PermssionTag></li>
 	          <li><mytag:PermssionTag functionId="F5-3"><a href="#" id="update" class="mynav">修改</a></mytag:PermssionTag></li>
 	          <li><mytag:PermssionTag functionId="F5-4"><a href="#" id="delete" class="mynav">删除</a></mytag:PermssionTag></li>
