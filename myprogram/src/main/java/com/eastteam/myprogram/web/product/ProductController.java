@@ -24,11 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Product;
 import com.eastteam.myprogram.entity.Product_category;
 import com.eastteam.myprogram.entity.Role;
+import com.eastteam.myprogram.service.category.CategoryService;
 import com.eastteam.myprogram.service.product.ProductService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
@@ -39,6 +41,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+	private CategoryService categoryService;
+	
 	@Autowired
   	@Qualifier("configProperties")
   	private Properties configProperties;
@@ -120,7 +125,7 @@ public class ProductController {
 			Product product = this.productService.getProductList(Long.parseLong(ids[0]));
 			model.addAttribute("product", product);
 		}
-		return "product/detailProduct";
+		return "product/editProduct";
 	}
 
 	@RequestMapping(value="saveUpdate",method = RequestMethod.POST)
@@ -137,6 +142,7 @@ public class ProductController {
 			product = this.productService.getProductList(Long.parseLong(ids[0]));
 		}
 		model.addAttribute("product", product);
+		model.addAttribute("categorys", this.categoryService.getModuleCategorys("M1-5"));
 		return "product/detailProduct";
 	}
 	

@@ -148,14 +148,18 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-2-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-3','1','图片','2012-06-04 02:00:00','F','图片根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-3-1','1-3','桌花','2012-06-04 02:00:00','F','桌花');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-3-2','1-3','舞台','2012-06-04 02:00:00','F','舞台');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-5','1','产品分类','2012-06-04 02:00:00','F','图片根节点');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-5-1','1-5','颜色','2012-06-04 02:00:00','F','桌花');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-5-2','1-5','大小','2012-06-04 02:00:00','F','舞台');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-5','1','颜色','2012-06-04 02:00:00','F','产品颜色');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-5-1','1-5','白色','2012-06-04 02:00:00','F','白色');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-5-2','1-5','黑色','2012-06-04 02:00:00','F','黑色');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-6','1','尺寸','2012-06-04 02:00:00','F','产品尺寸');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-6-1','1-6','40','2012-06-04 02:00:00','F','40');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-6-2','1-6','42','2012-06-04 02:00:00','F','42');
 
 
 insert into module_category(module_id,category_id) values('M1-4','1-1');
 insert into module_category(module_id,category_id) values('M1-4','1-2');
 insert into module_category(module_id,category_id) values('M1-5','1-5');
+insert into module_category(module_id,category_id) values('M1-5','1-6');
 
 
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now(),'');

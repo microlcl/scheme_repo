@@ -92,13 +92,17 @@ function changePicture(obj) {
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
 										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }" readonly="readonly"/>
 									</div>
-									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
-										<c:forEach items="${product.categorys}" var="category">
-										<input type="button" value="${category.name}" name="a" onclick="changePicture(this);">
-								 		<input type="hidden" id="${category.name}" value="${category.media.path}"> 
-										</c:forEach>
-									</div>
+									<c:forEach items="${categorys}" var="categoryParent">
+										<div class="control-group" style="margin-bottom:5px;">
+											<label class="control-label" style="width:40px;padding-right:10px">${categoryParent.name}:</label>
+											<c:forEach items="${product.categorys}" var="category">
+											<c:if test="">
+											<input type="button" value="${category.name}" name="a" onclick="changePicture(this);">
+								 			<input type="hidden" id="${category.name}" value="${category.media.path}"> 
+								 			</c:if>
+											</c:forEach>
+										</div>
+									</c:forEach>
 								</div>
 								</td>
 							</tr>
