@@ -51,19 +51,19 @@
 			<div class="control-group">
 				<label for="phoneNum" class="control-label">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large required" value="${formUser.phoneNum}" minlength="3"/>
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large " value="${formUser.phoneNum}" minlength="3"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large required" value="${formUser.address}" />
+					<input type="text" id="address" name="address" class="input-large " value="${formUser.address}" />
 				</div>
 			</div>			
 		    <div class="control-group">
 				<label for="hometown" class="control-label">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large required" value="${formUser.hometown}" minlength="2"/>
+					<input type="text" id="hometown" name="hometown" class="input-large " value="${formUser.hometown}" />
 				</div>
 			</div>			
 			<div class="control-group">
@@ -151,6 +151,9 @@
 					address: {
 						rangelength: [5,50]
 					},
+					hometown: {
+						rangelength: [2,10]
+					},
 					sex: {
                         required: function (element) {
                             return $("input:radio[name='sex']:checked").val() != "";
@@ -179,6 +182,9 @@
 					},
 					address: {
 						rangelength: jQuery.validator.format("地址长度必须在 {0} 和 {1} 个字符之间")
+					},
+					hometown: {
+						rangelength: jQuery.validator.format("籍贯长度必须在 {0} 和 {1} 个字符之间")
 					},
 					sex: {
                         required: "请选择性别!"
