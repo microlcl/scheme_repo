@@ -32,6 +32,10 @@
 	margin: 30px 0 0;
 	list-style: none outside none;
 }
+.thumbnail:hover {
+  border: 1px solid #7EC0EE;
+  cursor: pointer;
+}
 
 .mynav {
 	border: 1px solid #E5E5E5;
@@ -143,7 +147,8 @@
 					}
 					$.each(resp.content, function(i, media){
 						console.log(i + "===" + media.path);
-						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input type="radio" value="'+media.path+'" name="mypicture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						var fname = "selectPic('radio_" + media.id +  "')";
+						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img onclick='+ fname +' class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input type="radio" id="radio_'+ media.id +'" value="'+media.path+'" name="mypicture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
 					        event : "scroll",
@@ -155,6 +160,11 @@
 					});
 				}
 		});
-			
+		
+	}
+	
+		function selectPic(radioId) {
+			console.log("in selectPic: id=" + radioId);
+			$('#' + radioId).attr('checked', true);
 		}
 	</script>
