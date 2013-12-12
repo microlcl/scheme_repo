@@ -165,6 +165,8 @@
 	
 		function selectPic(radioId) {
 			console.log("in selectPic: id=" + radioId);
-			$('#' + radioId).attr('checked', true);
+			//$('input:radio[name="mypicture"]:checked').attr('checked',false);
+			//$('#' + radioId).attr('checked', 'checked');
+			$('#' + radioId).click();
 		}
 	</script>
