@@ -116,10 +116,18 @@
 					$.each(resp.content, function(i, product){
 						console.log(i + "===" + product.media.path);
 						var img;
-						if($("input:checkbox[name='bigPic']").is(':checked') == true)
-							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:300px;height:200px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
-						else
-							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:200px;height:120px; " id="'+product.id+'"><h5>' + product.title+'</h5><p>'+product.description+'</p><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						if($("input:checkbox[name='bigPic']").is(':checked') == true){
+							if(product.description != null || product.description != "")
+								img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:300px;height:200px; " id="'+product.id+'"><div class="description"><a href="${ctx}/product/view?productId='+product.id+'"title="'+product.description+'">'+product.description+'</a></div><div class="p-price"><strong>￥'+product.price+'</strong></div><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							else
+								img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:300px;height:200px; " id="'+product.id+'"><div class="description"><a href="${ctx}/product/view?productId='+product.id+'"title="'+product.title+'">'+product.title+'</a></div><div class="p-price"><strong>￥'+product.price+'</strong></div><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						}
+						else{
+							if(product.description != null || product.description != "")
+								img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:200px;height:120px; " id="'+product.id+'"><div class="description"><a href="${ctx}/product/view?productId='+product.id+'"title="'+product.description+'">'+product.description+'</a></div><div class="p-price"><strong>￥'+product.price+'</strong></div><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							else
+								img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+product.media.path+'" src="${ctx}/plupload/files/small/'+product.media.path+'" alt="" style="width:200px;height:120px; " id="'+product.id+'"><div class="description"><a href="${ctx}/product/view?productId='+product.id+'"title="'+product.title+'">'+product.title+'</a></div><div class="p-price"><strong>￥'+product.price+'</strong></div><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+product.id+'" name="checkbox" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						}
 
 						$('#thumbnailContainer').append(img);
 					    $("#"+product.id).lazyload({
@@ -201,7 +209,7 @@
 }
 
 .description {
-	white-space:nowrap;
+	height: 3em;
     word-wrap: break-word;
     word-break: break-all;
     overflow: hidden;
