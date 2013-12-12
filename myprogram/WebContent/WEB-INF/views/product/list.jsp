@@ -156,7 +156,15 @@
 	             //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行  
 	             else obj[i].checked = true;  
 	         }  
-	     }   
+	     }  
+		
+		function vailFloatNumberPerfect(evnt,obj){
+			 evnt=evnt||window.event;
+			 var keyCode=window.event?evnt.keyCode:evnt.which;
+
+			 if((obj.value.length==0 || obj.value.indexOf(".")!=-1) && keyCode==46) return false;
+			 return keyCode>=48&&keyCode<=57||keyCode==46||keyCode==8;
+			}
 	</script>
 <style>
 .affix {
@@ -216,7 +224,7 @@
 }
 
 .thumbnail:hover {
-	border: 1px solid #BC0000;
+	border: 1px solid #7EC0EE;
 }
 .thumbnails a:link {
     color: #666666;
@@ -258,14 +266,13 @@
 				   </label>
 			   </div>
 				<div style="padding-top:15px">
-			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
+			 		<label>类别：</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 		<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
-					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
-
-					<label class="checkbox inline" style="margin-left:20px">									
-			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
-			   		</label>
-					
+					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>				
+					<label style="padding-left:10px">价格<b>¥</b>：</label> 
+					<input name="search_price_1" type="text" value="${param.search_price_1}" style="width:50px;height:20px" placeholder="￥" maxlength="6" onpaste="return !clipboardData.getData('text').match(/\D/)" onkeypress="return vailFloatNumberPerfect(event,this)" />
+					<label>-</label>
+					<input name="search_price_2" type="text" value="${param.search_price_2}" style="width:50px;height:20px" placeholder="￥" maxlength="6" onpaste="return !clipboardData.getData('text').match(/\D/)" onkeypress="return vailFloatNumberPerfect(event,this)" />
 				</div>
 
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>

@@ -47,6 +47,12 @@
 			<if test="keyword != null">
 				and p.description||p.title like '%${keyword}%'
 			</if>
+			<if test="price_1 !=null">
+				and p.price &gt;= ${price_1}
+			</if>
+			<if test="price_2 !=null">
+				and p.price &lt;= ${price_2}
+			</if>
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc
@@ -63,6 +69,12 @@
 			</if>
 			<if test="keyword != null">
 				and p.description||p.title like '%${keyword}%'
+			</if>
+			<if test="price_1 !=null">
+				and p.price &gt;= ${price_1}
+			</if>
+			<if test="price_2 !=null">
+				and p.price &lt;= ${price_2}
 			</if>
 		</where>
 		<if test="sort != null">
