@@ -19,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -187,22 +188,14 @@ public class MediaController {
 		return "media/editPicture";
 	}
 	
-	@RequestMapping(value="deletePicture",method = RequestMethod.GET)
-	public String deletePic(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-		String[] mediaIds = request.getParameterValues("picture");
+	@RequestMapping(value="delete/{type}",method = RequestMethod.GET)
+	public String deletePic(@PathVariable("type") String type, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		String[] mediaIds = request.getParameterValues(type);
+		logger.info("==========Delte media type: " + type);
 		this.mediaService.deleteMedias(mediaIds);
 		
-		redirectAttributes.addAttribute("search_mediaType","picture");
-		return "redirect:list?search_mediaType={search_mediaType}";
-	}
-	
-	@RequestMapping(value="deleteAudio",method = RequestMethod.GET)
-	public String deleteAudio(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-		String[] mediaIds = request.getParameterValues("audio");
-		this.mediaService.deleteMedias(mediaIds);
-		
-		redirectAttributes.addAttribute("search_mediaType","audio");
-		return "redirect:list?search_mediaType={search_mediaType}";
+		redirectAttributes.addAttribute("search_mediaType",type);
+		return "redirect:/media/list/?search_mediaType={search_mediaType}";
 	}
 	
 	@RequestMapping(value="updatePicture",method = RequestMethod.POST)

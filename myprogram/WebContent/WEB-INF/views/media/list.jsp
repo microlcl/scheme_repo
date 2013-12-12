@@ -97,10 +97,10 @@
 				if(($("input:checkbox[name='picture']").is(':checked') == false) && ($("input:checkbox[name='audio']").is(':checked') == false)){
 					$("#warning-block").show();
 				}else if ($("input:checkbox[name='picture']").is(':checked') == true){
-						$("#updatePic").attr("action", "${ctx}/media/deletePicture");
+						$("#updatePic").attr("action", "${ctx}/media/delete/picture");
 						$("#updatePic").submit();
 				}else {
-					    $("#updatePic").attr("action", "${ctx}/media/deleteAudio");
+					    $("#updatePic").attr("action", "${ctx}/media/delete/audio");
 					    $("#updatePic").submit();
 				}
 				
