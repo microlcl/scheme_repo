@@ -145,7 +145,7 @@ public class ProductController {
 				list.add(product_category);
 			}
 		}
-		this.productService.doAdd(product,list);
+		this.productService.saveUpdate(product,list);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
 		
 		return "redirect:/product/list/";

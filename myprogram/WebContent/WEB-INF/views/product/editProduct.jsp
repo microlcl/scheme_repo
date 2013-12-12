@@ -122,6 +122,7 @@ function clearNoNum(obj)
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
 										<input type="text" name="title" value="${product.title }" maxlength="20" placeholder="0~20个字符" />
+										<input type="hidden" name="id" value="${product.id }">
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
