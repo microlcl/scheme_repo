@@ -189,7 +189,7 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value="delete/{type}",method = RequestMethod.GET)
-	public String deletePic(@PathVariable("type") String type, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+	public String deleteMedia(@PathVariable("type") String type, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		String[] mediaIds = request.getParameterValues(type);
 		logger.info("==========Delte media type: " + type);
 		this.mediaService.deleteMedias(mediaIds);
