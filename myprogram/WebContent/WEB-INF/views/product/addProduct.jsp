@@ -42,7 +42,7 @@ function clearNoNum(obj)
 		var td = $("<td></td>");
 		//td.append($('<input type="checkbox" name="count" value="New"><b>CheckBox'+row_count+');
 		//td.append($('<div class="span2"></div><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture'+row_count+'" value="11">'));
-		td.append($('<div class="span2"><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>'));
+		td.append($('<div class="span2"><img id="1" onclick="resourcePopupWindow(this)" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>'));
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
 		
 		var td2 = $("<td></td>");
@@ -134,30 +134,7 @@ function clearNoNum(obj)
 								</div>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<div class="span2">
-									<img id="1" src="${ctx}/plupload/files/small/bp12.jpg" alt="">
-									<input type="hidden" name="picture" value="12">
-							<!-- 		<input type="hidden" id="count" name="row_count" value="0"> -->
-									</div>
-								</td>
-								<td>
-								<div style="margin-top:25px;" >
-									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px" >类别:</label>
-										<input id="cc" class="easyui-combotree"
-											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false"
-											style="width: 200px;" name="searchCategoryId"
-											value="${param.search_categoryId}" />
-											<input type="checkbox" name="count"/>
-									</div>
-								</div>
-								</td>
-							</tr>
 							
-							
-								
 						</tbody>
 					</table>
 				</div>
@@ -171,20 +148,7 @@ function clearNoNum(obj)
 		</fieldset>
 	</form>
 </div>
-<button type="button" data-toggle="modal" data-target="#resourceModalWindow" data-backdrop="false" onclick="search()">资源</button>
 <!-- resource 选择模态对话框 -->
-<div id="resourceModalWindow" class="modal hide fade">
-   <div class="modal-header">
-	   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	   <h4>资源选择</h4>
-	</div>
-	<div class="modal-body">
-	   <%@ include file="resourcePopupWindow.jsp"%>
-	</div>
-	<div class="modal-footer">
-	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
-	   <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">确定</a>
-   </div>
-</div>
+ <%@ include file="resourcePopupWindow.jsp"%>
 </body>
 </html>

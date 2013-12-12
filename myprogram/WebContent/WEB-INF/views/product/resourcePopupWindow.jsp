@@ -43,6 +43,13 @@
 }
 
 </style>
+<div id="resourceModalWindow" class="modal hide fade">
+   <div class="modal-header">
+	   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	   <h4>资源选择</h4>
+	</div>
+	<div class="modal-body">
+<!-- 模态对话框begin -->
 	
 	<form class="form-search form-inline" action="#">
 	<label class="inline">类别
@@ -63,9 +70,19 @@
 	<div id="loadMore" class="pagination pagination-centered">
 	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
     </div>
+ <!-- 模态对话框end --> 
+	</div>
+	<div class="modal-footer">
+	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
+	   <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
+   </div>
+</div>
+  
+    
 	<script>
 		var currentPage = 0;		
-
+		var targetImg;
+		
 		$(function() {          
 		    $("img.lazy").lazyload({
 		        event : "scroll",
@@ -81,6 +98,25 @@
 			$('#thumbnailContainer').empty();
 			loadMore();
 			return false;
+		}
+		
+		function resourcePopupWindow(img) {
+			console.log("click the img");
+		    $('#resourceModalWindow').modal({
+		    	backdrop:false,
+		    });
+		    
+			search();
+			targetImg = img;
+		}
+		
+		function getSelectedValue() {
+			var pic = $('input:radio[name="mypicture"]:checked').val();
+			
+			if(pic) {
+				console.log('selected: ' + pic);
+				$(targetImg).attr('src', '${ctx}/plupload/files/small/' + pic);
+			} 
 		}
 
 		function loadMore() {
@@ -107,7 +143,7 @@
 					}
 					$.each(resp.content, function(i, media){
 						console.log(i + "===" + media.path);
-						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input type="radio" value="'+media.path+'" name="mypicture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
 					        event : "scroll",
