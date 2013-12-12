@@ -236,6 +236,9 @@ li a {cursor: pointer; }
     box-sizing: border-box;
 }
 
+.thumbnail:hover {
+	border: 1px solid #7EC0EE;
+}
 .thumbnails span {
     bottom: 0;
     color: #FFFFFF;

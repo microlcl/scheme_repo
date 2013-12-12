@@ -215,6 +215,9 @@
     overflow: hidden;
 }
 
+.thumbnail:hover {
+	border: 1px solid #BC0000;
+}
 .thumbnails a:link {
     color: #666666;
     text-decoration: none;
