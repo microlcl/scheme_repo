@@ -97,7 +97,7 @@ public class ProductController {
 
 	@RequestMapping(value = "doAdd", method = RequestMethod.POST)
 	public String doAdd(@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
-		logger.info("in role update action");
+		logger.info("in product update action");
 //		String row_count = request.getParameter("row_count");
 		List<Product_category> list = new ArrayList<Product_category>();
 		String[] pictures = request.getParameterValues("picture");
@@ -130,6 +130,24 @@ public class ProductController {
 
 	@RequestMapping(value="saveUpdate",method = RequestMethod.POST)
 	public String saveUpdate (@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
+		logger.info("in product update action");
+//		String row_count = request.getParameter("row_count");
+		List<Product_category> list = new ArrayList<Product_category>();
+		String[] pictures = request.getParameterValues("picture");
+		String[] searchCategoryIds = request.getParameterValues("searchCategoryId");
+		for (int i = 0; i < searchCategoryIds.length; i++) {
+			if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){
+				Long picture = Long.parseLong(pictures[i]);
+				String searchCategoryId = searchCategoryIds[i];
+				Product_category product_category= new Product_category();
+				product_category.setPicture_id(picture);
+				product_category.setCategory_id(searchCategoryId);
+				list.add(product_category);
+			}
+		}
+		this.productService.doAdd(product,list);
+		redirectAttributes.addFlashAttribute("message", "增加成功！");
+		
 		return "redirect:/product/list/";
 	}
 	

@@ -19,9 +19,60 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
 <script>
-function topwin(){
-	window.showModalDialog("${ctx}/product/list","","dialogWidth:300px;dialogHeight:300px;scroll:no;status:no");
+function clearNoNum(obj)
+{
+    //先把非数字的都替换掉，除了数字和.
+    obj.value = obj.value.replace(/[^\d.]/g,"");
+    //必须保证第一个为数字而不是.
+    obj.value = obj.value.replace(/^\./g,"");
+    //保证只有出现一个.而没有多个.
+    obj.value = obj.value.replace(/\.{2,}/g,".");
+    //保证.只出现一次，而不能出现两次以上
+    obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    if(obj.value.indexOf(".")>-1){
+   		obj.value = obj.value.substring(0,obj.value.indexOf(".")+3);
+    }
 }
+
+	var row_count = 1;
+	function addNew() {
+		var table1 = $('#table1');
+//		var firstTr = table1.find('tbody>tr:first');
+		var row = $("<tr></tr>");
+		var td = $("<td></td>");
+		//td.append($('<input type="checkbox" name="count" value="New"><b>CheckBox'+row_count+');
+		//td.append($('<div class="span2"></div><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture'+row_count+'" value="11">'));
+		td.append($('<div class="span2"><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>'));
+		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
+		
+		var td2 = $("<td></td>");
+		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="test'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
+		row.append(td);
+		row.append(td2);
+		table1.append(row);
+		$('#test'+row_count).combotree({
+			url:'${ctx}/category/api/getAll/M1-5',
+			required: false,
+			valueField: 'id',
+			textField: 'text',
+			method:'get',
+			//只能选择叶子节点：
+			onBeforeSelect : function(node){ 
+				var tree = $(this).tree;
+				var isLeaf = tree('isLeaf', node.target);
+				console.log("isLeaf=" + isLeaf);
+				return isLeaf;
+			}
+		});
+		//$('#count')[0].value=row_count;
+		row_count++;
+	}
+	function del() {
+		 $("input:checked").each(function(){
+			  $(this).parent().parent().parent().parent().remove();
+			 });
+	}
 
 </script>
 
@@ -82,11 +133,28 @@ function topwin(){
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
 										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }"/>
 									</div>
+									<input type="button" value="添加类别" onclick="addNew();">
+								  	<input type="button" value="删除类别" onclick="del();"> 
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="span2">
+									<img id="1" src="${ctx}/plupload/files/small/bp12.jpg" alt="">
+									<input type="hidden" name="picture" value="12">
+							<!-- 		<input type="hidden" id="count" name="row_count" value="0"> -->
+									</div>
+								</td>
+								<td>
+								<div style="margin-top:25px;" >
 									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
-										<select class="easyui-combotree" 
-											data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
-											 name="a" onclick="topwin()"></select>
+										<label class="control-label" style="width:40px;padding-right:10px" >类别:</label>
+										<input id="cc" class="easyui-combotree"
+											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false"
+											style="width: 200px;" name="searchCategoryId"
+											value="${param.search_categoryId}" />
+											<input type="checkbox" name="count"/>
 									</div>
 								</div>
 								</td>
