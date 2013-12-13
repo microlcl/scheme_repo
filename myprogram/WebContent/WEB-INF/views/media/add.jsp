@@ -94,16 +94,15 @@
 								<c:if test="${media.mediaType=='picture'}">
 									<td>
 										<div class="control-group">
-											<img src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"
-											name="medias[${status.index}].path" value="${media.path}" />
+											<img src="${ctx}/plupload/files/small/${media.path}" alt=""/>
+											<input type="hidden" name="medias[${status.index}].path" value="${media.path}" />
 										</div>
 									</td>
 								</c:if>
 								<c:if test="${media.mediaType=='audio'}">
 									<td>
 										<div class="control-group">
-											<img src="${ctx}/plupload/files/small/audio.jpg" alt=""><input type="hidden"
-											name="medias[${status.index}].path" value="${media.path}" />
+											<img src="${ctx}/plupload/files/small/audio.jpg" alt=""/>
 										</div>
 									</td>
 								</c:if>
