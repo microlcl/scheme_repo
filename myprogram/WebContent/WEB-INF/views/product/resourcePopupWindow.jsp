@@ -96,6 +96,8 @@
 		var currentPage = 0;		
 		//var targetMedia;
 		var mediaMap = {};
+		//调用者输入参数
+		var parameters = {};
 		
 		var callback;
 		//var currentMediaType="audio";
@@ -133,6 +135,8 @@
 		//{targetMedia: this,mediaType:picture, callback: setMedia}
 		//function resourcePopupWindow(media, mediaType) {
 		function resourcePopupWindow(obj) {
+			mediaMap = {};
+			parameters = obj;
 			if (obj.mediaType) {
 				currentMediaType = obj.mediaType;
 			}
@@ -148,10 +152,14 @@
 		}
 		
 		function getSelectedValue() {
+			stopAudio();
 			var selectedMedia = $('input:radio[name="myMedia"]:checked').val();
 			console.log(mediaMap[selectedMedia]);
 			//$(targetMedia).data(mediaMap[selectedMedia]);
-			callback(mediaMap[selectedMedia]);			
+			var result = {};
+			result.parameter = parameters;
+			result.media = mediaMap[selectedMedia];
+			callback(result);			
 		}
 
 		function loadMore() {
