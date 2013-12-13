@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.eastteam.myprogram.dao.ProductMybatisDao;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
@@ -93,5 +95,9 @@ public class ProductService extends PageableService {
 			productMybatisDao.saveProduct_category(product_category);
 		}
 		
+	}
+	
+	public Media getMedia(Long media_id){
+			return (productMybatisDao.getMedia(media_id));
 	}
 }

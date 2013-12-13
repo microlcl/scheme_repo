@@ -87,8 +87,8 @@
 	
 	<!-- 插入产品-->
 	<insert id="save" parameterType="Product" useGeneratedKeys="true" keyProperty="id" >
-		insert into products (title,status,description,price)
-		values(#{title},#{status},#{description},#{price});
+		insert into products (title,status,description,price,default_picture_id)
+		values(#{title},#{status},#{description},#{price},#{default_picture_id});
 	</insert>
 	
 	<!-- 插入product_category-->

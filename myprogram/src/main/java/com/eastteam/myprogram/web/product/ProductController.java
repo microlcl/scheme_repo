@@ -96,11 +96,16 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "doAdd", method = RequestMethod.POST)
-	public String doAdd(@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
+	public String doAdd(@ModelAttribute Product product, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in product update action");
 //		String row_count = request.getParameter("row_count");
 		List<Product_category> list = new ArrayList<Product_category>();
 		String[] pictures = request.getParameterValues("picture");
+		String[] medias = request.getParameterValues("default_picture_id");
+		Long media_id = Long.parseLong(medias[0]);
+		Media media = this.productService.getMedia(media_id);
+		product.setMedia(media);
+		logger.info("=====Product media path: " + media.getPath());
 		String[] searchCategoryIds = request.getParameterValues("searchCategoryId");
 		for (int i = 0; i < searchCategoryIds.length; i++) {
 			if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){

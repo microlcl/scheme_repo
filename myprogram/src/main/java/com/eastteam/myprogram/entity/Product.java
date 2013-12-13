@@ -48,6 +48,12 @@ public class Product extends IdEntity{
 	public void setMedia(Media media) {
 		this.media = media;
 	}
+	public String getDefault_picture_id() {
+		return default_picture_id;
+	}
+	public void setDefault_picture_id(String default_picture_id) {
+		this.default_picture_id = default_picture_id;
+	}
 
 	
 }
