@@ -7,6 +7,7 @@ public class Product extends IdEntity{
 	private String title;
 	private String status;
 	private String description;
+	private String default_picture_id;
 	private BigDecimal price;
 	private List<Category> categorys;
 	private Media media;
