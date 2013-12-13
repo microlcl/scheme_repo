@@ -19,6 +19,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
 <script>
+
+function setMedia(media) {
+	console.log("in setMedia");
+	console.log(media);
+}
 function clearNoNum(obj)
 {
     //先把非数字的都替换掉，除了数字和.
@@ -42,7 +47,10 @@ function clearNoNum(obj)
 		var td = $("<td></td>");
 		//td.append($('<input type="checkbox" name="count" value="New"><b>CheckBox'+row_count+');
 		//td.append($('<div class="span2"></div><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture'+row_count+'" value="11">'));
-		td.append($('<div class="span2"><img id="1" onclick="resourcePopupWindow(this)" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>'));
+		//var onclick = 'resourcePopupWindow({targetMedia: this,mediaType:"picture",callback: setMedia})';
+		var onclick = "resourcePopupWindow({mediaType:'audio',callback: setMedia})";
+		//var onclick="alert(1)";
+		td.append('<div class="span2"><img id="1" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>');
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
 		
 		var td2 = $("<td></td>");
@@ -72,6 +80,12 @@ function clearNoNum(obj)
 		 $("input:checked").each(function(){
 			  $(this).parent().parent().parent().parent().remove();
 			 });
+	}
+	
+	function test() {
+		var mydata = $('#1').data();
+		console.log(mydata);
+	
 	}
 </script>
 
@@ -148,6 +162,8 @@ function clearNoNum(obj)
 		</fieldset>
 	</form>
 </div>
+
+<input type="button" value="mytest" onclick="test();">
 <!-- resource 选择模态对话框 -->
  <%@ include file="resourcePopupWindow.jsp"%>
 </body>
