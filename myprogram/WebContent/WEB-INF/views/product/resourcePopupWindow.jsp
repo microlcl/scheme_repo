@@ -10,7 +10,9 @@
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/jquery/audioplayer.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/jquery/audioplayer.css">
 
 <style>
 .affix {
@@ -49,7 +51,7 @@
 </style>
 <div id="resourceModalWindow" class="modal hide fade">
    <div class="modal-header">
-	   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	   <button type="button" onclick="stopAudio()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	   <h4>资源选择</h4>
 	</div>
 	<div class="modal-body">
@@ -66,10 +68,14 @@
 	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
     </form>
 	
-	<div class="well">
+	<div id="pictureDiv" class="well" style="display:none">
 			<ul id="thumbnailContainer" class="thumbnails" style="margin-left: 20px">
 			</ul>
 	</div>
+		<!-- audio begin-->
+	<table id="audioTable" style="display:none" class="table table-striped table-bordered table-condensed">
+	</table>
+	<!-- audio end -->
 
 	<div id="loadMore" class="pagination pagination-centered">
 	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
@@ -77,7 +83,10 @@
  <!-- 模态对话框end --> 
 	</div>
 	<div class="modal-footer">
-	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
+		<div id="audioPlayerDiv" class="span1" style="display:none">
+			<audio id="audioplayer" preload="auto" controls autoplay></audio>
+		</div>
+	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true" onclick="stopAudio()">关闭</a>
 	   <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
    </div>
 </div>
@@ -85,7 +94,14 @@
     
 	<script>
 		var currentPage = 0;		
-		var targetImg;
+		//var targetMedia;
+		var mediaMap = {};
+		//调用者输入参数
+		var parameters = {};
+		
+		var callback;
+		//var currentMediaType="audio";
+		var currentMediaType="picture";
 		
 		$(function() {          
 		    $("img.lazy").lazyload({
@@ -100,34 +116,57 @@
 			console.log('in search');
 			currentPage = 0;
 			$('#thumbnailContainer').empty();
+			$('#audioTable').empty();
+			if (currentMediaType == 'picture') {
+				$('#pictureDiv').show();
+				$('#audioTable').hide();
+				//$('#audioPlayerDiv').hide();
+			} else if (currentMediaType == 'audio') {
+				$('#pictureDiv').hide();
+				$('#audioTable').show();
+				//$('#audioPlayerDiv').show();
+			} else {
+				console.log("Don't support this media type: " + currentMediaType);
+			}
 			loadMore();
 			return false;
 		}
 		
-		function resourcePopupWindow(img) {
-			console.log("click the img");
+		//{targetMedia: this,mediaType:picture, callback: setMedia}
+		//function resourcePopupWindow(media, mediaType) {
+		function resourcePopupWindow(obj) {
+			mediaMap = {};
+			parameters = obj;
+			if (obj.mediaType) {
+				currentMediaType = obj.mediaType;
+			}
+			console.log("currentMediatype = " + currentMediaType);
 		    $('#resourceModalWindow').modal({
 		    	backdrop:false,
 		    });
 		    
 			search();
-			targetImg = img;
+			//console.log("targetMedia=" + obj.targetMedia);
+			//targetMedia = $('#' + obj.targetMedia);
+			callback = obj.callback;
 		}
 		
 		function getSelectedValue() {
-			var pic = $('input:radio[name="mypicture"]:checked').val();
-			
-			if(pic) {
-				console.log('selected: ' + pic);
-				$(targetImg).attr('src', '${ctx}/plupload/files/small/' + pic);
-			} 
+			stopAudio();
+			var selectedMedia = $('input:radio[name="myMedia"]:checked').val();
+			console.log(mediaMap[selectedMedia]);
+			//$(targetMedia).data(mediaMap[selectedMedia]);
+			var result = {};
+			result.parameter = parameters;
+			result.media = mediaMap[selectedMedia];
+			callback(result);			
 		}
 
 		function loadMore() {
 			var nextPage = currentPage + 1;
 			console.log("next pageNum:" + nextPage);
 			$.ajax({
-				url : '${ctx}/media/api/search?search_mediaType=picture',
+				url : '${ctx}/media/api/search?search_mediaType=' + currentMediaType,
 				type: 'get',
 				data:{
 					page:nextPage,
@@ -146,21 +185,60 @@
 						$('#loadMore').show();
 					}
 					$.each(resp.content, function(i, media){
-						console.log(i + "===" + media.path);
-						var fname = "selectPic('radio_" + media.id +  "')";
-						var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img onclick='+ fname +' class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input type="radio" id="radio_'+ media.id +'" value="'+media.path+'" name="mypicture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
-						$('#thumbnailContainer').append(img);
-					    $("#"+media.id).lazyload({
-					        event : "scroll",
-							effect : "fadeIn",
-							threshold : 0,
-							effectspeed: 2000
-					    });
+						mediaMap[media.id] = media;
+						if (currentMediaType == 'picture') {
+							handlePic(i, media);
+						} else if (currentMediaType == 'audio') {
+							handleAudio(i, media);
+						} else {
+							console.log("can't support the mediaType=" + currentMediaType);
+						}
+						
 						
 					});
 				}
 		});
 		
+	}
+	
+	function handleAudio(i, media) {
+		console.log("in handleAudio");
+		var mytable = $('#audioTable');
+		var tr = $('<tr></tr>');
+		var td = $('<td></td>');
+		var audioFile = "'"+ media.path +"'";
+		var myhtml = '<input class="audioCheck" value="'+ media.id+'" type="radio" name="myMedia" style="margin-left: 10px;"/>&nbsp;&nbsp;'+ media.title +'&nbsp;-&nbsp;myauthor<a onclick="testaudio('+ audioFile +');" style="float:right; padding-right:5px;cursor: pointer;"><i class="icon-play"></i></a>';
+		td.append($(myhtml));
+		tr.append(td);
+		mytable.append(tr);
+	}
+	
+	function handlePic(i, media) {
+		console.log(i + "===" + media.path);
+		var fname = "selectPic('radio_" + media.id +  "')";
+		var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img onclick='+ fname +' class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input type="radio" id="radio_'+ media.id +'" value="'+media.id+'" name="myMedia" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+		$('#thumbnailContainer').append(img);
+	    $("#"+media.id).lazyload({
+	        event : "scroll",
+			effect : "fadeIn",
+			threshold : 0,
+			effectspeed: 2000
+	    });
+	}
+	
+	function testaudio(path){
+		$('#audioPlayerDiv').show();
+		var audiopath= "${ctx}/plupload/audio/" + path;
+		$("#audioplayer").attr("src", audiopath);
+	}
+	
+	function stopAudio() {
+		if($("#audioplayer")) {
+			console.log("stop the audio");
+			//$("#audioplayer").stop();
+			$("#audioPlayerDiv").hide();
+			$("#audioplayer").attr("src", "");
+		}
 	}
 	
 		function selectPic(radioId) {
