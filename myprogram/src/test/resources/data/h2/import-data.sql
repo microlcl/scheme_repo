@@ -1,50 +1,4 @@
-delete from users;
-delete from departments;
-delete from roles;
-delete from user_role;
-delete from modules;
-delete from functions;
-delete from role_function;
-delete from category;
-delete from medias;
-
-
-
-insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00','D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯','userid1','userid1@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid2','乔布斯','userid2','userid2@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯','userid3','userid3@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯','userid4','userid4@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯','userid5','userid5@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','userid6','userid6@gmail.com', now(),'D1-2-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯','userid7','userid7@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','userid8','userid8@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','userid9','userid9@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯','userid99','userid10@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, sex, register_date, department_id) values('ydq','ydq','ydq','ydq@gmail.com','男','2012-06-04 02:00:00','D1-1');
-
-
-insert into departments(department_id, name, pid, description) values('D1','EastTeam','','EastTeam公司');
-insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
-insert into departments(department_id, name, pid, description) values('D1-2','销售部','D1','EastTeam公司');
-insert into departments(department_id, name, pid, description) values('D1-2-1','渠道销售部','D1-2','EastTeam公司');
-
-insert into roles(role_id, name, description) values('R0', '管理员','超级用户');
-insert into roles(role_id, name, description) values('R1', '管理员1','超级用户1');
-insert into roles(role_id, name, description) values('R2', '总经理','角色：总经理');
-insert into roles(role_id, name, description) values('R3', '研发部经理','角色：研发经理');
-insert into roles(role_id, name, description) values('R4', '研发部员工','角色：员工');
-insert into roles(role_id, name, description) values('R5', '销售部经理','角色：销售经理');
-insert into roles(role_id, name, description) values('R6', '销售部员工','角色：员工');
-
-insert into user_role(user_id, role_id) values('userid1','R1');
-insert into user_role(user_id, role_id) values('userid1','R2');
-insert into user_role(user_id, role_id) values('userid1','R3');
-insert into user_role(user_id, role_id) values('userid2','R3');
-insert into user_role(user_id, role_id) values('ydq','R3');
-insert into user_role(user_id, role_id) values('admin','R0');
-
+--modules表数据
 insert into modules(module_id, pid, name, description, path) values('M1','','方案管理系统','方案管理系统','');
 insert into modules(module_id, pid, name, description, path) values('M1-1','M1','类别管理','类别管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-2','M1','人员管理','人员管理','');
@@ -52,7 +6,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-3','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-4','M1','多媒体资源管理','多媒体资源管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-5','M1','产品管理','产品管理','');
 
-
+--functions表数据
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
 
 insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：菜单','菜单导航','/category/');
@@ -85,6 +39,57 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F5-3','M1-5','产品：修改','修改','/product/update');
 insert into functions(function_id, module_id, name, description, path) values('F5-4','M1-5','产品：删除','删除','/product/delete');
 
+--modules, functions两个表是系统初始化必须用到的数据，谨慎添加及删除
+
+delete from users;
+delete from departments;
+delete from roles;
+delete from user_role;
+delete from modules;
+delete from functions;
+delete from role_function;
+delete from category;
+delete from medias;
+
+--users表数据
+insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00','D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯','userid1','userid1@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid2','乔布斯','userid2','userid2@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯','userid3','userid3@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯','userid4','userid4@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯','userid5','userid5@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','userid6','userid6@gmail.com', now(),'D1-2-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯','userid7','userid7@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','userid8','userid8@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','userid9','userid9@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯','userid99','userid10@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, sex, register_date, department_id) values('ydq','ydq','ydq','ydq@gmail.com','男','2012-06-04 02:00:00','D1-1');
+
+--departments表数据
+insert into departments(department_id, name, pid, description) values('D1','EastTeam','','EastTeam公司');
+insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
+insert into departments(department_id, name, pid, description) values('D1-2','销售部','D1','EastTeam公司');
+insert into departments(department_id, name, pid, description) values('D1-2-1','渠道销售部','D1-2','EastTeam公司');
+
+--roles表数据
+insert into roles(role_id, name, description) values('R0', '管理员','超级用户');
+insert into roles(role_id, name, description) values('R1', '管理员1','超级用户1');
+insert into roles(role_id, name, description) values('R2', '总经理','角色：总经理');
+insert into roles(role_id, name, description) values('R3', '研发部经理','角色：研发经理');
+insert into roles(role_id, name, description) values('R4', '研发部员工','角色：员工');
+insert into roles(role_id, name, description) values('R5', '销售部经理','角色：销售经理');
+insert into roles(role_id, name, description) values('R6', '销售部员工','角色：员工');
+
+--user_role表数据
+insert into user_role(user_id, role_id) values('userid1','R1');
+insert into user_role(user_id, role_id) values('userid1','R2');
+insert into user_role(user_id, role_id) values('userid1','R3');
+insert into user_role(user_id, role_id) values('userid2','R3');
+insert into user_role(user_id, role_id) values('ydq','R3');
+insert into user_role(user_id, role_id) values('admin','R0');
+
+--role_function表数据
 insert into role_function(role_id, function_id, description) values('R0','F0','');
 insert into role_function(role_id, function_id, description) values('R0','F1-1','');
 insert into role_function(role_id, function_id, description) values('R0','F1-2','');
@@ -138,6 +143,7 @@ insert into role_function(role_id, function_id, description) values('R4','F4-4',
 insert into role_function(role_id, function_id, description) values('R4','F4-5','');
 insert into role_function(role_id, function_id, description) values('R4','F4-6','');
 
+--category表数据
 insert into category(id, pid, name, created_date, trashed, comment) values('1','','类别','2012-06-04 02:00:00','F','分类根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
@@ -155,13 +161,13 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-6'
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-1','1-6','40','2012-06-04 02:00:00','F','40');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-2','1-6','42','2012-06-04 02:00:00','F','42');
 
-
+--module_category表数据
 insert into module_category(module_id,category_id) values('M1-4','1-1');
 insert into module_category(module_id,category_id) values('M1-4','1-2');
 insert into module_category(module_id,category_id) values('M1-5','1-5');
 insert into module_category(module_id,category_id) values('M1-5','1-6');
 
-
+--medias表数据
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now(),'');
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(2,'title2','description 2','picture','bp2.jpg','可用','admin',now(),'');
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(3,'title3','description 3','picture','bp3.jpg','可用','admin',now(),'');
@@ -178,6 +184,7 @@ insert into medias (media_id,title,description,media_type,path,status,user_id,up
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(14,'心愿','四个女生主唱','audio','xinyuan.mp3','可用','admin',now(),'四个女生');
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(15,'素颜','许嵩主唱','audio','suyan.mp3','可用','admin',now(),'许嵩');
 
+--media_category表数据
 insert into media_category (media_id,category_id) values(1,'1-1-1');
 insert into media_category (media_id,category_id) values(1,'1-1-2');
 insert into media_category (media_id,category_id) values(2,'1-1-1');
@@ -193,6 +200,7 @@ insert into media_category (media_id,category_id) values(11,'1-2-1');
 insert into media_category (media_id,category_id) values(12,'1-1-2');
 insert into media_category (media_id,category_id) values(13,'1-2-2');
 
+--products表数据
 insert into products (product_id,title,status,description,default_picture_id,price) values(1,'产品1','1','description1',1,1.11);
 insert into products (product_id,title,status,description,default_picture_id,price) values(2,'产品2','2','description2',2,2.22);
 insert into products (product_id,title,status,description,default_picture_id,price) values(3,'产品3','3','description3',3,3.33);
@@ -203,7 +211,7 @@ insert into products (product_id,title,status,description,default_picture_id,pri
 insert into products (product_id,title,status,description,default_picture_id,price) values(8,'产品8','8','description8',8,8.55);
 insert into products (product_id,title,status,description,default_picture_id,price) values(9,'产品9','9','description9',5,9.55);
 
-
+--product_category表数据
 insert into product_category(product_id,category_id,picture_id) values(1,'1-5-1',1);
 insert into product_category(product_id,category_id,picture_id) values(2,'1-5-1',2);
 insert into product_category(product_id,category_id,picture_id) values(3,'1-5-1',3);
