@@ -41,8 +41,12 @@
 			check();
 
 			$("#update").click(function(){
-				$("#updateProduct").attr("action", "${ctx}/product/update");
-				$("#updateProduct").submit();
+				if(($("input:checkbox[name='productId']").is(':checked') == false)){
+					$("#warning-block").show();
+				}else{
+					$("#updateProduct").attr("action", "${ctx}/product/update");
+					$("#updateProduct").submit();
+				}
 			});
 			$("#view").click(function(){
 				if(($("input:checkbox[name='productId']").is(':checked') == false)){

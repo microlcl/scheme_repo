@@ -124,12 +124,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public String update(@ModelAttribute Product productTemp,Model model, HttpServletRequest request) {
-		String[] ids = request.getParameterValues("productId");
-		if (ids[0] != null && !ids[0].equals("")) {
-			Product product = this.productService.getProductList(Long.parseLong(ids[0]));
-			model.addAttribute("product", product);
-		}
+	public String update(@RequestParam(value="productId") String productId,Model model, HttpServletRequest request) {
+//		String[] ids = request.getParameterValues("productId");
+		//String id = request.getParameter("productId");
+		Product product = this.productService.getProductList(Long.parseLong(productId));
+		model.addAttribute("product", product);
+		logger.info("" +product.getCategorys());
 		return "product/editProduct";
 	}
 

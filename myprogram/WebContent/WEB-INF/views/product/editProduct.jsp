@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<title>编辑产品</title>
+<title>修改产品</title>
 
 <link rel="stylesheet" href="${ctx}/static/styles/mystyle.css"
 	type="text/css" />
@@ -19,6 +19,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
 <script>
+
+function setMedia(result) {
+	$('#'+result.parameter.renderPic.id).attr('src', '${ctx}/plupload/files/small/' + result.media.path);
+	$('#prod_pic').attr('value', result.media.id);
+}
 function clearNoNum(obj)
 {
     //先把非数字的都替换掉，除了数字和.
@@ -42,16 +47,19 @@ function clearNoNum(obj)
 		var td = $("<td></td>");
 		//td.append($('<input type="checkbox" name="count" value="New"><b>CheckBox'+row_count+');
 		//td.append($('<div class="span2"></div><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture'+row_count+'" value="11">'));
-		td.append($('<div class="span2"><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>'));
+		//var onclick = 'resourcePopupWindow({targetMedia: this,mediaType:"picture",callback: setMedia})';
+		var onclick = "resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:addPic_"+row_count+"})";
+		//var onclick="alert(1)";
+		td.append('<div class="span2"><img id="addPic_'+row_count+'" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/default_image.jpg" alt="" style="height:120px;width:150px"><input type="hidden" name="picture" value="11"></div>');
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
 		
 		var td2 = $("<td></td>");
 		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
-		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="test'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="addc_'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
 		row.append(td);
 		row.append(td2);
 		table1.append(row);
-		$('#test'+row_count).combotree({
+		$('#addc_'+row_count).combotree({
 			url:'${ctx}/category/api/getAll/M1-5',
 			required: false,
 			valueField: 'id',
@@ -73,7 +81,12 @@ function clearNoNum(obj)
 			  $(this).parent().parent().parent().parent().remove();
 			 });
 	}
-
+	
+	function test() {
+		var mydata = $('#1').data();
+		console.log(mydata);
+	
+	}
 </script>
 
 <style type="text/css">
@@ -98,23 +111,22 @@ function clearNoNum(obj)
 
 <body>
 <div>
-
-	<form id="inputForm" action="${ctx}/product/saveUpdate" method="post"
+	<form id="inputForm" action="${ctx}/product/doAdd" method="post"
 		class="form-horizontal">
 		<fieldset>
 			<legend>
-				<small>产品</small>
+				<small>修改产品</small>
 			</legend>
 
 			<div class="all_photo_edit">
-				
 			    <div>
-					<table class="table table-striped">
+					<table class="table table-striped" id="table1">
 						<tbody>
 							<tr>
 								<td>
-									<div class="control-group">
-									<img id="1" src="${ctx}/plupload/files/small/bp1.jpg" alt="">
+									<div class="span3">
+										<img id="prod_default_pic" src="${ctx}/plupload/files/small/default_image.jpg" alt="" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:prod_default_pic})"/>
+										<input id="prod_pic" type="hidden" name=default_picture_id />	
 									</div>
 								</td>
 								<td>
@@ -139,10 +151,11 @@ function clearNoNum(obj)
 								</div>
 								</td>
 							</tr>
+						<c:forEach items="${product.categorys }" var="category" varStatus="status">
 							<tr>
 								<td>
 									<div class="span2">
-									<img id="1" src="${ctx}/plupload/files/small/bp12.jpg" alt="">
+									<img id="pic_${status.index }" src="${ctx}/plupload/files/small/${category.media.path}" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:pic_${status.index }})" alt="" style="height:120px;width:150px">
 									<input type="hidden" name="picture" value="12">
 							<!-- 		<input type="hidden" id="count" name="row_count" value="0"> -->
 									</div>
@@ -152,14 +165,15 @@ function clearNoNum(obj)
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px" >类别:</label>
 										<input id="cc" class="easyui-combotree"
-											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false"
+											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false,onBeforeSelect : function(node){ var tree = $(this).tree;var isLeaf = tree('isLeaf', node.target);return isLeaf;}"
 											style="width: 200px;" name="searchCategoryId"
-											value="${param.search_categoryId}" />
+											value="${category.name}" />
 											<input type="checkbox" name="count"/>
 									</div>
 								</div>
 								</td>
 							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -172,22 +186,10 @@ function clearNoNum(obj)
 			</div>
 		</fieldset>
 	</form>
-	
 </div>
-<button type="button" data-toggle="modal" data-target="#productModalWindow" data-backdrop="false" onclick="search()">产品</button>
+
+<input type="button" value="mytest" onclick="test();">
 <!-- resource 选择模态对话框 -->
-<div id="productModalWindow" class="modal hide fade">
-   <div class="modal-header">
-	   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	   <h4>产品选择</h4>
-	</div>
-	<div class="modal-body">
-	   <%@ include file="productPopupWindow.jsp"%>
-	</div>
-	<div class="modal-footer">
-	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a>
-	   <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">确定</a>
-   </div>
-</div>
+ <%@ include file="resourcePopupWindow.jsp"%>
 </body>
 </html>
