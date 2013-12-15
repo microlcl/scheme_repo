@@ -21,8 +21,12 @@
 <script>
 
 function setMedia(result) {
-	$('#'+result.parameter.renderPic.id).attr('src', '${ctx}/plupload/files/small/' + result.media.path);
-	$('#prod_pic').attr('value', result.media.id);
+	var renderPicId = result.parameter.renderPic.id;
+	$('#'+renderPicId).attr('src', '${ctx}/plupload/files/small/' + result.media.path);
+	if(renderPicId == "prod_default_pic" )
+		$('#prod_pic').attr('value', result.media.id);
+	else
+		$('#prod_'+renderPicId).attr('value', result.media.id);		
 }
 function clearNoNum(obj)
 {
@@ -40,6 +44,7 @@ function clearNoNum(obj)
 }
 
 	var row_count = 1;
+
 	function addNew() {
 		var table1 = $('#table1');
 //		var firstTr = table1.find('tbody>tr:first');
@@ -50,7 +55,7 @@ function clearNoNum(obj)
 		//var onclick = 'resourcePopupWindow({targetMedia: this,mediaType:"picture",callback: setMedia})';
 		var onclick = "resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:addPic_"+row_count+"})";
 		//var onclick="alert(1)";
-		td.append('<div class="span2"><img id="addPic_'+row_count+'" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/default_image.jpg" alt="" style="height:120px;width:150px"><input type="hidden" name="picture" value="11"></div>');
+		td.append('<div class="span2"><img id="addPic_'+row_count+'" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/default_image.jpg" alt="" style="height:120px;width:150px"><input id="prod_addPic_'+row_count+'" type="hidden" name="picture" value=""></div>');
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
 		
 		var td2 = $("<td></td>");
@@ -111,7 +116,7 @@ function clearNoNum(obj)
 
 <body>
 <div>
-	<form id="inputForm" action="${ctx}/product/doAdd" method="post"
+	<form id="inputForm" action="${ctx}/product/updateProduct" method="post"
 		class="form-horizontal">
 		<fieldset>
 			<legend>
@@ -155,9 +160,8 @@ function clearNoNum(obj)
 							<tr>
 								<td>
 									<div class="span2">
-									<img id="pic_${status.index }" src="${ctx}/plupload/files/small/${category.media.path}" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:pic_${status.index }})" alt="" style="height:120px;width:150px">
-									<input type="hidden" name="picture" value="12">
-							<!-- 		<input type="hidden" id="count" name="row_count" value="0"> -->
+										<img id="pic_${status.index }" src="${ctx}/plupload/files/small/${category.media.path}" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:pic_${status.index }})" alt="" style="height:120px;width:150px">
+										<input id="prod_pic_${status.index }" type="hidden" name="picture" value="${category.media.id}">
 									</div>
 								</td>
 								<td>
@@ -168,7 +172,7 @@ function clearNoNum(obj)
 											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false,onBeforeSelect : function(node){ var tree = $(this).tree;var isLeaf = tree('isLeaf', node.target);return isLeaf;}"
 											style="width: 200px;" name="searchCategoryId"
 											value="${category.name}" />
-											<input type="checkbox" name="count"/>
+										<input type="checkbox" name="count"/>
 									</div>
 								</div>
 								</td>

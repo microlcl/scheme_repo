@@ -133,7 +133,7 @@ public class ProductController {
 		return "product/editProduct";
 	}
 
-	@RequestMapping(value="saveUpdate",method = RequestMethod.POST)
+	@RequestMapping(value="updateProduct",method = RequestMethod.POST)
 	public String saveUpdate (@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		logger.info("in product update action");
 //		String row_count = request.getParameter("row_count");
@@ -151,7 +151,7 @@ public class ProductController {
 			}
 		}
 		this.productService.saveUpdate(product,list);
-		redirectAttributes.addFlashAttribute("message", "增加成功！");
+		redirectAttributes.addFlashAttribute("message", "修改成功！");
 		
 		return "redirect:/product/list/";
 	}
