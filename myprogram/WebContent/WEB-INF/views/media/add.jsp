@@ -61,16 +61,16 @@
 			<div class="all_photo_edit">
 				<div>
 					<h4>
-						统一添加照片信息
+						统一添加资源信息
 					</h4>
 					<div class="control-group" style="float:left;margin-bottom:0px">
-						<label for="title" class="control-label">照片名称:</label>
+						<label for="title" class="control-label">名称:</label>
 						<div class="controls">
 							<input type="text" name="title"	value="${title}" maxlength="20" placeholder="0~20个字符"/>
 						</div>
 					</div>			
 					<div class="control-group" style="margin-bottom:10px">
-						<label for="cc" class="control-label" style="width:100px;padding-right:20px">照片类别：</label>
+						<label for="cc" class="control-label" style="width:100px;padding-right:20px">类别：</label>
 						<div class="controls">
 							<select id="cc" class="easyui-combotree"
 							data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get'"
@@ -78,7 +78,7 @@
 						</div>
 					</div> 
 					<div class="control-group">
-						<label for="description" class="control-label">照片描述:</label>
+						<label for="description" class="control-label">描述:</label>
 						<div class="controls">
 							<textarea id="description" name="description" class="all_photo_textarea" maxlength="200" placeholder="0~200个字符"></textarea>
 						</div>
