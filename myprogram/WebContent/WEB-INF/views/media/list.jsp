@@ -9,6 +9,7 @@
 <!-- combotreee -->
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
@@ -276,6 +277,7 @@ li a {cursor: pointer; }
 </head>
 
 <body>
+<div class="form" style="padding:20px;">
 	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
 		<div id="innerdiv" style="position:absolute;">
 			<img id="bigimg" style="border:5px solid #fff;" />
@@ -289,7 +291,7 @@ li a {cursor: pointer; }
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
 	
-	<div class="search-panel">
+	<div class="search-panel onefield">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
 				<div>
@@ -408,5 +410,9 @@ li a {cursor: pointer; }
 		    <tags:pagination page="${medias}" paginationSize="15"/>
 	    </div>
     </c:if>
+</div>
+<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+	
+</div>
 </body>
 </html>
