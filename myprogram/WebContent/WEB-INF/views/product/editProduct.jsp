@@ -13,12 +13,23 @@
 	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/static/iCheck/skins/square/green.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"
+	type="text/javascript"></script>
+<script src="${ctx}/static/iCheck/jquery.icheck.js"
 	type="text/javascript"></script>
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
 <script>
+$(document).ready(function(){
+	  $('input').iCheck({
+	    checkboxClass: 'icheckbox_square-green',
+	    increaseArea: '20%' // optional
+	  });
+	});
+
 
 function setMedia(result) {
 	var renderPicId = result.parameter.renderPic.id;
@@ -60,7 +71,7 @@ function clearNoNum(obj)
 		
 		var td2 = $("<td></td>");
 		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
-		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="addc_'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:50px;padding-right:10px" onclick="topwin()">类别:</label><input id="addc_'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
 		row.append(td);
 		row.append(td2);
 		table1.append(row);
@@ -87,11 +98,6 @@ function clearNoNum(obj)
 			 });
 	}
 	
-	function test() {
-		var mydata = $('#1').data();
-		console.log(mydata);
-	
-	}
 </script>
 
 <style type="text/css">
@@ -137,19 +143,19 @@ function clearNoNum(obj)
 								<td>
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
+										<label class="control-label" style="width:50px;padding-right:10px">名称:</label>
 										<input type="text" name="title" value="${product.title }" maxlength="20" placeholder="0~20个字符" />
 										<input type="hidden" name="id" value="${product.id }">
 									</div>
 									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
+										<label class="control-label" style="width:50px;padding-right:10px">描述:</label>
 										<textarea  class="single_photo_textarea "
 										name="description" 
 										 maxlength="100" placeholder="0~100个字符" />${product.description }</textarea>
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }"/>
+										<label class="control-label" style="width:50px;padding-right:10px">价格￥:</label>
+										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }" onkeyup="clearNoNum(this)" />
 									</div>
 									<input type="button" value="添加类别" onclick="addNew();">
 								  	<input type="button" value="删除类别" onclick="del();"> 
@@ -167,12 +173,14 @@ function clearNoNum(obj)
 								<td>
 								<div style="margin-top:25px;" >
 									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px" >类别:</label>
+										<label class="control-label" style="width:50px;padding-right:10px" >类别:</label>
 										<input id="cc" class="easyui-combotree"
 											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false,onBeforeSelect : function(node){ var tree = $(this).tree;var isLeaf = tree('isLeaf', node.target);return isLeaf;}"
 											style="width: 200px;" name="searchCategoryId"
 											value="${category.id}" />
-										<input type="checkbox" name="count"/>
+										<div style="float:right;padding-top:4px">
+											<input type="checkbox" name="count" />
+										</div>
 									</div>
 								</div>
 								</td>
@@ -192,7 +200,6 @@ function clearNoNum(obj)
 	</form>
 </div>
 
-<input type="button" value="mytest" onclick="test();">
 <!-- resource 选择模态对话框 -->
  <%@ include file="resourcePopupWindow.jsp"%>
 </body>
