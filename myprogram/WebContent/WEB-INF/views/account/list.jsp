@@ -7,9 +7,11 @@
 <head>
 	<title>用户管理</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+	
+	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			$("#account-tab").addClass("active");
@@ -19,6 +21,7 @@
 </head>
 
 <body>
+<div class="form" style="padding:20px;">
 	<h1>帐号管理</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
@@ -70,5 +73,9 @@
 		</tbody>		
 	</table>
 	<tags:pagination page="${users}" paginationSize="4"/>
+</div>
+<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+	
+</div>
 </body>
 </html>

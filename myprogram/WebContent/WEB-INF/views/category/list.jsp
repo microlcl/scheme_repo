@@ -12,6 +12,8 @@
 	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
+<link rel="stylesheet" type="text/css" 
+	href="${ctx}/static/styles/form.css">
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"
 	type="text/javascript"></script>
 <script src="${ctx}/static/js/category/category.js"
@@ -23,7 +25,8 @@
 	</script>
 </head>
 <body>
-	<h2>类别管理</h2>
+<div class="form" style="padding:20px;">
+	<h1>类别管理</h1>
 	<div class="tree-info">
 		<div class="tree-tip icon-tip"></div>
 		<div>请在节点上单击右键进行维护。</div>
@@ -72,5 +75,9 @@
 		<mytag:PermssionTag functionId="F1-7"><div onclick="collapse()">折叠</div></mytag:PermssionTag>
 		<mytag:PermssionTag functionId="F1-8"><div onclick="expand()">展开</div></mytag:PermssionTag>
 	</div>
+</div>
+<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+	
+</div>
 </body>
 </html>

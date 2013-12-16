@@ -31,8 +31,8 @@ public class RoleController {
 	private static final int PAGE_SIZE = 5;
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 	static {
-		sortTypes.put("name", "è§’è‰²å��");
-		sortTypes.put("description", "æ��è¿°");
+		sortTypes.put("name", "角色名");
+		sortTypes.put("description", "描述");
 	}
 	
 	@Autowired

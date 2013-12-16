@@ -5,6 +5,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 	<title>角色管理</title>
 	<script>
 		$(document).ready(function() {
@@ -17,6 +18,7 @@
 </head>
 
 <body>
+<div class="form" style="padding:20px;">
 	<h1>角色管理</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
@@ -57,5 +59,9 @@
 		</tbody>		
 	</table>
 	<tags:pagination page="${roles}" paginationSize="4"/>
+</div>
+<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+	
+</div>
 </body>
 </html>
