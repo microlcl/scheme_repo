@@ -76,7 +76,7 @@ function changeAtt(t) {
 		return document.getElementById(obj);
 	}
 	function $img(url) {
-		return "<img src='" + url + "' onclick='changeborder(this)' />";
+		return "<img src='" + url + "' onclick='changeborder(this)' style='height:200px;width:300px'/>";
 	}
 	function changeborder(obj) {
 		for ( var j = 0; j < $("imgList").getElementsByTagName("li").length; j++) {
