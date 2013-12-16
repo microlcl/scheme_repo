@@ -19,11 +19,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
 <script>
-function changePicture(obj) {
-	var a=obj.value;
-	var b = document.getElementById(a).value;
-	$("#img1").attr("src","${ctx}/plupload/files/small/"+b+""); 
-}
 
 function changeAtt(t) {
     t.lastChild.checked='checked';
@@ -35,8 +30,20 @@ function changeAtt(t) {
     t.className = "cattsel";
 	//changePicture(t);
 }
+function leftPicture(obj){
+	$("imgList").getElementsByTagName("li")
+	[0].getElementsByTagName("img")[0].style.display = "";
+}
 
-	//var c =$("#picture").attr("value");
+	function rightPicture(obj) {
+		alert(obj);
+		//	for(var i = 1;i <$("imgList").getElementsByTagName("li").length;i++){ 
+		//		$("imgList").innerHTML += "<li>" + $img($("imgList").getElementsByTagName("li")[i].src) + "</li>"; 
+		//    } 
+		//	alert($("imgList").getElementsByTagName("li").length);
+		$("imgList").getElementsByTagName("li")[0].getElementsByTagName("img")[0].style.display = "none";
+		$("imgList").getElementsByTagName("li")[4].getElementsByTagName("img")[0].style.display = "";
+	}
 	function $(obj) {
 		return document.getElementById(obj);
 	}
@@ -45,24 +52,26 @@ function changeAtt(t) {
 	}
 	function changeborder(obj) {
 		for ( var j = 0; j < $("imgList").getElementsByTagName("li").length; j++) {
-			$("imgList").getElementsByTagName("li")
-			[j].getElementsByTagName("img")[0].style.borderColor = "#cccccc";
+			$("imgList").getElementsByTagName("li")[j]
+					.getElementsByTagName("img")[0].style.borderColor = "#cccccc";
 		}
+		//将选中的边框变红
 		obj.style.borderColor = "red";
+		//大图改为选中的大图
 		$("bImg").innerHTML = $img(obj.src);
 	}
 	window.onload = function() {
 		if ($("bImg").innerHTML == "") {
+			//加载默认大图
 			$("bImg").innerHTML = $img("${ctx}/plupload/files/small/${product.media.path}");
 			//$("imgList").getElementsByTagName("li")[0].getElementsByTagName("img")[0].style.borderColor = "red";
 		}
-
 	}
 </script>
 
 <style type="text/css">
 	.all_photo_edit {
-		width: 800px;
+		width: 700px;
 		padding-left:100px;
 	}
 	.single_photo_textarea {
@@ -90,17 +99,21 @@ function changeAtt(t) {
     .catt .cattsel {border:#ff6701 2px solid; margin: -1px;background: url("${ctx}/plupload/files/small/test.png") no-repeat bottom right; margin-left:4px;margin-top:5px;}
 
     .catt .cattsel a:hover {border: #ff6701 2px solid;margin:-1px;background: url("${ctx}/plupload/files/small/test.png") no-repeat bottom right;}
-	
         #imgList li img{ 
-            width:50px; 
+            width:60px; 
             height:50px; 
             border:1px solid #cccccc; 
         } 
+       	ul {
+　		 	list-style:none;
+　 			margin:0px;
+　			padding:0px;
+　 		}
         ul li{ 
-        text-align:left;
+        	margin:0;
+　　			padding:0;
             list-style:none; 
             float:left; 
-            margin-left:10px; 
             cursor:pointer; 
         } 
         .rborder{ 
@@ -129,15 +142,27 @@ function changeAtt(t) {
 									<div>
 									<!-- 
 									<a  onclick="changeAtt(this)" href="javascript:;"  >-->
-									 <div id="bImg"></div> 
-									<ul id="imgList">
-										<c:forEach items="${product.categorys}" var="categorytemp">
-										<!-- 	<input type="button" value="${categorytemp.name}" name="a" onclick="changePicture(this);" > 
-										<input type="text" value="${categorytemp.media.path}" name="picture" onclick="changePicture(this);" > -->
-										<!--	<img id="goods_img" src="${ctx}/plupload/files/small/${categorytemp.media.path}" alt="" style="width:50px; height:50px;border:1px solid #cccccc;"> -->
-											<li><img id="goods_img" src="${ctx}/plupload/files/small/${categorytemp.media.path}" alt=""  onclick='changeborder(this)'> </li>
+									 <div id="bImg" style="width: 300px"></div> 
+									<div style=" float:left;  display:inline; ">
+										<img id="left" src="${ctx}/plupload/files/small/left.png" alt=""  onclick="leftPicture(this)">
+									</div>
+									<div style="float:left;  display:inline;">
+									<ul id="imgList" style="list-style:none;margin:0px;padding:0px;">
+										<c:forEach items="${product.categorys}" var="categorytemp" varStatus="varStatus">
+											<c:if test="${varStatus.index<4}">
+											<li><img id="goods_img" src="${ctx}/plupload/files/small/${categorytemp.media.path}" alt=""  onclick='changeborder(this)' > </li>
+											</c:if>
+											<c:if test="${varStatus.index>=4}">
+											<li><img id="goods_img" src="${ctx}/plupload/files/small/${categorytemp.media.path}" alt=""  onclick='changeborder(this)' style="display: none"> </li>
+											</c:if>
 										</c:forEach>
         							</ul> 
+        							</div>
+        							
+        							<div style=" float:left;  display:inline; ">
+										<img id="right" src="${ctx}/plupload/files/small/right.png" alt=""  onclick='rightPicture(this)'>
+        							</div>
+        							</div>
 								</td>
 								<td>
 								<div style="margin-top:25px;" >
@@ -184,13 +209,13 @@ function changeAtt(t) {
 					</table>
 				</div>
 			</div>	
-<!-- 
+ 
 			<div class="form-actions" style="padding-left:410px">
-				<input id="submit_btn" class="btn btn-primary" type="submit"
-					value="提交" />&nbsp; <input id="cancel_btn" class="btn"
+			<!--	<input id="submit_btn" class="btn btn-primary" type="submit"
+					value="提交" />-->&nbsp;  <input id="cancel_btn" class="btn"
 					type="button" value="返回" onclick="history.back()" />
 			</div>
-			 -->
+			
 		</fieldset>
 	</form>
 	
