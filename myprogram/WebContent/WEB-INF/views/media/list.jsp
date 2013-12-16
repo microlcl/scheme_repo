@@ -390,5 +390,10 @@ li a {cursor: pointer; }
 	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
     </div>
     <% }%>
+    <c:if test="${param.search_mediaType eq 'audio'}">
+	    <div id="pagination_div" class="pagination pagination-centered">
+		    <tags:pagination page="${medias}" paginationSize="15"/>
+	    </div>
+    </c:if>
 </body>
 </html>
