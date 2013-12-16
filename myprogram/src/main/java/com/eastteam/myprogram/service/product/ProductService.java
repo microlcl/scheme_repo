@@ -53,7 +53,7 @@ public class ProductService extends PageableService {
 		Product product = new Product();
 		product = productMybatisDao.getProduct(id);
 		List<Product_category> productCategorys = productMybatisDao
-				.getProduct_category(product.getId());
+				.getProduct_category(id);
 		List<Category> categorys = new ArrayList<Category>();
 		for (Product_category productCategory : productCategorys) {
 			Category category = productMybatisDao.getCategory(productCategory
