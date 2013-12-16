@@ -48,6 +48,14 @@
     width:100%;
 }
 
+.search-panel {
+    border: 1px solid #E3E3E3;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 10px;
+    padding: 19px 19px 0px 19px;
+}
+
 </style>
 <div id="resourceModalWindow" class="modal hide fade">
    <div class="modal-header">
@@ -56,18 +64,26 @@
 	</div>
 	<div class="modal-body">
 <!-- 模态对话框begin -->
-	
+	<div class="search-panel">
 	<form class="form-search form-inline" action="#">
+	<div>
+		   	<label class="checkbox inline">									
+ 		我的资源<input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/>
+ 	</label>
+	<input type="text" id='searchKeyword' name="search_keyword"  style="width:60%"  value="${param.search_keyword}">			   
+	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
+	</div>
+	<div style="padding-top:15px">
 	<label class="inline">类别
 		<input id="categorySelector"  class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple name="search_categoryId" value="${param.search_categoryId}"/>
-	</label>
-		<label class="checkbox inline">									
-   			我的资源<input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/>
-   		</label>
-	   <input type="text" id='searchKeyword' name="search_keyword"   class="input-small"  value="${param.search_keyword}">			   
-	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
+	</label> 
+	<label class="radio inline"> <input type="radio" onclick="setCurrentMediaType()" id="radio_picture" name="search_mediaType" value="picture">图片</label> 
+	<label class="radio inline"> <input type="radio" onclick="setCurrentMediaType()" id="radio_video" name="search_mediaType" value="video">视频</label> 
+	<label class="radio inline"> <input type="radio" onclick="setCurrentMediaType()" id="radio_audio" name="search_mediaType" value="audio">音频</label> 
+
+	</div>
     </form>
-	
+	</div>
 	<div id="pictureDiv" class="well" style="display:none">
 			<ul id="thumbnailContainer" class="thumbnails" style="margin-left: 20px">
 			</ul>
@@ -142,6 +158,7 @@
 			if (obj.mediaType) {
 				currentMediaType = obj.mediaType;
 			}
+			$("#radio_" + currentMediaType).attr("checked","checked");
 			console.log("currentMediatype = " + currentMediaType);
 		    $('#resourceModalWindow').modal({
 		    	backdrop:false,
@@ -169,6 +186,7 @@
 		function loadMore() {
 			var nextPage = currentPage + 1;
 			console.log("next pageNum:" + nextPage);
+			currentMediaType = $('input:radio[name="search_mediaType"]:checked').val();
 			$.ajax({
 				url : '${ctx}/media/api/search?search_mediaType=' + currentMediaType,
 				type: 'get',
@@ -203,6 +221,11 @@
 				}
 		});
 		
+	}
+	
+	function setCurrentMediaType() {
+		currentMediaType = $('input:radio[name="search_mediaType"]:checked').val();
+		console.log("in setCurrentMediaType: " + currentMediaType);
 	}
 	
 	function handleAudio(i, media) {
