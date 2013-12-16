@@ -103,6 +103,8 @@
 		//var currentMediaType="audio";
 		var currentMediaType="picture";
 		
+		var img;
+		
 		$(function() {          
 		    $("img.lazy").lazyload({
 		        event : "scroll",
@@ -149,6 +151,8 @@
 			//console.log("targetMedia=" + obj.targetMedia);
 			//targetMedia = $('#' + obj.targetMedia);
 			callback = obj.callback;
+			img = obj.image;
+			console.log("current image id = "+ $(img).attr('id'));
 		}
 		
 		function getSelectedValue() {
@@ -159,7 +163,7 @@
 			var result = {};
 			result.parameter = parameters;
 			result.media = mediaMap[selectedMedia];
-			callback(result);			
+			callback(result, img);			
 		}
 
 		function loadMore() {

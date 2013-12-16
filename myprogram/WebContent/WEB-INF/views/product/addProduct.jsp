@@ -20,12 +20,15 @@
 	href="${ctx}/static/easyui/mytree.css">
 <script>
 
-function setMedia(media) {
+function setMedia(media, image) {
 	console.log("in setMedia");
-	console.log("media path:" + media.media.path);
-	$('#prod_default_pic').attr('src', '${ctx}/plupload/files/small/' + media.media.path);
-	console.log("media id:" + media.media.id);
-	$('#prod_pic').attr('value', media.media.id);
+	console.log("media path: " + media.media.path);
+	imageid = $(image).attr('id')
+	console.log("In setMedia: the image id = " + imageid );
+	$(image).attr('src', '${ctx}/plupload/files/small/' + media.media.path);
+	if (imageid == 'prod_default_pic') {
+		$('#prod_pic').attr('value', media.media.id);
+	}
 }
 function clearNoNum(obj)
 {
@@ -51,7 +54,7 @@ function clearNoNum(obj)
 		//td.append($('<input type="checkbox" name="count" value="New"><b>CheckBox'+row_count+');
 		//td.append($('<div class="span2"></div><img id="1" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture'+row_count+'" value="11">'));
 		//var onclick = 'resourcePopupWindow({targetMedia: this,mediaType:"picture",callback: setMedia})';
-		var onclick = "resourcePopupWindow({mediaType:'picture',callback: setMedia})";
+		var onclick = "resourcePopupWindow({mediaType:'picture',image: this,callback: setMedia})";
 		//var onclick="alert(1)";
 		td.append('<div class="span2"><img id="1" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>');
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
@@ -128,7 +131,7 @@ function clearNoNum(obj)
 							<tr>
 								<td>
 									<div class="span3">
-										<img id="prod_default_pic" src="${ctx}/plupload/files/small/default_image.jpg" alt="" onclick="resourcePopupWindow({mediaType:'picture',callback: setMedia})"/>
+										<img id="prod_default_pic" src="${ctx}/plupload/files/small/default_image.jpg" alt="" onclick="resourcePopupWindow({mediaType:'picture',image: this,callback: setMedia})"/>
 										<input id="prod_pic" type="hidden" name=default_picture_id />	
 									</div>
 								</td>
