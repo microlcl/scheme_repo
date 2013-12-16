@@ -23,11 +23,15 @@
 function setMedia(media, image) {
 	console.log("in setMedia");
 	console.log("media path: " + media.media.path);
-	imageid = $(image).attr('id')
+	imageid = $(image).attr('id');
 	console.log("In setMedia: the image id = " + imageid );
 	$(image).attr('src', '${ctx}/plupload/files/small/' + media.media.path);
 	if (imageid == 'prod_default_pic') {
 		$('#prod_pic').attr('value', media.media.id);
+	}else {
+		var inputid = imageid.substring(14,16);
+		console.log("In setMedia: the input id of the image = catagoryinput_"+inputid);
+		$('#catagoryinput_'+inputid).attr('value', media.media.id);
 	}
 }
 function clearNoNum(obj)
@@ -56,7 +60,7 @@ function clearNoNum(obj)
 		//var onclick = 'resourcePopupWindow({targetMedia: this,mediaType:"picture",callback: setMedia})';
 		var onclick = "resourcePopupWindow({mediaType:'picture',image: this,callback: setMedia})";
 		//var onclick="alert(1)";
-		td.append('<div class="span2"><img id="1" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/bp11.jpg" alt=""><input type="hidden" name="picture" value="11"></div>');
+		td.append('<div class="span2"><img id="catagoryimage_' + row_count + '" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/default_image.jpg" alt=""><input id="catagoryinput_' + row_count + '" type="hidden" name="picture"></div>');
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
 		
 		var td2 = $("<td></td>");
