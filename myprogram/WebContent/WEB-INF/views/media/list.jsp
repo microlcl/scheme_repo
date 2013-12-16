@@ -245,11 +245,14 @@ li a {cursor: pointer; }
     color: #FFFFFF;
     display: block;
     font: bold 12px/30px Verdana,Arial;
-    left: 0;
+    left: 8px;
     opacity: 0.6;
     position: absolute;
     text-align: center;
-    width: 170px;
+    width: 155px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap
 }
 
 .picture-panel {
