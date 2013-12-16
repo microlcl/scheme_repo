@@ -63,7 +63,7 @@
 				and m.user_id=#{userId}
 			</if>			
 			<if test="keyword != null">
-				and m.description||m.title like '%${keyword}%'
+				and m.description||m.title||m.author like '%${keyword}%'
 			</if>
 		</where>
 		<if test="sort != null">
@@ -90,7 +90,7 @@
 				and m.user_id=#{userId}
 			</if>			
 			<if test="keyword != null">
-				and m.description||m.title like '%${keyword}%'
+				and m.description||m.title||m.author like '%${keyword}%'
 			</if>			
 		</where>
 		<if test="sort != null">
