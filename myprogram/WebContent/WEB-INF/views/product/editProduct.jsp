@@ -24,12 +24,15 @@
 	href="${ctx}/static/easyui/mytree.css">
 <script>
 $(document).ready(function(){
-	  $('input').iCheck({
+	iCheckInit();
+});
+
+function iCheckInit(){
+	$('input').iCheck({
 	    checkboxClass: 'icheckbox_square-green',
 	    increaseArea: '20%' // optional
-	  });
 	});
-
+}
 
 function setMedia(result) {
 	var renderPicId = result.parameter.renderPic.id;
@@ -71,7 +74,7 @@ function clearNoNum(obj)
 		
 		var td2 = $("<td></td>");
 		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
-		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:50px;padding-right:10px" onclick="topwin()">类别:</label><input id="addc_'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:50px;padding-right:10px" onclick="topwin()">类别:</label><input id="addc_'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><div style="float:right;padding-top:4px"><input type="checkbox" name="count" /></div></div></div>'));
 		row.append(td);
 		row.append(td2);
 		table1.append(row);
@@ -89,12 +92,13 @@ function clearNoNum(obj)
 				return isLeaf;
 			}
 		});
-		//$('#count')[0].value=row_count;
+		
+		iCheckInit();
 		row_count++;
 	}
 	function del() {
 		 $("input:checked").each(function(){
-			  $(this).parent().parent().parent().parent().remove();
+			  $(this).parent().parent().parent().parent().parent().parent().remove();
 			 });
 	}
 	
