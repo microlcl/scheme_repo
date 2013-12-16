@@ -8,7 +8,6 @@ import java.util.Properties;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.jetty.server.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.entity.Media;
-import com.eastteam.myprogram.entity.Module;
 import com.eastteam.myprogram.entity.Product;
 import com.eastteam.myprogram.entity.Product_category;
-import com.eastteam.myprogram.entity.Role;
 import com.eastteam.myprogram.service.category.CategoryService;
 import com.eastteam.myprogram.service.product.ProductService;
 import com.eastteam.myprogram.web.Servlets;
@@ -70,8 +66,7 @@ public class ProductController {
 		model.addAttribute("products", products);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);
-		model.addAttribute("searchParams", Servlets
-				.encodeParameterStringWithPrefix(searchParams, "search_"));
+		model.addAttribute("searchParams", searchParams);
 		logger.info("searchParams=" + searchParams);
 		return "product/list";
 	}

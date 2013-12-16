@@ -42,8 +42,11 @@
 		left join product_category pc on p.product_id=pc.product_id 
 		
 		<where>
-		    <if test="categoryId != null">
-				pc.category_id like '${categoryId}%'
+			<if test="categoryIdList != null">
+		         pc.category_id in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
 			</if>
 			<if test="keyword != null">
 				and p.description||p.title like '%${keyword}%'
@@ -65,8 +68,11 @@
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from (select distinct p.product_id from products p left join product_category pc on p.product_id=pc.product_id 
 		<where>
-		    <if test="categoryId != null">
-				pc.category_id like '${categoryId}%'
+			<if test="categoryIdList != null">
+		         pc.category_id in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
 			</if>
 			<if test="keyword != null">
 				and p.description||p.title like '%${keyword}%'
