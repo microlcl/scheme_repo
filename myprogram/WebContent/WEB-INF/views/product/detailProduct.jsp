@@ -30,20 +30,48 @@ function changeAtt(t) {
     t.className = "cattsel";
 	//changePicture(t);
 }
-function leftPicture(obj){
-	$("imgList").getElementsByTagName("li")
-	[0].getElementsByTagName("img")[0].style.display = "";
-}
 
-	function rightPicture(obj) {
-		alert(obj);
-		//	for(var i = 1;i <$("imgList").getElementsByTagName("li").length;i++){ 
-		//		$("imgList").innerHTML += "<li>" + $img($("imgList").getElementsByTagName("li")[i].src) + "</li>"; 
-		//    } 
-		//	alert($("imgList").getElementsByTagName("li").length);
-		$("imgList").getElementsByTagName("li")[0].getElementsByTagName("img")[0].style.display = "none";
-		$("imgList").getElementsByTagName("li")[4].getElementsByTagName("img")[0].style.display = "";
+	function leftPicture() {
+		if (page > 0) {
+			var j = page * 4;
+			for ( var m = 0; m < 4
+					&& j < $("imgList").getElementsByTagName("li").length; m++, i++) {
+				$("imgList").getElementsByTagName("li")[j]
+						.getElementsByTagName("img")[0].style.display = "none";
+			}
+			var i = (page - 1) * 4;
+			for ( var m = 0; m < 4
+					&& i < $("imgList").getElementsByTagName("li").length; m++, i++) {
+				$("imgList").getElementsByTagName("li")[i]
+						.getElementsByTagName("img")[0].style.display = "";
+
+			}
+			page--;
+		}
 	}
+
+
+	function rightPicture() {
+		if ((page+1) * 4 <$("imgList").getElementsByTagName("li").length) {
+			var j = page * 4;
+			var m = 0;
+			for (j; m < 4; m++) {
+				$("imgList").getElementsByTagName("li")[j]
+						.getElementsByTagName("img")[0].style.display = "none";
+				j++;
+			}
+			var i = (page + 1) * 4;
+			for (i; i < $("imgList").getElementsByTagName("li").length; i++) {
+				$("imgList").getElementsByTagName("li")[i]
+						.getElementsByTagName("img")[0].style.display = "";
+			}
+			page++;
+			//	alert($("imgList").getElementsByTagName("li").length);
+			//	$("imgList").getElementsByTagName("li")[0].getElementsByTagName("img")[0].style.display = "none";
+			//	$("imgList").getElementsByTagName("li")[4].getElementsByTagName("img")[0].style.display = "";
+		}
+	}
+	var page = 0;
 	function $(obj) {
 		return document.getElementById(obj);
 	}
@@ -160,7 +188,7 @@ function leftPicture(obj){
         							</div>
         							
         							<div style=" float:left;  display:inline; ">
-										<img id="right" src="${ctx}/plupload/files/small/right.png" alt=""  onclick='rightPicture(this)'>
+										<img id="right" src="${ctx}/plupload/files/small/right.png" alt=""  onclick='rightPicture()'>
         							</div>
         							</div>
 								</td>
