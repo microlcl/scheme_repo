@@ -122,5 +122,16 @@ public class ProductMybatisDaoTest extends SpringTransactionalTestCase {
 //		assertNotNull("allRole not null", product);
 //		assertEquals(5, product.size());
 //	}
+	@Test
+	public void getProductCategory() throws Exception {
+		List<Product_category> productCategorys = productMybatisDao
+				.getProduct_category((long) 6);
+		System.out.println("prod category");
+	}
+	@Test
+	public void getProduct() throws Exception {
+		Product product = productMybatisDao.getProduct((long) 6);
+		System.out.println("production");
+	}
 	
 }

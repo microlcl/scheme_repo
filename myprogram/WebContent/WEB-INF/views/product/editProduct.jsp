@@ -130,8 +130,8 @@ function clearNoNum(obj)
 							<tr>
 								<td>
 									<div class="span3">
-										<img id="prod_default_pic" src="${ctx}/plupload/files/small/default_image.jpg" alt="" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:prod_default_pic})"/>
-										<input id="prod_pic" type="hidden" name=default_picture_id />	
+										<img id="prod_default_pic" src="${ctx}/plupload/files/small/${product.media.path}" alt="" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:prod_default_pic})"/>
+										<input id="prod_pic" type="hidden" name=default_picture_id value="${product.default_picture_id}" />	
 									</div>
 								</td>
 								<td>
@@ -171,7 +171,7 @@ function clearNoNum(obj)
 										<input id="cc" class="easyui-combotree"
 											data-options="url:'${ctx}/category/api/getAll/M1-5',method:'get',required:false,onBeforeSelect : function(node){ var tree = $(this).tree;var isLeaf = tree('isLeaf', node.target);return isLeaf;}"
 											style="width: 200px;" name="searchCategoryId"
-											value="${category.name}" />
+											value="${category.id}" />
 										<input type="checkbox" name="count"/>
 									</div>
 								</div>
