@@ -12,6 +12,7 @@
 <!-- combotreee -->
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
@@ -252,6 +253,7 @@
 </head>
 
 <body>
+<div class="form" style="padding:20px;">
 <div class="alert hide" id="warning-block">
   	   <strong>注意! </strong>请至少选中一个多媒体！
 </div>
@@ -259,7 +261,7 @@
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-	<div class="search-panel">
+	<div class="search-panel onefield">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
 				<div>
@@ -342,6 +344,9 @@
 			}
 		});
 	</script>
-
+</div>
+<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+	
+</div>
 </body>
 </html>
