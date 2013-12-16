@@ -152,6 +152,7 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-5-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6','1','尺寸','2012-06-04 02:00:00','F','产品尺寸');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-1','1-6','40','2012-06-04 02:00:00','F','40');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-2','1-6','42','2012-06-04 02:00:00','F','42');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-6-3','1-6','4','2012-06-04 02:00:00','F','45');
 
 
 insert into module_category(module_id,category_id) values('M1-4','1-1');
@@ -220,6 +221,7 @@ insert into product_category(product_id,category_id,picture_id) values(9,'1-5-1'
 insert into product_category(product_id,category_id,picture_id) values(9,'1-5-2',9);
 insert into product_category(product_id,category_id,picture_id) values(9,'1-6-1',1);
 insert into product_category(product_id,category_id,picture_id) values(9,'1-6-2',3);
+insert into product_category(product_id,category_id,picture_id) values(9,'1-6-3',4);
 
 
 
