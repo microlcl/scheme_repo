@@ -60,12 +60,12 @@ function clearNoNum(obj)
 		//var onclick = 'resourcePopupWindow({targetMedia: this,mediaType:"picture",callback: setMedia})';
 		var onclick = "resourcePopupWindow({mediaType:'picture',image: this,callback: setMedia})";
 		//var onclick="alert(1)";
-		td.append('<div class="span2"><img id="catagoryimage_' + row_count + '" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/default_image.jpg" alt=""><input id="catagoryinput_' + row_count + '" type="hidden" name="picture"></div>');
+		td.append('<div class="span2"><input type="checkbox" name="count"/>&nbsp;<img id="catagoryimage_' + row_count + '" onclick="'+ onclick +'" src="${ctx}/plupload/files/small/default_image.jpg" alt="" style="width: 150px;"><input id="catagoryinput_' + row_count + '" type="hidden" name="picture"></div>');
 		//td.append($('<input id="cc" class="easyui-combotree" data-options="url:\'${ctx}/category/api/getAll/M1-5\',method:\'get\',required:false" style="width: 200px;" name="search_categoryId_2" value="${param.search_categoryId}" />'));
 		
 		var td2 = $("<td></td>");
 		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
-		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="test'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /><input type="checkbox" name="count"/></div></div>'));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="test'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /></div></div>'));
 		row.append(td);
 		row.append(td2);
 		table1.append(row);
@@ -88,7 +88,7 @@ function clearNoNum(obj)
 	}
 	function del() {
 		 $("input:checked").each(function(){
-			  $(this).parent().parent().parent().parent().remove();
+			  $(this).parent().parent().parent().remove();
 			 });
 	}
 	
@@ -155,9 +155,13 @@ function clearNoNum(obj)
 										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
 										<input type="text" name="price"  maxlength="20" placeholder="" onkeyup="clearNoNum(this)"/>
 									</div>
+								</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align: center;">
 									<input type="button" value="添加类别" onclick="addNew();">
 								  	<input type="button" value="删除类别" onclick="del();"> 
-								</div>
 								</td>
 							</tr>
 							
