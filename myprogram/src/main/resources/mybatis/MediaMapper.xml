@@ -48,10 +48,14 @@
 	<select id="search" parameterType="map" resultMap="mediaDetailMap">
 		select distinct m.media_id, m.title, m.description,m.media_type as mediaType,m.path,m.status,m.user_id as userId,m.upload_timestamp as uploadTimestamp,m.author as author
 		from medias m left join media_category mc on m.media_id=mc.media_id 
-		<where>
-		    <if test="categoryId != null">
-				mc.category_id like '${categoryId}%'
+		<where>		   
+		    <if test="categoryIdList != null">
+		         mc.category_id in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
 			</if>
+
 			<if test="mediaType != null">
 				and m.media_type=#{mediaType}
 			</if>
@@ -73,8 +77,11 @@
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from (select distinct m.media_id from medias m left join media_category mc on m.media_id=mc.media_id 
 		<where>
-		    <if test="categoryId != null">
-				mc.category_id like '${categoryId}%'
+		    <if test="categoryIdList != null">
+		         mc.category_id in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
 			</if>
 			<if test="mediaType != null">
 				and m.media_type=#{mediaType}

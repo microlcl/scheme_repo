@@ -304,7 +304,7 @@ li a {cursor: pointer; }
 				<div style="padding-top:15px">
 			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
 			 		<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
-					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >图片
 					</label>
@@ -390,6 +390,19 @@ li a {cursor: pointer; }
 	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
     </div>
     <% }%>
+    
+    <script type="text/javascript">
+		var categoryIds = [];
+		<c:forEach items="${searchParams.categoryId}" var="category">
+			categoryIds.push('${category}');
+		</c:forEach>
+		$("#cc").combotree({ 
+			onLoadSuccess:function(node){//数据加载成功触发 
+				$("#cc").combotree('setValues', categoryIds);
+			}
+		});
+	</script>
+	
     <c:if test="${param.search_mediaType eq 'audio'}">
 	    <div id="pagination_div" class="pagination pagination-centered">
 		    <tags:pagination page="${medias}" paginationSize="15"/>

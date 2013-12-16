@@ -59,7 +59,7 @@
 	
 	<form class="form-search form-inline" action="#">
 	<label class="inline">类别
-		<input id="categorySelector"  class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" name="search_categoryId" value="${param.search_categoryId}"/>
+		<input id="categorySelector"  class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple name="search_categoryId" value="${param.search_categoryId}"/>
 	</label>
 		<label class="checkbox inline">									
    			我的资源<input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/>
@@ -174,7 +174,7 @@
 				type: 'get',
 				data:{
 					page:nextPage,
-					search_categoryId:$('#categorySelector').combotree('getValue'),
+					search_categoryId:$('#categorySelector').combotree('getValues'),
 					search_keyword:$('#searchKeyword').val(),
 					search_userId: $('#resourceUserId').is(':checked') ? $('#resourceUserId').val() : ''
 				},

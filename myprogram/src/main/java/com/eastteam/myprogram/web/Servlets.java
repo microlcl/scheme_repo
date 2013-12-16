@@ -155,6 +155,9 @@ public class Servlets {
 				} else if (StringUtils.isNotBlank(values[0])){
 					params.put(unprefixed, values[0].trim());
 				}
+				if (unprefixed.startsWith("categoryId") && values != null) {
+					params.put("categoryIdList", values);
+				}
 			}
 		}
 		return params;

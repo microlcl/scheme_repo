@@ -48,12 +48,16 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 	@Test
 	public void searchUser() throws Exception {
 		Map<String, Object> parameter = Maps.newHashMap();
-		parameter.put("categoryId", "1-1-1");
+		String[] categoryId = new String[] {"1-1-1","1-1-2"};
+		parameter.put("categoryId", categoryId);
 		List<Media> result = mediaDao.search(parameter);
 		logger.info("result1=" + result);
 		logger.info("result.size=" + result.size());
 		assertTrue(result.size() > 1);
 		assertTrue(result.get(0).getPath().indexOf("jpg") > 0);
+		for (Media media : result) {
+			logger.info(media.getPath() + "==" + media.getCategorys());
+		}
 		
 		Map<String, Object> parameter0 = Maps.newHashMap();
 		parameter0.put("mediaType", "picture");
@@ -81,7 +85,8 @@ public class MediaMybatisDaoTest extends SpringTransactionalTestCase {
 	@Test
 	public void getCount() throws Exception {	
 		Map<String, Object> parameter = Maps.newHashMap();
-		parameter.put("categoryId", "1-1");
+		String[] categoryId = new String[] {"1-1-1","1-1-2"};
+		parameter.put("categoryIdList", categoryId);
 		Long count = mediaDao.getCount(parameter);
 		logger.info("count=" + count);
 		assertTrue(count > 2);

@@ -1,7 +1,6 @@
 package com.eastteam.myprogram.web.media;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -58,7 +57,7 @@ public class MediaController {
 		model.addAttribute("medias", medias);
 		model.addAttribute("sortType", sortType);
 //		model.addAttribute("sortTypes", sortTypes);
-		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
+		model.addAttribute("searchParams", searchParams);
 		logger.info("searchParams=" + searchParams);
 		return "media/list";
 	}
