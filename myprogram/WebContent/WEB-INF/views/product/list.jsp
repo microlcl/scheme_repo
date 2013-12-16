@@ -230,7 +230,7 @@
 .thumbnail:hover {
 	border: 1px solid #7EC0EE;
 }
-.thumbnails a:link {
+.thumbnails a {
     color: #666666;
     text-decoration: none;
 }
