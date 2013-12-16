@@ -278,7 +278,7 @@ li a {cursor: pointer; }
 <body>
 	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
 		<div id="innerdiv" style="position:absolute;">
-			<img id="bigimg" style="border:5px solid #fff;" src="" />
+			<img id="bigimg" style="border:5px solid #fff;" />
 		</div>
 	</div>
 	<div class="alert hide" id="warning-block">
