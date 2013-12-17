@@ -14,11 +14,11 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script>
-	$(document).ready(function() {
-		//聚焦第一个输入框 
-		//$("#loginName").focus();
+$(document).ready(function() {
+	$("#inputForm").validate({
 
 	});
+});
 </script>
 
 <style type="text/css">
@@ -78,11 +78,11 @@
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
-										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" />
+										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" class="required"/>
 									</div>
 									<c:if test="${media.mediaType=='audio'}">
 										<label class="control-label" style="width:40px;padding-right:10px">歌手:</label>
-										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="32" placeholder="歌手名字" />
+										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="32" placeholder="歌手名字" class="required"/>
 									</c:if>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
@@ -106,9 +106,6 @@
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
-										<!--<input type="text" class="single_photo_textarea "
-										name="medias[${status.index}].description"
-										value="${media.description}" maxlength="128" placeholder="0~128个字符" /></input>   -->
 										<textarea class="single_photo_textarea " name="medias[${status.index}].description" value="${media.description}"  placeholder="0~128个字符">${media.description}</textarea>
 									</div>
 								</div>

@@ -9,20 +9,18 @@
 <link rel="stylesheet" href="${ctx}/static/styles/mystyle.css"
 	type="text/css" />
 <!-- combotreee -->
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 
-<script src="${ctx}/static/easyui/jquery.easyui.min.js"
-	type="text/javascript"></script>
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/easyui/mytree.css">
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script>
-	$(document).ready(function() {
-		//聚焦第一个输入框 
-		//$("#loginName").focus();
+$(document).ready(function() {
+	$("#inputForm").validate({
+
 	});
+});
 </script>
 
 <style type="text/css">
@@ -46,14 +44,10 @@
 </head>
 
 <body>
-<div>
+<div class="form" style="padding:20px;">
 
-	<form id="inputForm" action="${ctx}/media/save" method="post"
-		class="form-horizontal">
-		<fieldset>
-			<legend>
-				<small>资源上传</small>
-			</legend>
+	<form id="inputForm" action="${ctx}/media/save" method="post" class="form-horizontal">
+		<h1>资源上传</h1>
 			<div class="alert alert-block">
 				<h4>提示：</h4>
 				你已经上传了多媒体资源，请在此填写必要信息进行描述
@@ -110,11 +104,11 @@
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
-										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" />
+										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" class="required"/>
 									</div>
 									<c:if test="${media.mediaType=='audio'}">
 										<label class="control-label" style="width:40px;padding-right:10px">歌手:</label>
-										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="32" placeholder="歌手名字" />
+										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="32" placeholder="歌手名字" class="required"/>
 									</c:if>
 									<div style="margin-bottom:5px;">
 										<label for="mediaType" class="control-label" style="width:40px;padding-right:10px">类型:</label>
@@ -144,7 +138,6 @@
 					value="提交" />&nbsp; <input id="cancel_btn" class="btn"
 					type="button" value="返回" onclick="history.back()" />
 			</div>
-		</fieldset>
 	</form>
 	
 </div>
