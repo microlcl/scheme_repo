@@ -21,6 +21,13 @@ $(document).ready(function() {
 
 	});
 });
+$( 'audio' ).audioPlayer(
+		{
+		    classPrefix: 'player', // default value: 'audioplayer'
+		    strPlay: 'Play', // default value: 'Play'
+		    strPause: 'Pause', // default value: 'Pause'
+		    strVolume: 'Volume', // default value: 'Volume'
+});		
 </script>
 
 <style type="text/css">
@@ -95,8 +102,9 @@ $(document).ready(function() {
 								</c:if>
 								<c:if test="${media.mediaType=='audio'}">
 									<td>
-										<div class="control-group">
+										<div class="control-group" style="width:300px !important">
 											<img src="${ctx}/plupload/files/small/audio.jpg" alt=""/>
+											<audio src="${ctx}/plupload/audio/${media.path}" id="audioplayer" preload="auto" controls></audio>
 										</div>
 									</td>
 								</c:if>
