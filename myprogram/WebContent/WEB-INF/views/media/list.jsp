@@ -86,11 +86,14 @@
 			check();				
 
 			$("#update").click(function(){
-				if($("input:checkbox[name='picture']").is(':checked') == false){
+				if(($("input:checkbox[name='picture']").is(':checked') == false) && ($("input:checkbox[name='audio']").is(':checked') == false)){
 					$("#warning-block").show();
-				}else{
-						$("#updatePic").attr("action", "${ctx}/media/editPicture");
-						$("#updatePic").submit();
+				}else if ($("input:checkbox[name='picture']").is(':checked') == true) {
+					$("#updatePic").attr("action", "${ctx}/media/edit/picture");
+					$("#updatePic").submit();
+				}else {
+					$("#updatePic").attr("action", "${ctx}/media/edit/audio");
+					$("#updatePic").submit();
 				}
 			});
 			
@@ -98,11 +101,11 @@
 				if(($("input:checkbox[name='picture']").is(':checked') == false) && ($("input:checkbox[name='audio']").is(':checked') == false)){
 					$("#warning-block").show();
 				}else if ($("input:checkbox[name='picture']").is(':checked') == true){
-						$("#updatePic").attr("action", "${ctx}/media/delete/picture");
-						$("#updatePic").submit();
+					$("#updatePic").attr("action", "${ctx}/media/delete/picture");
+					$("#updatePic").submit();
 				}else {
-					    $("#updatePic").attr("action", "${ctx}/media/delete/audio");
-					    $("#updatePic").submit();
+					$("#updatePic").attr("action", "${ctx}/media/delete/audio");
+					$("#updatePic").submit();
 				}
 				
 

@@ -4,20 +4,15 @@
 
 <html>
 <head>
-<title>资源上传</title>
+<title>资源修改</title>
 
-<link rel="stylesheet" href="${ctx}/static/styles/mystyle.css"
-	type="text/css" />
+<link rel="stylesheet" href="${ctx}/static/styles/mystyle.css" type="text/css" />
 <!-- combotreee -->
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/easyui/themes/icon.css">
-
-<script src="${ctx}/static/easyui/jquery.easyui.min.js"
-	type="text/javascript"></script>
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/easyui/mytree.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script>
 	$(document).ready(function() {
 		//聚焦第一个输入框 
@@ -47,14 +42,11 @@
 </head>
 
 <body>
-<div>
+<div class="form">
 
-	<form id="inputForm" action="${ctx}/media/updatePicture" method="post"
+	<form id="inputForm" action="${ctx}/media/update" method="post"
 		class="form-horizontal">
-		<fieldset>
-			<legend>
-				<small>修改资源信息</small>
-			</legend>
+				<h1>修改资源信息</h1>
 
 			<div class="all_photo_edit">
 				
@@ -63,19 +55,35 @@
 						<tbody>
 						<c:forEach items="${mediaList}" var="media" varStatus="status">
 							<tr>
-								<td style="display:none"><input type="text" name="medias[${status.index}].id" value="${media.id}"/></td>
-								<td>
-									<div class="control-group">
-										<img id="${media.id}" src="${ctx}/plupload/files/small/${media.path}" alt=""><input type="hidden"
-										name="medias[${status.index}].path" value="${media.path}" />
-									</div>
+								<td style="display:none">
+									<input type="text" name="medias[${status.index}].id" value="${media.id}"/>
+									<input type="text" name="medias[${status.index}].mediaType" value="${media.mediaType}"/>
 								</td>
+								<c:if test="${media.mediaType=='picture'}">
+									<td>
+										<div class="control-group">
+											<img src="${ctx}/plupload/files/small/${media.path}" alt=""/>
+											<input type="hidden" name="medias[${status.index}].path" value="${media.path}" />
+										</div>
+									</td>
+								</c:if>
+								<c:if test="${media.mediaType=='audio'}">
+									<td>
+										<div class="control-group">
+											<img src="${ctx}/plupload/files/small/audio.jpg" alt=""/>
+										</div>
+									</td>
+								</c:if>
 								<td>
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
 										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" />
 									</div>
+									<c:if test="${media.mediaType=='audio'}">
+										<label class="control-label" style="width:40px;padding-right:10px">歌手:</label>
+										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="32" placeholder="歌手名字" />
+									</c:if>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
 										<select id="cc_${status.index}" class="easyui-combotree"
@@ -98,9 +106,9 @@
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
-										<textarea type="text" class="single_photo_textarea "
+										<input type="text" class="single_photo_textarea "
 										name="medias[${status.index}].description"
-										value="${media.description}" maxlength="128" placeholder="0~128个字符" />${media.description}</textarea>
+										value="${media.description}" maxlength="128" placeholder="0~128个字符" /></input>
 									</div>
 								</div>
 								</td>
@@ -116,7 +124,6 @@
 					value="提交" />&nbsp; <input id="cancel_btn" class="btn"
 					type="button" value="返回" onclick="history.back()" />
 			</div>
-		</fieldset>
 	</form>
 	
 </div>

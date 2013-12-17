@@ -177,14 +177,14 @@ public class MediaController {
 		return "redirect:list?search_mediaType={search_mediaType}";
 	}
 	
-	@RequestMapping(value="editPicture",method = RequestMethod.GET)
-	public String showEditPic(Model model, HttpServletRequest request) {
-		String[] mediaIds = request.getParameterValues("picture");
+	@RequestMapping(value="edit/{type}",method = RequestMethod.GET)
+	public String showEditMedia(@PathVariable("type") String type, Model model, HttpServletRequest request) {
+		String[] mediaIds = request.getParameterValues(type);
 		List<Media> mediaList = this.mediaService.getMediaList(mediaIds);
 
 		model.addAttribute("mediaList", mediaList);
 		
-		return "media/editPicture";
+		return "media/editMedia";
 	}
 	
 	@RequestMapping(value="delete/{type}",method = RequestMethod.GET)
@@ -197,12 +197,14 @@ public class MediaController {
 		return "redirect:/media/list/?search_mediaType={search_mediaType}";
 	}
 	
-	@RequestMapping(value="updatePicture",method = RequestMethod.POST)
-	public String updatePicture(MediaFormBean mediaFormBean, RedirectAttributes redirectAttributes) {
-		logger.info("in medai update" + mediaFormBean.toString());
+	@RequestMapping(value="update",method = RequestMethod.POST)
+	public String updateMedia(MediaFormBean mediaFormBean, RedirectAttributes redirectAttributes) {
+		logger.info("in media update" + mediaFormBean.toString());
+		String mediaType = "";
 
 		List<MediaWrapper> medias = mediaFormBean.getMedias();
 		for(MediaWrapper media : medias) {
+			mediaType = media.getMediaType();
 			if (StringUtils.isBlank(media.getTitle())) {
 				media.setTitle(mediaFormBean.getTitle());
 			}
@@ -212,15 +214,21 @@ public class MediaController {
 			if (StringUtils.isBlank(media.getCategoryIds())) {
 				media.setCategoryIds(mediaFormBean.getCategoryId());
 			}
+			if (StringUtils.isBlank(media.getMediaType())) {
+				media.setMediaType(mediaFormBean.getMediaType());
+			}
+			if (StringUtils.isBlank(media.getAuthor())) {
+				media.setAuthor(mediaFormBean.getAuthor()); 
+			}
 			logger.info("categoryid=======" + media.getCategoryIds());
-
 		}
 		
 		if (!medias.isEmpty()) {
 			mediaService.updateMedias(medias);
 			logger.info("update media to DB finished.");
 		}
-		redirectAttributes.addAttribute("search_mediaType","picture");
+		logger.info("in media update: mediaType = " +mediaType);
+		redirectAttributes.addAttribute("search_mediaType",mediaType);
 		return "redirect:list?search_mediaType={search_mediaType}";
 	}
 }

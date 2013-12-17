@@ -9,7 +9,7 @@
 	</insert>
 	
 	<update id="update" parameterType="Media">
-		update medias set title=#{title}, description=#{description} 
+		update medias set title=#{title}, description=#{description}, author=#{author} 
 		where media_id=#{id} 
 	</update>
 	
