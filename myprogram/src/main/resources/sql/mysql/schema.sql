@@ -105,4 +105,56 @@ CREATE TABLE `media_category` (
   PRIMARY KEY (`media_id`,`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `products` (
+  `product_id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) DEFAULT NULL,
+  `status` varchar(64) DEFAULT NULL,
+  `description` varchar(128) DEFAULT NULL,
+  `default_picture_id` bigint(20) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+CREATE TABLE `product_category` (
+  `product_id` bigint(20) NOT NULL DEFAULT '0',
+  `category_id` varchar(64) NOT NULL DEFAULT '',
+  `picture_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`product_id`,`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `module_category` (
+  `module_id` varchar(64) NOT NULL DEFAULT '',
+  `category_id` varchar(64) NOT NULL DEFAULT '',
+  PRIMARY KEY (`module_id`,`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `holders` (
+  `holder_id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `holder_name` varchar(32) DEFAULT NULL,
+  `address` varchar(64) DEFAULT NULL,
+  `level` int(1) DEFAULT NULL,
+  `contact` varchar(24) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`holder_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `spaces` (
+  `space_id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `space_name` varchar(32) DEFAULT NULL,
+  `floor` int(11) DEFAULT NULL,
+  `volume` int(11) DEFAULT NULL,
+  `hall_height` int(11) DEFAULT NULL,
+  `stage_length` int(11) DEFAULT NULL,
+  `stage_width` int(11) DEFAULT NULL,
+  `stage_height` int(11) DEFAULT NULL,
+  `attributes` varchar(256) DEFAULT NULL,
+  `description` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`space_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
