@@ -66,7 +66,7 @@
 					<div class="control-group" style="float:left;margin-bottom:0px">
 						<label for="title" class="control-label">名称:</label>
 						<div class="controls">
-							<input type="text" name="title"	value="${title}" maxlength="20" placeholder="0~20个字符"/>
+							<input type="text" name="title"	value="${title}" maxlength="64" placeholder="0~64个字符"/>
 						</div>
 					</div>			
 					<div class="control-group" style="margin-bottom:10px">
@@ -80,7 +80,7 @@
 					<div class="control-group">
 						<label for="description" class="control-label">描述:</label>
 						<div class="controls">
-							<textarea id="description" name="description" class="all_photo_textarea" maxlength="200" placeholder="0~200个字符"></textarea>
+							<textarea id="description" name="description" class="all_photo_textarea" maxlength="128" placeholder="0~128个字符"></textarea>
 						</div>
 					</div>
 					  
@@ -110,11 +110,11 @@
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
-										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="20" placeholder="0~20个字符" />
+										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" />
 									</div>
 									<c:if test="${media.mediaType=='audio'}">
 										<label class="control-label" style="width:40px;padding-right:10px">歌手:</label>
-										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="16" placeholder="歌手名字" />
+										<input type="text" name="medias[${status.index}].author" value="${media.author}" maxlength="32" placeholder="歌手名字" />
 									</c:if>
 									<div style="margin-bottom:5px;">
 										<label for="mediaType" class="control-label" style="width:40px;padding-right:10px">类型:</label>
@@ -130,7 +130,7 @@
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
 										<textarea type="text" class="single_photo_textarea "
 										name="medias[${status.index}].description"
-										value="${media.description}" maxlength="100" placeholder="0~100个字符" /></textarea>
+										value="${media.description}" maxlength="128" placeholder="0~128个字符" /></textarea>
 									</div>
 								</div>
 								</td>

@@ -74,7 +74,7 @@
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
-										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="20" placeholder="0~20个字符" />
+										<input type="text" name="medias[${status.index}].title" value="${media.title}" maxlength="64" placeholder="0~64个字符" />
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">类别:</label>
@@ -100,7 +100,7 @@
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
 										<textarea type="text" class="single_photo_textarea "
 										name="medias[${status.index}].description"
-										value="${media.description}" maxlength="100" placeholder="0~100个字符" />${media.description}</textarea>
+										value="${media.description}" maxlength="128" placeholder="0~128个字符" />${media.description}</textarea>
 									</div>
 								</div>
 								</td>

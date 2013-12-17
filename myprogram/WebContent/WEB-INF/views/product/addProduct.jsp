@@ -65,7 +65,7 @@ function clearNoNum(obj)
 		
 		var td2 = $("<td></td>");
 		//td2.append($("<div class='span2'></div><img id='1' src='${ctx}/plupload/files/small/bp11.jpg' alt=''><input type='hidden' name='pid_2' value='11'>"));
-		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:40px;padding-right:10px" onclick="topwin()">类别:</label><input id="test'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /></div></div>'));
+		td2.append($('<div style="margin-top:25px;" ><div style="margin-bottom:5px;"><label class="control-label" style="width:50px;padding-right:10px" onclick="topwin()">类别:</label><input id="test'+row_count+'" class="easyui-combotree"  style="width: 200px;" name="searchCategoryId" /></div></div>'));
 		row.append(td);
 		row.append(td2);
 		table1.append(row);
@@ -142,17 +142,17 @@ function clearNoNum(obj)
 								<td>
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">名称:</label>
-										<input type="text" name="title"  maxlength="20" placeholder="0~20个字符" />
+										<label class="control-label" style="width:50px;padding-right:10px">名称:</label>
+										<input type="text" name="title"  maxlength="64" placeholder="0~64个字符" />
 									</div>
 									<div style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
+										<label class="control-label" style="width:50px;padding-right:10px">描述:</label>
 										<textarea  class="single_photo_textarea "
 										name="description"
-										 maxlength="100" placeholder="0~100个字符" /></textarea>
+										 maxlength="128" placeholder="0~128个字符" /></textarea>
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
-										<label class="control-label" style="width:40px;padding-right:10px">价格:</label>
+										<label class="control-label" style="width:50px;padding-right:10px">价格￥:</label>
 										<input type="text" name="price"  maxlength="20" placeholder="" onkeyup="clearNoNum(this)"/>
 									</div>
 								</div>

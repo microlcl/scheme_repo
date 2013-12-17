@@ -255,7 +255,7 @@
 <body>
 <div class="form" style="padding:20px;">
 <div class="alert hide" id="warning-block">
-  	   <strong>注意! </strong>请至少选中一个多媒体！
+  	   <strong>注意! </strong>请至少选中一个产品！
 </div>
 	<h1>产品管理</h1>
 	<c:if test="${not empty message}">
