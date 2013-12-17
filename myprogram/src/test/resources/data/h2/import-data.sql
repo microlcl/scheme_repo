@@ -176,6 +176,7 @@ insert into medias (media_id,title,description,media_type,path,status,user_id,up
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(13,'title13','description 13','video','bp13.jpg','可用','userid1',now(),'');
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(14,'心愿','四个女生主唱','audio','xinyuan.mp3','可用','admin',now(),'四个女生');
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(15,'素颜','许嵩主唱','audio','suyan.mp3','可用','admin',now(),'许嵩');
+insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(16,'我很快乐','刘惜君主唱','audio','I am very happy.mp3','可用','admin',now(),'刘惜君');
 
 insert into media_category (media_id,category_id) values(1,'1-1-1');
 insert into media_category (media_id,category_id) values(1,'1-1-2');
