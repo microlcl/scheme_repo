@@ -106,9 +106,10 @@
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:40px;padding-right:10px">描述:</label>
-										<input type="text" class="single_photo_textarea "
+										<!--<input type="text" class="single_photo_textarea "
 										name="medias[${status.index}].description"
-										value="${media.description}" maxlength="128" placeholder="0~128个字符" /></input>
+										value="${media.description}" maxlength="128" placeholder="0~128个字符" /></input>   -->
+										<textarea class="single_photo_textarea " name="medias[${status.index}].description" value="${media.description}"  placeholder="0~128个字符">${media.description}</textarea>
 									</div>
 								</div>
 								</td>
