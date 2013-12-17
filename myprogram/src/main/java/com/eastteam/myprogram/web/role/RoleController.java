@@ -75,7 +75,7 @@ public class RoleController {
 	public String save(@ModelAttribute Role role,  @RequestParam(value="functionList") List<String[]> functionList, RedirectAttributes redirectAttributes) {
 		logger.info("in role update action");
 		this.roleService.save(role,functionList);
-		redirectAttributes.addFlashAttribute("message", "è§’è‰²æ�ƒé™�æ›´æ–°æˆ�åŠŸ");
+		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
 		return "redirect:/role/list/";
 	}
 	
@@ -83,7 +83,7 @@ public class RoleController {
 	public String delete(@ModelAttribute Role role,  RedirectAttributes redirectAttributes) {
 		logger.info("delete role action");
 		this.roleService.delete(role.getId());
-		redirectAttributes.addFlashAttribute("message", "è§’è‰²åˆ é™¤æˆ�åŠŸ");
+		redirectAttributes.addFlashAttribute("message", "角色删除成功");
 		return "redirect:/role/list/";
 	}
 	
@@ -98,7 +98,7 @@ public class RoleController {
 	public String doAdd(@ModelAttribute Role role,  @RequestParam(value="functionList") List<String[]> functionList, RedirectAttributes redirectAttributes) {
 		logger.info("in role update action");
 		this.roleService.save(role,functionList);
-		redirectAttributes.addFlashAttribute("message", "è§’è‰²æ�ƒé™�æ›´æ–°æˆ�åŠŸ");
+		redirectAttributes.addFlashAttribute("message", "角色权限更新成功");
 		return "redirect:/role/list/";
 	}
 }
