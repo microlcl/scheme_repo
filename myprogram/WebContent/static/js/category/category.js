@@ -39,21 +39,40 @@ function edit() {
 }
 
 function save() {
+	var errorMsg = '';
 	if (editingId != undefined) {
 		var t = $('#tg');
 //		var node = t.treegrid('getSelected');
 		var node = t.treegrid('find', editingId);
 		t.treegrid('endEdit', editingId);
-		console.log('in save(), node.id=' + node.id);
+		if (node.name.trim()=='' || node.name.length > 64) {
+			errorMsg = '类别名称校验异常：您可输入1 - 64个字符。';
+		}
+		if (node.comment.length > 128) {
+			errorMsg = '备注校验异常：您可输最多可输入128个字符。';
+		}
+		
+		if (errorMsg != '') {
+			console.log(errorMsg);
+			$('#successMsgDev').hide();
+			$('#errorMsgDev').show();
+			$('#errorMsg').html(errorMsg);
+			errorMsg = '';			
+			$('#tg').treegrid('beginEdit', editingId);
+			return;
+			
+		}
+		console.log('in save(), node.id=' + node.id + ",node.name=" + node.name + ",node.comment=" + node.comment);
+
 		$.ajax({
 			url : './api/save',
 			type: 'post',
 			data:{
 				id:node.id,
 				pid:node._parentId,
-				name:node.name,
+				name:node.name.trim(),
 				trashed:node.trashed,
-				comment:node.comment
+				comment:node.comment.trim()
 			},
 			success : function(resp) {
 				console.log('in success function');
@@ -61,6 +80,9 @@ function save() {
 				
 				editingId = undefined;
 				t.treegrid('reloadFooter');
+				$('#errorMsgDev').hide();
+				$('#successMsgDev').show();				
+				$('#successMsg').html("保存成功。");
 			}
 		});
 	}
@@ -142,3 +164,12 @@ function expand() {
 		$('#tg').treegrid('expand', node.id);
 	}
 }
+
+$.extend($.fn.validatebox.defaults.rules, {
+	maxLength : {
+		validator : function(value, param) {
+			return value.length < param[0];
+		},
+		message : '您最多可以输入 {0} 个字符.'
+	}
+})
