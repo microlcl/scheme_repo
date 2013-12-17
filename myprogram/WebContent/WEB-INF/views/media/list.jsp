@@ -44,6 +44,8 @@
 		
 		function imgShow(outerdiv, innerdiv, bigimg, _this){
 			var src = _this.attr("src");
+			var title = _this.attr("title");
+			var description = _this.attr("alt");
 			var bigImgSrc = src.replace("/small/","/large/");
 			$(bigimg).attr("src", bigImgSrc);
 			
@@ -69,6 +71,8 @@
 					imgHeight = realHeight;
 				}
 				$(bigimg).css("width",imgWidth);
+				$("#description").css("width",imgWidth-20);
+				$("#description").html("<strong>"+title+"</strong>"+description);
 				
 				var w = (windowW-imgWidth)/2;
 				var h = (windowH-imgHeight)/2;
@@ -169,9 +173,9 @@
 						console.log(i + "===" + media.path);
 						var img;
 						if($("input:checkbox[name='bigPic']").is(':checked') == true)
-							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 300px; height: 200px; cursor: pointer;" id="pic_'+media.id+'"><span style="width:270px">' + media.description+'</span><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span3"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" title="'+media.title+'" alt="'+media.description+'" onclick="lazyImgShow(this)"  style="width: 300px; height: 200px; cursor: pointer;" id="pic_'+media.id+'"><span style="width:270px">' + media.description+'</span><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 						else
-							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="" onclick="lazyImgShow(this)"  style="width: 200px; height: 120px; cursor: pointer;" id=pic_"'+media.id+'"><span>' + media.description+'</span><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
+							img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" title="'+media.title+'" alt="'+media.description+'" onclick="lazyImgShow(this)"  style="width: 200px; height: 120px; cursor: pointer;" id=pic_"'+media.id+'"><span>' + media.description+'</span><div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;"><input class="photoCheck" type="checkbox" value="'+media.id+'" name="picture" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
 
 						$('#thumbnailContainer').append(img);
 					    $("#"+media.id).lazyload({
@@ -277,6 +281,33 @@ li a {cursor: pointer; }
     width: 870px;
     height: 70px;
 }
+.imgteaser {
+margin: 0;
+overflow: hidden;
+float: left;
+position: relative;
+}
+.imgteaser:hover .desc{
+display: block;
+font-size: 12px;
+background: #111;
+filter:alpha(opacity=75);
+opacity:.75;
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=75)"; /*--IE 8 Transparency--*/
+color: #fff;
+position: absolute;
+bottom: 6px;
+left:5px;
+padding: 10px;
+margin: 0;
+word-break: break-all;
+border-top: 1px solid #999;
+}
+.imgteaser:hover .desc strong {
+display: block;
+font-size:14px;
+}
+.imgteaser .desc {display: none; }
 </style>
 	
 			
@@ -285,8 +316,9 @@ li a {cursor: pointer; }
 <body>
 <div class="form" style="padding:20px;">
 	<div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
-		<div id="innerdiv" style="position:absolute;">
+		<div id="innerdiv" style="position:absolute;" class="imgteaser">
 			<img id="bigimg" style="border:5px solid #fff;" />
+			<span id="description" class="desc">
 		</div>
 	</div>
 	<div class="alert hide" id="warning-block">
@@ -342,7 +374,7 @@ li a {cursor: pointer; }
 							<li class="span2">
 								 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
 								 	
-								 		<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}" alt="" style="width: 200px; height: 120px; cursor: pointer;" id="pic_${media.id}">
+								 		<img class="lazy" data-original="${ctx}/plupload/files/small/${media.path}"  title="${media.title}" alt="${media.description}" style="width: 200px; height: 120px; cursor: pointer;" id="pic_${media.id}">
 									
 									<span>${media.description}</span>
 									<div class="check" style="z-index:2; position: absolute;left:0; top:0;display:none;">
