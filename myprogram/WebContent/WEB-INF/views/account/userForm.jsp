@@ -28,7 +28,7 @@
 			<div class="control-group">
 				<label for="name" class="control-label formlabel">用户名：</label>
 				<div class="controls">
-					<input type="text" id="name" name="name"  value="${formUser.name}" class="input-large required" rangelength="2,20"/>
+					<input type="text" id="name" name="name"  value="${formUser.name}" class="input-large required" maxlength="64"/>
 				</div>
 			</div>	
 
@@ -46,25 +46,25 @@
             <div class="control-group">
   				  <label class="control-label formlabel" for="email">邮箱:</label>
   				  <div class="controls">
-   				     <input type="email" id="email" name="email" required="" value="${formUser.email}" class="input-large">
+   				     <input type="email" id="email" name="email" required="" value="${formUser.email}" maxlength="64" class="input-large">
                   </div>
             </div>	
 			<div class="control-group">
 				<label for="phoneNum" class="control-label formlabel">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large " value="${formUser.phoneNum}" minlength="3"/>
+					<input type="text" id="phoneNum" name="phoneNum" class="input-large " value="${formUser.phoneNum}" maxlength="20"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="address" class="control-label formlabel">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large " value="${formUser.address}" />
+					<input type="text" id="address" name="address" class="input-large " value="${formUser.address}" maxlength="64" />
 				</div>
 			</div>			
 		    <div class="control-group"> 
 				<label for="hometown" class="control-label formlabel">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large " value="${formUser.hometown}" />
+					<input type="text" id="hometown" name="hometown" class="input-large " value="${formUser.hometown}" maxlength="64" />
 				</div>
 			</div>			
 			<div class="control-group">
@@ -113,7 +113,7 @@
 			<div class="control-group">
 				<label for="comment" class="control-label formlabel">备注:</label>
 				<div class="controls">
-					<textarea id="comment" name="comment" class="input-large">${formUser.comment}</textarea>
+					<textarea id="comment" name="comment" maxlength="128" class="input-large">${formUser.comment}</textarea>
 				</div>
 			</div>	
 			
@@ -143,17 +143,20 @@
 			$("#inputForm").validate({
 				rules: {
 					name: {
-						rangelength: [2,10]
+						rangelength: [1,64]
 					},
 					password: {
 						required: true,
-						rangelength: [5,20]
+						rangelength: [5,255]
+					},
+					phoneNum: {
+						rangelength: [2,20]
 					},
 					address: {
-						rangelength: [5,50]
+						rangelength: [2,64]
 					},
 					hometown: {
-						rangelength: [2,10]
+						rangelength: [2,64]
 					},
 					sex: {
                         required: function (element) {
@@ -180,6 +183,9 @@
 					},
 					password: {
 						rangelength: jQuery.validator.format("密码长度必须在 {0} 和 {1} 个字符之间")
+					},
+					phoneNum: {
+						rangelength: jQuery.validator.format("号码长度必须在 {0} 和 {1} 个字符之间")
 					},
 					address: {
 						rangelength: jQuery.validator.format("地址长度必须在 {0} 和 {1} 个字符之间")

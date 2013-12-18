@@ -22,19 +22,19 @@
 			<div class="control-group">
 				<label for="loginName" class="control-label">登录名:</label>
 				<div class="controls">
-					<input type="text" id="id" name="id" class="input-large required"/>
+					<input type="text" id="id" name="id" maxlength="64" class="input-large required"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="name" class="control-label">用户名:</label>
 				<div class="controls">
-					<input type="text" id="name" name="name" class="input-large required"/>
+					<input type="text" id="name" name="name" maxlength="64" class="input-large required"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="plainPassword" class="control-label">密码:</label>
 				<div class="controls">
-					<input type="password" id="password" name="password" class="input-large required"/>
+					<input type="password" id="password" name="password" maxlength="20" class="input-large required"/>
 				</div>
 			</div>
 			<div class="control-group">
@@ -57,25 +57,25 @@
             <div class="control-group">
   				  <label class="control-label" for="email">邮箱:</label>
   				  <div class="controls">
-   				     <input type="email" id="email" name="email" required="" placeholder="abc@gmail.com" class="input-large">
+   				     <input type="email" id="email" name="email" required="" maxlength="64" placeholder="abc@gmail.com" class="input-large">
                   </div>
             </div>	
 			<div class="control-group">
 				<label for="phoneNum" class="control-label">电话号码:</label>
 				<div class="controls">
-					<input type="text" id="phoneNum" name="phoneNum" class="input-large" />
+					<input type="text" id="phoneNum" name="phoneNum" maxlength="20" class="input-large" />
 				</div>
 			</div>
 						<div class="control-group">
 				<label for="address" class="control-label">联系地址:</label>
 				<div class="controls">
-					<input type="text" id="address" name="address" class="input-large" />
+					<input type="text" id="address" name="address"  maxlength="64"class="input-large" />
 				</div>
 			</div>			
 		    <div class="control-group">
 				<label for="hometown" class="control-label">籍贯:</label>
 				<div class="controls">
-					<input type="text" id="hometown" name="hometown" class="input-large"  minlength="2"/>
+					<input type="text" id="hometown" name="hometown" class="input-large"  maxlength="64"/>
 				</div>
 			</div>			
 			<div class="control-group">
@@ -103,21 +103,27 @@
 			$("#inputForm").validate({
 				rules: {
 					id: {
-						rangelength: [2,10],
+						rangelength: [2,64],
 						remote: {
 							url:"${ctx}/account/checkLoginName"
 						}
 					},
 					name: {
-						rangelength: [2,10]
+						rangelength: [2,64]
 					},
 					password: {
 						required: true,
-						rangelength: [5,20]
+						rangelength: [5,255]
+					},
+					phoneNum: {
+						rangelength: [2,20]
 					},
 					address: {
-						rangelength: [5,50]
-					}
+						rangelength: [2,64]
+					},
+					hometown: {
+						rangelength: [2,64]
+					},
 				},
 				messages: {
 					id: {
@@ -130,8 +136,14 @@
 					password: {
 						rangelength: jQuery.validator.format("密码长度必须在 {0} 和 {1} 个字符之间")
 					},
+					phoneNum: {
+						rangelength: jQuery.validator.format("号码长度必须在 {0} 和 {1} 个字符之间")
+					},
 					address: {
 						rangelength: jQuery.validator.format("地址长度必须在 {0} 和 {1} 个字符之间")
+					},
+					hometown: {
+						rangelength: jQuery.validator.format("籍贯长度必须在 {0} 和 {1} 个字符之间")
 					}
 				}
 			});
