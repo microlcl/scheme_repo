@@ -1,9 +1,8 @@
 package com.eastteam.myprogram.web.account;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
@@ -11,6 +10,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +33,9 @@ import com.google.common.collect.Maps;
 @RequestMapping(value = "/account")
 public class AccountController {
 	
-	private static final int PAGE_SIZE = 5;
+	@Autowired
+  	@Qualifier("configProperties")
+  	private Properties configProperties;
 	
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 	static {
@@ -84,7 +86,7 @@ public class AccountController {
 		logger.info("in list");
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		logger.info(searchParams.toString());		
-		Page<User> users = accountService.getCurrentPageContent(searchParams, pageNumber, PAGE_SIZE, sortType);
+		Page<User> users = accountService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 		model.addAttribute("users", users);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);

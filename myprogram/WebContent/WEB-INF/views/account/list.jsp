@@ -32,6 +32,7 @@
 			<form class="form-search" action="#">
 			 	<label>登录名：</label> <input type="text" name="search_id"   class="input-small"  value="${param.search_id}"> 
 			    <label>邮件名：</label> <input type="text" name="search_email" class="input-small" value="${param.search_email}">
+			    <label>角色：</label> <input type="text" name="search_role" class="input-small" value="${param.search_role}">
 			    <label>部门：</label><input name="search_department_id" class="easyui-combotree" value="${param.search_department_id}" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
 			   <mytag:PermssionTag functionId="F2-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
 		    </form>

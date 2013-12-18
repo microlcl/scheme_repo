@@ -41,6 +41,9 @@
 			<if test="email != null">
 				and u.email=#{email}
 			</if>
+			<if test="role != null">
+				and r.name=#{role}
+			</if>
 			<if test="department_id != null">
 				and u.department_id like '${department_id}%'
 			</if>
@@ -73,6 +76,9 @@
 			</if>
 			<if test="email != null">
 				and u.email=#{email}
+			</if>
+			<if test="role != null">
+				and r.name=#{role}
 			</if>
 			<if test="department_id != null">
 				and u.department_id like '${department_id}%'
