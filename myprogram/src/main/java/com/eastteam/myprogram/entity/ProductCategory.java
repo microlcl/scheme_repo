@@ -1,7 +1,7 @@
 package com.eastteam.myprogram.entity;
 
 
-public class Product_category {
+public class ProductCategory {
 	private Long product_id;
 	private String category_id;
 	private Long picture_id;

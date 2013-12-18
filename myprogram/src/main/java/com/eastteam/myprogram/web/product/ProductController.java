@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.entity.Product;
-import com.eastteam.myprogram.entity.Product_category;
+import com.eastteam.myprogram.entity.ProductCategory;
 import com.eastteam.myprogram.service.category.CategoryService;
 import com.eastteam.myprogram.service.product.ProductService;
 import com.eastteam.myprogram.web.Servlets;
@@ -94,7 +94,7 @@ public class ProductController {
 	public String doAdd(@ModelAttribute Product product, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in product update action");
 //		String row_count = request.getParameter("row_count");
-		List<Product_category> list = new ArrayList<Product_category>();
+		List<ProductCategory> list = new ArrayList<ProductCategory>();
 		String[] pictures = request.getParameterValues("picture");
 		String[] medias = request.getParameterValues("default_picture_id");
 		Long media_id = Long.parseLong(medias[0]);
@@ -106,10 +106,10 @@ public class ProductController {
 			if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){
 				Long picture = Long.parseLong(pictures[i]);
 				String searchCategoryId = searchCategoryIds[i];
-				Product_category product_category= new Product_category();
-				product_category.setPicture_id(picture);
-				product_category.setCategory_id(searchCategoryId);
-				list.add(product_category);
+				ProductCategory productCategory= new ProductCategory();
+				productCategory.setPicture_id(picture);
+				productCategory.setCategory_id(searchCategoryId);
+				list.add(productCategory);
 			}
 		}
 		this.productService.doAdd(product,list);
@@ -132,17 +132,17 @@ public class ProductController {
 	public String saveUpdate (@ModelAttribute Product product, RedirectAttributes redirectAttributes,HttpServletRequest request) {
 		logger.info("in product update action");
 //		String row_count = request.getParameter("row_count");
-		List<Product_category> list = new ArrayList<Product_category>();
+		List<ProductCategory> list = new ArrayList<ProductCategory>();
 		String[] pictures = request.getParameterValues("picture");
 		String[] searchCategoryIds = request.getParameterValues("searchCategoryId");
 		for (int i = 0; i < searchCategoryIds.length; i++) {
 			if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){
 				Long picture = Long.parseLong(pictures[i]);
 				String searchCategoryId = searchCategoryIds[i];
-				Product_category product_category= new Product_category();
-				product_category.setPicture_id(picture);
-				product_category.setCategory_id(searchCategoryId);
-				list.add(product_category);
+				ProductCategory productCategory= new ProductCategory();
+				productCategory.setPicture_id(picture);
+				productCategory.setCategory_id(searchCategoryId);
+				list.add(productCategory);
 			}
 		}
 		this.productService.saveUpdate(product,list);

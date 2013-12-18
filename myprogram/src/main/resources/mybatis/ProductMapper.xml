@@ -99,7 +99,7 @@
 	</insert>
 	
 	<!-- 插入product_category-->
-	<insert id="saveProduct_category" parameterType="Product_category">
+	<insert id="saveProductCategory" parameterType="ProductCategory">
 		insert into product_category (product_id,category_id,picture_id)
 		values(#{product_id},#{category_id},#{picture_id});
 	</insert>
@@ -115,8 +115,8 @@
 	</update>
 	
 	<!-- 修改产品-->
-	<update id="updateProduct_category" parameterType="Product_category">
-		update product_category set product_id=#{product_id}, category_id=#{category_id}, picture_id=#{picture_id} where product_id=#{product_id} and category_id=#{category_id};
+	<update id="updateProductCategory" parameterType="ProductCategory">
+		update productCategory set product_id=#{product_id}, category_id=#{category_id}, picture_id=#{picture_id} where product_id=#{product_id} and category_id=#{category_id};
 	</update>
 	
 	<!-- 修改Media-->
@@ -131,7 +131,7 @@
 	</delete>
 	
 	<!-- 删除product_category-->
-	<delete id="deleteProduct_category" parameterType="Product_category">
+	<delete id="deleteProductCategory" parameterType="ProductCategory">
 		delete from product_category where product_id=#{product_id};
 	</delete>
 	
@@ -145,7 +145,7 @@
 		from products p
 		where p.product_id=#{id}
 	</select>
-	<select id="getProduct_category" resultType="Product_category">
+	<select id="getProductCategory" resultType="ProductCategory">
 		select pc.product_id, pc.category_id,pc.picture_id
 		from product_category pc
 		where pc.product_id=#{product_id}

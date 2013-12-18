@@ -16,7 +16,7 @@ import com.eastteam.myprogram.dao.ProductMybatisDao;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Media;
 import com.eastteam.myprogram.entity.Product;
-import com.eastteam.myprogram.entity.Product_category;
+import com.eastteam.myprogram.entity.ProductCategory;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -52,10 +52,10 @@ public class ProductService extends PageableService {
 	public Product getProductList(Long id) {
 		Product product = new Product();
 		product = productMybatisDao.getProduct(id);
-		List<Product_category> productCategorys = productMybatisDao
-				.getProduct_category(id);
+		List<ProductCategory> productCategorys = productMybatisDao
+				.getProductCategory(id);
 		List<Category> categorys = new ArrayList<Category>();
-		for (Product_category productCategory : productCategorys) {
+		for (ProductCategory productCategory : productCategorys) {
 			Category category = productMybatisDao.getCategory(productCategory
 					.getCategory_id());
 			Media media = productMybatisDao.getMedia(productCategory
@@ -68,31 +68,31 @@ public class ProductService extends PageableService {
 	}
 	//删除Product，以及Product_category
 	public void delete(Long productId){
-		productMybatisDao.deleteProduct_category(productId);
+		productMybatisDao.deleteProductCategory(productId);
 		Product product=new Product();
 		product.setId(productId);
 		productMybatisDao.delete(product);
 	}
 	
-	public void doAdd(Product product,List<Product_category> list){
+	public void doAdd(Product product,List<ProductCategory> list){
 		productMybatisDao.save(product);
 		
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Product_category product_category = (Product_category) iterator
+			ProductCategory productCategory = (ProductCategory) iterator
 					.next();
-			product_category.setProduct_id(product.getId());
-			productMybatisDao.saveProduct_category(product_category);
+			productCategory.setProduct_id(product.getId());
+			productMybatisDao.saveProductCategory(productCategory);
 		}
 		
 	}
-	public void saveUpdate(Product product,List<Product_category> list){
+	public void saveUpdate(Product product,List<ProductCategory> list){
 		productMybatisDao.update(product);
-		productMybatisDao.deleteProduct_category(product.getId());
+		productMybatisDao.deleteProductCategory(product.getId());
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			Product_category product_category = (Product_category) iterator
+			ProductCategory productCategory = (ProductCategory) iterator
 					.next();
-			product_category.setProduct_id(product.getId());
-			productMybatisDao.saveProduct_category(product_category);
+			productCategory.setProduct_id(product.getId());
+			productMybatisDao.saveProductCategory(productCategory);
 		}
 		
 	}
