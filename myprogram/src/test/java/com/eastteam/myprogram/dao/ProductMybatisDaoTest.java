@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.eastteam.myprogram.entity.Product;
-import com.eastteam.myprogram.entity.Product_category;
+import com.eastteam.myprogram.entity.ProductCategory;
 import com.google.common.collect.Maps;
 
 public class ProductMybatisDaoTest extends SpringTransactionalTestCase {
@@ -49,11 +49,11 @@ public class ProductMybatisDaoTest extends SpringTransactionalTestCase {
 //		assertNotNull("allRole not null", product);
 //		productMybatisDao.save(product);
 		
-		Product_category product_category=new Product_category();
+		ProductCategory product_category=new ProductCategory();
 		product_category.setProduct_id(1l);
 		product_category.setCategory_id("1-1-2");
 		product_category.setPicture_id(1l);
-		productMybatisDao.saveProduct_category(product_category);
+		productMybatisDao.saveProductCategory(product_category);
 		
 		Map<String, Object> parameter = Maps.newHashMap();
 		parameter.put("categoryId", "1-1-2");
@@ -124,8 +124,8 @@ public class ProductMybatisDaoTest extends SpringTransactionalTestCase {
 //	}
 	@Test
 	public void getProductCategory() throws Exception {
-		List<Product_category> productCategorys = productMybatisDao
-				.getProduct_category((long) 6);
+		List<ProductCategory> productCategorys = productMybatisDao
+				.getProductCategory((long) 6);
 		System.out.println("prod category");
 	}
 	@Test
