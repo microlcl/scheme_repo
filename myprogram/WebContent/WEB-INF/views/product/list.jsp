@@ -42,8 +42,13 @@
 			check();
 
 			$("#update").click(function(){
-				if(($("input:checkbox[name='productId']").is(':checked') == false)){
-					$("#warning-block").show();
+				if($("input:checkbox[name='productId']").is(':checked') == false){
+					$("#warning-block_1").show();
+					$("#warning-block_2").hide();
+				}
+				else if($("input[name='productId']:checked").length > 1){
+					$("#warning-block_2").show();
+					$("#warning-block_1").hide();
 				}else{
 					$("#updateProduct").attr("action", "${ctx}/product/update");
 					$("#updateProduct").submit();
@@ -150,18 +155,6 @@
 			},3000);
 			
 		}
-		function chooseOne(cb){  
-	         //先取得同name的chekcBox的集合物件  
-	         var obj = document.getElementsByName("productId");  
-	         for (i=0; i<obj.length; i++){  
-	             //判斷obj集合中的i元素是否為cb，若否則表示未被點選  
-	             if (obj[i]!=cb) obj[i].checked = false;  
-	             //若是 但原先未被勾選 則變成勾選；反之 則變為未勾選  
-	             //else  obj[i].checked = cb.checked;  
-	             //若要至少勾選一個的話，則把上面那行else拿掉，換用下面那行  
-	             else obj[i].checked = true;  
-	         }  
-	     }  
 		
 		function vailFloatNumberPerfect(evnt,obj){
 			 evnt=evnt||window.event;
@@ -254,8 +247,11 @@
 
 <body>
 <div class="form" style="padding:20px;">
-<div class="alert hide" id="warning-block">
-  	   <strong>注意! </strong>请至少选中一个产品！
+<div class="alert hide" id="warning-block_1">
+  	   <strong>注意! </strong>请选择要修改的产品！
+</div>
+<div class="alert hide" id="warning-block_2">
+  	   <strong>注意! </strong>只能选择一个产品进行修改！
 </div>
 	<h1>产品管理</h1>
 	<c:if test="${not empty message}">
@@ -323,9 +319,10 @@
 	        </ul>
 		  </div>
 		</div>
-
+	
 	</div>
 </form>	
+
 	<%if (pageObj.hasNextPage()) {%>
 
 	<div id="loadMore" class="pagination pagination-centered">
