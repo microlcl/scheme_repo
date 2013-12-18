@@ -16,13 +16,34 @@
 <script src="${ctx}/static/jquery/audioplayer.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/jquery/audioplayer.css">
+<style type="text/css">
+	i:hover {
+		background-color:gray !important;
+	}
+	
+	a i {
+		cursor: pointer;
+		height: 16px !important;
+		width: 16px !important;
+		margin: 0 0 0.25em !important;
+		text-decoration: none !important;
+		vertical-align: middle;
+	}
+	.greyground {
+		background-color:gray !important;
+	}
+</style>
 <script>
 		var currentPage = <%=pageObj.getNumber() + 1%>
+		function iconclick(type, selected) {
+			$('input:radio')[type].checked=true;
+			$('#search_btn_test').click();
+		}
 		function check() {
 			$('.photoBox').mouseover(function(){
-				console.log('Mouse is on this image');
+				//console.log('Mouse is on this image');
 				$(this).children('.check').show();
-				console.log($(this).children('.check').children('.photoCheck').prop('checked'));
+				//console.log($(this).children('.check').children('.photoCheck').prop('checked'));
 			});
 			
 			$('.photoBox').mouseout(function(){
@@ -342,11 +363,11 @@ font-size:14px;
 				   </c:if>
 			   </div>
 				<div style="padding-top:15px">
-			 		<label>类别</label> <!-- input type="text" name="search_categoryId"   class="input-small"  value="${param.search_categoryId}"--> 
-			 		<!--select id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll',method:'get'" multiple style="width:200px;" name="search_categoryId"></select-->
+			 		<label>类别</label>
 					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+			   <!--
 					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >图片
+						<input id="pic_radio" type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >图片
 					</label>
 					<label class="radio inline">
 						<input type="radio" name="search_mediaType" value="video" <c:if test="${param.search_mediaType eq 'video'}">checked</c:if>>视频
@@ -357,12 +378,35 @@ font-size:14px;
 					<label class="checkbox inline" style="margin-left:20px">									
 			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
 			   		</label>
+				 -->
 					
 				</div>
 
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
 		    </form>
 	    </div>
+	</div>
+	<div class=" onefield " style="height:40px !important; width:900px;text-align: right !important;padding-right: 10px;padding-top: 7px;">
+	 	<div  style="border-right: 1px solid #DFDEDE;vertical-align: middle;">
+			分类显示：
+			<a title="图片" id="search_type0" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('0',this)">
+				<i class="icon-picture" <c:if test="${param.search_mediaType eq 'picture'}">style="background-color:gray !important;"</c:if>></i>
+			</a>
+			<a title="音频" id="search_type1" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('1',this)" >
+				<i class="icon-music" <c:if test="${param.search_mediaType eq 'audio'}">style="background-color:gray !important;"</c:if>></i>
+			</a>
+			<a title="视频" id="search_type2" style="line-height: 30px;padding-right:10px;text-align: middle;" onclick="iconclick('2',this)">
+				<i class="icon-film"></i>
+			</a>
+			<form style="float: right !important; border-left: 1px solid #DFDEDE; padding-left:10px;">
+				<input style="display:none;" type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >
+				<input style="display:none;" type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>
+				<input style="display:none;" type="radio" name="search_mediaType" value="video" <c:if test="${param.search_mediaType eq 'video'}">checked</c:if>>
+				
+				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;" placeholder="输入关键字搜索">			   
+				<mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i>搜索</button></mytag:PermssionTag>
+			</form>
+		</div>
 	</div>
 
 	<form id="updatePic" action="">
@@ -387,7 +431,7 @@ font-size:14px;
 			</div>
 		</c:if>
 		<c:if test="${param.search_mediaType eq 'audio'}">
-			<div style="text-align:center;margin-left:30px;">
+			<div style="text-align:center;margin-left:30px;padding-top:10px;">
 				
 				<table id="audioTable" class="table table-striped table-bordered table-condensed" style="width:80% !important;">
 					<tbody>
