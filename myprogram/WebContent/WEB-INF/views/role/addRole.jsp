@@ -5,14 +5,15 @@
 <head>
 	<title>角色管理</title>
 	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 </head>
 
 <body>
 	<form id="roleForm" action="${ctx}/role/doAdd" method="post" class="form-horizontal">
-		<fieldset>
-			<legend><small>创建新角色</small></legend>
+	<div class="form">
+	<h1>创建新角色</h1>
 			<div class="control-group">
 				<label for="name" class="control-label">角色名：</label>
 				<div class="controls">
@@ -27,11 +28,11 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="function" class="control-label">当前权限：</label>
+				<label for="function" class="control-label" style="font-weight:bold;">当前权限：</label>
 				<div class="controls">
 				<br>
 					<c:forEach items="${moduleList}" var="module">
-					<div class="control-group">
+					<div class="control-group onefield">
 					<!--有父节点的暂时停用 	<label for="function" class="control-label"><c:forEach items="${module.modules}" var="parentmodule">${parentmodule.name}-></c:forEach>&nbsp;${module.name}</label> -->
 					<label for="function" class="control-label" style="width:100px;">${module.name}：</label>
 						<c:forEach items="${module.functions}" var="module_function" >
@@ -47,7 +48,7 @@
 				<input id="submit_btn" class="btn btn-primary" type="submit" value="提交"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
-		</fieldset>
+		</div>
 	</form>
 	<script type="text/javascript">
 	$(document).ready(function() {
