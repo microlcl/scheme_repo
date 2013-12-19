@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css"
-	href="${ctx}/static/iCheck/skins/square/green.css">
+	href="${ctx}/static/iCheck/skins/minimal/minimal.css">
 <script src="${ctx}/static/iCheck/jquery.icheck.js"
 	type="text/javascript"></script>
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"
@@ -24,10 +24,14 @@
 <script>
 $(document).ready(function(){
 	iCheckInit();
+	$('input').on('ifChecked', function(event){
+		setCurrentMediaType();
+	});
 });
 function iCheckInit(){
 	$('input').iCheck({
-	    checkboxClass: 'icheckbox_square-green',
+		checkboxClass: 'icheckbox_minimal',
+		radioClass: 'iradio_minimal',
 	    increaseArea: '20%' // optional
 	});
 }

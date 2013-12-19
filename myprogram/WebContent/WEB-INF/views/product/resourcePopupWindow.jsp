@@ -68,7 +68,7 @@
 	<form class="form-search form-inline" action="#">
 	<div>
 		   	<label class="checkbox inline">									
- 		我的资源<input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/>
+ 		我的资源<div style="float:left;padding-right:4px"><input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/></div>
  	</label>
 	<input type="text" id='searchKeyword' name="search_keyword"  style="width:60%"  value="${param.search_keyword}">			   
 	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
@@ -77,9 +77,9 @@
 	<label class="inline">类别
 		<input id="categorySelector"  class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple name="search_categoryId" value="${param.search_categoryId}"/>
 	</label> 
-	<label class="radio inline"> <input type="radio" onclick="setCurrentMediaType()" id="radio_picture" name="search_mediaType" value="picture">图片</label> 
-	<label class="radio inline"> <input type="radio" onclick="setCurrentMediaType()" id="radio_video" name="search_mediaType" value="video">视频</label> 
-	<label class="radio inline"> <input type="radio" onclick="setCurrentMediaType()" id="radio_audio" name="search_mediaType" value="audio">音频</label> 
+	<label class="radio inline"><div style="float:left;padding-right:2px"> <input type="radio"  id="radio_picture" name="search_mediaType" value="picture" checked></div>图片</label> 
+	<label class="radio inline"><div style="float:left;padding-right:2px"> <input type="radio"  id="radio_video" name="search_mediaType" value="video"></div>视频</label> 
+	<label class="radio inline"><div style="float:left;padding-right:2px"> <input type="radio"  id="radio_audio" name="search_mediaType" value="audio"></div>音频</label> 
 
 	</div>
     </form>
