@@ -115,7 +115,23 @@ function clearNoNum(obj)
 			  $(this).parent().parent().parent().parent().parent().parent().remove();
 			 });
 	}
-	
+	function check(){
+		var items=new Array();
+		var i=0;
+		jQuery("input[name='searchCategoryId']").each(function(){
+			items[i]=jQuery(this).val();
+			i++;
+		});
+		for(var m=0;m<items.length;m++){
+			for(var n=m+1;n<items.length;n++){
+				if(items[m]==items[n]){
+					alert("有重复的分类，请修改分类后重新提交！");
+					return;
+				}
+			}
+		}
+		$("#inputForm").submit();
+	}
 </script>
 
 <style type="text/css">
@@ -210,7 +226,7 @@ function clearNoNum(obj)
 			</div>	
 
 			<div class="form-actions" style="padding-left:410px">
-				<input id="submit_btn" class="btn btn-primary" type="submit"
+				<input id="submit_btn" class="btn btn-primary" type="button" onclick="check()"
 					value="提交" />&nbsp; <input id="cancel_btn" class="btn"
 					type="button" value="返回" onclick="history.back()" />
 			</div>
