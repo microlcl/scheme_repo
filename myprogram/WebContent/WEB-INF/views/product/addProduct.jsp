@@ -27,6 +27,16 @@ $(document).ready(function(){
 	$('input').on('ifChecked', function(event){
 		setCurrentMediaType();
 	});
+	$("#inputForm").validate({
+		messages: {
+			price: {
+				required: "请填写价格"
+			},
+			title: {
+				required: "请填写名称"
+			}
+		}
+	});
 });
 function iCheckInit(){
 	$('input').iCheck({
@@ -155,7 +165,7 @@ function clearNoNum(obj)
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:50px;padding-right:10px">名称:</label>
-										<input type="text" name="title"  maxlength="64" placeholder="0~64个字符" />
+										<input type="text" name="title"  maxlength="64" class="required" placeholder="0~64个字符" />
 									</div>
 									<div style="margin-bottom:5px;">
 										<label class="control-label" style="width:50px;padding-right:10px">描述:</label>
@@ -165,7 +175,7 @@ function clearNoNum(obj)
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:50px;padding-right:10px">价格￥:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" onkeyup="clearNoNum(this)"/>
+										<input type="text" name="price"  maxlength="20" placeholder="" class="required" onkeyup="clearNoNum(this)"/>
 									</div>
 								</div>
 								</td>

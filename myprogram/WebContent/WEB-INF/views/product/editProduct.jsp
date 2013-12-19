@@ -28,6 +28,16 @@ $(document).ready(function(){
 	$('input').on('ifChecked', function(event){
 		setCurrentMediaType();
 	});
+	$("#inputForm").validate({
+		messages: {
+			price: {
+				required: "请填写价格"
+			},
+			title: {
+				required: "请填写名称"
+			}			
+		}
+	});
 });
 
 function iCheckInit(){
@@ -152,7 +162,7 @@ function clearNoNum(obj)
 								<div style="margin-top:25px;" >
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:50px;padding-right:10px">名称:</label>
-										<input type="text" name="title" value="${product.title }" maxlength="64" placeholder="0~64个字符" />
+										<input type="text" name="title" value="${product.title }" maxlength="64" class="required" placeholder="0~64个字符" />
 										<input type="hidden" name="id" value="${product.id }">
 									</div>
 									<div style="margin-bottom:5px;">
@@ -163,7 +173,7 @@ function clearNoNum(obj)
 									</div>
 									<div class="control-group" style="margin-bottom:5px;">
 										<label class="control-label" style="width:50px;padding-right:10px">价格￥:</label>
-										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }" onkeyup="clearNoNum(this)" />
+										<input type="text" name="price"  maxlength="20" placeholder="" value="${product.price }" class="required" onkeyup="clearNoNum(this)" />
 									</div>
 									<input type="button" value="添加类别" onclick="addNew();">
 								  	<input type="button" value="删除类别" onclick="del();"> 
