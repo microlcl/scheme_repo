@@ -349,68 +349,64 @@ font-size:14px;
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-	
+<!-- 	
 	<div class="search-panel onefield">
 		<div class="span10">
 			<form class="form-search form-inline" action="#">
 				<div>
 				   <input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">			   
 				   <mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
-				  <c:if test="${param.search_mediaType eq 'picture'}">
-				   <label class="checkbox inline" style="margin-left:80px">									
-				   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
-				   </label>
-				   </c:if>
+
 			   </div>
 				<div style="padding-top:15px">
 			 		<label>类别</label>
 					<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
-			   <!--
-					<label class="radio inline">
-						<input id="pic_radio" type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >图片
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="video" <c:if test="${param.search_mediaType eq 'video'}">checked</c:if>>视频
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>音频
-					</label>
-					<label class="checkbox inline" style="margin-left:20px">									
-			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
-			   		</label>
-				 -->
-					
+			   
 				</div>
 
 			   <button id="test" class="btn btn-link" type="button" onclick="check()" style="display:none;">TEST...</button>
 		    </form>
 	    </div>
 	</div>
-	<div class=" onefield " style="height:40px !important; width:900px;text-align: right !important;padding-right: 10px;padding-top: 7px;">
+ -->
+	<div class=" onefield" style="height:40px !important; width:900px;text-align: right !important;padding-right: 10px;padding-top: 7px;background-color: white;">
 	 	<div  style="border-right: 1px solid #DFDEDE;vertical-align: middle;">
-			分类显示：
-			<a title="图片" id="search_type0" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('0',this)">
-				<i class="icon-picture" <c:if test="${param.search_mediaType eq 'picture'}">style="background-color:gray !important;"</c:if>></i>
-			</a>
-			<a title="音频" id="search_type1" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('1',this)" >
-				<i class="icon-music" <c:if test="${param.search_mediaType eq 'audio'}">style="background-color:gray !important;"</c:if>></i>
-			</a>
-			<a title="视频" id="search_type2" style="line-height: 30px;padding-right:10px;text-align: middle;" onclick="iconclick('2',this)">
-				<i class="icon-film"></i>
-			</a>
-			<form style="float: right !important; border-left: 1px solid #DFDEDE; padding-left:10px;">
+			<form style="padding-left:10px;">
+		 		<span  style="float:left;">
+			 		类别: 
+			 		<input id="cc" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+				  	<label class="checkbox inline" style="margin-left:20px">									
+			   			我的资源<input value="${user.id}" type="checkbox" <c:if test="${!empty param.search_userId}">checked</c:if> name="search_userId"/>
+			   		</label>
+				  	<c:if test="${param.search_mediaType eq 'picture'}">
+					   <label class="checkbox inline" style="margin-left:20px">									
+					   	   <input id="bigPic" name="bigPic" type="checkbox" />大图模式
+					   </label>
+				   	</c:if>
+		 		</span>
+		 		<span style="border-right: 1px solid #DFDEDE;">
+					<a title="图片" id="search_type0" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('0',this)">
+						<i class="icon-picture" <c:if test="${param.search_mediaType eq 'picture'}">style="background-color:gray !important;"</c:if>></i>
+					</a>
+					<a title="音频" id="search_type1" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('1',this)" >
+						<i class="icon-music" <c:if test="${param.search_mediaType eq 'audio'}">style="background-color:gray !important;"</c:if>></i>
+					</a>
+					<a title="视频" id="search_type2" style="line-height: 30px;padding-right:5px;text-align: middle;" onclick="iconclick('2',this)">
+						<i class="icon-film"></i>
+					</a>
+		 		</span>
 				<input style="display:none;" type="radio" name="search_mediaType" value="picture" <c:if test="${param.search_mediaType eq 'picture'}">checked</c:if> >
 				<input style="display:none;" type="radio" name="search_mediaType" value="audio" <c:if test="${param.search_mediaType eq 'audio'}">checked</c:if>>
 				<input style="display:none;" type="radio" name="search_mediaType" value="video" <c:if test="${param.search_mediaType eq 'video'}">checked</c:if>>
 				
-				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;" placeholder="输入关键字搜索">			   
-				<mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i>搜索</button></mytag:PermssionTag>
+				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">			   
+				<mytag:PermssionTag functionId="F4-5"> <button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button></mytag:PermssionTag>
 			</form>
 		</div>
 	</div>
 
 	<form id="updatePic" action="">
-	<div class="row">
+	<div class="row" style="padding-top: 10px;">
 		<c:if test="${param.search_mediaType eq 'picture'}">
 			<div id="pictureSet" class="span9 picture-panel">
 				<ul id="thumbnailContainer" class="thumbnails">
