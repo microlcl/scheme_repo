@@ -28,7 +28,7 @@
 			<form class="form-search" action="#">
 			 	<label>角色名：</label> <input type="text" name="search_name"   class="input-small"  value="${param.search_name}"> 
 		 	    <label>描述：</label> <input type="text" name="search_description" class="input-small" value="${param.search_description}">
-			   <mytag:PermssionTag functionId="F3-2"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+			   <mytag:PermssionTag functionId="F3-1"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
 			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 		 <!--	<button class="btn btn-danger" onclick="fn()">创建新角色</button>	 -->
 				<mytag:PermssionTag functionId="F3-2"><a href="${ctx}/role/add/" >创建新角色</a></mytag:PermssionTag>

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<form id="inputForm" action="${ctx}/account/show" method="post" class="form-horizontal">
+	<form id="inputForm" action="${ctx}/account/update" method="post" class="form-horizontal">
 		<div class="form">
 			<h1>用户管理</h1>
 			<div class="control-group">

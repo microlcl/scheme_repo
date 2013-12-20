@@ -83,12 +83,12 @@
 		<div>请在节点上单击右键进行维护。</div>
 	</div>
 	<div id="mm" class="easyui-menu" style="width: 120px;">
-		<mytag:PermssionTag functionId="F1-4"><div onclick="edit()" data-options="iconCls:'icon-edit'">编辑</div></mytag:PermssionTag>
-		<mytag:PermssionTag functionId="F1-3"><div onclick="append()" data-options="iconCls:'icon-add'">添加</div></mytag:PermssionTag>
-		<mytag:PermssionTag functionId="F1-5"><div onclick="removeIt()" data-options="iconCls:'icon-remove'">移除</div></mytag:PermssionTag>
+		<mytag:PermssionTag functionId="F1-3"><div onclick="edit()" data-options="iconCls:'icon-edit'">编辑</div></mytag:PermssionTag>
+		<mytag:PermssionTag functionId="F1-2"><div onclick="append()" data-options="iconCls:'icon-add'">添加</div></mytag:PermssionTag>
+		<mytag:PermssionTag functionId="F1-4"><div onclick="removeIt()" data-options="iconCls:'icon-remove'">移除</div></mytag:PermssionTag>
 		<div class="menu-sep"></div>
-		<mytag:PermssionTag functionId="F1-7"><div onclick="collapse()">折叠</div></mytag:PermssionTag>
-		<mytag:PermssionTag functionId="F1-8"><div onclick="expand()">展开</div></mytag:PermssionTag>
+		<div onclick="collapse()">折叠</div>
+		<div onclick="expand()">展开</div>
 	</div>
 </div>
 <div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">

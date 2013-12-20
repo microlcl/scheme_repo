@@ -30,7 +30,7 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, value="/list")
 	public String list() {
 		return "category/list";
 	}

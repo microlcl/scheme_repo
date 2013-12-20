@@ -113,7 +113,7 @@ public class AccountController {
 		return "account/userInfo";
 	}
 	
-	@RequestMapping(value = "show", method = RequestMethod.POST)
+	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public String adminUpdate(@ModelAttribute("user") User user, @RequestParam(value="userBirthday") String birthday,  @RequestParam(value="role") List selectedRoles, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
 		logger.info(selectedRoles.toString());
@@ -128,7 +128,7 @@ public class AccountController {
 		return "redirect:/account/list/";
 	}
 	
-	@RequestMapping(value = "editProfile/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "edit/profile/{id}", method = RequestMethod.GET)
 	public String editProfile(@PathVariable("id") String id, Model model) {
 		User user =  this.accountService.getUser(id);
 
@@ -137,7 +137,7 @@ public class AccountController {
 		return "account/updateUserInfo";
 	}
 	
-	@RequestMapping(value = "editProfile", method = RequestMethod.POST)
+	@RequestMapping(value = "save/profile", method = RequestMethod.POST)
 	public String updatePersonalInfo(@ModelAttribute("user") User user, @RequestParam(value="userBirthday") String birthday, RedirectAttributes redirectAttributes) {
 		logger.info("in update action");
 		user.setBirthday(birthday);

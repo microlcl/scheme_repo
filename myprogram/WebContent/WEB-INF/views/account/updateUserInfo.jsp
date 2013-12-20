@@ -15,7 +15,7 @@
 </head>
 
 <body>
-	<form id="inputForm" action="${ctx}/account/editProfile" method="post" class="form-horizontal">
+	<form id="inputForm" action="${ctx}/account/save/profile" method="post" class="form-horizontal">
 		<fieldset>
 			<legend><small>个人信息修改</small></legend>
 			<div class="control-group">

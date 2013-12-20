@@ -2,6 +2,7 @@ package com.eastteam.myprogram.service.account;
 
 import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -90,7 +91,9 @@ public class AccountService extends PageableService {
 			if (role.getFunctions() == null)
 				continue;
 			for (Function function : role.getFunctions()) {
-				uriSet.add(function.getPath());
+				String uris = function.getPath();
+				String[] uriArray = uris.split(",");
+				uriSet.addAll(Arrays.asList(uriArray));
 			}
 			
 		}		
@@ -116,6 +119,5 @@ public class AccountService extends PageableService {
 		ArrayList<String> functionidList = Lists.newArrayList(functionIdSet);
 		return Collections.unmodifiableList(functionidList);
 	}
-	
 
 }

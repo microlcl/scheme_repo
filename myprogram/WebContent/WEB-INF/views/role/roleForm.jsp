@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -47,7 +48,7 @@
 				</div>
 			</div>		
 			<div class="form-actions" >
-				<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
+				<mytag:PermssionTag functionId="F3-3"><input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;</mytag:PermssionTag>	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
 		</div>

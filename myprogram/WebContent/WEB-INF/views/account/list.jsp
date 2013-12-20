@@ -34,7 +34,7 @@
 			    <label>邮件名：</label> <input type="text" name="search_email" class="input-small" value="${param.search_email}">
 			    <label>角色：</label> <input type="text" name="search_role" class="input-small" value="${param.search_role}">
 			    <label>部门：</label><input name="search_department_id" class="easyui-combotree" value="${param.search_department_id}" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
-			   <mytag:PermssionTag functionId="F2-5"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
+			   <mytag:PermssionTag functionId="F2-2"> <button type="submit" class="btn" id="search_btn">Search</button></mytag:PermssionTag>
 		    </form>
 	    </div>
 	    <tags:sort/>
@@ -66,8 +66,8 @@
 				</td>
 				<td>${user.status}&nbsp;</td>
 				<td>
-						<mytag:PermssionTag functionId="F2-4"><a href="${ctx}/account/show/${user.id}" id="editLink-${user.id}"><i class="icon-pencil"></i> 修改</a></mytag:PermssionTag>
-						<mytag:PermssionTag functionId="F2-2"><a href="${ctx}/account/show/userInfo/${user.id}" id="info-${user.id}"><i class="icon-pencil"></i> 查看</a></mytag:PermssionTag>
+						<mytag:PermssionTag functionId="F2-5"><a href="${ctx}/account/show/${user.id}" id="editLink-${user.id}"><i class="icon-pencil"></i> 修改</a></mytag:PermssionTag>
+						<mytag:PermssionTag functionId="F2-3"><a href="${ctx}/account/show/userInfo/${user.id}" id="info-${user.id}"><i class="icon-pencil"></i> 查看</a></mytag:PermssionTag>
 				</td>
 			</tr>
 		</c:forEach>

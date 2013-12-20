@@ -8,7 +8,7 @@
 	<div id="leftbar" class="span2">
 		<h1>管理</h1>
 		<div class="submenu">
-			<mytag:PermssionTag functionId="F1-1"><a id="category-tab" href="${ctx}/category/">类别管理</a></mytag:PermssionTag>
+			<mytag:PermssionTag functionId="F1-1"><a id="category-tab" href="${ctx}/category/list">类别管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F2-1"><a id="account-tab" href="${ctx}/account/list">人员管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F3-1"><a id="role-tab" href="${ctx}/role/list">角色管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F4-1"><a id="media-tab" href="${ctx}/media/list?search_mediaType=picture">多媒体资源管理</a></mytag:PermssionTag>

@@ -91,7 +91,7 @@ public class AuthFilter implements Filter {
 			return false;
 		
 		for (String authorizedUri : authorizedUriList) {
-			if (StringUtils.startsWith(uri,authorizedUri)) {
+			if (StringUtils.startsWith(uri,authorizedUri.trim())) {
 				return true;
 			}
 		}

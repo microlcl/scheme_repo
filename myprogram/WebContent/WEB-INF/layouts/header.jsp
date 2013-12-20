@@ -11,7 +11,7 @@
 				</a>
 	
 				<ul class="dropdown-menu">	
-					<li><a href="${ctx}/account/editProfile/${user.id}">修改个人信息</a></li>
+					<li><a href="${ctx}/account/edit/profile/${user.id}">修改个人信息</a></li>
 					<li class="divider"></li>
 					<li><a href="${ctx}/account/logout">退出</a></li>
 				</ul>
