@@ -16,34 +16,36 @@ insert into modules(module_id, pid, name, description, path) values('M1-4','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-5','M1','产品管理','产品管理','');
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
-insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search');
+insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll');
 insert into functions(function_id, module_id, name, description, path) values('F1-2','M1-1','类别：增加','有权限增加','/category/api/save,/category/api/subId');
 insert into functions(function_id, module_id, name, description, path) values('F1-3','M1-1','类别：修改','有权限修改','/category/api/save');
 insert into functions(function_id, module_id, name, description, path) values('F1-4','M1-1','类别：删除','有权限删除','/category/api/delete');
 
 
 insert into functions(function_id, module_id, name, description, path) values('F2-1','M1-2','人员：列表','菜单导航','/account/list');
-insert into functions(function_id, module_id, name, description, path) values('F2-2','M1-2','人员：查询','有权限查看','/account/list');
-insert into functions(function_id, module_id, name, description, path) values('F2-3','M1-2','人员：查看详细','有权限增加','/account/show/userInfo');
+insert into functions(function_id, module_id, name, description, path) values('F2-2','M1-2','人员：查询','有权限查询','/account/list');
+insert into functions(function_id, module_id, name, description, path) values('F2-3','M1-2','人员：查看详细','有权限查看','/account/show/userInfo');
 insert into functions(function_id, module_id, name, description, path) values('F2-4','M1-2','人员：增加','有权限增加','account/add');
 insert into functions(function_id, module_id, name, description, path) values('F2-5','M1-2','人员：修改他人信息','有权限修改','/account/show,/account/update');
 insert into functions(function_id, module_id, name, description, path) values('F2-6','M1-2','人员：修改自己的信息','有权限修改','/account/edit/profile,/account/save/profile');
 
+insert into functions(function_id, module_id, name, description, path) values('F3-1','M1-3','角色：列表','菜单导航','/role/list');
+insert into functions(function_id, module_id, name, description, path) values('F3-2','M1-3','角色：查询','有权限查询','/role/list');
+insert into functions(function_id, module_id, name, description, path) values('F3-3','M1-3','角色：创建','有权限创建角色','/role/add,/role/doAdd');
+insert into functions(function_id, module_id, name, description, path) values('F3-4','M1-3','角色：修改','有权限修改角色','/role/update,/role/save');
+insert into functions(function_id, module_id, name, description, path) values('F3-5','M1-3','角色：删除','有权限删除角色','/role/delete');
 
-insert into functions(function_id, module_id, name, description, path) values('F3-1','M1-3','角色：查询','有权限查询','/role/list');
-insert into functions(function_id, module_id, name, description, path) values('F3-2','M1-3','角色：创建','有权限创建角色列表','/role/add');
-insert into functions(function_id, module_id, name, description, path) values('F3-3','M1-3','角色：修改','有权限修改角色','/role/update');
-insert into functions(function_id, module_id, name, description, path) values('F3-4','M1-3','角色：删除','有权限删除角色','/role/delete');
+insert into functions(function_id, module_id, name, description, path) values('F4-1','M1-4','多媒体：列表','菜单导航','/media/list');
+insert into functions(function_id, module_id, name, description, path) values('F4-2','M1-4','多媒体：增加','有权限增加','/media/upload,/media/save');
+insert into functions(function_id, module_id, name, description, path) values('F4-3','M1-4','多媒体：修改','有权限修改','/media/edit,/media/update');
+insert into functions(function_id, module_id, name, description, path) values('F4-4','M1-4','多媒体：删除','有权限删除','/media/delete');
+insert into functions(function_id, module_id, name, description, path) values('F4-5','M1-4','多媒体：查询','有权限查询','/media/list');
 
-insert into functions(function_id, module_id, name, description, path) values('F4-1','M1-4','多媒体：菜单','菜单','/role/add');
-insert into functions(function_id, module_id, name, description, path) values('F4-2','M1-4','多媒体：增加','有权限增加','/role/add');
-insert into functions(function_id, module_id, name, description, path) values('F4-3','M1-4','多媒体：修改','有权限修改','/role/api/update');
-insert into functions(function_id, module_id, name, description, path) values('F4-4','M1-4','多媒体：删除','有权限删除','/role/api/delete');
-insert into functions(function_id, module_id, name, description, path) values('F4-5','M1-4','多媒体：查询','有权限查询','/role/api/delete');
-insert into functions(function_id, module_id, name, description, path) values('F5-1','M1-5','产品：菜单','菜单','/product/add');
-insert into functions(function_id, module_id, name, description, path) values('F5-2','M1-5','产品：增加','增加','/product/add');
-insert into functions(function_id, module_id, name, description, path) values('F5-3','M1-5','产品：修改','修改','/product/update');
-insert into functions(function_id, module_id, name, description, path) values('F5-4','M1-5','产品：删除','删除','/product/delete');
+insert into functions(function_id, module_id, name, description, path) values('F5-1','M1-5','产品：列表','菜单导航','/product/list');
+insert into functions(function_id, module_id, name, description, path) values('F5-2','M1-5','产品：增加','有权限增加','/product/add,/product/doAdd');
+insert into functions(function_id, module_id, name, description, path) values('F5-3','M1-5','产品：修改','有权限修改','/product/update,/product/updateProduct');
+insert into functions(function_id, module_id, name, description, path) values('F5-4','M1-5','产品：删除','有权限删除','/product/delete');
+insert into functions(function_id, module_id, name, description, path) values('F5-5','M1-5','产品：查看','有权限查看','/product/view');
 
 
 insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
@@ -113,6 +115,7 @@ insert into role_function(role_id, function_id, description) values('R0','F5-1',
 insert into role_function(role_id, function_id, description) values('R0','F5-2','');
 insert into role_function(role_id, function_id, description) values('R0','F5-3','');
 insert into role_function(role_id, function_id, description) values('R0','F5-4','');
+insert into role_function(role_id, function_id, description) values('R0','F5-5','');
 insert into role_function(role_id, function_id, description) values('R1','F0','');
 insert into role_function(role_id, function_id, description) values('R1','F1-1','');
 insert into role_function(role_id, function_id, description) values('R1','F1-2','');

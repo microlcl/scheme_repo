@@ -290,7 +290,7 @@
 					<li class="span2">
 						<!--a href="#" class="thumbnail"> <img src="${ctx}/plupload/files/small/${media.path}" alt=""-->
 						 <div class="thumbnail photoBox"  style="z-index:1;position:relative;">
-						 <mytag:PermssionTag functionId="F5-2"><a href="${ctx}/product/view?productId=${product.id}">
+						 <mytag:PermssionTag functionId="F5-5"><a href="${ctx}/product/view?productId=${product.id}">
 						 	<img class="lazy" data-original="${ctx}/plupload/files/small/${product.media.path}" alt="" style="width:200px;height:120px;"></a></mytag:PermssionTag>
 							<div class="description">
 								<a href="${ctx}/product/view?productId=${product.id}" title="${product.description}">
