@@ -8,7 +8,7 @@ public class Spaces extends IdEntity{
 	private int stage_length ;//舞台长
 	private int stage_width ;//舞台宽
 	private int stage_height;//舞台高
-	private String attributes;
+	private String attribute_id;
 	private String description;
 	private Holders holders ;//所属holder
 	
@@ -60,11 +60,11 @@ public class Spaces extends IdEntity{
 	public void setStage_height(int stage_height) {
 		this.stage_height = stage_height;
 	}
-	public String getAttributes() {
-		return attributes;
+	public String getAttribute_id() {
+		return attribute_id;
 	}
-	public void setAttributes(String attributes) {
-		this.attributes = attributes;
+	public void setAttribute_id(String attribute_id) {
+		this.attribute_id = attribute_id;
 	}
 	public String getDescription() {
 		return description;

@@ -26,7 +26,7 @@
 		<result property="stage_length" column="stage_length" />
 		<result property="stage_width" column="stage_width" />
 		<result property="stage_height" column="stage_height" />
-		<result property="attributes" column="attributes" />
+		<result property="attribute_id" column="attribute_id" />
 		<result property="description" column="description" />
 		<association property="holders" column="holder_id" javaType="Holders" select="selectHolders">
 			<id property="id" column="holder_id" />
@@ -44,7 +44,7 @@
 	    where h.holder_id=#{holder_id} 
 	</select>
 	<select id="search" parameterType="map" resultMap="spacetDetailMap">
-		select space_id as id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attributes,description
+		select space_id as id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description
 		from spaces s
 		<where>
 			<if test="space_name != null">
