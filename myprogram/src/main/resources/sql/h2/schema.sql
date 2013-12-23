@@ -142,10 +142,17 @@ create table spaces (
 	stage_length int,
 	stage_width int,
 	stage_height int,
-	attributes varchar(256),
+	attribute_id varchar(64), -- 在这里保存categoryid，用来产生attribute 选项列表
 	description varchar(256),	
 	primary key (space_id)
 );
+
+create table space_attribute (
+	space_id bigint,
+	attribute_id varchar(64),
+	attribute_value varchar(256), -- 选择的值用逗号隔开
+	primary key (space_id,attribute_id)
+)
 
 -- 到访流水， 由于一个case可能导致多次到访，所以此表与cases table是多对一的关系
 create table visit_records (
@@ -184,8 +191,7 @@ create table papers (
 	creat_timestamp timestamp,
 	trashed varchar(1),
 	business_type, -- 庆典种类：婚庆，生日，公司年会,年终员工调查等，可以在category table配置
-	primary key (paper_id)
-	
+	primary key (paper_id)	
 )
 
 -- 调查表
@@ -196,6 +202,13 @@ create table questions (
 	question_options varchar(512), -- 问题答案选项，用特殊字符^分隔， 如果是开放式问题， 此字段为空
 	primary key (question_id)
 );
+
+create table paper_questions (
+	paper_id bigint,
+	question_id bigint,
+	position int, -- 问题在调查问卷中的位置
+	primary key (paper_id, question_id)	
+)
 
 -- 系统表，存储问题类别：单选，多选，开放式问题
 create table question_type (

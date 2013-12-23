@@ -1,4 +1,4 @@
-package com.eastteam.myprogram.web.media;
+package com.eastteam.myprogram.web.demo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,5 +18,11 @@ public class DemoController {
 	public String save() {
 
 		return "demo/list";
+	}
+	
+	@RequestMapping(value="test",method = RequestMethod.GET)
+	public String test() {
+
+		return "demo/test";
 	}
 }
