@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.eastteam.myprogram.dao.SpaceMybatisDao">
+
+	<!-- 插入场地-->
+	<insert id="save" parameterType="Spaces" useGeneratedKeys="true" keyProperty="id" >
+		insert into Spaces (holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attributes,description)
+		values(#{holders.id},#{space_name},#{floor},#{volume},#{hall_height},#{stage_length},#{stage_width},#{stage_height},#{attributes},#{description});
+	</insert>
+	
+	 	<!-- 修改场地-->
+	<update id="update" parameterType="Spaces">
+		update Spaces set holder_id=#{holder_id}, space_name=#{space_name}, floor=#{floor} ,volume=#{volume},hall_height=#{hall_height} ,
+		stage_length=#{stage_length},stage_width=#{stage_width} ,stage_height=#{stage_height},attributes=#{attributes},description=#{description}
+		where space_id=#{id};
+	</update>
+	
+	<resultMap id="spacetDetailMap" type="Spaces">
+		<id property="id" column="space_id" />
+		<result property="space_name" column="space_name" />
+		<result property="floor" column="floor" />
+		<result property="volume" column="volume" />
+		<result property="hall_height" column="hall_height" />
+		<result property="stage_length" column="stage_length" />
+		<result property="stage_width" column="stage_width" />
+		<result property="stage_height" column="stage_height" />
+		<result property="attributes" column="attributes" />
+		<result property="description" column="description" />
+		<association property="holders" column="holder_id" javaType="Holders" select="selectHolders">
+			<id property="id" column="holder_id" />
+			<result property="holder_name" column="holder_name" />
+			<result property="address" column="address" />
+			<result property="level" column="level" />
+			<result property="contact" column="contact" />
+			<result property="phone" column="phone" />
+			<result property="description" column="description" />
+		</association>
+	</resultMap>
+	<select id="selectHolders" resultType="Holders">
+	    select holder_id as id ,holder_name,address,level,contact,phone,description
+	    from  holders h 
+	    where h.holder_id=#{holder_id} 
+	</select>
+	<select id="search" parameterType="map" resultMap="spacetDetailMap">
+		select space_id as id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attributes,description
+		from spaces s
+		<where>
+			<if test="space_name != null">
+				and s.space_name like '%${space_name}%'
+			</if>
+		</where>
+		<if test="sort != null">
+			order by ${sort} desc
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
+	</select>
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(*)
+		from spaces s
+		<where>
+				<if test="space_name != null">
+				and s.space_name like '%${space_name}%'
+			</if>
+		</where>
+		<if test="sort != null">
+			order by ${sort} desc
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>) t
+	</select>
+
+</mapper> 

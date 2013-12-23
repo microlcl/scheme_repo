@@ -226,6 +226,10 @@ insert into product_category(product_id,category_id,picture_id) values(9,'1-6-1'
 insert into product_category(product_id,category_id,picture_id) values(9,'1-6-2',3);
 insert into product_category(product_id,category_id,picture_id) values(9,'1-6-3',4);
 
+insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
+		values(1,'1','1',1,'1','1','1');
 
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attributes,description)
+		values(1,1,'1',1,1,1,1,1,1,'1','1');
 
 
