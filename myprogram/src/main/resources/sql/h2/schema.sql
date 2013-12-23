@@ -231,9 +231,16 @@ create table case_character (
 	character_id bigint,   -- customer id
 	character_title varchar(16), -- 庆典主角title，比如新娘，新郎等
 	role varchar(16), -- 角色： 主角，联系人，参与者
+	customer_id bigint,
 	description varchar(256),
 	primary key (case_id,main_character_id)
 );
+
+create table casetype_role (
+	case_type varchar(64), -- value为配置在category table里面的category_id
+	role_id varchar(64), -- value为配置在category table里面的category_id
+	primary key (case_type, role_id)
+)
 
 -- 所有外部人员信息（不一定只有case的主角才记录在此表）。积累下来将是潜在机会，所以单独建表
 create table customer (
