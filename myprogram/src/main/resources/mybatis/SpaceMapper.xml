@@ -63,7 +63,7 @@
 		from spaces s
 		<where>
 				<if test="space_name != null">
-				and s.space_name like '%${space_name}%'
+				s.space_name like '%${space_name}%'
 			</if>
 		</where>
 	</select>
