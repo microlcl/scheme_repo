@@ -59,19 +59,13 @@
 		</if>
 	</select>
 	<select id="getCount" parameterType="map" resultType="Long">
-		select count(*)
+		select count(0)
 		from spaces s
 		<where>
 				<if test="space_name != null">
-				and s.space_name like '%${space_name}%'
+				s.space_name like '%${space_name}%'
 			</if>
 		</where>
-		<if test="sort != null">
-			order by ${sort} desc
-		</if>
-		<if test="offset != null">
-			limit #{offset}, #{pageSize}
-		</if>) t
 	</select>
 
 </mapper> 
