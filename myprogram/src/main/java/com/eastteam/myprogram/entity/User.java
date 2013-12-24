@@ -93,7 +93,7 @@ public class User extends BaseEntity{
 	}
 
 	public void setBirthday(String birthday) {
-		if(birthday != null){	
+		if(birthday != null && birthday != ""){	
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = new Date();
 			try {
