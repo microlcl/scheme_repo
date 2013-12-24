@@ -11,15 +11,15 @@ import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
 import com.google.common.collect.Maps;
 
-public class SpaceMybatisDaoTest extends SpringTransactionalTestCase {
+public class HolderMybatisDaoTest extends SpringTransactionalTestCase {
 
 	@Autowired
-	private SpaceMybatisDao spaceDao;
+	private HolderMybatisDao holderDao;
 	
 	@Test
 	public void searchTest() throws Exception{
 		Map<String, Object> parameter = Maps.newHashMap();
-		List<Spaces> spaces = spaceDao.search(parameter);
+		List<Spaces> spaces = holderDao.search(parameter);
 		assertNotNull("allRole not null", spaces);
 	}
 	@Test
@@ -33,15 +33,15 @@ public class SpaceMybatisDaoTest extends SpringTransactionalTestCase {
 		Holders holders= new Holders();
 		holders.setId(1l);
 		space.setHolders(holders);
-		spaceDao.save(space);
+		holderDao.save(space);
 		Map<String, Object> parameter = Maps.newHashMap();
-		List<Spaces> spaces = spaceDao.search(parameter);
+		List<Spaces> spaces = holderDao.search(parameter);
 		assertEquals(2,spaces.size());
 	}
 	@Test
 	public void updateTest() throws Exception{
 		Map<String, Object> parameter = Maps.newHashMap();
-		List<Spaces> spaces = spaceDao.search(parameter);
+		List<Spaces> spaces = holderDao.search(parameter);
 		assertNotNull("allRole not null", spaces);
 	}
 }

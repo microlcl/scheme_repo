@@ -6,7 +6,7 @@ import java.util.Map;
 import com.eastteam.myprogram.entity.Spaces;
 
 @MyBatisRepository
-public interface SpaceMybatisDao {
+public interface HolderMybatisDao {
 	void save(Spaces space);
 	List<Spaces> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);

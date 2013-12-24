@@ -1,4 +1,4 @@
-package com.eastteam.myprogram.web.space;
+package com.eastteam.myprogram.web.holder;
 
 import java.util.Map;
 import java.util.Properties;
@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.eastteam.myprogram.entity.Spaces;
-import com.eastteam.myprogram.service.space.SpaceService;
+import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
 
 @Controller
-@RequestMapping(value = "/space")
-public class SpaceController {
+@RequestMapping(value = "/holder")
+public class HolderController {
 	@Autowired
-	private SpaceService spaceService;
+	private HolderService holderService;
 	private static Logger logger = LoggerFactory
-			.getLogger(SpaceController.class);
+			.getLogger(HolderController.class);
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 	@Autowired
   	@Qualifier("configProperties")
@@ -45,14 +45,14 @@ public class SpaceController {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
 		logger.info(searchParams.toString());
-		Page<Spaces> spaces = spaceService.getCurrentPageContent(
+		Page<Spaces> spaces = holderService.getCurrentPageContent(
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
 		model.addAttribute("spaces", spaces);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);
 		model.addAttribute("searchParams", searchParams);
 		logger.info("searchParams=" + searchParams);
-		return "space/list";
+		return "holder/list";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/api/search", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,21 +64,21 @@ public class SpaceController {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
 		logger.info(searchParams.toString());
-		Page<Spaces> spaces = spaceService.getCurrentPageContent(
+		Page<Spaces> spaces = holderService.getCurrentPageContent(
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
 		return spaces;
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(Model model) {
-		return "space/addSpace";
+		return "holder/addHolder";
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Spaces space, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in space save action");
-		this.spaceService.save(space);
+		this.holderService.save(space);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
-		return "redirect:/space/list/";
+		return "redirect:/holder/list/";
 	}
 }
