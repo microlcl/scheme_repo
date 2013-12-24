@@ -4,10 +4,16 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.HolderMybatisDao">
 
+	<!-- 插入场馆-->
+	<insert id="saveHolder" parameterType="Holders" useGeneratedKeys="true" keyProperty="id" >
+		insert into Holders (holder_name,address,level,contact,phone,description)
+		values(#{holder_name},#{address},#{level},#{contact},#{phone},#{description});
+	</insert>
+	
 	<!-- 插入场地-->
-	<insert id="save" parameterType="Spaces" useGeneratedKeys="true" keyProperty="id" >
-		insert into Spaces (holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attributes,description)
-		values(#{holders.id},#{space_name},#{floor},#{volume},#{hall_height},#{stage_length},#{stage_width},#{stage_height},#{attributes},#{description});
+	<insert id="saveSpace" parameterType="Spaces" useGeneratedKeys="true" keyProperty="id" >
+		insert into Spaces (holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(#{holders.id},#{space_name},#{floor},#{volume},#{hall_height},#{stage_length},#{stage_width},#{stage_height},#{attribute_id},#{description});
 	</insert>
 	
 	 	<!-- 修改场地-->

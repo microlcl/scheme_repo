@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.service.holder;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.HolderMybatisDao;
+import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -33,8 +35,12 @@ public class HolderService extends PageableService {
 		return holderDao.getCount(parameters);
 	}
 	
-	public void save(Spaces space){
-		holderDao.save(space);
+	public void save(Holders holder,List spaces){
+		holderDao.saveHolder(holder);
+		for (Iterator iterator = spaces.iterator(); iterator.hasNext();) {
+			Spaces space = (Spaces) iterator.next();
+			holderDao.saveSpace(space);
+		}
 	}
 	
 	public void update(Spaces space){

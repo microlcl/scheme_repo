@@ -20,7 +20,7 @@ public class HolderMybatisDaoTest extends SpringTransactionalTestCase {
 	public void searchTest() throws Exception{
 		Map<String, Object> parameter = Maps.newHashMap();
 		List<Spaces> spaces = holderDao.search(parameter);
-		assertNotNull("allRole not null", spaces);
+		assertEquals(1, spaces.size());
 	}
 	@Test
 	public void saveTest() throws Exception{
@@ -33,7 +33,7 @@ public class HolderMybatisDaoTest extends SpringTransactionalTestCase {
 		Holders holders= new Holders();
 		holders.setId(1l);
 		space.setHolders(holders);
-		holderDao.save(space);
+		holderDao.saveSpace(space);
 		Map<String, Object> parameter = Maps.newHashMap();
 		List<Spaces> spaces = holderDao.search(parameter);
 		assertEquals(2,spaces.size());

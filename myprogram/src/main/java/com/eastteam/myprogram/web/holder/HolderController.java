@@ -1,5 +1,7 @@
 package com.eastteam.myprogram.web.holder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javax.servlet.ServletRequest;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.web.Servlets;
@@ -75,9 +79,10 @@ public class HolderController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Spaces space, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-		logger.info("in space save action");
-		this.holderService.save(space);
+	public String save(@ModelAttribute Holders holder, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		logger.info("in holder save action");
+		List spaces=new ArrayList();
+		this.holderService.save(holder,spaces);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
 		return "redirect:/holder/list/";
 	}
