@@ -27,6 +27,8 @@
 			    <label>星级：</label> <input type="text" name="search_level" class="input-small" value="${param.search_level}">
 			    <label>关键字：</label> <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
+			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+			    <a href="${ctx}/holder/add/" >创建新场地</a>
 		    </form>
 	    </div>
 	    <tags:sort/>
@@ -40,16 +42,22 @@
 			<th>所属酒店</th>
 			<th>星级</th>
 			<th>场地地址</th>
+			<th>操作</th>
 		</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${spaces.content}" var="space">
 			<tr>
-				<td>${space.space_name}&nbsp;</td>
-				<td>${space.volume}&nbsp;</td>
-				<td>${space.holders.name}&nbsp;</td>
+				<td>${space.space_name}</td>
+				<td>${space.volume}</td>
+				<td>${space.holders.holder_name}&nbsp;</td>
 				<td>${space.holders.level}</td>
 				<td>${space.holders.address}</td>
+				<td>
+					<a href="${ctx}/account/show/holderInfo/${space.id}" id="info-${space.id}"><i class="icon-pencil"></i> 查看</a>
+					<a href='${ctx}/holder/update/${space.id}' id='editLink-${space.id}'><i class='icon-edit'></i> 修改</a>
+					<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/holder/delete/${space.id}';}" id="editLink-${space.id}"><i class="icon-remove-circle"></i> 删除</a>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>
