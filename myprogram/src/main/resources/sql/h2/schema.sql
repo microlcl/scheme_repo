@@ -152,7 +152,7 @@ create table space_attribute (
 	attribute_id varchar(64),
 	attribute_value varchar(256), -- 选择的值用逗号隔开
 	primary key (space_id,attribute_id)
-)
+);
 
 -- 到访流水， 由于一个case可能导致多次到访，所以此表与cases table是多对一的关系
 create table visit_records (
@@ -192,7 +192,7 @@ create table papers (
 	trashed varchar(1),
 	business_type, -- 庆典种类：婚庆，生日，公司年会,年终员工调查等，可以在category table配置
 	primary key (paper_id)	
-)
+);
 
 -- 调查表
 create table questions (

@@ -57,6 +57,8 @@
 		<url-pattern>/account/*</url-pattern>
 		<url-pattern>/category/*</url-pattern>
 		<url-pattern>/role/*</url-pattern>
+		<url-pattern>/media/*</url-pattern>
+		<url-pattern>/product/*</url-pattern>
 	</filter-mapping>
 
 	<filter>

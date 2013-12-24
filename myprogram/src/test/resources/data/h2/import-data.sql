@@ -7,6 +7,7 @@ delete from functions;
 delete from role_function;
 delete from category;
 delete from medias;
+delete from questions;
 
 insert into modules(module_id, pid, name, description, path) values('M1','','方案管理系统','方案管理系统','');
 insert into modules(module_id, pid, name, description, path) values('M1-1','M1','类别管理','类别管理','');
@@ -232,4 +233,4 @@ insert into Holders (holder_id,holder_name,address,level,contact,phone,descripti
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attributes,description)
 		values(1,1,'1',1,1,1,1,1,1,'1','1');
 
-
+insert into questions (question_id,question, question_type, question_options) values(1,'aaa','1','aa,bb,cc');
