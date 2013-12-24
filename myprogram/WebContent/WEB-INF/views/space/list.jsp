@@ -5,14 +5,16 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<title>场地管理</title>
-	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
-	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+	<title>场地管理</title>
+	<script>
+		$(document).ready(function() {
+			$("#account-tab").addClass("active");
+		});
+	</script>
 </head>
 <body>
-<div class="from" style="padding:20px;">
+<div class="form" style="padding:20px;">
 	<h1>场地管理</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
@@ -20,13 +22,12 @@
 	
 	<div class="row">
 		<div class="span">
-		<!--  	<form class="form-search" action="#">
+		  	<form class="form-search" action="#">
 			 	<label>酒店名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }"> 
 			    <label>星级：</label> <input type="text" name="search_level" class="input-small" value="${param.search_level}">
 			    <label>关键字：</label> <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}">
 			    <button type="submit" class="btn" id="search_btn">Search</button>
 		    </form>
-		  -->
 	    </div>
 	    <tags:sort/>
 	</div>
@@ -44,9 +45,7 @@
 		<tbody>
 		<c:forEach items="${spaces.content}" var="space">
 			<tr>
-				<td>
-					<a href="${ctx}/space/show/spacesInfo/${space.space_name}" id="info-${space.space_name}"><i class="icon-pencil"></i> ${space.space_name}&nbsp;</a>
-				</td>
+				<td>${space.space_name}&nbsp;</td>
 				<td>${space.volume}&nbsp;</td>
 				<td>${space.holders.name}&nbsp;</td>
 				<td>${space.holders.level}</td>
