@@ -152,7 +152,7 @@ create table space_attribute (
 	attribute_id varchar(64),
 	attribute_value varchar(256), -- 选择的值用逗号隔开
 	primary key (space_id,attribute_id)
-)
+);
 
 -- 到访流水， 由于一个case可能导致多次到访，所以此表与cases table是多对一的关系
 create table visit_records (
@@ -192,7 +192,7 @@ create table papers (
 	trashed varchar(1),
 	business_type, -- 庆典种类：婚庆，生日，公司年会,年终员工调查等，可以在category table配置
 	primary key (paper_id)	
-)
+);
 
 -- 调查表
 create table questions (
@@ -223,7 +223,7 @@ create table paper_answers (
 	question_id bigint,
 	answer varchar(256), -- 多选项的答案应该是用逗号隔开的所选答案的index
 	primary key (business_id,paper_id,question_id)
-)
+);
 
 -- case与customer的映射表，存储某一个case中的主角及相关人员
 create table case_character (
@@ -249,7 +249,7 @@ create table casetype_character (
 	case_type varchar(64), -- value为配置在category table里面的category_id
 	character_id varchar(64), -- value为配置在category table里面的category_id
 	primary key (case_type, character_id)
-)
+);
 
 -- 所有外部人员信息（不一定只有case的主角才记录在此表）。积累下来将是潜在机会，所以单独建表
 create table customer (
