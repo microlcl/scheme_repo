@@ -13,6 +13,7 @@
 			<mytag:PermssionTag functionId="F3-1"><a id="role-tab" href="${ctx}/role/list">角色管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F4-1"><a id="media-tab" href="${ctx}/media/list?search_mediaType=picture">多媒体资源管理</a></mytag:PermssionTag>
 			<mytag:PermssionTag functionId="F5-1"><a id="product-tab" href="${ctx}/product/list">产品</a></mytag:PermssionTag>
+			<a id="space-tab" href="${ctx}/space/list">场地管理</a>
 		</div>
 		<h1>菜单2</h1>
 		<div class="submenu">
