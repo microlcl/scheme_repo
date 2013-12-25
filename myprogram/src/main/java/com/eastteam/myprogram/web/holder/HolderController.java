@@ -24,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
-import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
