@@ -74,8 +74,7 @@
 		</where>
 	</select>
 	<select id="getSpaces" resultMap="spacetDetailMap">
-		select s.space_name, s.floor, s.volume,s.hall_height,s.stage_length,
-		s.stage_length, s.stage_width,s.stage_height 
+		select *
 		from spaces s 
 		where s.space_id=#{id}
 	</select>
