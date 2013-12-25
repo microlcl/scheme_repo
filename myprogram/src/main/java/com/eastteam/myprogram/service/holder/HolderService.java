@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.HolderMybatisDao;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -45,5 +46,9 @@ public class HolderService extends PageableService {
 	
 	public void update(Spaces space){
 		holderDao.update(space);
+	}
+	
+	public Spaces getSpace(long id) {
+		return this.holderDao.getSpaces(id);
 	}
 }

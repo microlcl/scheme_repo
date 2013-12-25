@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
@@ -85,5 +87,13 @@ public class HolderController {
 		this.holderService.save(holder,spaces);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
 		return "redirect:/holder/list/";
+	}
+	
+	@RequestMapping(value = "show/holderInfo/{id}", method = RequestMethod.GET)
+	public String dispalySpaceInfo(@PathVariable("id") long id, Model model) {
+		Spaces space =  this.holderService.getSpace(id);
+
+		model.addAttribute("infoSpace", space);
+		return "holder/holderInfo";
 	}
 }
