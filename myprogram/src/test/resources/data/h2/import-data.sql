@@ -229,8 +229,12 @@ insert into product_category(product_id,category_id,picture_id) values(9,'1-6-3'
 
 insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
 		values(1,'1','1',1,'1','1','1');
+insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
+		values(2,'2','2',2,'2','2','2');
 
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
 		values(1,1,'1',1,1,1,1,1,1,'1','1');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(2,2,'2',2,2,2,2,2,2,'2','2');
 
 insert into questions (question_id,question, question_type, question_options) values(1,'aaa','1','aa,bb,cc');

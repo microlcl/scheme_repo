@@ -50,11 +50,17 @@
 	    where h.holder_id=#{holder_id} 
 	</select>
 	<select id="search" parameterType="map" resultMap="spacetDetailMap">
-		select space_id as id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description
-		from spaces s
+		select *
+		from spaces s left join holders h on s.holder_id = h.holder_id
 		<where>
-			<if test="space_name != null">
-				and s.space_name like '%${space_name}%'
+			<if test="holder_name != null">
+				and h.holder_name like '%${holder_name}%'
+			</if>
+			<if test="level != null">
+				and h.level like '%${level}%'
+			</if>
+			<if test="keyword != null">
+				and s.space_name||h.holder_name||s.description||h.description like '%${keyword}%'
 			</if>
 		</where>
 		<if test="sort != null">
