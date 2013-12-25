@@ -20,7 +20,12 @@
 	</delete>
 	
 	<!-- 获取问题 -->
-	<select id="getQuestion" resultType="Question">
-		select question_id, question, question_type, question_options from questions 
+	<select id="search" parameterType="map" resultType="Question">
+		select question_id as id, question, question_type as questionType, question_options as questionOptions from questions 
+	</select>
+	
+	<!-- 问题数量 -->
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0) from questions
 	</select>
 </mapper>

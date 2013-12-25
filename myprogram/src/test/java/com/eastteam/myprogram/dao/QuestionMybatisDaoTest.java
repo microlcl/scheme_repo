@@ -1,6 +1,8 @@
 package com.eastteam.myprogram.dao;
 
 
+import java.util.List;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,9 +59,18 @@ public class QuestionMybatisDaoTest extends SpringTransactionalTestCase {
 	}
 	
 	@Test
-	public void getQuestionTest() throws Exception {
+	public void searchQuestionTest() throws Exception {
 		logger.info("Qestion update");
 		
-		questionDao.getQuestion();
+		List<Question> result = questionDao.search(null);
+		logger.info("result=" + result);
+	}
+	
+	@Test
+	public void searchCountTest() throws Exception {
+		logger.info("Qestion count");
+		
+		Long count = questionDao.getCount(null);
+		logger.info("count=" + count);
 	}
 }

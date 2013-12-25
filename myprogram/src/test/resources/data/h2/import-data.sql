@@ -237,4 +237,4 @@ insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
 		values(2,2,'2',2,2,2,2,2,2,'2','2');
 
-insert into questions (question_id,question, question_type, question_options) values(1,'aaa','1','aa,bb,cc');
+insert into questions (question_id,question, question_type, question_options) values(1,'aaa','1','aa^bb^ccc');
