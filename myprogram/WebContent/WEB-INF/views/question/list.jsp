@@ -34,6 +34,7 @@
 						${question.questionOptions}
                     </div>
                   </div>
+            </div>
 		</c:forEach>
 	</div>
 	
