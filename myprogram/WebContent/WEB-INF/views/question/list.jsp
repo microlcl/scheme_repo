@@ -30,9 +30,9 @@
                     </a>
                     </div>
                   <div class="accordion-body collapse in" id="collapseOne">
-                    <div class="accordion-inner">
+                   	<div class="accordion-inner">
 						${question.questionOptions}
-                    </div>
+                   	</div>
                   </div>
             </div>
 		</c:forEach>
