@@ -36,11 +36,14 @@ public class HolderService extends PageableService {
 		return holderDao.getCount(parameters);
 	}
 	
-	public void save(Holders holder,List spaces){
+	public void save(Holders holder){
 		holderDao.saveHolder(holder);
-		for (Iterator iterator = spaces.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = holder.getSpaces().iterator(); iterator.hasNext();) {
 			Spaces space = (Spaces) iterator.next();
-			holderDao.saveSpace(space);
+			if(space.getSpace_name()!=null&&!space.getSpace_name().equals("")){
+				space.setHolders(holder);
+				holderDao.saveSpace(space);
+			}
 		}
 	}
 	

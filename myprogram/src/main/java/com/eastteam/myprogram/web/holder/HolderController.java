@@ -86,10 +86,9 @@ public class HolderController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Holders holder,  RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String save(@ModelAttribute Holders holders, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
-//		List spaces=new ArrayList();
-//		this.holderService.save(holder,spaces);
+		this.holderService.save(holders);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
 		return "redirect:/holder/list/";
 	}
