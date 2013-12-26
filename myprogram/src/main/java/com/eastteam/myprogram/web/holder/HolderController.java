@@ -36,6 +36,12 @@ public class HolderController {
 	private static Logger logger = LoggerFactory
 			.getLogger(HolderController.class);
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
+	static {
+		sortTypes.put("space_name", "会场名称");
+		sortTypes.put("holder_name", "场地名称");
+		sortTypes.put("volume", "容纳人数");
+		sortTypes.put("level", "星级");
+	}
 	@Autowired
   	@Qualifier("configProperties")
   	private Properties configProperties;

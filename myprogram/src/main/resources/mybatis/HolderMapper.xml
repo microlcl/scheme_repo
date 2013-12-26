@@ -50,7 +50,8 @@
 	    where h.holder_id=#{holder_id} 
 	</select>
 	<select id="search" parameterType="map" resultMap="spacetDetailMap">
-		select *
+		select s.space_id,s.holder_id,s.space_name as space_name,s.floor,s.volume as volume,s.hall_height,s.stage_length,s.stage_width,s.stage_height,s.attribute_id,
+		s.description,h.holder_id,h.holder_name as holder_name,h.address,h.level as level,h.contact,h.phone,h.description
 		from spaces s left join holders h on s.holder_id = h.holder_id
 		<where>
 			<if test="space_name != null">
