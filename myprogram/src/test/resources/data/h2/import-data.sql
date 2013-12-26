@@ -8,6 +8,7 @@ delete from role_function;
 delete from category;
 delete from medias;
 delete from questions;
+delete from papers;
 
 insert into modules(module_id, pid, name, description, path) values('M1','','方案管理系统','方案管理系统','');
 insert into modules(module_id, pid, name, description, path) values('M1-1','M1','类别管理','类别管理','');
@@ -244,3 +245,10 @@ insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage
 		values(4,3,'1',2,2,2,2,2,2,'2','2');
 		
 insert into questions (question_id,question, question_type, question_options) values(1,'aaa','1','aa^bb^ccc');
+
+insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (1, '婚礼问卷1', now(), false);
+insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (2, '婚礼问卷2', now(), false);
+insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (3, '婚礼问卷3', now(), false);
+insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (4, '年会问卷4', now(), false);
+insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (5, '年会问卷5', now(), false);
+insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (6, '年会问卷6', now(), false);
