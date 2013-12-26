@@ -23,7 +23,7 @@
 	<div class="row">
 		<div class="span">
 		  	<form class="form-search" action="#">
-			 	<label>会场名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_space_name }"> 
+			 	<label>会场名称：</label> <input type="text" name="search_space_name"   class="input-small"  value="${param.search_space_name }"> 
 			 	<label>场地名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }"> 
 			    <label>星级：</label> <input type="text" name="search_level" class="input-small" value="${param.search_level}">
 			    <label>关键字：</label> <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}">
