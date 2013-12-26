@@ -229,20 +229,41 @@ insert into product_category(product_id,category_id,picture_id) values(9,'1-6-2'
 insert into product_category(product_id,category_id,picture_id) values(9,'1-6-3',4);
 
 insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
-		values(1,'1','1',1,'1','1','1');
+		values(3,'劳动人民文化宫','北京东城1号线天安门东',4,'张三','15211111111','北京市劳动人民文化宫位于北京天安门东侧，为始建于明永乐十八年1420年的明清太庙。经周恩来总理提议，第一次政务院会议批准，将太庙移交北京市总工会管理，辟为职工群众的文化活动场所，“北京市劳动人民文化宫”匾额由毛泽东主席命名并亲笔题写，于1950年4月30日揭幕，5月1日正式对外开放。北京市劳动人民文化宫自成立以来，成为首都乃至全国职工文化活动的中心，开展了丰富多彩的文化活动，培养了大批各方面人才。同时，作为党和国家重大活动的重要场所，经历了许多重大的历史事件。');
 insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
-		values(2,'2','2',2,'2','2','2');
+		values(2,'魅力中国剧场','北京 丰台9号线 科怡路',3,'李四','152111111','魅力中国剧场位于北京市丰台区南四环西路128号丰台科技园区内，紧邻北京汽车博物馆和总部基地，交通便利，距地铁九号线丰台科技园站仅百米之遥。总面积2100平方米，场内深63米，宽33.5米，高12米，能容纳上千名观众，配有贵宾室、化妆间、导播间、同声传译室等配套设施。剧场设施完备，配套高端，具备多功能的场所转换特质，是集大型节目录制、经典剧目演出、晚会直播、高端会议、新闻发布会等大型活动功能于一体');
 insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
-		values(3,'2','2',1,'2','2','2');
+		values(1,'秀剧场','北京朝阳',3,'王五','15511111111','秀剧场（Showhouse）是北京国际版权交易中心紧跟国家大力推进社会主义文化建设的步伐、积极响应国家“十二五规划”促进文化创意产业大发展大繁荣的号召，大手笔打造的国际化文创产业高端展示交流平台');
+insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
+		values(4,'北京万达索菲特大酒店','北京朝阳1号线大望路',5,'张飞','15311111111','北京万达索菲特大饭店地处于交通便利的北京中央商务区，可轻松到达中国国际展览中心、地铁站及天安门广场、故宫等主要名胜古迹。以白金五星级标准打造的北京万达索菲特大饭店，拥有417间客房，其中包括43间套房；4个餐厅，包括：Le Pré Lenôtre法餐厅、VIC国际美食餐厅, 烧肉笼屋八兵卫日本餐厅以及农圃饭店粤餐厅；2个酒吧，包括：法式风情的M吧和Vous大堂酒吧；集中在一个楼层（七层）的10个会议厅，其中大宴会厅面积达1368平方米；健身中心及拥有兰蔻水疗室的LeSpa水疗中心。');
+insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
+		values(5,'北京皇冠假日酒店','北京朝阳2号线外环朝阳门',5,'赵云','1541111111','北京朝阳悠唐皇冠假日酒店地理位置优越，位于北京的中央商务区，毗邻北京优城。酒店处于繁华的中心地段，却又不失宁静，是喧闹的都市中安置心灵的净地。酒店距离天安门广场有5公里，北京知名景点如紫禁城近在咫尺。');
 
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(1,1,'1',1,1,1,1,1,1,'1','1');
+		values(1,1,'大厅',1,1000,5,1500,1000,5,'1','1');
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(2,2,'2',2,2,2,2,2,2,'2','2');
+		values(2,1,'前院',1,1500,0,2000,2000,0,'2','2');
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(3,2,'1',2,2,2,2,2,2,'2','2');
+		values(3,1,'后院',1,1000,0,1000,1000,0,'2','2');
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(4,3,'1',2,2,2,2,2,2,'2','2');
+		values(4,2,'剧场',1,4000,10,3000,2000,10,'2','2');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(5,3,'剧场',1,500,10,10000,600,8,'2','2');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(6,4,'大宴会厅',2,800,10,500,700,7,'3','3');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(7,4,'凯旋门',3,500,4,400,400,0,'3','3');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(8,4,'卢浮宫',4,600,4,500,500,0,'4','4');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(9,5,'大厅',1,1200,5,1000,800,5,'5','5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(10,5,'舞厅',3,100,5,300,300,5,'5','5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(11,5,'剧场'，4,200,5,400,400,5,'5','5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
+		values(12,5,'后院',1,1000,0,1500,100,0,'5','5');
+
 		
 insert into questions (question_id,question, question_type, question_options) values(1,'你是通过什么途径知道我们的产品的？','1','网上搜索^朋友分享^无意间了解');
 insert into questions (question_id,question, question_type, question_options) values(2,'你喜欢的灯具材质是？','2','木质^金属^水晶^其他');
