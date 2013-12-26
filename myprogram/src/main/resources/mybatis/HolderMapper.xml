@@ -53,6 +53,9 @@
 		select *
 		from spaces s left join holders h on s.holder_id = h.holder_id
 		<where>
+			<if test="space_name != null">
+				and s.space_name like '%${space_name}%'
+			</if>
 			<if test="holder_name != null">
 				and h.holder_name like '%${holder_name}%'
 			</if>
