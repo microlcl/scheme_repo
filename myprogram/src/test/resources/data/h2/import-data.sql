@@ -244,7 +244,15 @@ insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
 		values(4,3,'1',2,2,2,2,2,2,'2','2');
 		
-insert into questions (question_id,question, question_type, question_options) values(1,'aaa','1','aa^bb^ccc');
+insert into questions (question_id,question, question_type, question_options) values(1,'你是通过什么途径知道我们的产品的？','1','网上搜索^朋友分享^无意间了解');
+insert into questions (question_id,question, question_type, question_options) values(2,'你喜欢的灯具材质是？','2','木质^金属^水晶^其他');
+insert into questions (question_id,question, question_type, question_options) values(3,'你对本产品有什么建议？','3','');
+insert into questions (question_id,question, question_type, question_options) values(4,'你是通过什么途径知道我们的产品的？','1','网上搜索^朋友分享^无意间了解');
+insert into questions (question_id,question, question_type, question_options) values(5,'你喜欢的灯具材质是？','2','木质^金属^水晶^其他');
+insert into questions (question_id,question, question_type, question_options) values(6,'你是通过什么途径知道我们的产品的？','1','网上搜索^朋友分享^无意间了解');
+insert into questions (question_id,question, question_type, question_options) values(7,'你喜欢的灯具材质是？','2','木质^金属^水晶^其他');
+insert into questions (question_id,question, question_type, question_options) values(8,'你是通过什么途径知道我们的产品的？','1','网上搜索^朋友分享^无意间了解');
+insert into questions (question_id,question, question_type, question_options) values(9,'你喜欢的灯具材质是？','2','木质^金属^水晶^其他');
 
 insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (1, '婚礼问卷1', now(), false);
 insert into papers (paper_id, paper_name, creat_timestamp, trashed) values (2, '婚礼问卷2', now(), false);

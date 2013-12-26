@@ -55,6 +55,7 @@ public class QuestionController {
 //		String[] questionOptions = questionService.splitQuestionOptions(questions.)
 		model.addAttribute("questions", questions);
 		model.addAttribute("sortType", sortType);
+		model.addAttribute("pageNumber", pageNumber);
 //		model.addAttribute("sortTypes", sortTypes);
 		model.addAttribute("searchParams", searchParams);
 		logger.info("searchParams=" + searchParams);
