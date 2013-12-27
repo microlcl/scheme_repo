@@ -6,6 +6,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/holder/css/holder.css">
 	<title>场地管理</title>
 	<script>
 		$(document).ready(function() {
@@ -52,7 +53,23 @@
 				<td>${space.space_name}</td>
 				<td>${space.volume}</td>
 				<td>${space.holders.holder_name}&nbsp;</td>
-				<td>${space.holders.level}</td>
+				<td>
+				<c:if test="${space.holders.level == '1'}">
+					<p  alt="一星级" title="一星级" class="h_xj1"/>
+				</c:if>
+				<c:if test="${space.holders.level == '2'}">
+					<p  alt="二星级" title="二星级" class="h_xj2"/>
+				</c:if>
+				<c:if test="${space.holders.level == '3'}">
+					<p  alt="三星级" title="三星级" class="h_xj3"/>
+				</c:if>
+				<c:if test="${space.holders.level == '4'}">
+					<p  alt="四星级" title="四星级" class="h_xj4"/>
+				</c:if>
+				<c:if test="${space.holders.level == '5'}">
+					<p  alt="五星级" title="五星级" class="h_xj5"/>
+				</c:if>
+				</td>
 				<td>${space.holders.address}</td>
 				<td>
 					<a href="${ctx}/holder/show/holderInfo/${space.id}" id="info-${space.id}"><i class="icon-pencil"></i> 查看</a>

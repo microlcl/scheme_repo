@@ -25,15 +25,35 @@
 		<c:forEach items="${questions.content}" var="question" varStatus="status">
 			<div class="accordion-group">
                   <div class="accordion-heading">
-                    <a href="#collapseOne" data-parent="#accordion2" data-toggle="collapse" class="accordion-toggle" style="display:inline-block">
+                  	<span style="padding-left:8px">Q${status.index+1+(pageNumber-1)*5}：</span>
+                    <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display:inline-block">
                       	${question.question}
                     </a>
-                    </div>
-                  <div class="accordion-body collapse in" id="collapseOne">
-                    <div class="accordion-inner">
-						${question.questionOptions}
+                   </div>
+                  <div class="accordion-body collapse" id="collapse_${status.index+1+(pageNumber-1)*5}">
+                    <div class="accordion-inner" style="padding-left:55px">
+						<c:if test="${question.questionType == '1'}">
+							<c:forEach items="${question.splitOptions}" var="splitOption">
+								<label class="radio">
+									<input type="radio" name="questionOption" >
+										${splitOption}
+								</label>
+							</c:forEach>
+						</c:if>
+						<c:if test="${question.questionType == '2'}">
+							<c:forEach items="${question.splitOptions}" var="splitOption">
+								<label class="checkbox">
+									<input type="checkbox" name="questionOption" >
+										${splitOption}
+								</label>
+							</c:forEach>
+						</c:if>
+						<c:if test="${question.questionType == '3'}">
+							<textarea></textarea>
+						</c:if>
                     </div>
                   </div>
+            </div>
 		</c:forEach>
 	</div>
 	

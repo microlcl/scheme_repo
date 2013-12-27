@@ -22,6 +22,17 @@
 	<!-- 获取问题 -->
 	<select id="search" parameterType="map" resultType="Question">
 		select question_id as id, question, question_type as questionType, question_options as questionOptions from questions 
+		<where>
+		<if test="keyword != null">
+				and question like '%${keyword}%
+			</if>
+		</where>
+		<if test="sort != null">
+			order by ${sort}
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
 	</select>
 	
 	<!-- 问题数量 -->

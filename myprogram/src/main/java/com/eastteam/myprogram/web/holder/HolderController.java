@@ -57,7 +57,7 @@ public class HolderController {
 				request, "search_");
 		logger.info(searchParams.toString());
 		Page<Spaces> spaces = holderService.getCurrentPageContent(
-				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
+				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 		model.addAttribute("spaces", spaces);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);

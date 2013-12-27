@@ -45,24 +45,28 @@
 					<td style="color:#A1A1A1">${infoSpace.stage_height}</td>
 				</tr>
 				<tr>
-					<td class="formlabel">酒店名称：</td>
+					<td class="formlabel">场地名称：</td>
 					<td style="color:#A1A1A1">${infoSpace.holders.holder_name}</td>
 				</tr>
 				<tr>
-					<td class="formlabel">酒店星级：</td>
+					<td class="formlabel">场地星级：</td>
 					<td style="color:#A1A1A1">${infoSpace.holders.level}</td>
 			    </tr>
 			    <tr>
-					<td class="formlabel">酒店联系人：</td>
+					<td class="formlabel">场地联系人：</td>
 					<td style="color:#A1A1A1">${infoSpace.holders.contact}</td>
 			    </tr>
 			    <tr>
-					<td class="formlabel">酒店联系人电话：</td>
+					<td class="formlabel">场地联系人电话：</td>
 					<td style="color:#A1A1A1">${infoSpace.holders.phone}</td>
 			    </tr>
 			    <tr>
-					<td class="formlabel">酒店地址：</td>
+					<td class="formlabel">场地地址：</td>
 					<td style="color:#A1A1A1">${infoSpace.holders.address}</td>
+			    </tr>
+			    <tr>
+					<td class="formlabel">场地描述：</td>
+					<td style="color:#A1A1A1">${infoSpace.holders.description}</td>
 			    </tr>
 			</tbody>
 		</table>
