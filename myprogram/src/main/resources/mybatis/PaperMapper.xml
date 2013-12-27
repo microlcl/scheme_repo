@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eastteam.myprogram.dao.PaperMybatisDao">
+	<select id="search" parameterType="map" resultType="Paper">
+		select paper_name, status  from papers
+		<where>
+			<if test="keyword != null">
+				and paper like '%${keyword}%
+			</if>
+		</where>
+		<if test="sort != null">
+			order by ${sort}
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0) from papers
+	</select>
+</mapper>
