@@ -239,30 +239,30 @@ insert into Holders (holder_id,holder_name,address,level,contact,phone,descripti
 insert into Holders (holder_id,holder_name,address,level,contact,phone,description)
 		values(5,'北京皇冠假日酒店','北京朝阳2号线外环朝阳门',5,'赵云','1541111111','北京朝阳悠唐皇冠假日酒店地理位置优越，位于北京的中央商务区，毗邻北京优城。酒店处于繁华的中心地段，却又不失宁静，是喧闹的都市中安置心灵的净地。酒店距离天安门广场有5公里，北京知名景点如紫禁城近在咫尺。');
 
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(1,1,'大厅',1,1000,5,1500,1000,5,'1','1');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(2,1,'前院',1,1500,0,2000,2000,0,'2','2');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(3,1,'后院',1,1000,0,1000,1000,0,'2','2');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(4,2,'剧场',1,4000,10,3000,2000,10,'2','2');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(5,3,'剧场',1,500,10,10000,600,8,'2','2');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(6,4,'大宴会厅',2,800,10,500,700,7,'3','3');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(7,4,'凯旋门',3,500,4,400,400,0,'3','3');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(8,4,'卢浮宫',4,600,4,500,500,0,'4','4');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(9,5,'大厅',1,1200,5,1000,800,5,'5','5');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(10,5,'舞厅',3,100,5,300,300,5,'5','5');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(11,5,'剧场'，4,200,5,400,400,5,'5','5');
-insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,attribute_id,description)
-		values(12,5,'后院',1,1000,0,1500,100,0,'5','5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(1,1,'大厅',1,1000,5,1500,1000,5,'1');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(2,1,'前院',1,1500,0,2000,2000,0,'2');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(3,1,'后院',1,1000,0,1000,1000,0,'2');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(4,2,'剧场',1,4000,10,3000,2000,10,'2');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(5,3,'剧场',1,500,10,10000,600,8,'2');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(6,4,'大宴会厅',2,800,10,500,700,7,'3');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(7,4,'凯旋门',3,500,4,400,400,0,'3');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(8,4,'卢浮宫',4,600,4,500,500,0,'4');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(9,5,'大厅',1,1200,5,1000,800,5,'5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(10,5,'舞厅',3,100,5,300,300,5,'5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(11,5,'剧场'，4,200,5,400,400,5,'5');
+insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
+		values(12,5,'后院',1,1000,0,1500,100,0,'5');
 
 		
 insert into questions (question_id,question, question_type, question_options) values(1,'你是通过什么途径知道我们的产品的？','1','网上搜索^朋友分享^无意间了解');

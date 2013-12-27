@@ -174,7 +174,7 @@
 									舞台高：<input type="text"  name="spaces[${status.index}].stage_height" value="${space.stage_height}" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>
 								</td>
 								<td align='right'>
-									舞台性质：<input type="text" name="spaces[${status.index}].attribute_id" value="${space.attribute_id}" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>
+									舞台性质：<input type="text" name="spaces[${status.index}].attribute_id" value="" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>
 								</td>
 							</tr>
 							<tr>

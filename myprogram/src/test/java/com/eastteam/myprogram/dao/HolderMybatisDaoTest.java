@@ -26,7 +26,6 @@ public class HolderMybatisDaoTest extends SpringTransactionalTestCase {
 	public void saveTest() throws Exception{
 		Spaces space= new Spaces();
 		space.setDescription("description");
-		space.setAttribute_id("attributes");
 		space.setFloor(1);
 		space.setHall_height(1);
 		space.setSpace_name("1");
