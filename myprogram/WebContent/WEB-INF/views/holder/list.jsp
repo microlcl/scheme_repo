@@ -10,7 +10,7 @@
 	<title>场地管理</title>
 	<script>
 		$(document).ready(function() {
-			$("#account-tab").addClass("active");
+			$("#space-tab").addClass("active");
 		});
 	</script>
 </head>

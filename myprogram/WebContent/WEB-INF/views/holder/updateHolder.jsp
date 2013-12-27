@@ -96,7 +96,6 @@
 				<label for="holder_name" class="control-label formlabel">场地名称：</label>
 				<div class="controls">
 					<input type="hidden" id="id" name="id" value="${holder.id}">
-					<input type="text" id="spacesSize" value="${holder.spaces.size()}">
 					<input type="text" id="holder_name" name="holder_name" value="${holder.holder_name}" class="input-large required" maxlength="64"/>
 				</div>
 			</div>	
