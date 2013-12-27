@@ -4,7 +4,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<title>场地管理</title>
+	<title>增加场地</title>
 	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
@@ -88,7 +88,7 @@
 </head>
 
 <body>
-	<form id="holderForm" action="${ctx}/holder/save" method="post" class="form-horizontal" class="form-inline">
+	<form id="holderForm" action="${ctx}/holder/doUpdate" method="post" class="form-horizontal" class="form-inline">
 		<div class="form">
 			<h1>场馆管理</h1>
 			<div class="control-group">
@@ -127,7 +127,7 @@
 			<div class="control-group">
 				<label for="description" class="control-label formlabel">场地描述：</label>
 				<div class="controls">
-					<textarea  id="description" name="description"   class="input-large" maxlength="64"/></textarea>
+					<textarea  id="description" name="description"   class="input-large" maxlength="256"/></textarea>
 				</div>
 			</div>
 			<div class="control-group">

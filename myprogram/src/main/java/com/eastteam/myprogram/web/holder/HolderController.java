@@ -101,6 +101,14 @@ public class HolderController {
 		return "holder/updateHolder";
 	}
 	
+	@RequestMapping(value = "doUpdate", method = RequestMethod.POST)
+	public String doUpdate(@ModelAttribute Holders holders, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		logger.info("in holder save action");
+		this.holderService.doUpdate(holders);
+		redirectAttributes.addFlashAttribute("message", "修改成功！");
+		return "redirect:/holder/list/";
+	}
+	
 	@RequestMapping(value = "show/holderInfo/{id}", method = RequestMethod.GET)
 	public String dispalySpaceInfo(@PathVariable("id") long id, Model model) {
 		Spaces space =  this.holderService.getSpace(id);

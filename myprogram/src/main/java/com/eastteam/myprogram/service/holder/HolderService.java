@@ -51,6 +51,18 @@ public class HolderService extends PageableService {
 		holderDao.update(space);
 	}
 	
+	public void doUpdate(Holders holder){
+		holderDao.updateHolder(holder);
+		holderDao.deleteSpacesByHolderId(holder.getId());
+		for (Iterator iterator = holder.getSpaces().iterator(); iterator.hasNext();) {
+			Spaces space = (Spaces) iterator.next();
+			if(space.getSpace_name()!=null&&!space.getSpace_name().equals("")){
+				space.setHolders(holder);
+				holderDao.saveSpace(space);
+			}
+		}
+	}
+	
 	public Spaces getSpace(long id) {
 		return this.holderDao.getSpaces(id);
 	}

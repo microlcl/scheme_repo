@@ -109,4 +109,16 @@
 		from spaces s
 	    where s.holder_id=#{holder_id}
 	</select>
+	
+	<!-- 修改Holders-->
+	<update id="updateHolder" parameterType="Holders">
+		update holders set holder_name=#{holder_name}, address=#{address}, level=#{level},contact=#{contact}, phone=#{phone}, description=#{description}
+		 where holder_id=#{id};
+	</update>
+	
+	<!-- 删除deleteSpacesByHolderId-->
+	<delete id="deleteSpacesByHolderId" parameterType="Spaces">
+		delete from spaces where holder_id=#{id};
+	</delete>
+	
 </mapper> 

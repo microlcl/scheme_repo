@@ -15,4 +15,6 @@ public interface HolderMybatisDao {
 	void update(Spaces space);
 	Spaces getSpaces(long id);
 	Holders getHolders(long id);
+	void updateHolder(Holders holder);
+	void deleteSpacesByHolderId(long id);
 }
