@@ -14,44 +14,74 @@
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 	<script type="text/javascript">
+	function clearNoNum(obj)
+	{
+	    //先把非数字的都替换掉，除了数字和.
+	    obj.value = obj.value.replace(/[^\d.]/g,"");
+	}
 	$(document).ready(function() {
 		$("#holderForm").validate();
 	});
 	var row_count = 0;
 	function add() {
 		var tableHolder = $('#tableHolder');
+		var rowHolder= $("<tr></tr>");
+		var tdHolder = $("<td></td>");
+		
+		var tableTemp = $("<table></table>");
 		var row = $("<tr></tr>");
-		var td = $("<td></td>");
-td.append('<div class="control-group">');
-td.append('		<input type="checkbox" name="count" />');
-td.append('	        会场名称：<input type="text"  name="spaces['+row_count+'].space_name" class="input-large required" maxlength="32" />');
-td.append('</div>');
-td.append('</div>');
-td.append('<div class="control-group">');
-td.append('	       会场所在楼层：<input type="text"  name="spaces['+row_count+'].floor" class="input-large" maxlength="64" />');
-td.append('		容纳人数：<input type="text"  name="spaces['+row_count+'].volume" class="input-large" maxlength="32" />');
-td.append('</div>');
-td.append('<div class="control-group">');
-td.append('		楼层空间高度：<input type="text" id="hall_height " name="spaces['+row_count+'].hall_height" class="input-large" maxlength="64" />');
-td.append('		舞台长：<input type="text"  name="spaces['+row_count+'].stage_length" class="input-large" maxlength="32" />');
-td.append('</div>');
-td.append('<div class="control-group">');
-td.append('		舞台宽：<input type="text"  name="spaces['+row_count+'].stage_width" class="input-large" maxlength="64" />');
-td.append('		舞台高：<input type="text"  name="spaces['+row_count+'].stage_height" class="input-large" maxlength="32" />');
-td.append('</div>');
-td.append('<div class="control-group">');
-td.append('		舞台性质：<input type="text" name="spaces['+row_count+'].attribute_id" class="input-large" maxlength="64" />');
-td.append('		描述：<input type="text"  name="spaces['+row_count+'].description" class="input-large" maxlength="32" />');
-td.append('</div>');
-td.append('</div>');
-td.append('</div>');
-row.append(td);
-tableHolder.append(row);
-row_count++;
-	}
+		var row1 = $("<tr></tr>");
+		var row2 = $("<tr></tr>");
+		var td = $("<td align='center' width='100'></td>");
+		var td1 = $("<td></td>");
+		var td2 = $("<td align='right'></td>");
+		var td3 = $("<td align='right'></td>");
+		var td4 = $("<td align='right'></td>");
+		var td5 = $("<td></td>");
+		var td6 = $("<td></td>");
+		var td7 = $("<td align='right'></td>");
+		var td8 = $("<td align='right'></td>");
+		var td9 = $("<td align='right'></td>");
+		var td10 = $("<td></td>");
+		var td11 = $("<td></td>");
+		td.append('		<input type="checkbox" name="count" id="count"/>');
+		td1.append('	        会场名称：<input type="text"  name="spaces['+row_count+'].space_name" class="input-large required" maxlength="32" />');
+		td2.append('	       会场所在楼层：<input type="text"  name="spaces['+row_count+'].floor" class="input-small" maxlength="3" onkeyup="clearNoNum(this)"/>');
+		td3.append('		容纳人数：<input type="text"  name="spaces['+row_count+'].volume" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
+		td4.append('		楼层空间高度：<input type="text" id="hall_height " name="spaces['+row_count+'].hall_height" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>');
+		
+		td5.append('&nbsp;		 ');
+		td6.append('		&nbsp;舞&nbsp;台&nbsp;长：&nbsp;<input type="text"  name="spaces['+row_count+'].stage_length" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
+		td7.append('		舞台宽：<input type="text"  name="spaces['+row_count+'].stage_width" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
+		td8.append('		舞台高：<input type="text"  name="spaces['+row_count+'].stage_height" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>');
+		td9.append('		舞台性质：<input type="text" name="spaces['+row_count+'].attribute_id" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>');
+		
+		td10.append('&nbsp;		 ');
+		td11.append('		&nbsp;&nbsp;描&nbsp;&nbsp;述&nbsp;：&nbsp;&nbsp;<textarea  name="spaces['+row_count+'].description" class="input-large" maxlength="64" ></textarea>');
+		row.append(td);
+		row.append(td1);
+		row.append(td2);
+		row.append(td3);
+		row.append(td4);
+		row1.append(td5);
+		row1.append(td6);
+		row1.append(td7);
+		row1.append(td8);
+		row1.append(td9);
+		row2.append(td10);
+		row2.append(td11);
+		tableTemp.append(row);
+		tableTemp.append(row1);
+		tableTemp.append(row2);
+		
+		tdHolder.append(tableTemp);
+		rowHolder.append(tdHolder);
+		tableHolder.append(rowHolder);
+		row_count++;
+}
 	function del() {
-		 $("input:checked").each(function(){
-			  $(this).parent().remove();
+		 $("#count:checked").each(function(){
+			  $(this).parent().parent().parent().remove();
 		});
 	}
 	</script>
@@ -74,6 +104,15 @@ row_count++;
 				</div>
 			</div>	
 			<div class="control-group">
+				<label for="address" class="control-label formlabel">星级：</label>
+				<div class="controls">
+					<input type="radio"  name="level"   class="required" value="5"/>五星级
+					<input type="radio"  name="level"   class="required" value="4"/>四星级
+					<input type="radio"  name="level"   class="required" value="3"/>三星级
+					<input type="radio"  name="level"   class="required" value="0"/>其他
+				</div>
+			</div>	
+			<div class="control-group">
 				<label for="contact" class="control-label formlabel">联系人名称：</label>
 				<div class="controls">
 					<input type="text" id="contact" name="contact"   class="input-large required" maxlength="64"/>
@@ -82,7 +121,7 @@ row_count++;
 			<div class="control-group">
 				<label for="phone" class="control-label formlabel">联系电话：</label>
 				<div class="controls">
-					<input type="text" id="phone" name="phone"   class="input-large required" maxlength="64"/>
+					<input type="text" id="phone" name="phone"   class="input-large required" maxlength="64" onkeyup="clearNoNum(this)"/>
 				</div>
 			</div>	
 			<div class="control-group">
