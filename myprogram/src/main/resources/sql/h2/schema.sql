@@ -163,7 +163,6 @@ create table visit_activities (
 	recipient varchar(64),  -- 接待者
 	business_type varchar(64), -- 庆典种类：婚庆，生日，公司年会等，可以在category table配置
 	description varchar(256),
-	further_adviser varchar(64),  -- 后续跟单者
 	case_id bigint,   -- 这次到访是为了哪个case
 	is_visited varchar(1), -- 是否初次到访： Ture/False
 	primary key (visit_id)
