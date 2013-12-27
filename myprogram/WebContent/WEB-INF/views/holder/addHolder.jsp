@@ -131,8 +131,10 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<input type="button" value="添加会场" onclick="add();">
-				<input type="button" value="删除会场" onclick="del();"> 
+				<div class="controls">
+				<input type="button" value="添加会场" class="btn btn-info" onclick="add();">
+				<input type="button" value="删除会场" class="btn btn-info" onclick="del();"> 
+				</div>
 			</div>
 			<table id="tableHolder">
 			<tr>
