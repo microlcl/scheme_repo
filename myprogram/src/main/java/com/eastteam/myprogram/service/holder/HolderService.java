@@ -54,4 +54,8 @@ public class HolderService extends PageableService {
 	public Spaces getSpace(long id) {
 		return this.holderDao.getSpaces(id);
 	}
+	
+	public Holders getHolder(long id) {
+		return this.holderDao.getHolders(id);
+	}
 }

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Holders;
+import com.eastteam.myprogram.entity.Product;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.web.Servlets;
@@ -91,6 +92,13 @@ public class HolderController {
 		this.holderService.save(holders);
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
 		return "redirect:/holder/list/";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(@RequestParam(value="id") int id,Model model, HttpServletRequest request) {
+		Holders holder = this.holderService.getHolder(id);
+		model.addAttribute("holder", holder);
+		return "holder/updateHolder";
 	}
 	
 	@RequestMapping(value = "show/holderInfo/{id}", method = RequestMethod.GET)

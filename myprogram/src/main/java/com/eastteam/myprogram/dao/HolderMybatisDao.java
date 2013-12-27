@@ -14,4 +14,5 @@ public interface HolderMybatisDao {
 	Long getCount(Map<String, Object> parameters);
 	void update(Spaces space);
 	Spaces getSpaces(long id);
+	Holders getHolders(long id);
 }

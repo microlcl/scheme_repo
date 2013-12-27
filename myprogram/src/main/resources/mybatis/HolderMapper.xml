@@ -88,4 +88,25 @@
 		from spaces s 
 		where s.space_id=#{id}
 	</select>
+	<select id="getHolders" resultMap="HolderDetailMap">
+		select *
+		from holders h 
+		where h.holder_id=#{id}
+	</select>
+	<resultMap id="HolderDetailMap" type="Holders">
+		<id property="id" column="holder_id" />
+		<result property="holder_name" column="holder_name" />
+		<result property="address" column="address" />
+		<result property="level" column="level" />
+		<result property="contact" column="contact" />
+		<result property="phone" column="phone" />
+		<result property="description" column="description" />
+		<collection property="spaces" column="holder_id" ofType="Spaces" select="selectSpaces">
+		</collection>
+	</resultMap>
+	<select id="selectSpaces" resultType="Spaces">
+	   select s.space_id,s.holder_id,s.space_name as space_name,s.floor,s.volume as volume,s.hall_height,s.stage_length,s.stage_width,s.stage_height,s.attribute_id,s.description 
+		from spaces s
+	    where s.holder_id=#{holder_id}
+	</select>
 </mapper> 
