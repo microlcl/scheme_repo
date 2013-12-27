@@ -142,7 +142,6 @@ create table spaces (
 	stage_length int,
 	stage_width int,
 	stage_height int,
-	attribute_id varchar(64), -- 在这里保存categoryid，用来产生attribute 选项列表
 	description varchar(256),	
 	primary key (space_id)
 );
@@ -150,7 +149,6 @@ create table spaces (
 create table space_attribute (
 	space_id bigint,
 	attribute_id varchar(64),
-	attribute_value varchar(256), -- 选择的值用逗号隔开
 	primary key (space_id,attribute_id)
 );
 
