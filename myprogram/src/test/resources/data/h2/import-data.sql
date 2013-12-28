@@ -315,9 +315,9 @@ insert into questions (question_id,question, question_type, question_options) va
 insert into questions (question_id,question, question_type, question_options) values(8,'你是通过什么途径知道我们的产品的8？','1','网上搜索^朋友分享^无意间了解');
 insert into questions (question_id,question, question_type, question_options) values(9,'你喜欢的灯具材质是9？','2','木质^金属^水晶^其他');
 
-insert into papers (paper_id, paper_name, creat_timestamp, status) values (1, '婚礼问卷1', now(), 'publish');
-insert into papers (paper_id, paper_name, creat_timestamp, status) values (2, '婚礼问卷2', now(), 'publish');
-insert into papers (paper_id, paper_name, creat_timestamp, status) values (3, '婚礼问卷3', now(), 'publish');
-insert into papers (paper_id, paper_name, creat_timestamp, status) values (4, '年会问卷4', now(), 'publish');
-insert into papers (paper_id, paper_name, creat_timestamp, status) values (5, '年会问卷5', now(), 'publish');
-insert into papers (paper_id, paper_name, creat_timestamp, status) values (6, '年会问卷6', now(), 'publish');
+insert into papers (paper_id, paper_name, creat_timestamp, status) values (1, '婚礼问卷1', now(), '1-0-1-1');
+insert into papers (paper_id, paper_name, creat_timestamp, status) values (2, '婚礼问卷2', now(), '1-0-1-1');
+insert into papers (paper_id, paper_name, creat_timestamp, status) values (3, '婚礼问卷3', now(), '1-0-1-0');
+insert into papers (paper_id, paper_name, creat_timestamp, status) values (4, '年会问卷4', now(), '1-0-1-1');
+insert into papers (paper_id, paper_name, creat_timestamp, status) values (5, '年会问卷5', now(), '1-0-1-1');
+insert into papers (paper_id, paper_name, creat_timestamp, status) values (6, '年会问卷6', now(), '1-0-1-1');
