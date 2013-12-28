@@ -16,6 +16,9 @@ insert into modules(module_id, pid, name, description, path) values('M1-2','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-3','M1','角色管理','角色管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-4','M1','多媒体资源管理','多媒体资源管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-5','M1','产品管理','产品管理','');
+insert into modules(module_id, pid, name, description, path) values('M1-6','M1','场地管理','场地管理','');
+insert into modules(module_id, pid, name, description, path) values('M1-7','M1','问题管理','问题管理','');
+insert into modules(module_id, pid, name, description, path) values('M1-8','M1','问卷管理','问卷管理','');
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
 insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll');
@@ -144,6 +147,7 @@ insert into role_function(role_id, function_id, description) values('R4','F4-6',
 insert into category(id, pid, name, created_date, trashed, comment) values('1','','类别','2012-06-04 02:00:00','F','分类根节点');
 -- 系统参数 start
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0','1','系统参数','2013-12-28 02:00:00','F','系统参数');
+-- 会场管理模块：场地特色
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0','1-0','场地特色','2013-12-28 02:00:00','F','会场管理');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-0','1-0-0','观景房','2013-12-28 02:00:00','F','会场管理');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-1','1-0-0','千人会场','2013-12-28 02:00:00','F','会场管理');
@@ -169,6 +173,12 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-21','1-0-0','民族风格','2013-12-28 02:00:00','F','会场管理');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-22','1-0-0','皇家风范','2013-12-28 02:00:00','F','会场管理');
 
+-- 问卷管理：问卷状态
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-1','1-0','问卷状态','2013-12-28 02:00:00','F','问卷管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-1-0','1-0-1','草稿','2013-12-28 02:00:00','F','问卷管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-1-1','1-0-1','发布','2013-12-28 02:00:00','F','问卷管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-1-2','1-0-1','废弃','2013-12-28 02:00:00','F','问卷管理');
+
 -- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
@@ -192,6 +202,7 @@ insert into function_category(function_id,category_id) values('M1-4','1-1');
 insert into function_category(function_id,category_id) values('M1-4','1-2');
 insert into function_category(function_id,category_id) values('M1-5','1-5');
 insert into function_category(function_id,category_id) values('M1-5','1-6');
+insert into function_category(function_id,category_id) values('M1-8','1-0-1');
 
 
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now(),'');
