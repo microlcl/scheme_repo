@@ -179,6 +179,19 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-1-1','1-0-1','发布','2013-12-28 02:00:00','F','问卷管理');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-1-2','1-0-1','废弃','2013-12-28 02:00:00','F','问卷管理');
 
+-- 庆典类别(策划类别)
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-2','1-0','策划类别','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-2-0','1-0-2','婚庆','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-2-1','1-0-2','生日','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-2-2','1-0-2','公司年会','2013-12-28 02:00:00','F','通用系统参数');
+
+-- 客户身份
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3','1-0','客户身份','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-0','1-0-3','新娘','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-1','1-0-3','新郎','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-2','1-0-3','宝宝','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-3','1-0-3','单位领导','2013-12-28 02:00:00','F','通用系统参数');
+
 -- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');

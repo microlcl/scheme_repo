@@ -42,7 +42,7 @@
 		</div>
 		<div style="margin: 10px 0;"></div>
 	<table id="tg" class="easyui-treegrid" title="类别管理"
-		style="width: '100%'; height: 300px"
+		style="width: '100%'; height: 450px"
 		data-options="
 				iconCls: 'icon-ok',
 				rownumbers: true,
