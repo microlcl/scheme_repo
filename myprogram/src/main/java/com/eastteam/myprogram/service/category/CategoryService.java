@@ -57,16 +57,16 @@ public class CategoryService {
 	} 
 	
 	/**
-	 * 提供给Comobotree使用，根据moduleId动态产生分类下拉菜单
+	 * 提供给Comobotree使用，根据functionId动态产生分类下拉菜单
 	 * @param moduleId
 	 * @return
 	 */
-	public List<CategoryLiteBean> getModuleCategorys(String moduleId) {
+	public List<CategoryLiteBean> getFuntionCategorys(String functionId) {
 		
-		List<CategoryLiteBean> moduleCategorys = categoryDao.getModuleCategorys(moduleId);
+		List<CategoryLiteBean> functionCategorys = categoryDao.getFunctionCategorys(functionId);
 		List<CategoryLiteBean> categoryList = Lists.newArrayList();
-		for(CategoryLiteBean moduleCategory : moduleCategorys) {
-			CategoryLiteBean category = categoryDao.getAll(moduleCategory.getId());
+		for(CategoryLiteBean functionCategory : functionCategorys) {
+			CategoryLiteBean category = categoryDao.getAll(functionCategory.getId());
 			categoryList.add(category);
 		}
 		return categoryList;

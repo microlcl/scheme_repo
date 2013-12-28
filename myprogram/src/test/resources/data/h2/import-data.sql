@@ -188,10 +188,10 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-6-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-3','1-6','4','2012-06-04 02:00:00','F','45');
 
 
-insert into module_category(module_id,category_id) values('M1-4','1-1');
-insert into module_category(module_id,category_id) values('M1-4','1-2');
-insert into module_category(module_id,category_id) values('M1-5','1-5');
-insert into module_category(module_id,category_id) values('M1-5','1-6');
+insert into function_category(function_id,category_id) values('M1-4','1-1');
+insert into function_category(function_id,category_id) values('M1-4','1-2');
+insert into function_category(function_id,category_id) values('M1-5','1-5');
+insert into function_category(function_id,category_id) values('M1-5','1-6');
 
 
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now(),'');

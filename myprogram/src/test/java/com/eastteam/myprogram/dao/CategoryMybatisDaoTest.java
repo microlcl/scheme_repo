@@ -84,7 +84,7 @@ public class CategoryMybatisDaoTest extends SpringTransactionalTestCase{
 	
 	@Test
 	public void getModuleCategorys() {
-		List<CategoryLiteBean> categorys = categoryDao.getModuleCategorys("M1-4");
+		List<CategoryLiteBean> categorys = categoryDao.getFunctionCategorys("M1-4");
 		logger.info(categorys.toString());
 		assertTrue(categorys.size() > 1);
 	}

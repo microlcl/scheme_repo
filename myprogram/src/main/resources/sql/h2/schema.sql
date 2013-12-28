@@ -115,10 +115,10 @@ create table product_category (
 	primary key (product_id,category_id)
 );
 
-create table module_category (
-	module_id varchar(64),
+create table function_category (
+	function_id varchar(64),
 	category_id varchar(64),
-	primary key (module_id,category_id)
+	primary key (function_id,category_id)
 );
 
 create table holders (

@@ -68,10 +68,10 @@ public class CategoryController {
 		categoryService.delete(id);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/api/getAll/{moduleId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(method = RequestMethod.GET, value = "/api/getAll/{functionId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<CategoryLiteBean> getAll(@PathVariable("moduleId")String moduleId) {
+	public List<CategoryLiteBean> getAll(@PathVariable("functionId")String functionId) {
 		
-		return categoryService.getModuleCategorys(moduleId);
+		return categoryService.getFuntionCategorys(functionId);
 	}
 }

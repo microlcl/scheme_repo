@@ -160,7 +160,7 @@ public class ProductController {
 			product = this.productService.getProductList(Long.parseLong(ids[0]));
 		}
 		model.addAttribute("product", product);
-		model.addAttribute("categorys", this.categoryService.getModuleCategorys("M1-5"));
+		model.addAttribute("categorys", this.categoryService.getFuntionCategorys("M1-5"));
 		return "product/detailProduct";
 	}
 	

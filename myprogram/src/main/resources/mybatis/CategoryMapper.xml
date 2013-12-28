@@ -62,10 +62,10 @@
 		from category
 		where pid=#{id}
 	</select>
-	<select id="getModuleCategorys" resultType="CategoryLiteBean">
+	<select id="getFunctionCategorys" resultType="CategoryLiteBean">
 		select category_id as id
-		from module_category
-		where module_id=#{moduleId}
+		from function_category
+		where function_id=#{functionId}
 	</select>
 	
 </mapper> 
