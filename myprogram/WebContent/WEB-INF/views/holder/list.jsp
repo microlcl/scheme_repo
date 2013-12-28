@@ -24,13 +24,27 @@
 	<div class="row">
 		<div class="span">
 		  	<form class="form-search" action="#">
-			 	<label>会场名称：</label> <input type="text" name="search_space_name"   class="input-small"  value="${param.search_space_name }"> 
-			 	<label>场地名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }"> 
-			    <label>星级：</label> <input type="text" name="search_level" class="input-small" value="${param.search_level}">
-			    <label>关键字：</label> <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}">
-			    <button type="submit" class="btn" id="search_btn">Search</button>
-			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+			 	<label>会场名称：</label> <input type="text" name="search_space_name"   class="input-small"  value="${param.search_space_name }" style="width:205px;"> 
+			 	&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+			 	<label>场地名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }" style="width:205px;"> 
+			 	<div style="padding-top:10px">
+				<label>星级：</label> 
+				&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+				<select name="search_level" >
+				<option value=""></option>
+				<option value="5">五星级</option>
+				<option value="4">四星级</option>
+				<option value="3">三星级</option>
+				</select>
+				&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    <label>关键字：</label>
+			    &nbsp;&nbsp;&nbsp;
+			    <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
+			    &nbsp;&nbsp; &nbsp;&nbsp;
+			    <button type="submit" class="btn" id="search_btn">搜索</button>
+			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
 			    <a href="${ctx}/holder/add/" >创建新场地</a>
+			    </div>
 		    </form>
 	    </div>
 	    <tags:sort/>
@@ -73,8 +87,7 @@
 				<td>${space.holders.address}</td>
 				<td>
 					<a href="${ctx}/holder/show/holderInfo/${space.id}" id="info-${space.id}"><i class="icon-pencil"></i> 查看</a>
-					<a href='${ctx}/holder/update?id=${space.holders.id}' id='editLink-${space.holders.id}'><i class='icon-edit'></i> 修改</a>
-					<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/holder/delete/${space.id}';}" id="editLink-${space.id}"><i class="icon-remove-circle"></i> 删除</a>
+					<a href='${ctx}/holder/update?id=${space.holders.id}' id='editLink-${space.holders.id}'><i class='icon-edit'></i> 修改/删除</a>
 				</td>
 			</tr>
 		</c:forEach>
