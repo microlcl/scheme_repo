@@ -52,16 +52,16 @@ insert into functions(function_id, module_id, name, description, path) values('F
 
 insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00','D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯','userid1','userid1@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid2','乔布斯','userid2','userid2@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯','userid3','userid3@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯','userid4','userid4@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯','userid5','userid5@gmail.com', now(),'D1-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯','userid6','userid6@gmail.com', now(),'D1-2-1');
-insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯','userid7','userid7@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯','userid8','userid8@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯','userid9','userid9@gmail.com', now(),'D1-2');
-insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯','userid99','userid10@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid1','乔布斯1','userid1','userid1@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid2','乔布斯2','userid2','userid2@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid3','乔布斯3','userid3','userid3@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid4','乔布斯4','userid4','userid4@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid5','乔布斯5','userid5','userid5@gmail.com', now(),'D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid6','乔布斯6','userid6','userid6@gmail.com', now(),'D1-2-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid7','乔布斯7','userid7','userid7@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid8','乔布斯8','userid8','userid8@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯9','userid9','userid9@gmail.com', now(),'D1-2');
+insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯99','userid99','userid10@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, sex, register_date, department_id) values('ydq','ydq','ydq','ydq@gmail.com','男','2012-06-04 02:00:00','D1-1');
 
 
@@ -140,7 +140,36 @@ insert into role_function(role_id, function_id, description) values('R4','F4-4',
 insert into role_function(role_id, function_id, description) values('R4','F4-5','');
 insert into role_function(role_id, function_id, description) values('R4','F4-6','');
 
+-- category数据：
 insert into category(id, pid, name, created_date, trashed, comment) values('1','','类别','2012-06-04 02:00:00','F','分类根节点');
+-- 系统参数 start
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0','1','系统参数','2013-12-28 02:00:00','F','系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0','1-0','场地特色','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-0','1-0-0','观景房','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-1','1-0-0','千人会场','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-2','1-0-0','欧式风格','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-3','1-0-0','中式风格','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-4','1-0-0','优美怡人','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-5','1-0-0','高层会场','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-6','1-0-0','无柱会场','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-7','1-0-0','自然采光','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-8','1-0-0','草坪','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-9','1-0-0','婚礼场地','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-10','1-0-0','户外广场','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-11','1-0-0','山庄','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-12','1-0-0','核心商圈','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-13','1-0-0','景区周边','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-14','1-0-0','市中心','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-15','1-0-0','免费WIFI','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-16','1-0-0','高尔夫球场','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-17','1-0-0','温泉','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-18','1-0-0','特色酒吧','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-19','1-0-0','游泳池','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-20','1-0-0','特色餐饮','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-21','1-0-0','民族风格','2013-12-28 02:00:00','F','会场管理');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-0-22','1-0-0','皇家风范','2013-12-28 02:00:00','F','会场管理');
+
+-- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-2','1-1','婚庆：浪漫','2012-06-04 02:00:00','F','温馨的媒体资源');
