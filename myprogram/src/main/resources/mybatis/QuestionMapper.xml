@@ -24,7 +24,7 @@
 		select question_id as id, question, question_type as questionType, question_options as questionOptions from questions 
 		<where>
 		<if test="keyword != null">
-				and question like '%${keyword}%
+				and question like '%${keyword}%'
 			</if>
 		</where>
 		<if test="sort != null">
@@ -38,5 +38,10 @@
 	<!-- 问题数量 -->
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from questions
+		<where>
+		<if test="keyword != null">
+				and question like '%${keyword}%'
+			</if>
+		</where>
 	</select>
 </mapper>
