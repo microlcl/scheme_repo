@@ -235,6 +235,6 @@ function clearNoNum(obj)
 </div>
 
 <!-- resource 选择模态对话框 -->
- <%@ include file="resourcePopupWindow.jsp"%>
+ <%@ include file="../components/resourcePopupWindow.jsp"%>
 </body>
 </html>
