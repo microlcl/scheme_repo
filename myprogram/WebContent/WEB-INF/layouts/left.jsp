@@ -16,18 +16,11 @@
 			<a id="space-tab" href="${ctx}/holder/list">场地管理</a>
 			<a id="question-tab" href="${ctx}/question/list">问题管理</a>
 		</div>
-		<h1>菜单2</h1>
-		<div class="submenu">
-			<a id="web-tab" href="${ctx}/story/web">子菜单1</a> 
-			<a id="webservice-tab" href="${ctx}/story/webservice">子菜单2</a>
-			<a id="jmx-tab" href="${ctx}/story/jmx">子菜单3</a>
-		</div>
 		<h1>页面效果测试</h1>
 		<div class="submenu">
 			<a id="persistence-tab" href="${ctx}/demo/list">bootstrap demo</a>
 			<a id="demo-tab" href="${ctx}/demo/test">jscrollpane demo</a>
-			<a id="reids-tab" href="${ctx}/story/redis">子菜单3</a>
-			<a id="cache-tab" href="${ctx}/story/cache">子菜单4</a>
+			<a id="popupwindow-tab" href="${ctx}/demo/popupwindow">popupwindow</a>
 		</div>
 	</div>
 </c:if>

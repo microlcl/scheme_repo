@@ -25,4 +25,10 @@ public class DemoController {
 
 		return "demo/test";
 	}
+	
+	@RequestMapping(value="popupwindow",method = RequestMethod.GET)
+	public String showPopupwindow() {
+
+		return "demo/popupwindow";
+	}
 }
