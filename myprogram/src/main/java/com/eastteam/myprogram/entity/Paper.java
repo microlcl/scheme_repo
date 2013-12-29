@@ -13,7 +13,7 @@ public class Paper extends IdEntity {
 	
 	private String paper_name;
 	private List<Category> business_type;
-	private String status;
+	private List<Category> status;
 	
 	public String getPaper_name() {
 		return paper_name;
@@ -27,10 +27,10 @@ public class Paper extends IdEntity {
 	public void setBusiness_type(List<Category> business_type) {
 		this.business_type = business_type;
 	}
-	public String getStatus() {
+	public List<Category> getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(List<Category> status) {
 		this.status = status;
 	}
 	
