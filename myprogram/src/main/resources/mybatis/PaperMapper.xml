@@ -2,30 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eastteam.myprogram.dao.PaperMybatisDao">
-	<resultMap id="paperDetailMap" type="Paper">
-		<id property="id" column="paper_id"/>
-		<result property="paper_name" column="paper_name"/>
-		<collection property="business_type" column="business_type" ofType="Category" select="selectBusiness_type">
-		</collection>
-		<collection property="status" column="status" ofType="Category" select="selectStatus">
-		</collection>
-	</resultMap>
-	<select id="selectBusiness_type" resultType="Category">
-	    select c.id, c.name 
-	    from papers p, category c 
-	    where p.paper_id=c.id and p.business_type=#{business_type}
-	</select>
-	<select id="selectStatus" resultType="Category">
-	    select c.id, c.name 
-	    from papers p, category c 
-	    where p.paper_id=c.id and p.status=#{status}
-	</select>
-	<select id="search" parameterType="map" resultType="paperDetailMap">
-		select p.paper_id, p.paper_name,p.status, p.business_type
-		from papers p 
+	<select id="search" parameterType="map" resultType="Paper">
+		select paper_name, status  from papers
 		<where>
 			<if test="keyword != null">
-				and paper like '%${keyword}%'
+				and paper like '%${keyword}%
 			</if>
 		</where>
 		<if test="sort != null">
