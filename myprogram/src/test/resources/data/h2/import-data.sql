@@ -40,15 +40,15 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F3-4','M1-3','角色：修改','有权限修改角色','/role/update,/role/save');
 insert into functions(function_id, module_id, name, description, path) values('F3-5','M1-3','角色：删除','有权限删除角色','/role/delete');
 
-insert into functions(function_id, module_id, name, description, path) values('F4-1','M1-4','多媒体：列表','菜单导航','/media/list,/category/api/getAll');
+insert into functions(function_id, module_id, name, description, path) values('F4-1','M1-4','多媒体：列表','菜单导航','/media/list,/media/api/search,/category/api/getAll');
 insert into functions(function_id, module_id, name, description, path) values('F4-2','M1-4','多媒体：增加','有权限增加','/media/upload,/media/add,/category/api/getAll,/media/save');
 insert into functions(function_id, module_id, name, description, path) values('F4-3','M1-4','多媒体：修改','有权限修改','/media/edit,/category/api/getAll,/media/update');
 insert into functions(function_id, module_id, name, description, path) values('F4-4','M1-4','多媒体：删除','有权限删除','/media/delete');
 insert into functions(function_id, module_id, name, description, path) values('F4-5','M1-4','多媒体：查询','有权限查询','/media/list');
 
-insert into functions(function_id, module_id, name, description, path) values('F5-1','M1-5','产品：列表','菜单导航','/product/list,/category/api/getAll');
+insert into functions(function_id, module_id, name, description, path) values('F5-1','M1-5','产品：列表','菜单导航','/product/list,/category/api/getAll,/product/api/search');
 insert into functions(function_id, module_id, name, description, path) values('F5-2','M1-5','产品：增加','有权限增加','/product/add,/category/api/getAll,/media/api/search,/product/doAdd');
-insert into functions(function_id, module_id, name, description, path) values('F5-3','M1-5','产品：修改','有权限修改','/product/update,/category/api/getAll,/product/updateProduct');
+insert into functions(function_id, module_id, name, description, path) values('F5-3','M1-5','产品：修改','有权限修改','/product/update,/category/api/getAll,/media/api/search,/product/updateProduct');
 insert into functions(function_id, module_id, name, description, path) values('F5-4','M1-5','产品：删除','有权限删除','/product/delete');
 insert into functions(function_id, module_id, name, description, path) values('F5-5','M1-5','产品：查看','有权限查看','/product/view');
 
