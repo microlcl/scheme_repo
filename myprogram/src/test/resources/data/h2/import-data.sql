@@ -318,15 +318,15 @@ insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage
 		values(12,5,'后院',1,1000,0,1500,100,0,'5');
 
 		
-insert into questions (question_id,question, question_type, question_options) values(1,'你是通过什么途径知道我们的产品的1？','1','网上搜索^朋友分享^无意间了解');
-insert into questions (question_id,question, question_type, question_options) values(2,'你喜欢的灯具材质是2？','2','木质^金属^水晶^其他');
-insert into questions (question_id,question, question_type, question_options) values(3,'你对本产品有什么建议3？','3','');
-insert into questions (question_id,question, question_type, question_options) values(4,'你是通过什么途径知道我们的产品的4？','1','网上搜索^朋友分享^无意间了解');
-insert into questions (question_id,question, question_type, question_options) values(5,'你喜欢的灯具材质是5？','2','木质^金属^水晶^其他');
-insert into questions (question_id,question, question_type, question_options) values(6,'你是通过什么途径知道我们的产品的6？','1','网上搜索^朋友分享^无意间了解');
-insert into questions (question_id,question, question_type, question_options) values(7,'你喜欢的灯具材质是7？','2','木质^金属^水晶^其他');
-insert into questions (question_id,question, question_type, question_options) values(8,'你是通过什么途径知道我们的产品的8？','1','网上搜索^朋友分享^无意间了解');
-insert into questions (question_id,question, question_type, question_options) values(9,'你喜欢的灯具材质是9？','2','木质^金属^水晶^其他');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(1,'你是通过什么途径知道我们的产品的1？','1','网上搜索^朋友分享^无意间了解','1-0-2-0','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(2,'你喜欢的灯具材质是2？','2','木质^金属^水晶^其他','1-0-2-0','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(3,'你对本产品有什么建议3？','3','','1-0-2-0','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(4,'你是通过什么途径知道我们的产品的4？','1','网上搜索^朋友分享^无意间了解','1-0-2-1','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(5,'你喜欢的灯具材质是5？','2','木质^金属^水晶^其他','1-0-2-0','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(6,'你是通过什么途径知道我们的产品的6？','1','网上搜索^朋友分享^无意间了解','1-0-2-0','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(7,'你喜欢的灯具材质是7？','2','木质^金属^水晶^其他','1-0-2-0','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(8,'你是通过什么途径知道我们的产品的8？','1','网上搜索^朋友分享^无意间了解','1-0-2-2','F');
+insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(9,'你喜欢的灯具材质是9？','2','木质^金属^水晶^其他','1-0-2-0','F');
 
 insert into papers (paper_id, paper_name, creat_timestamp, status) values (1, '婚礼问卷1', now(), '1-0-1-1');
 insert into papers (paper_id, paper_name, creat_timestamp, status) values (2, '婚礼问卷2', now(), '1-0-1-1');
