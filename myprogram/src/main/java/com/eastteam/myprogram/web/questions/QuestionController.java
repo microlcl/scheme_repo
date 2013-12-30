@@ -64,6 +64,9 @@ public class QuestionController {
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("sortTypes", sortTypes);
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
+		Object categories = searchParams.get("categoryId");
+		model.addAttribute("categories", categories);
+		
 		logger.info("searchParams=" + searchParams);
 		return "question/list";
 	}
