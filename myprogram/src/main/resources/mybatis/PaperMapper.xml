@@ -2,11 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eastteam.myprogram.dao.PaperMybatisDao">
-	<select id="search" parameterType="map" resultType="Paper">
-		select paper_name, status  from papers
+	<resultMap id="paperDetailMap" type="Paper">
+		<id property="id" column="paper_id"/>
+		<result property="paperName" column="paper_name"/>
+		<association property="businessType" javaType="Category">
+			<id property="id" column="cb_id" />
+			<result property="name" column="cb_name" />
+		</association>
+		<association property="status" javaType="Category">
+			<id property="id" column="cs_id" />
+			<result property="name" column="cs_name" />
+		</association>
+	</resultMap>
+	<select id="search" parameterType="map" resultMap="paperDetailMap">
+		select p.paper_id, p.paper_name, cb.id as cb_id, cb.name as cb_name, cs.id as cs_id, cs.name as cs_name
+		from papers p
+		left join category cb on p.business_type=cb.id
+		left join category cs on p.status=cs.id
 		<where>
 			<if test="keyword != null">
-				and paper like '%${keyword}%
+				p.paper_name like '%${keyword}%'
 			</if>
 		</where>
 		<if test="sort != null">
@@ -16,8 +31,12 @@
 			limit #{offset}, #{pageSize}
 		</if>
 	</select>
-	
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from papers
+		<where>
+			<if test="keyword != null">
+				and paper_name like '%${keyword}%'
+			</if>
+		</where>
 	</select>
 </mapper>

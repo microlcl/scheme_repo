@@ -6,6 +6,7 @@ package com.eastteam.myprogram.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Paper;
 
 

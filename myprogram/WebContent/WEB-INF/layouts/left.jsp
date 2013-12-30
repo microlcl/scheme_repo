@@ -15,6 +15,7 @@
 			<mytag:PermssionTag functionId="F5-1"><a id="product-tab" href="${ctx}/product/list">产品管理</a></mytag:PermssionTag>
 			<a id="space-tab" href="${ctx}/holder/list">场地管理</a>
 			<a id="question-tab" href="${ctx}/question/list">问题管理</a>
+			<a id="paper-tab" href="${ctx}/paper/list">调查问卷</a>
 		</div>
 		<h1>页面效果测试</h1>
 		<div class="submenu">
