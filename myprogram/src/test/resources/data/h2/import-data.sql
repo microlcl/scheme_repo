@@ -52,6 +52,11 @@ insert into functions(function_id, module_id, name, description, path) values('F
 insert into functions(function_id, module_id, name, description, path) values('F5-4','M1-5','产品：删除','有权限删除','/product/delete');
 insert into functions(function_id, module_id, name, description, path) values('F5-5','M1-5','产品：查看','有权限查看','/product/view');
 
+insert into functions(function_id, module_id, name, description, path) values('F6-1','M1-6','场地：列表','菜单导航','/holder/list,/category/api/getAll,/holder/api/search');
+insert into functions(function_id, module_id, name, description, path) values('F6-2','M1-6','场地：增加','有权限增加','/holder/add,/category/api/getAll,/media/api/search,/holder/doAdd');
+insert into functions(function_id, module_id, name, description, path) values('F6-3','M1-6','场地：修改','有权限修改','/holder/update,/category/api/getAll,/media/api/search,/holder/updateHolder');
+insert into functions(function_id, module_id, name, description, path) values('F6-4','M1-6','场地品：删除','有权限删除','/holder/delete');
+insert into functions(function_id, module_id, name, description, path) values('F6-5','M1-6','场地：查看','有权限查看','/holder/view');
 
 insert into users(id, name, password, email, register_date, department_id) values('admin','admin','admin','myloginname@sina.com','2012-06-04 01:00:00','D1-1');
 insert into users(id, name, password, email, register_date, department_id) values('zhang3','user','2488aa0c31c624687bd9928e0a5d29e7d1ed520b','z2@gmail.com','2012-06-04 02:00:00','D1-1');
@@ -216,6 +221,7 @@ insert into function_category(function_id,category_id) values('M1-4','1-2');
 insert into function_category(function_id,category_id) values('M1-5','1-5');
 insert into function_category(function_id,category_id) values('M1-5','1-6');
 insert into function_category(function_id,category_id) values('M1-8','1-0-1');
+insert into function_category(function_id,category_id) values('M1-6','1-0-0');
 
 
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now(),'');
