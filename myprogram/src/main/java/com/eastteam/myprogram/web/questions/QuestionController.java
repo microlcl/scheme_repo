@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.questions.QuestionService;
 import com.eastteam.myprogram.web.Servlets;
+import com.google.common.collect.Maps;
 
 @Controller
 @RequestMapping (value = "/question")
@@ -33,6 +34,11 @@ public class QuestionController {
 	@Autowired
   	@Qualifier("configProperties")
   	private Properties configProperties;
+	
+	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
+	static {
+		sortTypes.put("question", "问题名称");
+	}
 	
 	private static Logger logger = LoggerFactory.getLogger(QuestionController.class);
 	
@@ -53,12 +59,10 @@ public class QuestionController {
 			question.setSplitOptions(questionOptions);
 		}
 		
-		
-//		String[] questionOptions = questionService.splitQuestionOptions(questions.)
 		model.addAttribute("questions", questions);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("pageNumber", pageNumber);
-//		model.addAttribute("sortTypes", sortTypes);
+		model.addAttribute("sortTypes", sortTypes);
 		model.addAttribute("searchParams", searchParams);
 		logger.info("searchParams=" + searchParams);
 		return "question/list";

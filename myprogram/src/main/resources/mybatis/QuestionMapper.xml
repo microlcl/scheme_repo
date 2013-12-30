@@ -4,8 +4,8 @@
 <mapper namespace="com.eastteam.myprogram.dao.QuestionMybatisDao">
 	<!-- 插入问题-->
 	<insert id="save" parameterType="Question" useGeneratedKeys="true" keyProperty="id" >
-		insert into questions (question, question_type, question_options)
-		values (#{question},#{questionType},#{questionOptions});
+		insert into questions (question, question_type, trashed, question_options)
+		values (#{question},#{questionType},#{trashed},#{questionOptions});
 	</insert>
 	
 	<!-- 更新问题 -->
@@ -19,12 +19,28 @@
 		delete from questions where question_id=#{id}
 	</delete>
 	
+	<resultMap type="Question" id="questionDetailMap">
+		<id property="id" column="question_id" />
+		<result property="question" column="question" />
+		<result property="questionType" column="question_type" />
+		<result property="questionOptions" column="question_options" />
+		<result property="business_type" column="business_type" />
+		<result property="trashed" column="trashed" />
+	</resultMap>
+	
 	<!-- 获取问题 -->
-	<select id="search" parameterType="map" resultType="Question">
-		select question_id as id, question, question_type as questionType, question_options as questionOptions from questions 
+	<select id="search" parameterType="map" resultMap="questionDetailMap">
+		select q.question_id, q.question, q.question_type, q.question_options, q.business_type, q.trashed from questions q
 		<where>
-		<if test="keyword != null">
-				and question like '%${keyword}%'
+			q.trashed = 'F'
+			<if test="keyword != null">
+				and q.question like '%${keyword}%'
+			</if>
+			<if test="categoryIdList != null">
+		        and q.business_type in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
 			</if>
 		</where>
 		<if test="sort != null">
@@ -39,8 +55,12 @@
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from questions
 		<where>
-		<if test="keyword != null">
+			trashed = 'F'
+			<if test="keyword != null">
 				and question like '%${keyword}%'
+			</if>
+			<if test="categoryId != null">
+				and business_type = #{categoryId}
 			</if>
 		</where>
 	</select>

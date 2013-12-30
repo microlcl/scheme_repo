@@ -5,6 +5,8 @@ public class Question extends IdEntity {
 	private String question;
 	private String questionType;
 	private String questionOptions;
+	private String trashed;
+	private String business_type;
 	private String[] splitOptions;
 	
 	public String getQuestion() {
@@ -30,5 +32,11 @@ public class Question extends IdEntity {
 	}
 	public void setSplitOptions(String[] splitOptions) {
 		this.splitOptions = splitOptions;
+	}
+	public String getTrashed() {
+		return trashed;
+	}
+	public void setTrashed(String trashed) {
+		this.trashed = trashed;
 	}
 }

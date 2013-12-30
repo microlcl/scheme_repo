@@ -6,6 +6,14 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+<!-- combotreee -->
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
+
 <title>问题管理</title>
 </head>
 <body>
@@ -14,10 +22,17 @@
 	<div class="row">
 		<div class="span">
 			<form class="form-search" action="#">
-				<input type="text" name="search_keyword" value="" style="width:600px">
-				<button type="submit" class="btn" id="search_btn">搜索</button>
+				<div>
+					<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">
+					<button type="submit" class="btn" id="search_btn">搜索</button>
+				</div>
+				<div style="padding-top:15px">
+			 		<label>类别：</label> 
+					<input name="search_categoryId" class="easyui-combotree" value="${param.search_categoryId}" multiple data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false">		
+				</div>
 			</form>
 		</div>
+		<a href="/myprogram/question/addQuestion/" style="padding-left:200px">添加问题</a>
 		<tags:sort/>
 	</div>
 	
@@ -29,6 +44,7 @@
                     <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display:inline-block">
                       	${question.question}
                     </a>
+                    <span style="float: right; padding: 8px 20px;"><a>我们</a></span>
                    </div>
                   <div class="accordion-body collapse" id="collapse_${status.index+1+(pageNumber-1)*5}">
                     <div class="accordion-inner" style="padding-left:55px">
