@@ -20,8 +20,9 @@
 
 </head>
 <body>
-	<div class="form" style="padding:20px;">
+	<div class="form">
 		<h1>问卷细节</h1>
+		<div  style="padding:20px;">
 			<c:forEach items="${questions}" var="question" varStatus="status">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.count}：</span>
@@ -49,9 +50,11 @@
 						</c:if>
                     </div>
 			</c:forEach>
-	</div>
+		</div>
+
 	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
-	
+		<input id="cancel_btn" style="height: 40px !important;width: 130px !important;" class="btn" type="button" value="返回" onclick="history.back()"/>
 	</div>
+	</div>	
 </body>
 </html>
