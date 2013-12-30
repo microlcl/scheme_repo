@@ -181,7 +181,17 @@ public class Servlets {
 		Iterator<Entry<String, Object>> it = params.entrySet().iterator();
 		while (it.hasNext()) {
 			Entry<String, Object> entry = it.next();
-			queryStringBuilder.append(prefix).append(entry.getKey()).append('=').append(entry.getValue());
+			if (entry.getValue() instanceof String) {
+				queryStringBuilder.append(prefix).append(entry.getKey()).append('=').append(entry.getValue());
+			} else {
+				String[] myarray = (String[])entry.getValue();
+				for (int i = 0; i < myarray.length; i++) {
+					queryStringBuilder.append(prefix).append(entry.getKey()).append('=').append(myarray[i]);
+					if (i < myarray.length - 1) {
+						queryStringBuilder.append('&');
+					}
+				}
+			}
 			if (it.hasNext()) {
 				queryStringBuilder.append('&');
 			}

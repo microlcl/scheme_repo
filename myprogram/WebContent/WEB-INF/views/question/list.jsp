@@ -74,17 +74,6 @@
 	</div>
 	<tags:pagination page="${questions}" paginationSize="4"/>
 	
-    <script type="text/javascript">
-		var categoryIds = [];
-		<c:forEach items="${searchParams.categoryId}" var="category">
-			categoryIds.push('${category}');
-		</c:forEach>
-		$("#cc").combotree({ 
-			onLoadSuccess:function(node){//数据加载成功触发 
-				$("#cc").combotree('setValues', categoryIds);
-			}
-		});
-	</script>
 </div>
 <div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
 </div>
