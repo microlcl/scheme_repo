@@ -3,7 +3,6 @@
  */
 package com.eastteam.myprogram.entity;
 
-import java.util.List;
 
 /**
  * @author LSS
@@ -11,27 +10,36 @@ import java.util.List;
  */
 public class Paper extends IdEntity {
 	
-	private String paper_name;
-	private List<Category> business_type;
-	private List<Category> status;
+	private Long id;
+	private String paperName;
+	private Category businessType;
+	private Category status;
 	
-	public String getPaper_name() {
-		return paper_name;
+	
+	public String getPaperName() {
+		return paperName;
 	}
-	public void setPaper_name(String paper_name) {
-		this.paper_name = paper_name;
+	public void setPaperName(String paperName) {
+		this.paperName = paperName;
 	}
-	public List<Category> getBusiness_type() {
-		return business_type;
+	public Category getBusinessType() {
+		return businessType;
 	}
-	public void setBusiness_type(List<Category> business_type) {
-		this.business_type = business_type;
+	public void setBusinessType(Category businessType) {
+		this.businessType = businessType;
 	}
-	public List<Category> getStatus() {
+	public Category getStatus() {
 		return status;
 	}
-	public void setStatus(List<Category> status) {
+	public void setStatus(Category status) {
 		this.status = status;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 }

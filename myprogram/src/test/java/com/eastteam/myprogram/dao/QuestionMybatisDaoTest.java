@@ -60,7 +60,7 @@ public class QuestionMybatisDaoTest extends SpringTransactionalTestCase {
 	
 	@Test
 	public void searchQuestionTest() throws Exception {
-		logger.info("Qestion update");
+		logger.info("====Qestion search");
 		
 		List<Question> result = questionDao.search(null);
 		logger.info("result=" + result);

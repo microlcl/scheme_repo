@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.PaperMybatisDao;
+import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -48,4 +49,12 @@ public class PaperService extends PageableService {
 		return paperMybatisDao.getCount(param);
 	}
 
+	public List<Question> getQuestions(String paper_id){
+		return paperMybatisDao.selectQuestions(paper_id);
+	}
+	
+	public String[] splitQuestionOptions(String options){
+		String[] questionOptions = options.split("\\^");
+		return questionOptions;
+	}
 }
