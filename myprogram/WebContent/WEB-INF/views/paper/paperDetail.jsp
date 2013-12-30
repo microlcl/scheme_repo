@@ -22,24 +22,33 @@
 <body>
 	<div class="form" style="padding:20px;">
 		<h1>问卷细节</h1>
-		<table id="contentTable" class="table table-striped table-bordered table-condensed">
-			<thead>
-			<tr>
-				<th>问题</th>
-				<th>问卷类型</th>
-				<th>问卷答案</th>
-			</tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${questions}" var="question">
-				<tr>
-					<td>${question.question}&nbsp;</td>
-					<td>${question.questionType}&nbsp;</td>
-					<td>${question.questionOptions}&nbsp;</td>
-				</tr>
+			<c:forEach items="${questions}" var="question" varStatus="status">
+                  <div class="accordion-heading">
+                  	<span style="padding-left:8px">Q${status.count}：</span>
+                      	${question.question}
+                   </div>
+                    <div class="accordion-inner" style="padding-left:55px">
+						<c:if test="${question.questionType == '1'}">
+							<c:forEach items="${question.splitOptions}" var="splitOption">
+								<label class="radio">
+									<input type="radio" name="questionOption" >
+										${splitOption}
+								</label>
+							</c:forEach>
+						</c:if>
+						<c:if test="${question.questionType == '2'}">
+							<c:forEach items="${question.splitOptions}" var="splitOption">
+								<label class="checkbox">
+									<input type="checkbox" name="questionOption" >
+										${splitOption}
+								</label>
+							</c:forEach>
+						</c:if>
+						<c:if test="${question.questionType == '3'}">
+							<textarea></textarea>
+						</c:if>
+                    </div>
 			</c:forEach>
-			</tbody>		
-		</table>
 	</div>
 	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
 	

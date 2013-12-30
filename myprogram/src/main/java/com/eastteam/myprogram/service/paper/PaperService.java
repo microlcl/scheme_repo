@@ -52,4 +52,9 @@ public class PaperService extends PageableService {
 	public List<Question> getQuestions(String paper_id){
 		return paperMybatisDao.selectQuestions(paper_id);
 	}
+	
+	public String[] splitQuestionOptions(String options){
+		String[] questionOptions = options.split("\\^");
+		return questionOptions;
+	}
 }

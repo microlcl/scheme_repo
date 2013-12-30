@@ -54,7 +54,7 @@ public class PaperController {
 		model.addAttribute("papers", papers);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("pageNumber", pageNumber);
-		model.addAttribute("searchParams", searchParams);
+		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("searchParams=" + searchParams);
 		return "paper/list";
 	}
@@ -62,6 +62,12 @@ public class PaperController {
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String show(@PathVariable("id") String id, Model model) {
 		List<Question> questions = this.paperService.getQuestions(id);
+		Iterator<Question> it = questions.iterator();
+		while(it.hasNext()){
+			Question question = it.next();
+			String[] questionOptions = this.paperService.splitQuestionOptions(question.getQuestionOptions());
+			question.setSplitOptions(questionOptions);
+		}
 		model.addAttribute("questions", questions);
 		return "/paper/paperDetail";
 	}
