@@ -28,6 +28,7 @@
 				<th>问卷名称</th>
 				<th>问卷类型</th>
 				<th>问卷状态</th>
+				<th>操作</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -36,6 +37,10 @@
 					<td>${paper.paperName}&nbsp;</td>
 					<td>${paper.businessType.name}&nbsp;</td>
 					<td>${paper.status.name}&nbsp;</td>
+					<td>
+						<a href="${ctx}/paper/show/${paper.id}" id="editLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+						<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>
+					</td>
 				</tr>
 			</c:forEach>
 			</tbody>		

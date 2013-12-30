@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Paper;
+import com.eastteam.myprogram.entity.Question;
 import com.google.common.collect.Maps;
 
 /**
@@ -54,5 +55,13 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 		
 		Long count = paperMybatisDao.getCount(null);
 		logger.info("count=" + count);
+	}
+	
+	@Test
+	public void getQuestionsTest() throws Exception {
+		logger.info("In Page get questions test");
+		String paper_id = "1";
+		List<Question> questions = this.paperMybatisDao.selectQuestions(paper_id);
+		logger.info("=====Test Questions: " + questions);
 	}
 }

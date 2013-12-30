@@ -39,4 +39,9 @@
 			</if>
 		</where>
 	</select>
+	<select id="selectQuestions" resultType="Question">
+	    select q.question as question, q.question_type as questionType, question_options as questionOptions
+	    from questions q, paper_questions pq 
+	    where q.question_id=pq.question_id and pq.paper_id=#{paper_id}
+	</select>
 </mapper>
