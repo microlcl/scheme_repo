@@ -49,14 +49,16 @@
 	</div>
 </div>
 
+<!-- 生成选项的JS模板 -->
 <div style="display:none" id="mytemplate">
 <div class="accordion-group">
 	<div class="accordion-heading">
-		<a class="accordion-toggle" data-toggle="collapse"
-			data-parent="#myaccordion" href="#collapse_{id}">{question}</a>
+	  	<label class="checkbox inline">	
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}"><input value="{id}" type="checkbox" name="selectedQuestions"/>Q{id}: {question}</a>
+	  	</label>		
 	</div>
 	<div id="collapse_{id}" class="accordion-body collapse">
-		<div class="accordion-inner">{questionOptions}</div>
+		<div class="accordion-inner">{options}</div>
 	</div>
 </div>
 </div>
@@ -114,12 +116,38 @@
 				$.each(resp.content, function(i, question) {
 					console.log(i + '===' + question.id);
 					var mytemp = $('#mytemplate').html();
+					var options = buildOptions(question);
+					console.log("options===" + options);
+					question.options = options;
 					var myvalue = nano(mytemp,question);
 					console.log(myvalue);
+
 					$('#myaccordion').append(myvalue);
 				});
 			}
 		});
+
+	}
+	
+	function buildOptions(question) {
+		var result = '';
+		var questionType = question.questionType;
+		var radioBoxTemp = '<label class="radio"><input type="radio" name="questionOption" >{option}</label>';
+		var checkBoxTemp = '<label class="checkbox"><input type="checkbox" name="questionOption" >{option}</label>';
+
+		$.each(question.splitOptions, function(i,option){
+			console.log(option);
+			var data = {};
+			data.option = option;
+			if (questionType == 1) {
+				result = result + nano(radioBoxTemp, data);
+			}
+			else if (questionType == 2) {
+				result = result + nano(checkBoxTemp, data);
+			} else {};
+		});
+		
+		return result;
 
 	}
 </script>
