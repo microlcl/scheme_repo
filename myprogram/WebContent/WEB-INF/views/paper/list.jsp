@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="form" style="padding:20px;">
-		<h1>帐号管理</h1>
+		<h1>调查问卷</h1>
 		<table id="contentTable" class="table table-striped table-bordered table-condensed">
 			<thead>
 			<tr>
