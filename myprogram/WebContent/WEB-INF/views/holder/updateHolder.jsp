@@ -44,7 +44,7 @@
 		var td8 = $("<td align='right'></td>");
 		var td9 = $("<td align='right'></td>");
 		var td10 = $("<td></td>");
-		var td11 = $("<td></td>");
+		var td11 = $("<td colspan='3'></td>");
 		td.append('		<input type="checkbox" name="count" id="count"/>');
 		td1.append('	        会场名称：<input type="text"  name="spaces['+row_count+'].space_name" class="input-large required" maxlength="32" />');
 		td2.append('	       会场所在楼层：<input type="text"  name="spaces['+row_count+'].floor" class="input-small" maxlength="3" onkeyup="clearNoNum(this)"/>');
@@ -55,10 +55,10 @@
 		td6.append('		&nbsp;舞&nbsp;台&nbsp;长：&nbsp;<input type="text"  name="spaces['+row_count+'].stage_length" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
 		td7.append('		舞台宽：<input type="text"  name="spaces['+row_count+'].stage_width" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
 		td8.append('		舞台高：<input type="text"  name="spaces['+row_count+'].stage_height" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>');
-		td9.append('		舞台性质：<input type="text" name="spaces['+row_count+'].attribute_id" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>');
-		
+//		td9.append('		舞台性质：<input type="text" name="spaces['+row_count+'].attribute_id" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>');
+		td9.append('		&nbsp;');
 		td10.append('&nbsp;		 ');
-		td11.append('		&nbsp;&nbsp;描&nbsp;&nbsp;述&nbsp;：&nbsp;&nbsp;<textarea  name="spaces['+row_count+'].description" class="input-large" maxlength="64" ></textarea>');
+		td11.append('		描述:<textarea  name="spaces['+row_count+'].description" class="input-large" maxlength="256" style="width: 100%" ></textarea>');
 		row.append(td);
 		row.append(td1);
 		row.append(td2);
@@ -128,8 +128,8 @@
 			</div>	
 			<div class="control-group">
 				<label for="description" class="control-label formlabel">场地描述：</label>
-				<div class="controls">
-					<textarea  id="description" name="description"  class="input-large" maxlength="256"/>${holder.description}</textarea>
+				<div class="controls" >
+					<textarea  id="description" name="description"  class="input-large" maxlength="256" >${holder.description}</textarea>
 				</div>
 			</div>
 			<div class="control-group">
@@ -157,7 +157,7 @@
 									容纳人数：<input type="text"  name="spaces[${status.index}].volume" value="${space.volume}" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>
 								</td>
 								<td align='right'>
-									楼层空间高度：<input type="text" id="hall_height " name="spaces[${status.index}].hall_height" value="${space.hall_height}" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>
+									楼层空间高度：<input type="text"  name="spaces[${status.index}].hall_height" value="${space.hall_height}" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>
 								</td>
 							</tr>
 							<tr>
@@ -174,7 +174,7 @@
 									舞台高：<input type="text"  name="spaces[${status.index}].stage_height" value="${space.stage_height}" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>
 								</td>
 								<td align='right'>
-									舞台性质：<input type="text" name="spaces[${status.index}].attribute_id" value="" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>
+								&nbsp;
 								</td>
 							</tr>
 							<tr>
@@ -182,7 +182,28 @@
 									&nbsp;
 								</td>
 								<td>
-									&nbsp;&nbsp;描&nbsp;&nbsp;述&nbsp;：&nbsp;&nbsp;<textarea  name="spaces[${status.index}].description" class="input-large" maxlength="64" >${space.description}</textarea>
+									场地特色:
+								</td>
+								<td colspan="2">
+									<table>
+									<tr>
+										<c:forEach items="${categorys}" var="category" varStatus="varStatus">
+										<td>
+										<input type="checkbox" name="spaces[${status.index}].spaceAttributes[${varStatus.index}].attribute_id" value="${category.id}" width="20" <c:forEach items="${space.spaceAttributes}" var="spaceAttribute"><c:if test="${category.id==spaceAttribute.attribute_id}" >checked</c:if></c:forEach> >${category.name}
+										&nbsp;
+										<c:if test="${(varStatus.index+1)%6==0}" > </td></tr></c:if>
+										</td>
+										</c:forEach>
+									</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align='center' width='100'>
+									&nbsp;
+								</td>
+								<td colspan="3">
+									描述:<textarea  name="spaces[${status.index}].description" class="input-large" maxlength="256" style="width: 100%">${space.description}</textarea>
 								</td>
 							</tr>
 						</table>

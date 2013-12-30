@@ -16,6 +16,23 @@
 		values(#{holders.id},#{space_name},#{floor},#{volume},#{hall_height},#{stage_length},#{stage_width},#{stage_height},#{description});
 	</insert>
 	
+	<!-- 插入场地类型-->
+	<insert id="saveSpaceAttribute" parameterType="SpaceAttribute">
+		insert into space_attribute (space_id,attribute_id)
+		values(#{space_id},#{attribute_id});
+	</insert>
+	
+	<!-- 删除场地类型-->
+	<delete id="deleteSpaceAttribute" parameterType="SpaceAttribute">
+		delete from space_attribute where space_id=#{space_id};
+	</delete>
+	
+	<select id="getSpaceAttributeBySpaceId"  resultType="SpaceAttribute">
+	    select space_id ,attribute_id
+	    from  space_attribute 
+	    where space_id=#{space_id};
+	</select>
+	
 	 	<!-- 修改场地-->
 	<update id="update" parameterType="Spaces">
 		update Spaces set holder_id=#{holder_id}, space_name=#{space_name}, floor=#{floor} ,volume=#{volume},hall_height=#{hall_height} ,
@@ -87,8 +104,8 @@
 		from spaces s 
 		where s.space_id=#{id}
 	</select>
-	<select id="getHolders" resultMap="HolderDetailMap">
-		select *
+	<select id="getHolders" parameterType="map" resultMap="HolderDetailMap">
+		select h.holder_id,h.holder_name,h.address,h.level,h.contact,h.phone,h.description
 		from holders h 
 		where h.holder_id=#{id}
 	</select>
@@ -100,13 +117,13 @@
 		<result property="contact" column="contact" />
 		<result property="phone" column="phone" />
 		<result property="description" column="description" />
-		<collection property="spaces" column="holder_id" ofType="Spaces" select="selectSpaces">
+		<collection property="spaces"  column="holder_id" ofType="Spaces" select="selectSpaces">
 		</collection>
 	</resultMap>
 	<select id="selectSpaces" resultType="Spaces">
-	   select s.space_id,s.holder_id,s.space_name as space_name,s.floor,s.volume as volume,s.hall_height,s.stage_length,s.stage_width,s.stage_height,s.description 
+	   select s.space_id as id,s.space_name ,s.floor,s.volume ,s.hall_height,s.stage_length,s.stage_width,s.stage_height,s.description 
 		from spaces s
-	    where s.holder_id=#{holder_id}
+	    where s.holder_id=#{holder_id} order by space_name
 	</select>
 	
 	<!-- 修改Holders-->

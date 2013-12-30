@@ -323,6 +323,12 @@ insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
 		values(12,5,'后院',1,1000,0,1500,100,0,'5');
 
+insert into space_attribute(space_id,attribute_id) values(1,'1-0-0-0');
+insert into space_attribute(space_id,attribute_id) values(1,'1-0-0-1');
+insert into space_attribute(space_id,attribute_id) values(2,'1-0-0-2');
+insert into space_attribute(space_id,attribute_id) values(2,'1-0-0-3');
+insert into space_attribute(space_id,attribute_id) values(3,'1-0-0-10');
+insert into space_attribute(space_id,attribute_id) values(3,'1-0-0-14');
 		
 insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(1,'你是通过什么途径知道我们的产品的1？','1','网上搜索^朋友分享^无意间了解','1-0-2-0','F');
 insert into questions (question_id,question, question_type, question_options, business_type, trashed) values(2,'你喜欢的灯具材质是2？','2','木质^金属^水晶^其他','1-0-2-0','F');

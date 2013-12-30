@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.HolderMybatisDao;
 import com.eastteam.myprogram.entity.Holders;
+import com.eastteam.myprogram.entity.SpaceAttribute;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
@@ -51,16 +52,37 @@ public class HolderService extends PageableService {
 		holderDao.update(space);
 	}
 	
-	public void doUpdate(Holders holder){
+	public void doUpdate(Holders holder) {
 		holderDao.updateHolder(holder);
 		holderDao.deleteSpacesByHolderId(holder.getId());
-		for (Iterator iterator = holder.getSpaces().iterator(); iterator.hasNext();) {
+		for (Iterator iterator = holder.getSpaces().iterator(); iterator
+				.hasNext();) {
 			Spaces space = (Spaces) iterator.next();
-			if(space.getSpace_name()!=null&&!space.getSpace_name().equals("")){
+			if (space.getSpace_name() != null
+					&& !space.getSpace_name().equals("")) {
 				space.setHolders(holder);
 				holderDao.saveSpace(space);
+				holderDao.deleteSpaceAttribute(space.getId());
+				List<SpaceAttribute> spaceAttributes = space
+						.getSpaceAttributes();
+				if (spaceAttributes != null) {
+					for (Iterator iterator2 = spaceAttributes.iterator(); iterator2
+							.hasNext();) {
+						SpaceAttribute spaceAttribute = (SpaceAttribute) iterator2
+								.next();
+						if (spaceAttribute.getAttribute_id() != null
+								&& !spaceAttribute.getAttribute_id().equals("")) {
+							spaceAttribute.setSpace_id(space.getId());
+							holderDao.saveSpaceAttribute(spaceAttribute);
+						}
+					}
+				}
 			}
 		}
+	}
+	
+	public List<SpaceAttribute> getSpaceAttributeBySpaceId(long space_id){
+		return holderDao.getSpaceAttributeBySpaceId(space_id);
 	}
 	
 	public Spaces getSpace(long id) {
@@ -68,6 +90,12 @@ public class HolderService extends PageableService {
 	}
 	
 	public Holders getHolder(long id) {
-		return this.holderDao.getHolders(id);
+		Holders holder= holderDao.getHolders(id);
+		List<Spaces> spaces =holder.getSpaces();
+		for (Iterator iterator = spaces.iterator(); iterator.hasNext();) {
+			Spaces space = (Spaces) iterator.next();
+			space.setSpaceAttributes(holderDao.getSpaceAttributeBySpaceId(space.getId()));
+		}
+		return holder;
 	}
 }

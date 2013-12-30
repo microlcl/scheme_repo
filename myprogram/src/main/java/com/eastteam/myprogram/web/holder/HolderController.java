@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Product;
+import com.eastteam.myprogram.entity.SpaceAttribute;
 import com.eastteam.myprogram.entity.Spaces;
+import com.eastteam.myprogram.service.category.CategoryService;
 import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.web.Servlets;
 import com.google.common.collect.Maps;
@@ -34,6 +37,9 @@ import com.google.common.collect.Maps;
 public class HolderController {
 	@Autowired
 	private HolderService holderService;
+	@Autowired
+	private CategoryService categoryService;
+	
 	private static Logger logger = LoggerFactory
 			.getLogger(HolderController.class);
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
@@ -83,6 +89,8 @@ public class HolderController {
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(Model model) {
+		List<CategoryLiteBean> categorys = this.categoryService.getFuntionCategorys("M1-6");
+		model.addAttribute("categorys", categorys.get(0).getChildren());
 		return "holder/addHolder";
 	}
 	
@@ -98,6 +106,8 @@ public class HolderController {
 	public String update(@RequestParam(value="id") int id,Model model, HttpServletRequest request) {
 		Holders holder = this.holderService.getHolder(id);
 		model.addAttribute("holder", holder);
+		List<CategoryLiteBean> categorys = this.categoryService.getFuntionCategorys("M1-6");
+		model.addAttribute("categorys", categorys.get(0).getChildren());
 		return "holder/updateHolder";
 	}
 	

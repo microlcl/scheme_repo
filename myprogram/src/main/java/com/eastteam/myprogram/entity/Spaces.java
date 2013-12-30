@@ -1,5 +1,7 @@
 package com.eastteam.myprogram.entity;
 
+import java.util.List;
+
 public class Spaces extends IdEntity{
 	private String space_name; //会场名称
 	private int floor;//会场所在楼层
@@ -9,6 +11,7 @@ public class Spaces extends IdEntity{
 	private int stage_width ;//舞台宽
 	private int stage_height;//舞台高
 	private String description;
+	private List<SpaceAttribute> spaceAttributes;
 	private Holders holders ;//所属holder
 	
 	public Holders getHolders() {
@@ -65,4 +68,11 @@ public class Spaces extends IdEntity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public List<SpaceAttribute> getSpaceAttributes() {
+		return spaceAttributes;
+	}
+	public void setSpaceAttributes(List<SpaceAttribute> spaceAttributes) {
+		this.spaceAttributes = spaceAttributes;
+	}
+	
 }
