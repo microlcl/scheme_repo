@@ -12,6 +12,11 @@
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 	
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+		<script>
+		$(document).ready(function() {
+			$("#paper-tab").addClass("active");
+		});
+	</script>
 
 </head>
 <body>
