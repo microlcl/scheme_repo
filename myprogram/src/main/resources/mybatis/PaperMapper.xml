@@ -78,10 +78,8 @@
 		insert into papers (paper_name, creat_timestamp, business_type, status) 
 		values(#{paperName}, now(), #{businessType.id}, #{status.id});
 	</insert>
-	<!-- 
-	<insert id="insertCategory" parameterType="map">
+	<insert id="insertQuestions" parameterType="map">
 		insert into paper_questions (paper_id, question_id, position) 
-		values (#{paperId}, #{questionId}, 100);
+		values (#{paperId}, #{questionId}, #{position});
 	</insert>
-	 -->
 </mapper>

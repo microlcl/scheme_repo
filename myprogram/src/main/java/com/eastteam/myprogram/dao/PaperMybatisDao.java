@@ -22,6 +22,7 @@ public interface PaperMybatisDao {
 	public List<Paper> search(Map<String, Object> parameters);
 	public Long getCount(Map<String, Object> parameters);
 	public List<Question> selectQuestions(String paper_id);
-	public void insertPaper(Paper paper); 
+	public void insertPaper(Paper paper);
+	public void insertQuestions(Map<String, Object> parameters);
 
 }

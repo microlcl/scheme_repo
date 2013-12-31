@@ -82,7 +82,13 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 		logger.info("插入数据之后测count " + this.paperMybatisDao.getCount(null));
 		logger.info("插入数据之后测调查问卷内容 ：");
 		SearchPaperTest();
-
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		logger.info("paper.getId()=====" + paper.getId());
+		map.put("paperId", paper.getId());
+		map.put("questionId", 1);
+		map.put("position", 10);
+		this.paperMybatisDao.insertQuestions(map);
+		logger.info("=====新增调查问卷的问题之后此问卷的所有问题：" + this.paperMybatisDao.selectQuestions(Long.toString(paper.getId())));
 	}
 	
 	
