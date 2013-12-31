@@ -8,7 +8,8 @@
 <!-- link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css"-->
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/themes/icon.css">
-
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"
 	type="text/javascript"></script>
 <script src="${ctx}/static/nano/nano.js"
@@ -26,12 +27,13 @@
 		<!-- 模态对话框begin -->
 		<div class="search-panel">
 			<form class="form-search form-inline" action="#">
-				<div>
-					<input type="text" id='searchKeyword' name="search_keyword"
-						style="width: 60%" value="${param.search_keyword}">
-					<button type="button" class="btn" id="search_btn"
-						onclick="search()">Search</button>
-				</div>
+					<label>类别：</label> 
+					<input id="categorySelector" name="search_categoryId" class="easyui-combotree" multiple data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;">	
+						
+					<div class="input-append">
+					    <input class="span2" id="searchKeyword" type="text">
+					    <button class="btn" style="border-radius:0px 4px 4px 0" type="button" onclick="search()" id="search_btn">Go!</button>
+				    </div>
 			</form>
 		</div>
 
@@ -53,9 +55,8 @@
 <div style="display:none" id="mytemplate">
 <div class="accordion-group">
 	<div class="accordion-heading">
-	  	<label class="checkbox inline">	
-			<a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}"><input value="{id}" type="checkbox" name="selectedQuestions"/>Q{id}: {question}</a>
-	  	</label>		
+			<input value="{id}" type="checkbox" name="selectedQuestions"/> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">Q{id}: {question}</a>
+
 	</div>
 	<div id="collapse_{id}" class="accordion-body collapse">
 		<div class="accordion-inner">{options}</div>
@@ -101,6 +102,7 @@
 			type : 'get',
 			data : {
 				page : nextPage,
+				search_categoryId:$('#categorySelector').combotree('getValues'),
 				search_keyword : $('#searchKeyword').val()
 			},
 
