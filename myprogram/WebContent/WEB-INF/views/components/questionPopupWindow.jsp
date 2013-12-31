@@ -10,10 +10,9 @@
 	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-<script src="${ctx}/static/easyui/jquery.easyui.min.js"
-	type="text/javascript"></script>
-<script src="${ctx}/static/nano/nano.js"
-	type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/styles/mystyle.css">
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/nano/nano.js" type="text/javascript"></script>
 
 <style>
 </style>
@@ -54,11 +53,13 @@
 <div style="display:none" id="mytemplate">
 <div class="accordion-group">
 	<div class="accordion-heading">
-			<input id="myq_{id}" value="{id}" type="checkbox" name="selectedQuestions"/> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">Q{id}: {question}</a>
-
+	<ul class="inline">
+			<li><input id="myq_{id}" value="{id}" type="checkbox" name="selectedQuestions"/> </li>
+			<li><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">Q{id}: {question}</a></li>
+</ul>
 	</div>
 	<div id="collapse_{id}" class="accordion-body collapse">
-		<div class="accordion-inner">{options}</div>
+		<div class="accordion-inner"> <div style="padding:0px 0px 0px 34px">{options}</div></div>
 	</div>
 </div>
 </div>
