@@ -3,6 +3,7 @@
  */
 package com.eastteam.myprogram.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,9 +60,30 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 	
 	@Test
 	public void getQuestionsTest() throws Exception {
-		logger.info("In Page get questions test");
+		logger.info("In Paper get questions test");
 		String paper_id = "1";
 		List<Question> questions = this.paperMybatisDao.selectQuestions(paper_id);
 		logger.info("=====Test Questions: " + questions);
 	}
+	
+	@Test
+	public void insertPaperTest() throws Exception {
+		logger.info("In Paper inseat paper test");
+		Paper paper = new Paper();
+		paper.setPaperName("新增调查问卷测试");
+		Category businessType = new Category();
+		businessType.setId("1-0-2-0");
+		paper.setBusinessType(businessType);
+		Category status = new Category();
+		status.setId("1-0-1-0");
+		paper.setStatus(status);
+		this.paperMybatisDao.insertPaper(paper);
+		logger.info("新增调查问卷的id: " + paper.getId());
+		logger.info("插入数据之后测count " + this.paperMybatisDao.getCount(null));
+		logger.info("插入数据之后测调查问卷内容 ：");
+		SearchPaperTest();
+
+	}
+	
+	
 }

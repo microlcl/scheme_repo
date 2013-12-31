@@ -74,4 +74,14 @@
 	    from questions q, paper_questions pq 
 	    where q.question_id=pq.question_id and pq.paper_id=#{paper_id}
 	</select>
+	<insert id="insertPaper" parameterType="Paper" useGeneratedKeys="true" keyProperty="id">
+		insert into papers (paper_name, creat_timestamp, business_type, status) 
+		values(#{paperName}, now(), #{businessType.id}, #{status.id});
+	</insert>
+	<!-- 
+	<insert id="insertCategory" parameterType="map">
+		insert into paper_questions (paper_id, question_id, position) 
+		values (#{paperId}, #{questionId}, 100);
+	</insert>
+	 -->
 </mapper>

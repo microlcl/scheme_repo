@@ -345,7 +345,7 @@ insert into questions (question_id,question, question_type, question_options, bu
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (1, '婚礼问卷1', '1-0-2-0', now(), '1-0-1-1');
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (2, '婚礼问卷2', '1-0-2-0', now(), '1-0-1-1');
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (3, '婚礼问卷3', '1-0-2-0', now(), '1-0-1-0');
-insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (4, '年会问卷4', '1-0-2-2', now(), '1-0-1-1');
+insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (4, '年会问卷4', '1-0-2-2', now(), '1-0-1-2');
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (5, '年会问卷5', '1-0-2-2', now(), '1-0-1-1');
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (6, '年会问卷6', '1-0-2-2', now(), '1-0-1-1');
 
