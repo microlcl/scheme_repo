@@ -9,13 +9,20 @@
 		$(document).ready(function() {
 			$("#popupwindow-tab").addClass("active");
 		});
+		
+		function addQuestions(result) {
+			console.log("in callback function");
+			console.log(result);	
+		}
 	</script>
+	
+
 
 </head>
 
 <body>
 	<h1>Question Popupwindow Test</h1>
-	<button type="button" class="btn" id="search_btn" onclick="questionPopupWindow()">show question popupwindow</button>
+	<button type="button" class="btn" id="search_btn" onclick="questionPopupWindow({callback:addQuestions})">show question popupwindow</button>
 	<!-- resource 选择模态对话框 -->
  <%@ include file="../components/questionPopupWindow.jsp"%>
 </body>

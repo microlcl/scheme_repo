@@ -45,9 +45,8 @@
 		<!-- 模态对话框end -->
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"
-			onclick="stopAudio()">关闭</a> <a href="#" class="btn btn-primary"
-			data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
+		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"">关闭</a> 
+		<a href="#" class="btn btn-primary"	data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
 	</div>
 </div>
 
@@ -55,7 +54,7 @@
 <div style="display:none" id="mytemplate">
 <div class="accordion-group">
 	<div class="accordion-heading">
-			<input value="{id}" type="checkbox" name="selectedQuestions"/> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">Q{id}: {question}</a>
+			<input id="myq_{id}" value="{id}" type="checkbox" name="selectedQuestions"/> <a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">Q{id}: {question}</a>
 
 	</div>
 	<div id="collapse_{id}" class="accordion-body collapse">
@@ -71,8 +70,6 @@
 	//调用者输入参数
 	var parameters = {};
 
-	var callback;
-
 	function search() {
 		console.log('in search');
 		currentPage = 0;
@@ -84,6 +81,7 @@
 	//{targetMedia: this,mediaType:picture, callback: setMedia}
 	//function resourcePopupWindow(media, mediaType) {
 	function questionPopupWindow(obj) {
+		parameters = obj;
 		console.log("in resourcePopupWindow");
 
 		$('#questionModalWindow').modal({
@@ -125,6 +123,7 @@
 					console.log(myvalue);
 
 					$('#myaccordion').append(myvalue);
+					$('#myq_' + question.id).data('question', question);
 				});
 			}
 		});
@@ -151,5 +150,18 @@
 		
 		return result;
 
+	}
+	
+	function getSelectedValue() {
+		var result = {};
+		result.parameters = parameters;
+		result.questions = [];
+		var selectedQuestions = $('input:checkbox[name="selectedQuestions"]:checked');
+		$.each(selectedQuestions, function(i, question) {
+			var mydata = $('#' + question.id).data('question');
+			result.questions.push(mydata);
+		});
+		parameters.callback(result);
+			
 	}
 </script>
