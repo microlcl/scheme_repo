@@ -24,7 +24,7 @@
 	});
 	var row_count = 0;
 	function add() {
-		row_count=$("#spacesSize").val();
+		row_count=${holder.spaces.size()};
 		var tableHolder = $('#tableHolder');
 		var rowHolder= $("<tr></tr>");
 		var tdHolder = $("<td></td>");
@@ -33,6 +33,7 @@
 		var row = $("<tr></tr>");
 		var row1 = $("<tr></tr>");
 		var row2 = $("<tr></tr>");
+		var row3 = $("<tr></tr>");
 		var td = $("<td align='center' width='100'></td>");
 		var td1 = $("<td></td>");
 		var td2 = $("<td align='right'></td>");
@@ -43,8 +44,11 @@
 		var td7 = $("<td align='right'></td>");
 		var td8 = $("<td align='right'></td>");
 		var td9 = $("<td align='right'></td>");
-		var td10 = $("<td></td>");
-		var td11 = $("<td colspan='3'></td>");
+		var td10 = $("<td align='center' width='100'></td>");
+		var td11 = $("<td></td>");
+		var td12 = $("<td colspan='2'></td>");
+		var td13 = $("<td></td>");
+		var td14 = $("<td colspan='3'></td>");
 		td.append('		<input type="checkbox" name="count" id="count"/>');
 		td1.append('	        会场名称：<input type="text"  name="spaces['+row_count+'].space_name" class="input-large required" maxlength="32" />');
 		td2.append('	       会场所在楼层：<input type="text"  name="spaces['+row_count+'].floor" class="input-small" maxlength="3" onkeyup="clearNoNum(this)"/>');
@@ -57,8 +61,13 @@
 		td8.append('		舞台高：<input type="text"  name="spaces['+row_count+'].stage_height" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>');
 //		td9.append('		舞台性质：<input type="text" name="spaces['+row_count+'].attribute_id" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>');
 		td9.append('		&nbsp;');
-		td10.append('&nbsp;		 ');
-		td11.append('		描述:<textarea  name="spaces['+row_count+'].description" class="input-large" maxlength="256" style="width: 100%" ></textarea>');
+		
+		td10.append('&nbsp;');
+		td11.append('场地特色:');
+		td12.append('<table><tr><c:forEach items="${categorys}" var="category" varStatus="varStatus"><td><input type="checkbox" name="spaces['+row_count+'].spaceAttributes[${varStatus.index}].attribute_id" value="${category.id}" width="20" >${category.name}&nbsp;<c:if test="${(varStatus.index+1)%6==0}" > </td></tr></c:if></td></c:forEach></tr></table>');
+	
+		td13.append('&nbsp;		 ');
+		td14.append('描述:<textarea  name="spaces['+row_count+'].description" class="input-large" maxlength="256" style="width: 100%" ></textarea>');
 		row.append(td);
 		row.append(td1);
 		row.append(td2);
@@ -71,9 +80,13 @@
 		row1.append(td9);
 		row2.append(td10);
 		row2.append(td11);
+		row2.append(td12);
+		row3.append(td13);
+		row3.append(td14);
 		tableTemp.append(row);
 		tableTemp.append(row1);
 		tableTemp.append(row2);
+		tableTemp.append(row3);
 		
 		tdHolder.append(tableTemp);
 		rowHolder.append(tdHolder);
@@ -93,7 +106,7 @@
 		<div class="form">
 			<h1>场馆管理</h1>
 			<div class="control-group">
-				<label for="holder_name" class="control-label formlabel">场地名称：</label>
+				<label for="holder_name" class="control-label formlabel">场：</label>
 				<div class="controls">
 					<input type="hidden" id="id" name="id" value="${holder.id}">
 					<input type="text" id="holder_name" name="holder_name" value="${holder.holder_name}" class="input-large required" maxlength="64"/>

@@ -44,6 +44,20 @@ public class HolderService extends PageableService {
 			if(space.getSpace_name()!=null&&!space.getSpace_name().equals("")){
 				space.setHolders(holder);
 				holderDao.saveSpace(space);
+				List<SpaceAttribute> spaceAttributes = space
+						.getSpaceAttributes();
+				if (spaceAttributes != null) {
+					for (Iterator iterator2 = spaceAttributes.iterator(); iterator2
+							.hasNext();) {
+						SpaceAttribute spaceAttribute = (SpaceAttribute) iterator2
+								.next();
+						if (spaceAttribute.getAttribute_id() != null
+								&& !spaceAttribute.getAttribute_id().equals("")) {
+							spaceAttribute.setSpace_id(space.getId());
+							holderDao.saveSpaceAttribute(spaceAttribute);
+						}
+					}
+				}
 			}
 		}
 	}
