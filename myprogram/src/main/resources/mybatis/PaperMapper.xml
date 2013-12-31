@@ -27,7 +27,7 @@
 				</foreach>
 			</if>
 			<if test="categoryIdList != null">
-		          and cb.id in 
+		          or cb.id in 
 		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
 			        #{item}
 				</foreach>)
@@ -56,7 +56,7 @@
 				</foreach>
 			</if>
 			<if test="categoryIdList != null">
-		          and cb.id in 
+		          or cb.id in 
 		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
 			        #{item}
 				</foreach>)
