@@ -20,32 +20,40 @@
 
 </head>
 <body>
-	<div class="form" style="padding:20px;">
+	<div class="form">
 		<h1>调查问卷</h1>
-		<table id="contentTable" class="table table-striped table-bordered table-condensed">
-			<thead>
-			<tr>
-				<th>问卷名称</th>
-				<th>问卷类型</th>
-				<th>问卷状态</th>
-				<th>操作</th>
-			</tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${papers.content}" var="paper">
+		<div class=" onefield" style="height:40px !important; text-align: right !important;padding-right: 10px;padding-top: 7px;margin-left:20px;background-color: white;">
+			<form style="padding-left:10px;">
+				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
+				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>
+			</form>
+		</div>
+		<div  style="padding:20px;">
+			<table id="contentTable" class="table table-striped table-bordered table-condensed">
+				<thead>
 				<tr>
-					<td>${paper.paperName}&nbsp;</td>
-					<td>${paper.businessType.name}&nbsp;</td>
-					<td>${paper.status.name}&nbsp;</td>
-					<td>
-						<a href="${ctx}/paper/show/${paper.id}" id="editLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
-						<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>
-					</td>
+					<th>问卷名称</th>
+					<th>问卷类型</th>
+					<th>问卷状态</th>
+					<th>操作</th>
 				</tr>
-			</c:forEach>
-			</tbody>		
-		</table>
-		<tags:pagination page="${papers}" paginationSize="4"/>
+				</thead>
+				<tbody>
+				<c:forEach items="${papers.content}" var="paper">
+					<tr>
+						<td>${paper.paperName}&nbsp;</td>
+						<td>${paper.businessType.name}&nbsp;</td>
+						<td>${paper.status.name}&nbsp;</td>
+						<td>
+							<a href="${ctx}/paper/show/${paper.id}" id="editLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+							<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>		
+			</table>
+			<tags:pagination page="${papers}" paginationSize="4"/>
+		</div>
 	</div>
 	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
 	
