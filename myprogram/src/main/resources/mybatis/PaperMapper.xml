@@ -20,6 +20,21 @@
 		left join category cb on p.business_type=cb.id
 		left join category cs on p.status=cs.id
 		<where>
+			<if test="categoryIdList != null">
+		          (cs.id in
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
+			</if>
+			<if test="categoryIdList != null">
+		          and cb.id in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>)
+			</if>
+			<if test="categoryIdList != null and keyword != null">
+				and 
+			</if>
 			<if test="keyword != null">
 				p.paper_name like '%${keyword}%'
 			</if>
@@ -32,12 +47,27 @@
 		</if>
 	</select>
 	<select id="getCount" parameterType="map" resultType="Long">
-		select count(0) from papers
+		select count(0) from (select distinct p.paper_id from papers p left join category cb on p.business_type=cb.id left join category cs on p.status=cs.id
 		<where>
-			<if test="keyword != null">
-				and paper_name like '%${keyword}%'
+			<if test="categoryIdList != null">
+		          (cs.id in
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>
 			</if>
-		</where>
+			<if test="categoryIdList != null">
+		          and cb.id in 
+		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
+			        #{item}
+				</foreach>)
+			</if>
+			<if test="categoryIdList != null and keyword != null">
+				and 
+			</if>
+			<if test="keyword != null">
+				p.paper_name like '%${keyword}%'
+			</if>
+		</where>)t
 	</select>
 	<select id="selectQuestions" resultType="Question">
 	    select q.question as question, q.question_type as questionType, question_options as questionOptions
