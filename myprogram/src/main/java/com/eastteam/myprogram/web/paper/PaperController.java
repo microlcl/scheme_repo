@@ -49,13 +49,12 @@ public class PaperController {
 			Model model, ServletRequest request){
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
-		logger.info(searchParams.toString());
 		Page<Paper> papers = paperService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("question.pagesize")), sortType);
 		model.addAttribute("papers", papers);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
-		logger.info("searchParams=" + searchParams);
+		logger.info("in paper Controller: searchParams=" + searchParams);
 		return "paper/list";
 	}
 	
@@ -70,5 +69,10 @@ public class PaperController {
 		}
 		model.addAttribute("questions", questions);
 		return "/paper/paperDetail";
+	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add(Model model) {
+		return "paper/addPaper";
 	}
 }
