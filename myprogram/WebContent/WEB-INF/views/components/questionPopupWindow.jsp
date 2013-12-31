@@ -36,7 +36,7 @@
 			</form>
 		</div>
 
-		<div class="accordion" id="myaccordion"></div>
+		<div class="accordion" style="border-color: white" id="myaccordion"></div>
 
 		<div id="loadMore" class="pagination pagination-centered">
 			<button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
