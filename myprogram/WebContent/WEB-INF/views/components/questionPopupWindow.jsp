@@ -10,7 +10,7 @@
 	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/styles/mystyle.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/mystyle.css">
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/nano/nano.js" type="text/javascript"></script>
 
@@ -72,24 +72,18 @@
 	var parameters = {};
 
 	function search() {
-		console.log('in search');
 		currentPage = 0;
 		$('#myaccordion').empty();
 		loadMore();
 		return false;
 	}
 
-	//{targetMedia: this,mediaType:picture, callback: setMedia}
-	//function resourcePopupWindow(media, mediaType) {
 	function questionPopupWindow(obj) {
 		parameters = obj;
-		console.log("in resourcePopupWindow");
-
 		$('#questionModalWindow').modal({
 			backdrop : false,
 		});
 		loadMore();
-		//callback = obj.callback;
 
 	}
 
@@ -107,21 +101,16 @@
 
 			success : function(resp) {
 				currentPage++;
-				console.log('in success function, currentPage = ' + currentPage);
-				console.log(resp);
 				if (resp.lastPage) {
 					$('#loadMore').hide();
 				} else {
 					$('#loadMore').show();
 				}
 				$.each(resp.content, function(i, question) {
-					console.log(i + '===' + question.id);
 					var mytemp = $('#mytemplate').html();
 					var options = buildOptions(question);
-					console.log("options===" + options);
 					question.options = options;
 					var myvalue = nano(mytemp,question);
-					console.log(myvalue);
 
 					$('#myaccordion').append(myvalue);
 					$('#myq_' + question.id).data('question', question);
@@ -138,7 +127,6 @@
 		var checkBoxTemp = '<label class="checkbox"><input type="checkbox" name="questionOption" >{option}</label>';
 
 		$.each(question.splitOptions, function(i,option){
-			console.log(option);
 			var data = {};
 			data.option = option;
 			if (questionType == 1) {
