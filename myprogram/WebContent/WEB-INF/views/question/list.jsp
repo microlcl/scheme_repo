@@ -32,7 +32,7 @@
 				</div>
 			</form>
 		</div>
-		<a href="/myprogram/question/addQuestion/" style="padding-left:200px">添加问题</a>
+		<a href="${ctx}/question/addQuestion/" style="padding-left:200px">添加问题</a>
 		<tags:sort/>
 	</div>
 	

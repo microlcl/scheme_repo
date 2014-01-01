@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.QuestionMybatisDao;
+import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.PageableService;
 import com.eastteam.myprogram.service.product.ProductService;
 import com.google.common.collect.Maps;
@@ -45,7 +46,9 @@ public class QuestionService extends PageableService {
 	public String[] splitQuestionOptions(String options){
 		String[] questionOptions = options.split("\\^");
 		return questionOptions;
-		
-		
+	}
+	
+	public void saveQuestion(Question question){
+		questionMybatisDao.save(question);
 	}
 }

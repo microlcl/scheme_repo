@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.questions.QuestionService;
@@ -71,23 +74,49 @@ public class QuestionController {
 		return "question/list";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/api/search", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public Page<Question> search(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
-			@RequestParam(value = "sortType", defaultValue = "question_id") String sortType,
-			Model model, ServletRequest request) {
-		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-		logger.info("in ajax response:" + searchParams.toString());		
-		Page<Question> questions = questionService.getCurrentPageContent(
-				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("question.pagesize")), sortType);
-		List<Question> allQuestions = questions.getContent();
-		Iterator<Question> it = allQuestions.iterator();
-		while(it.hasNext()){
-			Question question = it.next();
-			String[] questionOptions = questionService.splitQuestionOptions(question.getQuestionOptions());
-			question.setSplitOptions(questionOptions);
+//	@RequestMapping(method = RequestMethod.GET, value = "/api/search", produces = MediaType.APPLICATION_JSON_VALUE)
+//	@ResponseBody
+//	public Page<Question> search(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
+//			@RequestParam(value = "sortType", defaultValue = "question_id") String sortType,
+//			Model model, ServletRequest request) {
+//		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+//		logger.info("in ajax response:" + searchParams.toString());		
+//		Page<Question> questions = questionService.getCurrentPageContent(
+//				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("question.pagesize")), sortType);
+//		List<Question> allQuestions = questions.getContent();
+//		Iterator<Question> it = allQuestions.iterator();
+//		while(it.hasNext()){
+//			Question question = it.next();
+//			String[] questionOptions = questionService.splitQuestionOptions(question.getQuestionOptions());
+//			question.setSplitOptions(questionOptions);
+//		}
+//		
+//		return questions;
+//	}
+	@RequestMapping(value = "addQuestion", method = RequestMethod.GET)
+	public String addQuestion(Model model){
+		return "question/addQuestion";
+	}
+	
+	@RequestMapping(value = "saveQuestion", method = RequestMethod.POST)
+	public String saveQuestion(@ModelAttribute Question question, RedirectAttributes redirectAttributes){
+		if(question.getQuestionType().equals("3"))
+			question.setQuestionOptions("");
+		else{
+			StringBuffer sb = new StringBuffer();
+			for(int i=0; i<question.getSplitOptions().length; i++){
+				if(i == question.getSplitOptions().length-1){
+					sb.append(question.getSplitOptions()[i]);
+				}
+				else
+					sb.append(question.getSplitOptions()[i] + "^");
+			}
+			question.setQuestionOptions(sb.toString());
 		}
+
 		
-		return questions;
+		questionService.saveQuestion(question);
+		
+		return "redirect:/question/list/";
 	}
 }

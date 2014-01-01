@@ -4,8 +4,8 @@
 <mapper namespace="com.eastteam.myprogram.dao.QuestionMybatisDao">
 	<!-- 插入问题-->
 	<insert id="save" parameterType="Question" useGeneratedKeys="true" keyProperty="id" >
-		insert into questions (question, question_type, trashed, question_options)
-		values (#{question},#{questionType},#{trashed},#{questionOptions});
+		insert into questions (question, question_type, trashed, question_options, business_type)
+		values (#{question},#{questionType},'F',#{questionOptions},#{business_type});
 	</insert>
 	
 	<!-- 更新问题 -->
