@@ -3,6 +3,7 @@
  */
 package com.eastteam.myprogram.service.paper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.PaperMybatisDao;
+import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -56,5 +58,18 @@ public class PaperService extends PageableService {
 	public String[] splitQuestionOptions(String options){
 		String[] questionOptions = options.split("\\^");
 		return questionOptions;
+	}
+	
+	public void saveQuestions(Paper paper, String[] questions) {
+		logger.info("in paper save service");
+		this.paperMybatisDao.insertPaper(paper);
+		String paperId = Long.toString(paper.getId());
+		for (int i = 0; i < questions.length; i++){
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("paperId", paperId);
+			map.put("questionId", questions[i]);
+			map.put("position", 10);
+			this.paperMybatisDao.insertQuestions(map);
+		}
 	}
 }

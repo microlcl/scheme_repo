@@ -31,7 +31,10 @@
 					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-8',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}" />
 					&nbsp;&nbsp;&nbsp;&nbsp;问卷类型：
 					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a href="${ctx}/paper/add/">新增问卷</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="${ctx}/paper/add/" style="padding: 5px; background-color: #DADADA;border-radius: 4px 4px 4px 4px;line-height: 30px; font-weight: bold;">
+						<i class="icon-plus-sign"></i>&nbsp;新增问卷
+					</a>
 				</span>
 				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
 				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>

@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.paper.PaperService;
@@ -74,5 +76,23 @@ public class PaperController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(Model model) {
 		return "paper/addPaper";
+	}
+	
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	public String save(Model model, HttpServletRequest request){
+		logger.info("in paper Controller save parper");
+		String paperTitle = request.getParameter("paperTitle");
+		logger.info("===========paperTitle:" + paperTitle);
+		Paper paper = new Paper();
+		paper.setPaperName(paperTitle);
+		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		Category businessType = new Category();
+		businessType.setId(searchParams.get("categoryId").toString());
+		paper.setBusinessType(businessType);
+		String[] questions = request.getParameterValues("selectedQuestionsOnPage");
+		logger.info("===========The selected questions' count:" + questions.length);
+		this.paperService.saveQuestions(paper, questions);
+		
+		return "redirect:/paper/list/";
 	}
 }
