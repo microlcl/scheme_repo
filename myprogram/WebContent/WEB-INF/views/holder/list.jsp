@@ -25,25 +25,21 @@
 		<div class="span">
 		  	<form class="form-search" action="#">
 			 	<label>会场名称：</label> <input type="text" name="search_space_name"   class="input-small"  value="${param.search_space_name }" style="width:205px;"> 
-			 	&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-			 	<label>场地名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }" style="width:205px;"> 
+			 	<label style="margin-left: 2cm;">场地名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }" style="width:205px;"> 
 			 	<div style="padding-top:10px">
 				<label>星级：</label> 
-				&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 				<select name="search_level" >
 				<option value=""></option>
 				<option value="5">五星级</option>
 				<option value="4">四星级</option>
 				<option value="3">三星级</option>
 				</select>
-				&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			    <label>关键字：</label>
-			    &nbsp;&nbsp;&nbsp;
+			    <label style="margin-left: 2cm;">关键字：</label>
+			    &nbsp;&nbsp;
 			    <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
-			    &nbsp;&nbsp; &nbsp;&nbsp;
-			    <button type="submit" class="btn" id="search_btn">搜索</button>
-			    &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-			    <a href="${ctx}/holder/add/" >创建新场地</a>
+			    <button type="submit" class="btn" id="search_btn" style="margin-left: 25px;" >搜索</button>			  
+			    <a href="${ctx}/holder/add/" style="margin-left: 2cm;">创建新场地</a>
 			    </div>
 		    </form>
 	    </div>
