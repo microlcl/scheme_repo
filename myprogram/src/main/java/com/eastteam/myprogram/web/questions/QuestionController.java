@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -129,10 +128,31 @@ public class QuestionController {
 		
 		return "redirect:/question/list/";
 	}
+	
 	@RequestMapping(value = "deleteQuestion/question_{id}", method = RequestMethod.GET)
 	public String deleteQuestion(@PathVariable("id") String id,  RedirectAttributes redirectAttributes){
 		questionService.deleteQuestion(Long.parseLong(id));
 		
 		return "redirect:/question/list/";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/api/search", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Page<Question> search(@RequestParam(value = "page", defaultValue = "1") int pageNumber, 
+			@RequestParam(value = "sortType", defaultValue = "question_id") String sortType,
+			Model model, ServletRequest request) {		
+	    Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+	    logger.info("in ajax response:" + searchParams.toString());
+	    Page<Question> questions = questionService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("question.pagesize")), sortType);
+
+	    List<Question> allQuestions = questions.getContent();
+	    Iterator<Question> it = allQuestions.iterator();
+	    while(it.hasNext()){
+	      Question question = it.next();
+	      String[] questionOptions = questionService.splitQuestionOptions(question.getQuestionOptions());
+	      question.setSplitOptions(questionOptions);
+	    }  
+
+	    return questions;
+	  }	
 }

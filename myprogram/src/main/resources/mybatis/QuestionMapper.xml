@@ -42,6 +42,9 @@
 			        #{item}
 				</foreach>
 			</if>
+			<if test="trashed != null">
+				and trashed=#{trashed}
+			</if>
 		</where>
 		<if test="sort != null">
 			order by ${sort}
@@ -64,6 +67,9 @@
 		        <foreach item="item" index="index" collection="categoryIdList" open="(" separator="," close=")">
 			        #{item}
 				</foreach>
+			</if>
+			<if test="trashed != null">
+				and trashed=#{trashed}
 			</if>
 		</where>
 	</select>
