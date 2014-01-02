@@ -69,6 +69,10 @@ public class AccountService extends PageableService {
 		return userDao.search(param);
 	}
 	
+	public List<User> search(String departmentId) {
+		return userDao.findByDepartment(departmentId);
+	}
+	
 	public Long getCount(Map parameters) {
 		Map param = Maps.newHashMap(parameters);
 		return userDao.getCount(parameters);

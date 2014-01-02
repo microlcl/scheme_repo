@@ -21,7 +21,8 @@
 		<div class="submenu">
 			<a id="persistence-tab" href="${ctx}/demo/list">bootstrap demo</a>
 			<a id="demo-tab" href="${ctx}/demo/test">jscrollpane demo</a>
-			<a id="popupwindow-tab" href="${ctx}/demo/popupwindow">popupwindow</a>
+			<a id="popupwindow-tab" href="${ctx}/demo/popupwindow">问题选择模态框</a>
+			<a id="accountSelector-tab" href="${ctx}/demo/accountSelector">员工选择器</a>
 		</div>
 	</div>
 </c:if>

@@ -29,7 +29,7 @@ insert into functions(function_id, module_id, name, description, path) values('F
 
 
 insert into functions(function_id, module_id, name, description, path) values('F2-1','M1-2','人员：列表','菜单导航','/account/list');
-insert into functions(function_id, module_id, name, description, path) values('F2-2','M1-2','人员：查询','有权限查询','/account/list');
+insert into functions(function_id, module_id, name, description, path) values('F2-2','M1-2','人员：查询','有权限查询','/account/list,/account/api/search');
 insert into functions(function_id, module_id, name, description, path) values('F2-3','M1-2','人员：查看详细','有权限查看','/account/show/userInfo');
 insert into functions(function_id, module_id, name, description, path) values('F2-4','M1-2','人员：增加','有权限增加','account/add');
 insert into functions(function_id, module_id, name, description, path) values('F2-5','M1-2','人员：修改他人信息','有权限修改','/account/show,/account/update');

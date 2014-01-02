@@ -165,4 +165,11 @@
 		where r.id=#{loginName}
 	</select>
 	
+	
+	<select id="findByDepartment"  resultType="User">
+		select r.id,r.name
+		from users r
+		where r.department_id=#{departmentId}
+	</select>
+	
 </mapper> 

@@ -15,21 +15,35 @@ import com.google.common.collect.Lists;
 public class User extends BaseEntity{
 	private String id;
 	private String name;
+	@JsonIgnore
 	private String plainPassword;
+	@JsonIgnore
 	private String password;
+	@JsonIgnore
 	private String sex;
+	@JsonIgnore
 	private String email;
+	@JsonIgnore
 	private String phoneNum;
+	@JsonIgnore
 	private String address;
+	@JsonIgnore
 	private String hometown;
+	@JsonIgnore
 	private Date birthday;
+	@JsonIgnore
 	private Date registerDate;
+	@JsonIgnore
 	private String status;	
+	@JsonIgnore
 	private String comment;	
-	
+	@JsonIgnore
 	private Department department;
+	@JsonIgnore
 	private List<Role> roles = Lists.newArrayList();
+	@JsonIgnore
 	private List<String> authorizedUriList;
+	@JsonIgnore
 	private List<String> authorizedFunctionList;
 	
 	public User() {

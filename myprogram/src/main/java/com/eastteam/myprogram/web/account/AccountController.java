@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -93,6 +94,17 @@ public class AccountController {
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("searchParams=" + searchParams);
 		return "account/list";
+	}
+	
+	/**
+	 * 得到部门下的所有人员
+	 * @param departmentId
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/api/search", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<User> search(@RequestParam(value = "departmentId")String departmentId) {
+		return this.accountService.search(departmentId);
 	}
 	
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)

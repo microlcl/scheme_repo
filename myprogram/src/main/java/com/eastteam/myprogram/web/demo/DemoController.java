@@ -31,4 +31,12 @@ public class DemoController {
 
 		return "demo/popupwindow";
 	}
+	
+	@RequestMapping(value="accountSelector",method = RequestMethod.GET)
+	public String showAccountSelector() {
+		logger.info("showAccountSelector");
+		return "demo/accountSelector";
+	}
+	
+	
 }
