@@ -51,4 +51,19 @@ public class QuestionService extends PageableService {
 	public void saveQuestion(Question question){
 		questionMybatisDao.save(question);
 	}
+	
+	public Question getQuestion(Long questionId){
+		Question question = questionMybatisDao.getQuestion(questionId);
+		question.setSplitOptions(splitQuestionOptions(question.getQuestionOptions()));
+		
+		return question;
+	}
+	
+	public void updateQuestion(Question question){
+		questionMybatisDao.update(question);
+	}
+	
+	public void deleteQuestion(Long questionId){
+		questionMybatisDao.delete(questionId);
+	}
 }

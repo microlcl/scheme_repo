@@ -10,8 +10,8 @@ import com.eastteam.myprogram.entity.Question;
 public interface QuestionMybatisDao {
 	public void save(Question question);
 	public void update(Question question);
-	public void delete(Question question);
-//	public List<Question> getQuestion();
+	public void delete(Long questionId);
+	public Question getQuestion(Long questionId);
 	public List<Question> search(Map<String, Object> parameters);
 	public Long getCount(Map<String, Object> parameters);
 }

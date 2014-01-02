@@ -8,7 +8,6 @@
 <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 <!-- combotreee -->
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
@@ -44,7 +43,7 @@
                     <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display:inline-block">
                       	${question.question}
                     </a>
-                    <span style="float: right; padding: 8px 20px;"><a>我们</a></span>
+                    <span style="float: right; padding: 8px 20px;"><a href="${ctx}/question/editQuestion/question_${question.id}"><i class="icon-edit"></i>修改</a>&nbsp;<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/question/deleteQuestion/question_${question.id}';}"><i class="icon-remove-circle"></i>删除</a></span>
                    </div>
                   <div class="accordion-body collapse" id="collapse_${status.index+1+(pageNumber-1)*5}">
                     <div class="accordion-inner" style="padding-left:55px">

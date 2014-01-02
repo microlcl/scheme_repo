@@ -52,10 +52,7 @@ public class QuestionMybatisDaoTest extends SpringTransactionalTestCase {
 	public void deleteQuestionTest() throws Exception {
 		logger.info("Qestion delete");
 		
-		Question question = new Question();
-		question.setId(1l);
-		
-		questionDao.delete(question);
+		questionDao.delete(1l);
 	}
 	
 	@Test
@@ -72,5 +69,12 @@ public class QuestionMybatisDaoTest extends SpringTransactionalTestCase {
 		
 		Long count = questionDao.getCount(null);
 		logger.info("count=" + count);
+	}
+	
+	@Test
+	public void getQuestionTest() throws Exception {
+		logger.info("get Qestion");
+		
+		Question q = questionDao.getQuestion(1l);
 	}
 }

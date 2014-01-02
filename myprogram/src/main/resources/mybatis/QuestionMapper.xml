@@ -10,12 +10,12 @@
 	
 	<!-- 更新问题 -->
 	<update id="update" parameterType="Question">
-		update questions set question=#{question}, question_type=#{questionType}, question_options=#{questionOptions}
+		update questions set question=#{question}, question_type=#{questionType}, question_options=#{questionOptions}, business_type=#{business_type}
 		where question_id=#{id}
 	</update>
 	
 	<!-- 删除问题 -->
-	<delete id="delete" parameterType="Question">
+	<delete id="delete" parameterType="Long">
 		delete from questions where question_id=#{id}
 	</delete>
 	
@@ -66,5 +66,10 @@
 				</foreach>
 			</if>
 		</where>
+	</select>
+	
+	<select id="getQuestion" resultMap="questionDetailMap">
+		select q.question_id, q.question, q.question_type, q.question_options, q.business_type, q.trashed from questions q
+		where q.question_id=#{questionId}
 	</select>
 </mapper>
