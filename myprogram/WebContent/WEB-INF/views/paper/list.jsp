@@ -15,6 +15,27 @@
 	<script>
 		$(document).ready(function() {
 			$("#paper-tab").addClass("active");
+			
+			var statusId = [];
+			<c:forEach items="${status}" var="category">
+				statusId.push('${category}');
+			</c:forEach>
+			$("#cc1").combotree({ 
+				onLoadSuccess:function(node){//数据加载成功触发 
+					$("#cc1").combotree('setValues', statusId);
+				}
+			});
+			
+			var businessTypeId = [];
+			<c:forEach items="${businessType}" var="category">
+				businessTypeId.push('${category}');
+			</c:forEach>
+			$("#cc2").combotree({ 
+				onLoadSuccess:function(node){//数据加载成功触发 
+					$("#cc2").combotree('setValues', businessTypeId);
+				}
+			});
+
 		});
 		
 
@@ -28,9 +49,9 @@
 			<form style="padding-left:10px;">
 				<span  style="float:left;">
 					问卷状态：
-					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-8',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}" />
+					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-8',method:'get',required:false" multiple style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
 					&nbsp;&nbsp;&nbsp;&nbsp;问卷类型：
-					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" multiple style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" multiple style="width:200px;" name="search_categoryId2" value="${param.search_categoryId}"/>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="${ctx}/paper/add/" style="padding: 5px; background-color: #DADADA;border-radius: 4px 4px 4px 4px;line-height: 30px; font-weight: bold;">
 						<i class="icon-plus-sign"></i>&nbsp;新增问卷

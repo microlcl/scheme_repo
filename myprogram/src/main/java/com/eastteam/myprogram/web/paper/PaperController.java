@@ -57,6 +57,11 @@ public class PaperController {
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("in paper Controller: searchParams=" + searchParams);
+		Object status = searchParams.get("categoryId1");
+		model.addAttribute("status", status);
+		Object businessType = searchParams.get("categoryId2");
+		model.addAttribute("businessType", businessType);
+		
 		return "paper/list";
 	}
 	
