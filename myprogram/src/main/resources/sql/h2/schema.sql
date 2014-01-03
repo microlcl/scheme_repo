@@ -187,6 +187,7 @@ create table case_status_history (
 	case_id bigint,
 	status varchar(64), -- status的category id
 	modified_timestamp timestamp, -- 修改时间
+	description varchar(1024), -- 需求变更的原因
 	editor varchar(64), -- 修改人
 	primary key (history_id)
 );
@@ -288,6 +289,7 @@ create table task (
 	progress int, -- 百分比 * 100后的value，eg: value为36，表示进度为36%.此value应根据:子task的花费的总时间/子task的总时间 *100后四舍五入自动得到
 	priority varchar(64), -- 优先级，在category的系统参数节点配置
 	due_date date, -- 计划完成时间
+	time_remaining int, -- 剩下多少小时
 	created_timestamp timestamp, -- 创建时间
 	created_by varchar(64), -- 创建人
 	primary key (task_id)
