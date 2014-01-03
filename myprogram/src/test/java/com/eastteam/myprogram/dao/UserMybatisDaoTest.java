@@ -175,7 +175,7 @@ public class UserMybatisDaoTest extends SpringTransactionalTestCase {
 	@Test
 	public void findByDepartment() throws Exception {
 	
-		List<User> user = userDao.findByDepartment("D1-1");
+		List<User> user = userDao.findByDepartment("D1");
 		logger.info(user.toString());
 	}
 }

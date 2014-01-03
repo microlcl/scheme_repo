@@ -169,7 +169,7 @@
 	<select id="findByDepartment"  resultType="User">
 		select r.id,r.name
 		from users r
-		where r.department_id=#{departmentId}
+		where r.department_id like #{departmentId}||'%'
 	</select>
 	
 </mapper> 
