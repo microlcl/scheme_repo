@@ -11,7 +11,7 @@
 	<script>
 		$(document).ready(function() {
 			$("#space-tab").addClass("active");
-			selectCheckPayStats("${searchParams.level}");
+			selectCheckPayStats("${param.search_level}");
 		});
 		
 		  function selectCheckPayStats(value)

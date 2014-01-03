@@ -68,7 +68,8 @@ public class HolderController {
 		model.addAttribute("spaces", spaces);
 		model.addAttribute("sortType", sortType);
 		model.addAttribute("sortTypes", sortTypes);
-		model.addAttribute("searchParams", searchParams);
+//		model.addAttribute("searchParams", searchParams);
+		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("searchParams=" + searchParams);
 		return "holder/list";
 	}
@@ -83,7 +84,7 @@ public class HolderController {
 				request, "search_");
 		logger.info(searchParams.toString());
 		Page<Spaces> spaces = holderService.getCurrentPageContent(
-				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("media.pic.pagesize")), sortType);
+				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 		return spaces;
 	}
 

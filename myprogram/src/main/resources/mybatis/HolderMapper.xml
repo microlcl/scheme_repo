@@ -92,10 +92,19 @@
 	</select>
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0)
-		from spaces s
+		from spaces s left join holders h on s.holder_id = h.holder_id
 		<where>
 				<if test="space_name != null">
-				s.space_name like '%${space_name}%'
+				and s.space_name like '%${space_name}%'
+			</if>
+			<if test="holder_name != null">
+				and h.holder_name like '%${holder_name}%'
+			</if>
+			<if test="level != null">
+				and h.level like '%${level}%'
+			</if>
+			<if test="keyword != null">
+				and s.space_name||h.holder_name||s.description||h.description like '%${keyword}%'
 			</if>
 		</where>
 	</select>
