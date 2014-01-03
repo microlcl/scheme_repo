@@ -285,7 +285,8 @@ create table task (
 	description varchar(1024), -- 描述
 	task_type varchar(64),  -- US的type，可在category table配置
 	status varchar(64), -- US的状态： new， in progress, completed etc.在category table配置
-	owner varchar(64),
+	department_id varchar(64),-- task所属的部门id
+	owner varchar(64),	
 	progress int, -- 百分比 * 100后的value，eg: value为36，表示进度为36%.此value应根据:子task的花费的总时间/子task的总时间 *100后四舍五入自动得到
 	priority varchar(64), -- 优先级，在category的系统参数节点配置
 	due_date date, -- 计划完成时间
