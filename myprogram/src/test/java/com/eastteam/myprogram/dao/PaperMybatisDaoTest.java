@@ -68,7 +68,7 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 	
 	@Test
 	public void insertPaperTest() throws Exception {
-		logger.info("In Paper inseat paper test");
+		logger.info("In Paper insert paper test");
 		Paper paper = new Paper();
 		paper.setPaperName("新增调查问卷测试");
 		Category businessType = new Category();
@@ -91,5 +91,10 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 		logger.info("=====新增调查问卷的问题之后此问卷的所有问题：" + this.paperMybatisDao.selectQuestions(Long.toString(paper.getId())));
 	}
 	
-	
+	@Test
+	public void selectPaperTest() throws Exception {
+		logger.info("In paper select paper test ");
+		String paperId = "1";
+		logger.info("====Select Paper info: " + this.paperMybatisDao.selectQuestions(paperId));
+	}
 }

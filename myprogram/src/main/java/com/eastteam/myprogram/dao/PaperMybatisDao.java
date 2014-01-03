@@ -24,5 +24,6 @@ public interface PaperMybatisDao {
 	public List<Question> selectQuestions(String paper_id);
 	public void insertPaper(Paper paper);
 	public void insertQuestions(Map<String, Object> parameters);
+	public Paper selectPaper(String paperId);
 
 }

@@ -3,6 +3,7 @@
  */
 package com.eastteam.myprogram.web.paper;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -99,5 +100,20 @@ public class PaperController {
 		this.paperService.saveQuestions(paper, questions);
 		
 		return "redirect:/paper/list/";
+	}
+	
+	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
+	public String edit(@PathVariable("id") String id, Model model) {
+		List<Question> questions = this.paperService.getQuestions(id);
+		Iterator<Question> it = questions.iterator();
+		while(it.hasNext()){
+			Question question = it.next();
+			String[] questionOptions = this.paperService.splitQuestionOptions(question.getQuestionOptions());
+			question.setSplitOptions(questionOptions);
+		}
+		model.addAttribute("questions", questions);
+		Paper paper = this.paperService.selectPaper(id);
+		model.addAttribute("selectpaper", paper);
+		return "/paper/updatePaper";
 	}
 }

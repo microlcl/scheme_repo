@@ -72,4 +72,10 @@ public class PaperService extends PageableService {
 			this.paperMybatisDao.insertQuestions(map);
 		}
 	}
+	
+	public Paper selectPaper(String paperId) {
+		logger.info("in paper select paper service");
+		return(this.paperMybatisDao.selectPaper(paperId));
+		
+	}
 }
