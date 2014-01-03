@@ -6,6 +6,7 @@
 <head>
 	<title>场地管理</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/holder/css/holder.css">
 	
 
 </head>
@@ -50,7 +51,23 @@
 				</tr>
 				<tr>
 					<td class="formlabel">场地星级：</td>
-					<td style="color:#A1A1A1">${infoSpace.holders.level}</td>
+					<td style="color:#A1A1A1">
+					<c:if test="${infoSpace.holders.level == '1'}">
+					<p  alt="一星级" title="一星级" class="h_xj1"/>
+					</c:if>
+					<c:if test="${infoSpace.holders.level == '2'}">
+					<p  alt="二星级" title="二星级" class="h_xj2"/>
+					</c:if>
+					<c:if test="${infoSpace.holders.level == '3'}">
+					<p  alt="三星级" title="三星级" class="h_xj3"/>
+					</c:if>
+					<c:if test="${infoSpace.holders.level == '4'}">
+					<p  alt="四星级" title="四星级" class="h_xj4"/>
+					</c:if>
+					<c:if test="${infoSpace.holders.level == '5'}">
+					<p  alt="五星级" title="五星级" class="h_xj5"/>
+					</c:if>
+				</td>
 			    </tr>
 			    <tr>
 					<td class="formlabel">场地联系人：</td>

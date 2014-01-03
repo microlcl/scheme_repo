@@ -11,7 +11,27 @@
 	<script>
 		$(document).ready(function() {
 			$("#space-tab").addClass("active");
+			selectCheckPayStats("${searchParams.level}");
 		});
+		
+		  function selectCheckPayStats(value)
+		   {
+		    //获得下拉列表的id
+		    var select = document.getElementById("sellevel");
+		    //获得下拉列表的所有option
+		    var options = select.options;
+		    //循环获得对应的节点
+		    for(var i=0;i<options.length;i++)
+		    {
+		     //获得节点的值和后台传来的值进行比较
+		     if (options[i].value == value)
+		     {
+		      //如果当前节点与后台传来的值一致，则将当前节点设置为选中状态，并跳出循环
+		      options[i].selected = true;
+		      break;
+		     }
+		    }
+		   }
 	</script>
 </head>
 <body>
@@ -29,7 +49,7 @@
 			 	<div style="padding-top:10px">
 				<label>星级：</label> 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-				<select name="search_level" >
+				<select name="search_level" id="sellevel" >
 				<option value=""></option>
 				<option value="5">五星级</option>
 				<option value="4">四星级</option>
