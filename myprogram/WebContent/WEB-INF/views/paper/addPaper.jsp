@@ -16,6 +16,13 @@
 	<script>
 		$(document).ready(function() {
 			$("#paper-tab").addClass("active");
+			$("#questionsForm").validate({
+				messages: {
+					paperTitle: {
+						required: "请填写问卷名称"
+					}
+				}
+			});
 		});
 		
 		function addQuestions(result) {
@@ -71,9 +78,9 @@
 		<div style="padding:20px;">
 			<form id="questionsForm" action="${ctx}/paper/save" method="post">
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷名称:</label>
-				<input type="text" name="paperTitle"  maxlength="64" class="span3 required" placeholder="0~64个字符" style="margin-right:200px;"/>
+				<input type="text" name="paperTitle"  maxlength="64" class="span3 required" placeholder="0~64个字符" style="margin-right:100px;"/><br>
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷类型:</label>
-				<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" multiple style="width:200px;margin-right:200px !important;" name="search_categoryId" value="${param.search_categoryId}"/></br>
+				<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;margin-right:200px !important;" name="search_categoryId" value="${param.search_categoryId}"/><br>
 				<button id="select_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" id="search_btn" onclick="questionPopupWindow({callback:addQuestions})">请点击此处选择问题</button>
 				<div id="selected_questions" style="display: none;">
 					<label style="width: 100%;font-weight: bold;line-height: 30px;text-align: left; padding-left: 20px;">您所选择的问题如下:</label>
