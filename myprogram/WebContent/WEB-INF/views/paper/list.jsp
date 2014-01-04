@@ -52,10 +52,13 @@
 					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-8',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
 					&nbsp;&nbsp;&nbsp;&nbsp;问卷类型：
 					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;" name="search_categoryId2" value="${param.search_categoryId}"/>
+					<button type="button" class="btn btn-success" onclick="location.href='${ctx}/paper/add/'" style="margin-left: 20px;"><i class="icon-plus" style="margin-right: 5px;"></i>发布问卷</button>
+					<!-- 
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="${ctx}/paper/add/" style="padding: 5px; background-color: #DADADA;border-radius: 4px 4px 4px 4px;line-height: 30px; font-weight: bold;">
 						<i class="icon-plus-sign"></i>&nbsp;新增问卷
 					</a>
+					 -->
 				</span>
 				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
 				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>
@@ -82,11 +85,7 @@
 							<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
 							<a href="${ctx}/paper/delete/${paper.id}" id="deleteLink-${paper.id}"><i class="icon-remove"></i>删除</a>
 							<c:if test="${paper.status.id=='1-0-1-0'}">
-								<span style="background-color: #DADADA; margin-left: 100px; heigth: 30px !important; ">
-									<a href="${ctx}/paper/publish/${paper.id}" style="padding: 5px; font-weight: bold;">
-										<i class="icon-share-alt"></i>&nbsp;发布问卷
-									</a>
-								</span>
+									<button type="button" class="btn btn-danger" onclick="location.href='${ctx}/paper/publish/${paper.id}'" style="padding: 0 12px !important; margin-left: 20px;"><i class="icon-share-alt" style="margin-right: 5px;"></i>发布问卷</button>
 							</c:if>
 						</td>
 					</tr>
