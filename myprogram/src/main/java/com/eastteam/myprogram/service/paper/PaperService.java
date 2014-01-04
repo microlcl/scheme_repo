@@ -85,4 +85,9 @@ public class PaperService extends PageableService {
 		this.paperMybatisDao.deleteQuestions(Long.parseLong(paperId));
 		
 	}
+	
+	public void publishPaper(String paperId) {
+		logger.info("in paper publish service");
+		this.paperMybatisDao.publishPaper(Long.parseLong(paperId));
+	}
 }

@@ -108,4 +108,12 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 		logger.info("删除paper之后questions关联表是否还存在： " + this.paperMybatisDao.selectQuestions(paperId));
 		logger.info("删除问卷之后测count " + this.paperMybatisDao.getCount(null));
 	}
+	
+	@Test
+	public void publishPaperTest() throws Exception {
+		logger.info("In Paper publish paper test");
+		String paperId = "3";
+		this.paperMybatisDao.publishPaper(Long.parseLong(paperId));
+		logger.info("测试发布paper后它的状态： " + this.paperMybatisDao.selectPaper(paperId));
+	}
 }

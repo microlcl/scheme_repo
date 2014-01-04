@@ -95,4 +95,8 @@
 	<delete id="deleteQuestions" parameterType="Long">
 		delete from paper_questions where paper_id=#{id}
 	</delete>
+	<update id="publishPaper" parameterType="Long">
+		update papers set status='1-0-1-1'
+		where paper_id=#{id}
+	</update>
 </mapper>

@@ -81,6 +81,13 @@
 							<a href="${ctx}/paper/show/${paper.id}" id="showLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
 							<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
 							<a href="${ctx}/paper/delete/${paper.id}" id="deleteLink-${paper.id}"><i class="icon-remove"></i>删除</a>
+							<c:if test="${paper.status.id=='1-0-1-0'}">
+								<span style="background-color: #DADADA; margin-left: 100px; heigth: 30px !important; ">
+									<a href="${ctx}/paper/publish/${paper.id}" style="padding: 5px; font-weight: bold;">
+										<i class="icon-share-alt"></i>&nbsp;发布问卷
+									</a>
+								</span>
+							</c:if>
 						</td>
 					</tr>
 				</c:forEach>

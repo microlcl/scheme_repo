@@ -124,4 +124,12 @@ public class PaperController {
 		
 		return "redirect:/paper/list/";
 	}
+	
+	@RequestMapping(value = "publish/{id}", method = RequestMethod.GET)
+	public String publish(@PathVariable("id") String id, Model model) {
+		logger.info("in paper control publish");
+		this.paperService.publishPaper(id);
+		
+		return "redirect:/paper/list/";
+	}
 }
