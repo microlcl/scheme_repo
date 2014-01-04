@@ -61,6 +61,9 @@
 			} );
 			//$("input[name='selectedQuestionsOnPage']").attr('checked',true);
 			$('#selected_questions').show();
+			$('#delete_questions_button').show();
+			$('#submit_btn').show();
+			$('#cancel_btn').show();
 		}
 		function buildOptions(question) {
 			var result = '';
@@ -82,6 +85,25 @@
 			return result;
 
 		}
+		
+		function deleteQuestion(obj){
+			var question = $(obj);
+			$(question).parent().parent().parent().parent().remove();
+			if($("input[name='selectedQuestionsOnPage']").length < 2) {
+				$('#selected_questions').hide();
+				$('#submit_btn').hide();
+				$('#cancel_btn').hide();
+				$('#delete_questions_button').hide();
+			}
+		}
+		function removeAllQuestions(){
+			$('#myaccordion1').empty();
+			$('#selected_questions').hide();
+			$('#submit_btn').hide();
+			$('#cancel_btn').hide();
+			$('#delete_questions_button').hide();
+			
+		}
 	</script>
 
 </head>
@@ -95,6 +117,7 @@
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷类型:</label>
 				<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;margin-right:100px !important;" name="search_categoryId" value="${param.search_categoryId}"/><br>
 				<button id="select_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" id="search_btn" onclick="questionPopupWindow({callback:addQuestions})">请点击此处选择问题</button>
+				<button id="delete_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px; margin-left:40px; " type="button" class="btn btn-danger" id="delete_btn" onclick="removeAllQuestions();">删除所有所选问题</button>
 				<div id="selected_questions" style="">
 					<label style="width: 100%;font-weight: bold;line-height: 30px;text-align: left; padding-left: 20px;">您所选择的问题如下:</label>
 					<div class="accordion" style="border-color: transparent;  width: 80%; margin-left: 100px;"  id="myaccordion1">
@@ -103,7 +126,8 @@
 			                  	<div class="accordion-heading">
 			                  		<ul class="inline">
 										<li><input id="myq1_${question.id}" value="${question.id}" type="hidden" name="selectedQuestionsOnPage"/> </li>
-										<li><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_${question.id}">Q${question.id}: ${question.question}</a></li>
+										<li style="width: 800px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_${question.id}">Q${question.id}: ${question.question}</a></li>
+			                      		<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
 			                      	</ul>
 			                   	</div>
 							</div>
@@ -148,7 +172,8 @@
 			<div class="accordion-heading">
 				<ul class="inline">
 						<li><input id="myq1_{id}" value="{id}" type="hidden" name="selectedQuestionsOnPage"/> </li>
-						<li><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_{id}">Q{id}: {question}</a></li>
+						<li style="width: 800px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_{id}">Q{id}: {question}</a></li>
+						<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
 				</ul>
 			</div>
 			<div id="collapse_{id}" class="accordion-body collapse">
