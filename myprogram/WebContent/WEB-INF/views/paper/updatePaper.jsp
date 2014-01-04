@@ -75,7 +75,7 @@
 	<div class="form">
 		<h1>修改问卷</h1>
 		<div style="padding:20px;">
-			<form id="questionsForm" action="${ctx}/paper/list" method="get">
+			<form id="questionsForm" action="${ctx}/paper/save"  method="post">
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷名称:</label>
 				<input type="text" name="paperTitle"  maxlength="64" class="span3 required" placeholder="0~64个字符" style="margin-right:200px;" value="${selectpaper.paperName}"/>
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷类型:</label>

@@ -78,8 +78,9 @@
 						<td>${paper.businessType.name}&nbsp;</td>
 						<td>${paper.status.name}&nbsp;</td>
 						<td>
-							<a href="${ctx}/paper/show/${paper.id}" id="editLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
-							<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>
+							<a href="${ctx}/paper/show/${paper.id}" id="showLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+							<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
+							<a href="${ctx}/paper/delete/${paper.id}" id="deleteLink-${paper.id}"><i class="icon-remove"></i>删除</a>
 						</td>
 					</tr>
 				</c:forEach>

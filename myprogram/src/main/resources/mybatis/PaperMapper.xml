@@ -89,4 +89,10 @@
 		left join category cs on p.status=cs.id
 		where p.paper_id=#{paperId};
 	</select>
+	<delete id="deletePaper" parameterType="Long">
+		delete from papers where paper_id=#{id}
+	</delete>
+	<delete id="deleteQuestions" parameterType="Long">
+		delete from paper_questions where paper_id=#{id}
+	</delete>
 </mapper>

@@ -25,5 +25,7 @@ public interface PaperMybatisDao {
 	public void insertPaper(Paper paper);
 	public void insertQuestions(Map<String, Object> parameters);
 	public Paper selectPaper(String paperId);
+	public void deletePaper(Long paperId);
+	public void deleteQuestions(Long paperId);
 
 }

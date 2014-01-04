@@ -97,4 +97,15 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 		String paperId = "1";
 		logger.info("====Select Paper info: " + this.paperMybatisDao.selectQuestions(paperId));
 	}
+	
+	@Test
+	public void deletePaperTest() throws Exception {
+		logger.info("In paper delete paper test ");
+		String paperId = "1";
+		this.paperMybatisDao.deletePaper(Long.parseLong(paperId));
+		logger.info("删除paper之后paper是否还存在： " + this.paperMybatisDao.selectPaper(paperId));
+		this.paperMybatisDao.deleteQuestions(Long.parseLong(paperId));
+		logger.info("删除paper之后questions关联表是否还存在： " + this.paperMybatisDao.selectQuestions(paperId));
+		logger.info("删除问卷之后测count " + this.paperMybatisDao.getCount(null));
+	}
 }

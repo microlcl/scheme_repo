@@ -114,6 +114,14 @@ public class PaperController {
 		model.addAttribute("questions", questions);
 		Paper paper = this.paperService.selectPaper(id);
 		model.addAttribute("selectpaper", paper);
+		this.paperService.deletePaper(id);
 		return "/paper/updatePaper";
+	}
+	
+	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") String id, Model model) {
+		this.paperService.deletePaper(id);
+		
+		return "redirect:/paper/list/";
 	}
 }

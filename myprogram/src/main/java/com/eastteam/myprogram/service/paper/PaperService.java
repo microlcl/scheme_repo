@@ -78,4 +78,11 @@ public class PaperService extends PageableService {
 		return(this.paperMybatisDao.selectPaper(paperId));
 		
 	}
+	
+	public void deletePaper(String paperId) {
+		logger.info("in paper delete service");
+		this.paperMybatisDao.deletePaper(Long.parseLong(paperId));
+		this.paperMybatisDao.deleteQuestions(Long.parseLong(paperId));
+		
+	}
 }
