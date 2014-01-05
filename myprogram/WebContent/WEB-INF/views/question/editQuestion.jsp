@@ -16,6 +16,8 @@
 <title>修改问题</title>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#question-tab").addClass("active");
+		
 		if($('input[name="questionType"]:checked').val() == "3"){
 			$("#options").hide();
 		}
@@ -28,9 +30,45 @@
 					$("#options").show();
 			}
 		);
+		
+		$("input[name='question']").blur(
+				function(){
+					if ($(this).val() == ""){
+						$("#question_error").show();
+					}else
+						$("#question_error").hide();
+				}
+		);
+		
+		$("#inputForm").submit(function(){
+			var result = true;
+			if ($("input[name='question']").val() == ""){
+				$("#question_error").show();
+				result = false;
+			}
+			if($('input[name="questionType"]:checked').val() != "3"){
+				if($("input[name='splitOptions']").length < 2){
+					$("#option_error").html('<span class="error">至少填写两个选项!</span>');
+					$("#option_error").show();
+					result = false;
+				}else{
+					$("input[name='splitOptions']").each(function(){
+						if($(this).val() == ""){
+							$("#option_error").html('<span class="error">请填完所有选项!</span>');
+							$("#option_error").show();
+							result = false;
+						}
+				    });
+				}
+			}
+
+			return result;
+		});
 	});
+
 	function addOption(){
-		var optionDiv = '<div class="control-group"><label for="option" class="control-label formlabel" style="color:red">*</label><div class="controls"><input type="text" name="splitOptions"  value="" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/><a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></div></div>';
+		var optionDiv = '<div class="control-group"><label for="option" class="control-label formlabel" style="color:red">*</label><div class="controls"><input type="text" name="splitOptions" onblur="checkOptions()"  value="" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/>'
+						+' <a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></div></div>';
 		$("#options").append(optionDiv);
 	}
 	
@@ -41,6 +79,23 @@
 	
 	function clearOptions(){
 		$('input[name="splitOptions"]').val("");
+	}
+	
+	function checkOptions(){
+		var allValue= true;
+		$("input[name='splitOptions']").each(function(){
+			if($(this).val() == ""){
+				allValue = false;
+			}
+	    });
+		
+		if(allValue){
+			$("#option_error").hide();
+		}
+		else{
+			$("#option_error").html('<span class="error">请填完所有选项!</span>');
+			$("#option_error").show();
+		}
 	}
 </script>
 
@@ -73,42 +128,29 @@
 				<label for="question" class="control-label formlabel">标题:</label>
 				<div class="controls">
 					<input type="hidden" name="id" value="${question.id}">
-					<input type="text" id="question" name="question"  value="${question.question}" style="width:600px"  maxlength="64"/>
+					<input type="text" id="question" name="question"  value="${question.question}" style="width:600px"  maxlength="256"/>
+					<span id="question_error" class="error" style="display:none">请填写标题!</span>
 				</div>
 		</div>
 		<div id="options">
+			<div class="control-group">
+				<label for="option" class="control-label formlabel">选项:</label>
+				<div class="controls">
+					<input type="button" onclick="clearOptions();" class="btn btn-info" value="清空全部选项" style="margin-right: 50px;">
+					<a title="创建" onclick="addOption()" href="javascript:void(0);"><span class="iconImg iconImg_create" style="margin:0px 0px -11px" ></span></a>
+				</div>
+			</div>
 			<c:forEach items="${question.splitOptions}" var="questionOption" varStatus="status">
-			   <c:choose>
-			     <c:when test="${status.index == 0}">
-			  	   <div class="control-group">
-						<label for="option" class="control-label formlabel">选项:</label>
-						<div class="controls">
-							<input type="text" name="splitOptions"  value="${questionOption}" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/>
-							<a title="创建" onclick="addOption()" href="javascript:void(0);"><span class="iconImg iconImg_create" style="margin:0px 40px -11px 5px" ></span></a>
-							<input type="button" onclick="clearOptions();" class="btn btn-info" value="清空全部选项">
-						</div>
+				<div class="control-group">
+					<label for="option" class="control-label formlabel" style="color:red">*</label>
+					<div class="controls">
+						<input type="text" name="splitOptions" onblur="checkOptions()"  value="${questionOption}" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/>
+						<a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a>
 					</div>
-			     </c:when>
-			     <c:when test="${status.index == 1}">
-					<div class="control-group">
-						<label for="option" class="control-label formlabel" style="color:red">*</label>
-						<div class="controls">
-							<input type="text" name="splitOptions"  value="${questionOption}" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/>
-						</div>
-					</div>
-			     </c:when>
-			 	 <c:otherwise>
-					<div class="control-group">
-						<label for="option" class="control-label formlabel" style="color:red">*</label>
-						<div class="controls">
-							<input type="text" name="splitOptions"  value="${questionOption}" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/>
-							<a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a>
-						</div>
-					</div>
-			 	 </c:otherwise>
-			  </c:choose>
+				</div>
 			</c:forEach>
 		</div>
+		<div id="option_error" style="padding-left:170px;display:none"></div>
 		
 		<div class="form-actions" style="padding-top:30px">
 			<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	

@@ -41,6 +41,7 @@ public class QuestionController {
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 	static {
 		sortTypes.put("question", "问题名称");
+		sortTypes.put("question_id", "默认顺序");
 	}
 	
 	private static Logger logger = LoggerFactory.getLogger(QuestionController.class);

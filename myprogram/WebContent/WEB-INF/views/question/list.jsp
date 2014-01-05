@@ -16,13 +16,13 @@
 <title>问题管理</title>
 </head>
 <body>
-<div class="form" style="padding:20px;">
+<div class="form" >
 	<h1>问题管理</h1>
-	<div class="row">
-		<div class="span">
-			<form class="form-search" action="#">
+	<div class="row" style="margin:20px;">
+		<div class="span" style="border: 1px solid #CCCCCC;border-radius: 4px;padding:10px;margin-left:0px;background-color: #FFFBEA;">
+			<form class="form-search" action="#" style="margin-bottom:0px;">
 				<div>
-					<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px">
+					<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:600px" maxlenght="256">
 					<button type="submit" class="btn" id="search_btn">搜索</button>
 				</div>
 				<div style="padding-top:15px">
@@ -31,16 +31,19 @@
 				</div>
 			</form>
 		</div>
-		<a href="${ctx}/question/addQuestion/" style="padding-left:200px">添加问题</a>
+		<a href="${ctx}/question/addQuestion/" style="padding: 5px; background-color: #DADADA;border-radius: 4px 4px 4px 4px;line-height: 30px; color:#000000;margin-left:100px;">
+						<i class="icon-plus-sign"></i>&nbsp;新增问题
+		</a>
+		
 		<tags:sort/>
 	</div>
-	
+	<div style="padding:20px;">
 	<div id="questions" class="accordion">
 		<c:forEach items="${questions.content}" var="question" varStatus="status">
 			<div class="accordion-group">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.index+1+(pageNumber-1)*5}：</span>
-                    <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display:inline-block">
+                    <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display: inline-block; word-wrap: break-word; width: 900px;">
                       	${question.question}
                     </a>
                     <span style="float: right; padding: 8px 20px;"><a href="${ctx}/question/editQuestion/question_${question.id}"><i class="icon-edit"></i>修改</a>&nbsp;<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/question/deleteQuestion/question_${question.id}';}"><i class="icon-remove-circle"></i>删除</a></span>
@@ -72,8 +75,12 @@
 		</c:forEach>
 	</div>
 	<tags:pagination page="${questions}" paginationSize="4"/>
-	
+	</div>
     <script type="text/javascript">
+ 	   $(document).ready(function() {
+			$("#question-tab").addClass("active");
+ 	   });
+    
 		var categoryIds = [];
 		<c:forEach items="${categories}" var="category">
 			categoryIds.push('${category}');
