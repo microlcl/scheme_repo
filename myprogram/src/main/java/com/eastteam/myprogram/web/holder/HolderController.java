@@ -123,8 +123,9 @@ public class HolderController {
 	@RequestMapping(value = "show/holderInfo/{id}", method = RequestMethod.GET)
 	public String dispalySpaceInfo(@PathVariable("id") long id, Model model) {
 		Spaces space =  this.holderService.getSpace(id);
-
 		model.addAttribute("infoSpace", space);
+		List<CategoryLiteBean> categorys = this.categoryService.getFuntionCategorys("M1-6");
+		model.addAttribute("categorys", categorys.get(0).getChildren());
 		return "holder/holderInfo";
 	}
 }
