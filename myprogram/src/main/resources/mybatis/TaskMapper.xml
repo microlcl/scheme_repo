@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.eastteam.myprogram.dao.TaskMybatisDao">
+
+	<resultMap id="spacetDetailMap" type="Spaces">
+		<id property="id" column="task_id" />
+		<result property="parent_id" column="parent_id" />
+		<result property="summary" column="summary" />
+		<result property="description" column="description" />
+		<result property="task_type" column="task_type" />
+		<result property="status" column="status" />
+		<result property="department_id" column="department_id" />
+		<result property="progress" column="progress" />
+		<result property="due_date" column="due_date" />
+		<result property="time_remaining" column="time_remaining" />
+		<result property="created_timestamp" column="created_timestamp" />
+		<result property="created_by" column="created_by" />
+	</resultMap>
+	
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0)
+		from task t 
+		<where>				
+		</where>
+	</select>
+	
+	<select id="search" parameterType="map" resultMap="spacetDetailMap">
+		select *
+		from task t 
+		<where>
+		</where>
+		<if test="sort != null">
+			order by ${sort} desc
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
+	</select>
+
+</mapper> 
