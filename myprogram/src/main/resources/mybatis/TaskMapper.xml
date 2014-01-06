@@ -34,9 +34,6 @@
 		<if test="sort != null">
 			order by ${sort} desc
 		</if>
-		<if test="offset != null">
-			limit #{offset}, #{pageSize}
-		</if>
 	</select>
 
 </mapper> 
