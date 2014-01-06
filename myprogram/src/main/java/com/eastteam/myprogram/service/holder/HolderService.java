@@ -104,15 +104,19 @@ public class HolderService extends PageableService {
 	}
 	
 	public Spaces getSpace(long id) {
+		Spaces space = this.holderDao.getSpaces(id);
+		space.setSpaceAttributes(holderDao.getSpaceAttributeBySpaceId(space.getId()));
 		return this.holderDao.getSpaces(id);
 	}
 	
 	public Holders getHolder(long id) {
 		Holders holder= holderDao.getHolders(id);
 		List<Spaces> spaces =holder.getSpaces();
-		for (Iterator iterator = spaces.iterator(); iterator.hasNext();) {
-			Spaces space = (Spaces) iterator.next();
-			space.setSpaceAttributes(holderDao.getSpaceAttributeBySpaceId(space.getId()));
+		if(spaces!=null){
+			for (Iterator iterator = spaces.iterator(); iterator.hasNext();) {
+				Spaces space = (Spaces) iterator.next();
+				space.setSpaceAttributes(holderDao.getSpaceAttributeBySpaceId(space.getId()));
+			}
 		}
 		return holder;
 	}
