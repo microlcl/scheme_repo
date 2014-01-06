@@ -106,7 +106,7 @@
 		<div class="form">
 			<h1>场馆管理</h1>
 			<div class="control-group">
-				<label for="holder_name" class="control-label formlabel">场：</label>
+				<label for="holder_name" class="control-label formlabel">场地名称：</label>
 				<div class="controls">
 					<input type="hidden" id="id" name="id" value="${holder.id}">
 					<input type="text" id="holder_name" name="holder_name" value="${holder.holder_name}" class="input-large required" maxlength="64"/>
@@ -169,7 +169,7 @@
 								<td align='right'>
 									容纳人数：<input type="text"  name="spaces[${status.index}].volume" value="${space.volume}" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>
 								</td>
-								<td align='right'>
+								<td align='right' style="width:250px;">
 									楼层空间高度：<input type="text"  name="spaces[${status.index}].hall_height" value="${space.hall_height}" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>
 								</td>
 							</tr>

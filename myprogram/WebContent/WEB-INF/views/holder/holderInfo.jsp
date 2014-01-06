@@ -22,7 +22,7 @@
 		<div class="form">
 			<h1>会场信息</h1>
 			<div class="control-group">
-				<label for="holders_name" class="control-label formlabel">场：</label>
+				<label for="holders_name" class="control-label formlabel">场地名称：</label>
 				<div class="controls">
 					<input type="text" id="holders_name" name="holders_name" value="${infoSpace.holders.holder_name}" class="input-large" maxlength="64" readonly/>
 				</div>
@@ -87,7 +87,7 @@
 								<td align='right'>
 									容纳人数：<input type="text"  name="spaces.volume" value="${infoSpace.volume}" class="input-small" maxlength="5" readonly/>
 								</td>
-								<td align='right'>
+								<td align='right' style="width:250px;">
 									楼层空间高度：<input type="text"  name="spaces.hall_height" value="${infoSpace.hall_height}" class="input-small" maxlength="2" readonly/>
 								</td>
 							</tr>
