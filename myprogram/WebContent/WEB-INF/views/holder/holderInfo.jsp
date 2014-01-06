@@ -79,7 +79,7 @@
 								<td align='center' width='100'>
 								</td>
 								<td>
-									会场名称：<input type="text"  name="spaces.space_name" value="${infoSpace.space_name}" class="input-large required" maxlength="32" readonly/>
+									会场名称：<input type="text"  name="spaces.space_name" value="${infoSpace.space_name}" class="input-medium required" maxlength="32" readonly/>
 								</td>
 								<td align='right'>
 									会场所在楼层：<input type="text"  name="spaces.floor" value="${infoSpace.floor}" class="input-small" maxlength="3" readonly/>

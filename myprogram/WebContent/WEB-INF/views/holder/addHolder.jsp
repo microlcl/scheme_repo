@@ -49,7 +49,7 @@
 		var td13 = $("<td></td>");
 		var td14 = $("<td colspan='3'></td>");
 		td.append('		<input type="checkbox" name="count" id="count"/>');
-		td1.append('	        会场名称：<input type="text"  name="spaces['+row_count+'].space_name" class="input-large required" maxlength="32" />');
+		td1.append('	        会场名称：<input type="text"  name="spaces['+row_count+'].space_name" class="input-medium required" maxlength="32" />');
 		td2.append('	       会场所在楼层：<input type="text"  name="spaces['+row_count+'].floor" class="input-small" maxlength="3" onkeyup="clearNoNum(this)"/>');
 		td3.append('		容纳人数：<input type="text"  name="spaces['+row_count+'].volume" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
 		td4.append('		楼层空间高度：<input type="text" id="hall_height " name="spaces['+row_count+'].hall_height" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>');
