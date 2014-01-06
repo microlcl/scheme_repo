@@ -39,7 +39,7 @@ public class TaskController {
 	private TaskService taskService;
 	
 	private static Logger logger = LoggerFactory
-			.getLogger(HolderController.class);
+			.getLogger(TaskController.class);
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
 	
 	@Autowired

@@ -47,9 +47,34 @@
                 <button type="submit" class="btn" id="search_btn">Search</button>
 	    </div>
 	    <tags:sort/>
+	    </div>
+	<table id="contentTable" class="table table-striped table-bordered table-condensed">
+		<thead>
+		<tr>
+			<th>任务描述</th>
+			<th>状态</th>
+			<th>拥有者</th>
+			<th>创建时间</th>
+			<th>优先级别</th>
+			<th>所属案例</th>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${tasks.content}" var="task">
+			<tr>
+				<td>${task.summary}&nbsp;</td>
+				<td>${task.status}&nbsp;</td>
+				<td>${task.owner}</td> 
+				<td>${task.created_timestamp}</td>
+				<td>${task.priority}</td>
+				<td></td>
+			</tr>
+		</c:forEach>
+		</tbody>		
+	</table>
+	<tags:pagination page="${tasks}" paginationSize="4"/>
+ </div>
 
-
-</div>
 <div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
 </div>
 </body>

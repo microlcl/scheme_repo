@@ -4,7 +4,7 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.TaskMybatisDao">
 
-	<resultMap id="spacetDetailMap" type="Spaces">
+	<resultMap id="taskDetailMap" type="Task">
 		<id property="id" column="task_id" />
 		<result property="parent_id" column="parent_id" />
 		<result property="summary" column="summary" />
@@ -26,7 +26,7 @@
 		</where>
 	</select>
 	
-	<select id="search" parameterType="map" resultMap="spacetDetailMap">
+	<select id="search" parameterType="map" resultMap="taskDetailMap">
 		select *
 		from task t 
 		<where>
