@@ -39,22 +39,24 @@ public class HolderService extends PageableService {
 	
 	public void save(Holders holder){
 		holderDao.saveHolder(holder);
-		for (Iterator iterator = holder.getSpaces().iterator(); iterator.hasNext();) {
-			Spaces space = (Spaces) iterator.next();
-			if(space.getSpace_name()!=null&&!space.getSpace_name().equals("")){
-				space.setHolders(holder);
-				holderDao.saveSpace(space);
-				List<SpaceAttribute> spaceAttributes = space
-						.getSpaceAttributes();
-				if (spaceAttributes != null) {
-					for (Iterator iterator2 = spaceAttributes.iterator(); iterator2
-							.hasNext();) {
-						SpaceAttribute spaceAttribute = (SpaceAttribute) iterator2
-								.next();
-						if (spaceAttribute.getAttribute_id() != null
-								&& !spaceAttribute.getAttribute_id().equals("")) {
-							spaceAttribute.setSpace_id(space.getId());
-							holderDao.saveSpaceAttribute(spaceAttribute);
+		if(holder.getSpaces()!=null){
+			for (Iterator iterator = holder.getSpaces().iterator(); iterator.hasNext();) {
+				Spaces space = (Spaces) iterator.next();
+				if(space.getSpace_name()!=null&&!space.getSpace_name().equals("")){
+					space.setHolders(holder);
+					holderDao.saveSpace(space);
+					List<SpaceAttribute> spaceAttributes = space
+							.getSpaceAttributes();
+					if (spaceAttributes != null) {
+						for (Iterator iterator2 = spaceAttributes.iterator(); iterator2
+								.hasNext();) {
+							SpaceAttribute spaceAttribute = (SpaceAttribute) iterator2
+									.next();
+							if (spaceAttribute.getAttribute_id() != null
+									&& !spaceAttribute.getAttribute_id().equals("")) {
+								spaceAttribute.setSpace_id(space.getId());
+								holderDao.saveSpaceAttribute(spaceAttribute);
+							}
 						}
 					}
 				}
@@ -69,25 +71,27 @@ public class HolderService extends PageableService {
 	public void doUpdate(Holders holder) {
 		holderDao.updateHolder(holder);
 		holderDao.deleteSpacesByHolderId(holder.getId());
-		for (Iterator iterator = holder.getSpaces().iterator(); iterator
-				.hasNext();) {
-			Spaces space = (Spaces) iterator.next();
-			if (space.getSpace_name() != null
-					&& !space.getSpace_name().equals("")) {
-				space.setHolders(holder);
-				holderDao.saveSpace(space);
-				holderDao.deleteSpaceAttribute(space.getId());
-				List<SpaceAttribute> spaceAttributes = space
-						.getSpaceAttributes();
-				if (spaceAttributes != null) {
-					for (Iterator iterator2 = spaceAttributes.iterator(); iterator2
-							.hasNext();) {
-						SpaceAttribute spaceAttribute = (SpaceAttribute) iterator2
-								.next();
-						if (spaceAttribute.getAttribute_id() != null
-								&& !spaceAttribute.getAttribute_id().equals("")) {
-							spaceAttribute.setSpace_id(space.getId());
-							holderDao.saveSpaceAttribute(spaceAttribute);
+		if(holder.getSpaces()!=null){
+			for (Iterator iterator = holder.getSpaces().iterator(); iterator
+					.hasNext();) {
+				Spaces space = (Spaces) iterator.next();
+				if (space.getSpace_name() != null
+						&& !space.getSpace_name().equals("")) {
+					space.setHolders(holder);
+					holderDao.saveSpace(space);
+					holderDao.deleteSpaceAttribute(space.getId());
+					List<SpaceAttribute> spaceAttributes = space
+							.getSpaceAttributes();
+					if (spaceAttributes != null) {
+						for (Iterator iterator2 = spaceAttributes.iterator(); iterator2
+								.hasNext();) {
+							SpaceAttribute spaceAttribute = (SpaceAttribute) iterator2
+									.next();
+							if (spaceAttribute.getAttribute_id() != null
+									&& !spaceAttribute.getAttribute_id().equals("")) {
+								spaceAttribute.setSpace_id(space.getId());
+								holderDao.saveSpaceAttribute(spaceAttribute);
+							}
 						}
 					}
 				}
