@@ -76,14 +76,14 @@ public class ProductService extends PageableService {
 	
 	public void doAdd(Product product,List<ProductCategory> list){
 		productMybatisDao.save(product);
-		
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			ProductCategory productCategory = (ProductCategory) iterator
-					.next();
-			productCategory.setProduct_id(product.getId());
-			productMybatisDao.saveProductCategory(productCategory);
+		if(list!=null&&list.size()>0){
+			for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+				ProductCategory productCategory = (ProductCategory) iterator
+						.next();
+				productCategory.setProduct_id(product.getId());
+				productMybatisDao.saveProductCategory(productCategory);
+			}
 		}
-		
 	}
 	public void saveUpdate(Product product,List<ProductCategory> list){
 		productMybatisDao.update(product);

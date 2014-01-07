@@ -119,16 +119,50 @@ function clearNoNum(obj)
 			 });
 	}
 	function check(){
+		//验证默认图片是否选择
+		var default_picture_id = $("input[name=default_picture_id]").val();
+		if(default_picture_id==null||default_picture_id==""){
+			$("#message").show();
+			$("#message").html("请选择默认图片！");
+			return;
+		}
+		//验证分类中的图片是否选择
+		var j=0;
+		var picture=new Array();
+		$("input[name='picture']").each(function(){  
+					picture[j]=$(this).val();
+					j++;
+		});
+		
+		for(var n=0;n<picture.length;n++){
+			if(picture[n]==null||picture[n]==""){
+				$("#message").show();
+				$("#message").html("请选择图片！");
+				return false;
+			}  
+		}
+		//验证分类是否有重复。
 		var items=new Array();
 		var i=0;
 		jQuery("input[name='searchCategoryId']").each(function(){
 			items[i]=jQuery(this).val();
 			i++;
 		});
+		if(items==null||items.length==0){
+			$("#message").show();
+			$("#message").html("请选择分类！");
+			return false;
+		}
 		for(var m=0;m<items.length;m++){
+			if(items[m]==""){
+				$("#message").show();
+				$("#message").html("请选择分类！");
+				return;
+			}
 			for(var n=m+1;n<items.length;n++){
 				if(items[m]==items[n]){
-					alert("有重复的分类，请修改分类后重新提交！");
+					$("#message").show();
+					$("#message").html("有重复的分类，请修改分类后重新提交！");
 					return;
 				}
 			}
@@ -162,6 +196,7 @@ function clearNoNum(obj)
 	<form id="inputForm" action="${ctx}/product/doAdd" method="post"
 		class="form-horizontal">
 		<fieldset>
+			<div id="message" class="alert" style="display: none"><button data-dismiss="alert" class="close">×</button>&nbsp;</div>
 			<legend>
 				<small>增加产品</small>
 			</legend>
@@ -173,8 +208,8 @@ function clearNoNum(obj)
 							<tr>
 								<td>
 									<div class="span3">
-										<img id="prod_default_pic" src="${ctx}/plupload/files/small/default_image.jpg" alt="" onclick="resourcePopupWindow({mediaType:'picture',image: this,callback: setMedia})"/>
-										<input id="prod_pic" type="hidden" name=default_picture_id />	
+										<img id="prod_default_pic" src="${ctx}/plupload/files/small/default_image.jpg"  alt="" onclick="resourcePopupWindow({mediaType:'picture',image: this,callback: setMedia})"/>
+										<input id="prod_pic" type="hidden" name="default_picture_id"/>	
 									</div>
 								</td>
 								<td>
@@ -198,8 +233,8 @@ function clearNoNum(obj)
 							</tr>
 							<tr>
 								<td colspan="2" style="text-align: center;">
-									<input type="button" value="添加类别" onclick="addNew();">
-								  	<input type="button" value="删除类别" onclick="del();"> 
+									<input type="button" value="添加类别" class="btn btn-info" onclick="addNew();">
+								  	<input type="button" value="删除类别" class="btn btn-info" onclick="del();"> 
 								</td>
 							</tr>
 							

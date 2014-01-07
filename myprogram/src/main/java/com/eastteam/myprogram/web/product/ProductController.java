@@ -102,14 +102,16 @@ public class ProductController {
 		product.setMedia(media);
 		logger.info("=====Product media path: " + media.getPath());
 		String[] searchCategoryIds = request.getParameterValues("searchCategoryId");
-		for (int i = 0; i < searchCategoryIds.length; i++) {
-			if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){
-				Long picture = Long.parseLong(pictures[i]);
-				String searchCategoryId = searchCategoryIds[i];
-				ProductCategory productCategory= new ProductCategory();
-				productCategory.setPicture_id(picture);
-				productCategory.setCategory_id(searchCategoryId);
-				list.add(productCategory);
+		if(searchCategoryIds!=null){
+			for (int i = 0; i < searchCategoryIds.length; i++) {
+				if(pictures[i]!=null&&!pictures[i].equals("")&&searchCategoryIds[i]!=null&&!searchCategoryIds[i].equals("")){
+					Long picture = Long.parseLong(pictures[i]);
+					String searchCategoryId = searchCategoryIds[i];
+					ProductCategory productCategory= new ProductCategory();
+					productCategory.setPicture_id(picture);
+					productCategory.setCategory_id(searchCategoryId);
+					list.add(productCategory);
+				}
 			}
 		}
 		this.productService.doAdd(product,list);
