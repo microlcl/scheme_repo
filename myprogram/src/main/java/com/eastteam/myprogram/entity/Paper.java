@@ -3,6 +3,8 @@
  */
 package com.eastteam.myprogram.entity;
 
+import java.util.List;
+
 
 /**
  * @author LSS
@@ -14,6 +16,7 @@ public class Paper extends IdEntity {
 	private String paperName;
 	private Category businessType;
 	private Category status;
+	private List<Question> questions;
 	
 	
 	public String getPaperName() {
@@ -39,6 +42,12 @@ public class Paper extends IdEntity {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public List<Question> getQuestions() {
+		return questions;
+	}
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
 	}
 	
 	

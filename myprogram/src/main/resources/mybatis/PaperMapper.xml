@@ -13,6 +13,8 @@
 			<id property="id" column="cs_id" />
 			<result property="name" column="cs_name" />
 		</association>
+		<collection property="questions" column="paper_id" ofType="Question" select="selectQuestions">				
+		</collection>
 	</resultMap>
 	<select id="search" parameterType="map" resultMap="paperDetailMap">
 		select p.paper_id, p.paper_name, cb.id as cb_id, cb.name as cb_name, cs.id as cs_id, cs.name as cs_name
