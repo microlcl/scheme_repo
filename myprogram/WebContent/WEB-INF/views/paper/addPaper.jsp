@@ -140,7 +140,7 @@
 				<ul class="inline">
 						<li><input id="myq1_{id}" value="{id}" type="hidden" name="selectedQuestionsOnPage"/> </li>
 						<li style="width: 680px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_{id}">Q{id}: {question}</a></li>
-						<li>问题坐标：<input type="text" name="questionPosition"  maxlength="64" class="required" placeholder="数字" style="width: 16px !important; margin-top: 10px;" value="{position}"/></li>
+						<li>问题坐标：<input type="text" name="questionPosition"  maxlength="64" class="required" placeholder="数字" style="width: 25px !important; margin-top: 10px;" value="{position}"/></li>
 						<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
 				</ul>
 			</div>

@@ -14,7 +14,7 @@
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/nano/nano.js" type="text/javascript"></script>
 	<script>
-		var position = 100;  //新增问题的起始position
+		var position_question = 100;  //新增问题的起始position
 		$(document).ready(function() {
 			$("#paper-tab").addClass("active");
 			
@@ -47,7 +47,7 @@
 			console.log("你选择的问题的数目是：" + result.questions.length);
 			$.each(result.questions, function(i,question){
 				console.log("你选择的问题的id是："+question.id);
-				question.position = position;
+				question.positionTest = position_question;
 				console.log("新增加的问题的position是" + question.position);
 				if($('#myq1_'+question.id).length > 0) {
 					return true;
@@ -60,7 +60,7 @@
 
 				$('#myaccordion1').append(myvalue);
 				$('#myq1_' + question.id).data('question', question);
-				position = position + 10;
+				position_question = position_question + 10;
 			} );
 			//$("input[name='selectedQuestionsOnPage']").attr('checked',true);
 			$('#selected_questions').show();
@@ -120,7 +120,7 @@
 				<ul class="inline">
 						<li><input id="myq1_{id}" value="{id}" type="hidden" name="selectedQuestionsOnPage"/> </li>
 						<li style="width: 680px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_{id}">Q{id}: {question}</a></li>
-						<li>问题坐标：<input type="text" name="questionPosition"  maxlength="64" class="required" placeholder="数字" style="width: 16px !important; margin-top: 10px;" value="{position}"/></li>
+						<li>问题坐标：<input type="text" name="questionPosition"  maxlength="64" class="required" placeholder="数字" style="width: 25px !important; margin-top: 10px;" value="{positionTest}"/></li>
 						<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
 				</ul>
 			</div>
@@ -149,7 +149,7 @@
 			                  		<ul class="inline">
 										<li><input id="myq1_${question.id}" value="${question.id}" type="hidden" name="selectedQuestionsOnPage"/> </li>
 										<li style="width: 680px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_${question.id}">Q${question.id}: ${question.question}</a></li>
-										<li>问题坐标：<input type="text" name="questionPosition"  maxlength="64" class="required" placeholder="数字" style="width: 16px !important; margin-top: 10px;" value="${status.count*10}"/></li>
+										<li>问题坐标：<input type="text" name="questionPosition"  maxlength="64" class="required" placeholder="数字" style="width: 25px !important; margin-top: 10px;" value="${status.count*10}"/></li>
 			                      		<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
 			                      	</ul>
 			                   	</div>
