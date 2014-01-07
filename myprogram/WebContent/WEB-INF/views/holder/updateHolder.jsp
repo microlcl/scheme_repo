@@ -20,7 +20,11 @@
 	    obj.value = obj.value.replace(/[^\d.]/g,"");
 	}
 	$(document).ready(function() {
-		$("#holderForm").validate();
+		$("#holderForm").validate({
+			errorPlacement: function (error, element) {
+            	error.appendTo(element.parent());    //将错误信息添加当前元素的父结点后面 
+    		}
+		});
 	});
 	var row_count = 0;
 	function add() {
@@ -59,7 +63,6 @@
 		td6.append('		&nbsp;舞&nbsp;台&nbsp;长：&nbsp;<input type="text"  name="spaces['+row_count+'].stage_length" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
 		td7.append('		舞台宽：<input type="text"  name="spaces['+row_count+'].stage_width" class="input-small" maxlength="5" onkeyup="clearNoNum(this)"/>');
 		td8.append('		舞台高：<input type="text"  name="spaces['+row_count+'].stage_height" class="input-small" maxlength="2" onkeyup="clearNoNum(this)"/>');
-//		td9.append('		舞台性质：<input type="text" name="spaces['+row_count+'].attribute_id" class="input-small" maxlength="10" onkeyup="clearNoNum(this)"/>');
 		td9.append('		&nbsp;');
 		
 		td10.append('&nbsp;');
@@ -98,13 +101,40 @@
 			  $(this).parent().parent().parent().remove();
 		});
 	}
+	function judge(){
+		//如果floor=0等这些属性为空，默认赋值0
+		for(var i=0;i<row_count;i++){
+			if($("input[name='spaces["+i+"].floor']").val()==null||$("input[name='spaces["+i+"].floor']").val()==""){
+				$("input[name='spaces["+i+"].floor']").val("0");
+			}
+			if($("input[name='spaces["+i+"].volume']").val()==null||$("input[name='spaces["+i+"].volume']").val()==""){
+				$("input[name='spaces["+i+"].volume']").val("0");
+			}
+			if($("input[name='spaces["+i+"].hall_height']").val()==null||$("input[name='spaces["+i+"].hall_height']").val()==""){
+				$("input[name='spaces["+i+"].hall_height']").val("0");
+			}
+			if($("input[name='spaces["+i+"].stage_length']").val()==null||$("input[name='spaces["+i+"].stage_length']").val()==""){
+				$("input[name='spaces["+i+"].stage_length']").val("0");
+			}
+			if($("input[name='spaces["+i+"].stage_width']").val()==null||$("input[name='spaces["+i+"].stage_width']").val()==""){
+				$("input[name='spaces["+i+"].stage_width']").val("0");
+			}
+			if($("input[name='spaces["+i+"].stage_height']").val()==null||$("input[name='spaces["+i+"].stage_height']").val()==""){
+				$("input[name='spaces["+i+"].stage_height']").val("0");
+			}
+		}
+		$("#holderForm").submit();
+	}
 	</script>
 </head>
 
 <body>
 	<form id="holderForm" action="${ctx}/holder/doUpdate" method="post" class="form-horizontal" class="form-inline">
 		<div class="form">
-			<h1>场馆管理</h1>
+		<c:if test="${not empty message}">
+			<div id="message" class="alert"><button data-dismiss="alert" class="close">×</button>${message}</div>
+		</c:if>
+			<h1>场地管理</h1>
 			<div class="control-group">
 				<label for="holder_name" class="control-label formlabel">场地名称：</label>
 				<div class="controls">
@@ -225,7 +255,7 @@
 			</tr>
 			</table>
 			<div class="form-actions">
-				<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
+				<input id="submit_btn" class="btn btn-warning" type="button" value="提交" onclick="judge()"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
 			

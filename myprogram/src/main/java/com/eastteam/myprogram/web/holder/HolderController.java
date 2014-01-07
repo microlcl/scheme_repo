@@ -96,11 +96,19 @@ public class HolderController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Holders holders, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String save(@ModelAttribute Holders holders,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
-		this.holderService.save(holders);
-		redirectAttributes.addFlashAttribute("message", "增加成功！");
-		return "redirect:/holder/list/";
+		if(holders.getSpaces()==null){
+			List<CategoryLiteBean> categorys = this.categoryService.getFuntionCategorys("M1-6");
+			model.addAttribute("holder", holders);
+			model.addAttribute("categorys", categorys.get(0).getChildren());
+			model.addAttribute("message", "提交失败，请至少添加一个会场！");
+			return "holder/addHolder";
+		}else{
+			this.holderService.save(holders);
+			redirectAttributes.addFlashAttribute("message", "增加成功！");
+			return "redirect:/holder/list/";
+		}
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
@@ -113,11 +121,17 @@ public class HolderController {
 	}
 	
 	@RequestMapping(value = "doUpdate", method = RequestMethod.POST)
-	public String doUpdate(@ModelAttribute Holders holders, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String doUpdate(@ModelAttribute Holders holders,Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
-		this.holderService.doUpdate(holders);
-		redirectAttributes.addFlashAttribute("message", "修改成功！");
-		return "redirect:/holder/list/";
+		if(holders.getSpaces()==null){
+			model.addAttribute("holder", holders);
+			model.addAttribute("message", "修改失败，请至少添加一个会场！");
+			return "holder/updateHolder";
+		}else{
+			this.holderService.doUpdate(holders);
+			redirectAttributes.addFlashAttribute("message", "修改成功！");
+			return "redirect:/holder/list/";
+		}
 	}
 	
 	@RequestMapping(value = "show/holderInfo/{id}", method = RequestMethod.GET)
