@@ -6,14 +6,17 @@
 
 	<resultMap id="taskDetailMap" type="Task">
 		<id property="id" column="task_id" />
-		<result property="parentId" column="parent_id" />
 		<result property="summary" column="summary" />
 		<result property="description" column="description" />
-		<result property="departmentId" column="department_id" />
 		<result property="dueDate" column="due_date" />
 		<result property="timeRemaining" column="time_remaining" />
 		<result property="createdTimestamp" column="created_timestamp" />
-		<result property="createdDy" column="created_by" />
+		<result property="progress" column="progress" />
+		<association property="department" javaType="Department">
+			<id property="id" column="department_id" />
+			<result property="name" column="department_name" />
+			<result property="description" column="department_description" />
+		</association>
 		<association property="taskType" javaType="Category">
 			<id property="id" column="cb_id" />
 			<result property="name" column="cb_name" />
@@ -22,10 +25,23 @@
 			<id property="id" column="cs_id" />
 			<result property="name" column="cs_name" />
 		</association>
-		<association property="progress" javaType="Category">
-			<id property="id" column="cs_id" />
-			<result property="name" column="cs_name" />
-		</association>	
+		<association property="priority" javaType="Category">
+			<id property="id" column="cp_id" />
+			<result property="name" column="cp_name" />
+		</association>
+		<association property="owner" javaType="User">
+			<id property="id" column="uo_id" />
+			<result property="name" column="uo_name" />
+		</association>
+		<association property="createdDy" javaType="User">
+			<id property="id" column="uc_id" />
+			<result property="name" column="uc_name" />
+		</association>
+		<collection property="parent" column="parent_id" javaType="Task" select="selectTask">
+			<id property="id" column="id" />
+			<result property="summary" column="summary" />
+			<collection property="parent" column="parent_id" javaType="Task" select="selectTask"/>			
+		</collection>	
 	</resultMap>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
@@ -36,13 +52,28 @@
 	</select>
 	
 	<select id="search" parameterType="map" resultMap="taskDetailMap">
-		select *
-		from task t 
+		select t.task_id,t.parent_id,t.summary,t.description,t.department_id,t.progress,t.due_date,t.time_remaining,
+		t.created_timestamp,cb.id as cb_id,cs.id as cs_id,uo.id as uo_id,uc.id as uc_id,cp.id as cp_id,
+		cb.name as cb_name,cs.name as cs_name,uo.name as uo_name,uc.name as uc_name,cp.name as cp_name,
+		d.department_id,d.name as department_name,d.description as department_description
+		from task t
+		left join category cb on t.task_type=cb.id
+		left join category cs on t.status=cs.id
+		left join users uo on t.owner=uo.id 
+		left join users uc on t.created_by=uc.id 
+		left join category cp on t.priority=cp.id 
+		left join departments d on t.department_id=d.department_id 
 		<where>
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc
 		</if>
+	</select>
+	
+	<select id="selectTask" resultType="Task">
+	    select task_id as id,summary
+	    from  task  
+	    where task_id=#{parent_id} 
 	</select>
 
 </mapper> 
