@@ -72,6 +72,10 @@
 		.iconImg_delete {
 			background-position: -85px -29px;
 		}
+		/**fix bootstrap tab页切换时背景色为白色的bug*/
+		.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
+		    background-color: #F9F9F9;
+		}
 		
 		
 		
