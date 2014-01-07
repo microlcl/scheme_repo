@@ -60,7 +60,7 @@ public class PaperService extends PageableService {
 		return questionOptions;
 	}
 	
-	public void saveQuestions(Paper paper, String[] questions) {
+	public void saveQuestions(Paper paper, String[] questions, String[] positions) {
 		logger.info("in paper save service");
 		this.paperMybatisDao.insertPaper(paper);
 		String paperId = Long.toString(paper.getId());
@@ -68,7 +68,7 @@ public class PaperService extends PageableService {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("paperId", paperId);
 			map.put("questionId", questions[i]);
-			map.put("position", 10);
+			map.put("position", positions[i]);
 			this.paperMybatisDao.insertQuestions(map);
 		}
 	}

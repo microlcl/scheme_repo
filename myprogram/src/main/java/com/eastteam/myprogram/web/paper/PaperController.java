@@ -97,7 +97,8 @@ public class PaperController {
 		paper.setBusinessType(businessType);
 		String[] questions = request.getParameterValues("selectedQuestionsOnPage");
 		logger.info("===========The selected questions' count:" + questions.length);
-		this.paperService.saveQuestions(paper, questions);
+		String[] positions = request.getParameterValues("questionPosition");
+		this.paperService.saveQuestions(paper, questions, positions);
 		
 		return "redirect:/paper/list/";
 	}
