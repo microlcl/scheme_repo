@@ -160,15 +160,18 @@ create table visit_activities (
 	visit_stime timestamp,  -- 默认是系统时间，可以修改
 	visitor_num int,	-- 到访，回访人数
 	assigned_department_id varchar(64), -- assigned 给哪个部门
-	recipient varchar(64),  -- 接待者
+	recipient varchar(64),  -- 接待者（前台接待）
+	operator varchar(64), -- 经办人（跟单者）
 	business_type varchar(64), -- 庆典种类：婚庆，生日，公司年会等，可以在category table配置
 	case_id bigint,   -- 这次到访是为了哪个case
 	is_visited varchar(1), -- 是否初次到访： Ture/False
-	appeal_point varchar(1024), -- 客户信息（诉求）要点
-	focus_on varchar(1024), -- 客户重点关心
-	remaining_issues varchar(1024), -- 需要进一步确认的问题
 	comment varchar(256), -- 备注
-	result varchar(1024), -- 洽谈结果
+	paper_id bigint, -- 回访单id
+	-- 以下4个字段改由动态表单完成，更加灵活
+	-- appeal_point varchar(1024), -- 客户信息（诉求）要点
+	-- focus_on varchar(1024), -- 客户重点关心
+	-- remaining_issues varchar(1024), -- 需要进一步确认的问题
+	-- result varchar(1024), -- 洽谈结果
 	primary key (visit_id)
 );
 
