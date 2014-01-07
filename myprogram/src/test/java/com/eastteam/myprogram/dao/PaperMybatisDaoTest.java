@@ -95,7 +95,7 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 	public void selectPaperTest() throws Exception {
 		logger.info("In paper select paper test ");
 		String paperId = "1";
-		logger.info("====Select Paper info: " + this.paperMybatisDao.selectQuestions(paperId));
+		logger.info("====Select Paper info: " + this.paperMybatisDao.selectPaper(paperId));
 	}
 	
 	@Test
