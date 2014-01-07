@@ -55,7 +55,7 @@
 			<th>状态</th>
 			<th>拥有者</th>
 			<th>创建时间</th>
-			<th>优先级别</th>
+			<th>优先度</th>
 			<th>所属案例</th>
 		</tr>
 		</thead>
@@ -65,7 +65,7 @@
 				<td>${task.summary}&nbsp;</td>
 				<td>${task.status}&nbsp;</td>
 				<td>${task.owner}</td> 
-				<td>${task.created_timestamp}</td>
+				<td>${task.createdTimestamp}</td>
 				<td>${task.priority}</td>
 				<td></td>
 			</tr>
