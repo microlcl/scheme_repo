@@ -179,7 +179,7 @@ create table cases (
 	case_owner varchar(64), -- 这个case的跟单人
 	business_type varchar(64),   -- 庆典种类：婚庆，生日，公司年会等，可以在category table配置
 	event_time timestamp,    -- 庆典时间
-	guess_num int,     -- 客人人数
+	guest_num int,     -- 客人人数
 	space_id bigint,    -- 庆典地点,关联space table
 	space_tip varchar(64), -- 庆典地点信息，由前台文字输入。后续跟单者可以根据这个信息完成space_id字段的填写。
 	description varchar(1024),
