@@ -116,4 +116,12 @@ public class PaperMybatisDaoTest extends SpringTransactionalTestCase {
 		this.paperMybatisDao.publishPaper(Long.parseLong(paperId));
 		logger.info("测试发布paper后它的状态： " + this.paperMybatisDao.selectPaper(paperId));
 	}
+	
+	@Test
+	public void updatePaperTest() throws Exception {
+		logger.info("In Paper update paper test");
+		Paper paper = this.paperMybatisDao.selectPaper("1");
+		this.paperMybatisDao.updatePaper(paper);
+		logger.info("测试更新paper后它的状态： " + this.paperMybatisDao.selectPaper("1"));
+	}
 }

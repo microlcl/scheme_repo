@@ -4,6 +4,7 @@
 package com.eastteam.myprogram.service.paper;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -60,16 +61,20 @@ public class PaperService extends PageableService {
 		return questionOptions;
 	}
 	
-	public void saveQuestions(Paper paper, String[] questions, String[] positions) {
+	public void saveQuestions(Paper paper) {
 		logger.info("in paper save service");
 		this.paperMybatisDao.insertPaper(paper);
 		String paperId = Long.toString(paper.getId());
-		for (int i = 0; i < questions.length; i++){
+		Iterator<Question> it = paper.getQuestions().iterator();
+		while(it.hasNext()){
+			Question question = it.next();
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("paperId", paperId);
-			map.put("questionId", questions[i]);
-			map.put("position", positions[i]);
-			this.paperMybatisDao.insertQuestions(map);
+			if (question.getId() != null) {
+				map.put("paperId", paperId);
+				map.put("questionId", question.getId());
+				map.put("position", question.getPosition());
+				this.paperMybatisDao.insertQuestions(map);
+			}
 		}
 	}
 	
@@ -89,5 +94,24 @@ public class PaperService extends PageableService {
 	public void publishPaper(String paperId) {
 		logger.info("in paper publish service");
 		this.paperMybatisDao.publishPaper(Long.parseLong(paperId));
+	}
+	
+	public void updatePaper(Paper paper) {
+		logger.info("in paper update service");
+		logger.info("正在更新的paper" + paper);
+		this.paperMybatisDao.updatePaper(paper);
+		this.paperMybatisDao.deleteQuestions(paper.getId());
+		
+		Iterator<Question> it = paper.getQuestions().iterator();
+		while(it.hasNext()){
+			Question question = it.next();
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			if (question.getId() != null) {
+				map.put("paperId", paper.getId());
+				map.put("questionId", question.getId());
+				map.put("position", question.getPosition());
+				this.paperMybatisDao.insertQuestions(map);
+			}
+		}
 	}
 }
