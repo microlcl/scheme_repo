@@ -21,21 +21,12 @@
 				rules: {
 					paperName: {
 						rangelength: [1,64]
-					},
-					search_categoryId: {
-						required: function (element) {
-                            return true;
-                        }
 					}
-			
 				},
 				
 				messages: {
 					paperName: {
 						required: "请填写问卷名称"
-					},
-					search_categoryId : {
-						required: "请选择类型"
 					}
 				}
 			});
@@ -126,18 +117,31 @@
 			$('#delete_questions_button').hide();
 			
 		}
+		
+		function submitForm(){
+			console.log("========" + $("input[name='search_categoryId']").val());
+			if ($("input[name='search_categoryId']").val() != "") {
+				$('#questionsForm').submit();
+			}else {
+				$("#warning-block").show();
+				$("#cc2").focus();
+			}
+		}
 	</script>
 
 </head>
 <body>
 	<div class="form">
 		<h1>新增问卷</h1>
+		<div class="alert hide" id="warning-block">
+	  	   <strong>注意! </strong>请选择问卷类型。
+		</div>
 		<div style="padding:20px;">
 			<form id="questionsForm" action="${ctx}/paper/save" method="post">
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷名称:</label>
 				<input type="text" name="paperName"  maxlength="64" class="span3 required" placeholder="0~64个字符" style="margin-right:100px;"/><br>
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷类型:</label>
-				<input id="cc2" class="easyui-combobox" style="width:200px;margin-right:200px !important;" name="search_categoryId" value="${param.search_categoryId}"/><br>
+				<input id="cc2" class="easyui-combobox" style="width:200px;margin-right:200px !important;" name="search_categoryId" value="${param.search_categoryId}" /><br>
 				<button id="select_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" id="search_btn" onclick="questionPopupWindow({callback:addQuestions})">请点击此处选择问题</button>
 				<button id="delete_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px; margin-left:40px; display:none;" type="button" class="btn btn-danger" id="delete_btn" onclick="removeAllQuestions();">删除所有所选问题</button>
 				<div id="selected_questions" style="display: none;">
@@ -148,7 +152,7 @@
 			</form>
 		</div>
 		<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
-			<input id="submit_btn" class="btn btn-warning" style="display: none;" type="submit" value="提交" onclick="$('#questionsForm').submit();" />&nbsp;	
+			<input id="submit_btn" class="btn btn-warning" style="display: none;" type="button" value="提交" onclick="submitForm();" />&nbsp;	
 			<input id="cancel_btn" class="btn"  style="display: none;" type="button" value="返回" onclick="history.back()"/>
 		</div>
 	</div>
