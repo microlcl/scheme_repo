@@ -16,6 +16,20 @@
 		$(document).ready(function() {
 			$("#paper-tab").addClass("active");
 			
+			$("a[id^='deleteLink']").click(function(){
+				
+				if(confirm("你确定要删除此问卷吗？"))
+				{
+					console.log("确定删除此问卷");
+				}
+				else
+				{
+					return false;
+				}
+			}) ;
+			
+
+			
 			var statusId = [];
 			<c:forEach items="${status}" var="category">
 				statusId.push('${category}');
@@ -37,7 +51,6 @@
 			});
 
 		});
-		
 
 	</script>
 
@@ -85,7 +98,7 @@
 							<a href="${ctx}/paper/edit/${paper.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
 							<a href="${ctx}/paper/delete/${paper.id}" id="deleteLink-${paper.id}"><i class="icon-remove"></i>删除</a>
 							<c:if test="${paper.status.id=='1-0-1-0'}">
-									<button type="button" class="btn btn-danger" onclick="location.href='${ctx}/paper/publish/${paper.id}'" style="padding: 0 12px !important; margin-left: 20px;"><i class="icon-share-alt" style="margin-right: 5px;"></i>发布问卷</button>
+									<button type="button" class="btn btn-danger" id="publishbutton-${paper.id}" onclick="location.href='${ctx}/paper/publish/${paper.id}'" style="padding: 0 12px !important; margin-left: 20px;"><i class="icon-share-alt" style="margin-right: 5px;"></i>发布问卷</button>
 							</c:if>
 						</td>
 					</tr>

@@ -19,25 +19,42 @@
 			$("#paper-tab").addClass("active");
 			$("#questionsForm").validate({
 				rules: {
-					paperTitle: {
+					paperName: {
 						rangelength: [1,64]
 					},
 					search_categoryId: {
-                        required: function (element) {
-                            return $("input[name='search_categoryId']").val() != "";
+						required: function (element) {
+                            return true;
                         }
 					}
+			
 				},
 				
 				messages: {
-					paperTitle: {
+					paperName: {
 						required: "请填写问卷名称"
 					},
-					search_categoryId: {
-						required: "请选择问卷类型"
-					} 
+					search_categoryId : {
+						required: "请选择类型"
+					}
 				}
 			});
+			
+			$('#cc2').combotree({
+				url:'${ctx}/category/api/getAll/M1-7',
+				required: false,
+				valueField: 'id',
+				textField: 'text',
+				method:'get',
+				//只能选择叶子节点：
+				onBeforeSelect : function(node){ 
+					var tree = $(this).tree;
+					var isLeaf = tree('isLeaf', node.target);
+					console.log("isLeaf=" + isLeaf);
+					return isLeaf;
+				}
+			});
+			
 		});
 		
 		var question_number = ($("input[name^='questions']").length/2) + 10;
@@ -120,7 +137,7 @@
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷名称:</label>
 				<input type="text" name="paperName"  maxlength="64" class="span3 required" placeholder="0~64个字符" style="margin-right:100px;"/><br>
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷类型:</label>
-				<input id="cc2" class="easyui-combotree required" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:true" style="width:200px;margin-right:200px !important;" name="search_categoryId" value="${param.search_categoryId}"/><br>
+				<input id="cc2" class="easyui-combobox" style="width:200px;margin-right:200px !important;" name="search_categoryId" value="${param.search_categoryId}"/><br>
 				<button id="select_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" id="search_btn" onclick="questionPopupWindow({callback:addQuestions})">请点击此处选择问题</button>
 				<button id="delete_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px; margin-left:40px; display:none;" type="button" class="btn btn-danger" id="delete_btn" onclick="removeAllQuestions();">删除所有所选问题</button>
 				<div id="selected_questions" style="display: none;">
