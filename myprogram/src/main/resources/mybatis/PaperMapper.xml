@@ -72,7 +72,7 @@
 		</where>)t
 	</select>
 	<select id="selectQuestions" resultType="Question">
-	    select q.question as question, q.question_id as id, q.question_type as questionType, q.question_options as questionOptions, pq.position as position
+	    select q.question as question, q.question_id as id, q.question_type as questionType, q.question_options as questionOptions, q.trashed as trashed, pq.position as position
 	    from questions q, paper_questions pq 
 	    where q.question_id=pq.question_id and pq.paper_id=#{paper_id} order by pq.position
 	</select>

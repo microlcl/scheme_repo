@@ -26,7 +26,7 @@
 			<c:forEach items="${questions}" var="question" varStatus="status">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.count}：</span>
-                      	${question.question}
+                      	${question.question}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
                    </div>
                     <div class="accordion-inner" style="padding-left:55px">
 						<c:if test="${question.questionType == '1'}">
