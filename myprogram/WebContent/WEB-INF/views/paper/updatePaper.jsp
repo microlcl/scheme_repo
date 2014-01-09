@@ -164,40 +164,42 @@
 					<label style="width: 100%;font-weight: bold;line-height: 30px;text-align: left; padding-left: 20px;">您所选择的问题如下:</label>
 					<div class="accordion" style="border-color: transparent;  width: 80%; margin-left: 100px;"  id="myaccordion1">
 						<c:forEach items="${selectpaper.questions}" var="question" varStatus="status">
-							<div class="accordion-group">
-			                  	<div class="accordion-heading">
-			                  		<ul class="inline">
-										<li><input id="myq1_${question.id}" value="${question.id}" type="hidden" name="questions[${status.index}].id"/> </li>
-										<li style="width: 680px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_${question.id}">Q${question.id}: ${question.question}</a></li>
-										<li>问题坐标：<input type="text" name="questions[${status.index}].position"  maxlength="64" class="required" placeholder="数字" style="width: 25px !important; margin-top: 10px;" value="${question.position}"/></li>
-			                      		<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
-			                      	</ul>
-			                   	</div>
-							</div>
-							<div id="collapse_${question.id}" class="accordion-body collapse">
-			                    <div class="accordion-inner" style="padding-left:55px">
-									<c:if test="${question.questionType == '1'}">
-										<c:forEach items="${question.splitOptions}" var="splitOption">
-											<label class="radio">
-												<input type="radio" name="questionOption" >
-													${splitOption}
-											</label>
-										</c:forEach>
-									</c:if>
-									<c:if test="${question.questionType == '2'}">
-										<c:forEach items="${question.splitOptions}" var="splitOption">
-											<label class="checkbox">
-												<input type="checkbox" name="questionOption" >
-													${splitOption}
-											</label>
-										</c:forEach>
-									</c:if>
-									<c:if test="${question.questionType == '3'}">
-										<textarea></textarea>
-									</c:if>
-			                    </div>
-							</div>
-					</c:forEach>
+							<c:if test="${question.trashed == 'F'}">
+								<div class="accordion-group">
+				                  	<div class="accordion-heading">
+				                  		<ul class="inline">
+											<li><input id="myq1_${question.id}" value="${question.id}" type="hidden" name="questions[${status.index}].id"/> </li>
+											<li style="width: 680px;"><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion1" href="#collapse_${question.id}">Q${question.id}: ${question.question}</a></li>
+											<li>问题坐标：<input type="text" name="questions[${status.index}].position"  maxlength="64" class="required" placeholder="数字" style="width: 25px !important; margin-top: 10px;" value="${question.position}"/></li>
+				                      		<li><a href="javascript:void(0);" onclick="deleteQuestion(this)" title="删除" style=""><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a></li>
+				                      	</ul>
+				                   	</div>
+								</div>
+								<div id="collapse_${question.id}" class="accordion-body collapse">
+				                    <div class="accordion-inner" style="padding-left:55px">
+										<c:if test="${question.questionType == '1'}">
+											<c:forEach items="${question.splitOptions}" var="splitOption">
+												<label class="radio">
+													<input type="radio" name="questionOption" >
+														${splitOption}
+												</label>
+											</c:forEach>
+										</c:if>
+										<c:if test="${question.questionType == '2'}">
+											<c:forEach items="${question.splitOptions}" var="splitOption">
+												<label class="checkbox">
+													<input type="checkbox" name="questionOption" >
+														${splitOption}
+												</label>
+											</c:forEach>
+										</c:if>
+										<c:if test="${question.questionType == '3'}">
+											<textarea></textarea>
+										</c:if>
+				                    </div>
+								</div>
+							</c:if>
+						</c:forEach>
 					</div>
 				</div>
 			</form>
