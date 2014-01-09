@@ -19,7 +19,7 @@ public class Task extends IdEntity{
 	private Date dueDate; // 计划完成时间
 	private int timeRemaining;  // 剩余多少时间
 	private Date createdTimestamp; // 创建时间
-	private User createdDy;  // 创建人
+	private User createdBy;  // 创建人
 
 
 	public String getSummary() {
@@ -91,17 +91,17 @@ public class Task extends IdEntity{
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-	public User getCreatedDy() {
-		return createdDy;
-	}
-	public void setCreatedDy(User createdDy) {
-		this.createdDy = createdDy;
-	}
 	public Department getDepartment() {
 		return department;
 	}
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+	public User getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(User createdBy) {
+		this.createdBy = createdBy;
 	}
 	
 }

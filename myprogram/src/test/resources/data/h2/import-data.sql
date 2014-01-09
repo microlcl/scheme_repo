@@ -20,6 +20,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-5','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-6','M1','场地管理','场地管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-7','M1','问题管理','问题管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-8','M1','问卷管理','问卷管理','');
+insert into modules(module_id, pid, name, description, path) values('M1-9','M1','协同作业','协同作业','');
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
 insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll');
@@ -216,6 +217,22 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-6-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-2','1-6','42','2012-06-04 02:00:00','F','42');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-3','1-6','4','2012-06-04 02:00:00','F','45');
 
+--task 状态
+insert into category(id, pid, name, created_date, trashed, comment) values('2-1','1','作业状态','2012-06-04 02:00:00','F','作业状态');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-1-1','2-1','新建','2012-06-04 02:00:00','F','新建作业');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-1-2','2-1','进行中','2012-06-04 02:00:00','F','作业进行中');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-1-3','2-1','完成','2012-06-04 02:00:00','F','作业已完成');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-1-4','2-1','废弃','2012-06-04 02:00:00','F','作业被废弃');
+--task 优先级
+insert into category(id, pid, name, created_date, trashed, comment) values('2-2','1','作业优先级','2012-06-04 02:00:00','F','作业优先级');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-2-1','2-2','低优先级','2012-06-04 02:00:00','F','作业优先级低');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-2-2','2-2','中优先级','2012-06-04 02:00:00','F','作业优先级中');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-2-3','2-2','高优先级','2012-06-04 02:00:00','F','作业优先高');
+--task 类别
+insert into category(id, pid, name, created_date, trashed, comment) values('2-3','1','作业类型','2012-06-04 02:00:00','F','作业类型');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-3-1','2-3','设计','2012-06-04 02:00:00','F','设计');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-3-2','2-3','工程','2012-06-04 02:00:00','F','工程');
+insert into category(id, pid, name, created_date, trashed, comment) values('2-3-3','2-3','会议','2012-06-04 02:00:00','F','会议');
 
 insert into function_category(function_id,category_id) values('M1-4','1-1');
 insert into function_category(function_id,category_id) values('M1-4','1-2');
@@ -224,6 +241,8 @@ insert into function_category(function_id,category_id) values('M1-5','1-6');
 insert into function_category(function_id,category_id) values('M1-7','1-0-2');
 insert into function_category(function_id,category_id) values('M1-8','1-0-1');
 insert into function_category(function_id,category_id) values('M1-6','1-0-0');
+insert into function_category(function_id,category_id) values('M1-9','2-1');
+
 
 
 insert into medias (media_id,title,description,media_type,path,status,user_id,upload_timestamp,author) values(1,'title1','description 1','picture','bp1.jpg','可用','admin',now(),'');
@@ -387,8 +406,8 @@ insert into paper_questions (paper_id, question_id, position) values (6, 5, 50);
 insert into paper_questions (paper_id, question_id, position) values (6, 6, 60);
 
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(1,1,'创建增加页面','添加一个增加页面，来增加数据','','','D1-1','admin',40,'',now(),1,now(),'admin');
+		values(1,0,'年会','举行年会','2-3-3','2-1-1','D1-1','admin',40,'2-2-3',now(),1,now(),'admin');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(2,1,'创建删除页面','删除一个页面','','','D1-2','userid9',40,'',now(),1,now(),'userid9');
+		values(2,1,'会场布置','年会会场布置','2-3-2','2-1-2','D1-2','userid9',40,'2-2-1',now(),1,now(),'userid9');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(3,1,'创建删除页面','删除一个页面','','','D1-2','userid8',40,'',now(),1,now(),'userid9');
+		values(3,1,'人员安排','年会人员安排','2-3-3','2-1-3','D1-2','userid8',40,'2-2-2',now(),1,now(),'userid9');

@@ -33,7 +33,7 @@
 			<id property="id" column="uo_id" />
 			<result property="name" column="uo_name" />
 		</association>
-		<association property="createdDy" javaType="User">
+		<association property="createdBy" javaType="User">
 			<id property="id" column="uc_id" />
 			<result property="name" column="uc_name" />
 		</association>
@@ -54,8 +54,8 @@
 		<if test="owner_id != null">
 				and t.owner like '${owner_id}%'
 		</if>
-		<if test="status_id != null">
-				and t.status like '${status_id}%'
+		<if test="statusId != null">
+				and t.status like '${statusId}%'
 		</if>
 		<if test="keyword != null">
 				and t.summary||t.description like '%${keyword}%'
@@ -82,8 +82,8 @@
 			<if test="owner_id != null">
 				and t.owner like '${owner_id}%'
 			</if>
-			<if test="status_id != null">
-				and t.status like '${status_id}%'
+			<if test="statusId != null">
+				and t.status like '${statusId}%'
 			</if>
 			<if test="keyword != null">
 				and t.summary||t.description like '%${keyword}%'

@@ -41,12 +41,12 @@
 		<div class="span">
 			<form class="form-search" action="#">
 			 	<label>部&nbsp;&nbsp;&nbsp;门：</label> <input name="search_department_id" id="mydepartment_id" value="${param.search_department_id }" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
-		 	    <label style="margin-left: 25px;">状&nbsp; &nbsp;态：</label> <input type="text" name="search_description" class="input-small" value="${param.search_status}">
-		 	    <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 150px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建任务</button>
+		 	    <label style="margin-left: 25px;">状&nbsp; &nbsp;态：</label> <input  name="search_statusId" id="search_statusId" class="easyui-combotree" value="${param.search_statusId}" style="width:220px;" data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
+		 	    <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 100px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建任务</button>
 		 	    <div style="padding-top:10px">
 		 	    <label>拥有者：</label> <input name="search_owner_id" id="myaccount_id" value="${param.search_owner_id }" class="easyui-combobox" data-options="method:'get',valueField:'id',textField:'name'"> 
 		 	    <label style="margin-left: 25px;">关键字：</label><input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
-                <button type="submit" class="btn" id="search_btn" style="margin-left: 35px;">搜索</button>
+                <button type="submit" class="btn" id="search_btn" style="margin-left: 100px;" style="width:100px;">搜索</button>
                 </div>
 	    </div>
 	    <tags:sort/>
@@ -59,18 +59,18 @@
 			<th>拥有者</th>
 			<th>创建时间</th>
 			<th>优先度</th>
-			<th>所属案例</th>
+			<th>所属任务</th>
 		</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${tasks.content}" var="task">
 			<tr>
 				<td>${task.summary}&nbsp;</td>
-				<td>${task.status}&nbsp;</td>
+				<td>${task.status.name}&nbsp;</td>
 				<td>${task.owner.name}</td> 
 				<td>${task.createdTimestamp}</td>
-				<td>${task.priority}</td>
-				<td></td>
+				<td>${task.priority.name}</td>
+				<td>${task.parent.summary}</td>
 			</tr>
 		</c:forEach>
 		</tbody>		
