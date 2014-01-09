@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.CategoryLiteBean;
+import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.category.CategoryService;
@@ -83,6 +84,14 @@ public class TaskController {
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(Model model) {
 		return "task/addTask";
+	}
+	
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	public String save(@ModelAttribute Task task,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		logger.info("in holder save action");
+//			this.taskService.save(task);
+			redirectAttributes.addFlashAttribute("message", "增加成功！");
+			return "redirect:/task/list/";
 	}
 
 }

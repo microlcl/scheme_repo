@@ -7,13 +7,22 @@
 <title>任务管理</title>
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/styles/form.css">
-
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/static/easyui/mytree.css">
+<script src="${ctx}/static/easyui/jquery.easyui.min.js"
+	type="text/javascript"></script>
 
 </head>
 
 <body>
 	<div class="form">
 		<h1>增加任务</h1>
+		<form id="taskForm" action="${ctx}/task/save" method="post" class="form-horizontal" >
+		摘要：<input type="text" id="summary" name="summary"  class="input-large required" maxlength="64"/>
 		<div style="padding: 20px;">
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
@@ -32,9 +41,9 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<input id="cancel_btn" class="btn" type="button" value="保存" />
+			<input id="cancel_btn" class="btn" type="submit" value="保存" />
 		</div>
+	</form>
 	</div>
-
 </body>
 </html>
