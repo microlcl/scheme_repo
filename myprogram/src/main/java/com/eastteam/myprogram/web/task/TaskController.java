@@ -79,5 +79,10 @@ public class TaskController {
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 		return tasks;
 	}
+	
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add(Model model) {
+		return "task/addTask";
+	}
 
 }

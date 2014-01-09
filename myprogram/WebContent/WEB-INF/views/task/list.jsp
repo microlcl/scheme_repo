@@ -45,6 +45,7 @@
 		 	    <label>状态：</label> <input type="text" name="search_description" class="input-small" value="${param.search_status}">
 		 	    <label>关键字：</label><input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
                 <button type="submit" class="btn" id="search_btn">Search</button>
+                <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 20px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建任务</button>
 	    </div>
 	    <tags:sort/>
 	    </div>
