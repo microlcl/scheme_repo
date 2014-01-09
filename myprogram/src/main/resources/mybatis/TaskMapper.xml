@@ -47,7 +47,19 @@
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0)
 		from task t 
-		<where>				
+		<where>	
+		<if test="department_id != null">
+				and t.department_id like '${department_id}%'
+		</if>
+		<if test="owner_id != null">
+				and t.owner like '${owner_id}%'
+		</if>
+		<if test="status_id != null">
+				and t.status like '${status_id}%'
+		</if>
+		<if test="keyword != null">
+				and t.summary||t.description like '%${keyword}%'
+		</if>			
 		</where>
 	</select>
 	
@@ -64,6 +76,18 @@
 		left join category cp on t.priority=cp.id 
 		left join departments d on t.department_id=d.department_id 
 		<where>
+			<if test="department_id != null">
+				and t.department_id like '${department_id}%'
+			</if>
+			<if test="owner_id != null">
+				and t.owner like '${owner_id}%'
+			</if>
+			<if test="status_id != null">
+				and t.status like '${status_id}%'
+			</if>
+			<if test="keyword != null">
+				and t.summary||t.description like '%${keyword}%'
+			</if>
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc

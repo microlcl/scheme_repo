@@ -40,12 +40,14 @@
     <div class="row">
 		<div class="span">
 			<form class="form-search" action="#">
-			 	<label>部门：</label> <input name="search_department" id="mydepartment_id" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
-		 	    <label>拥有者：</label> <input name="search_owner" id="myaccount_id" class="easyui-combobox" data-options="method:'get',valueField:'id',textField:'name'">
-		 	    <label>状态：</label> <input type="text" name="search_description" class="input-small" value="${param.search_status}">
-		 	    <label>关键字：</label><input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
-                <button type="submit" class="btn" id="search_btn">Search</button>
-                <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 20px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建任务</button>
+			 	<label>部&nbsp;&nbsp;&nbsp;门：</label> <input name="search_department_id" id="mydepartment_id" value="${param.search_department_id }" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+		 	    <label style="margin-left: 25px;">状&nbsp; &nbsp;态：</label> <input type="text" name="search_description" class="input-small" value="${param.search_status}">
+		 	    <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 150px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建任务</button>
+		 	    <div style="padding-top:10px">
+		 	    <label>拥有者：</label> <input name="search_owner_id" id="myaccount_id" value="${param.search_owner_id }" class="easyui-combobox" data-options="method:'get',valueField:'id',textField:'name'"> 
+		 	    <label style="margin-left: 25px;">关键字：</label><input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
+                <button type="submit" class="btn" id="search_btn" style="margin-left: 35px;">搜索</button>
+                </div>
 	    </div>
 	    <tags:sort/>
 	    </div>
