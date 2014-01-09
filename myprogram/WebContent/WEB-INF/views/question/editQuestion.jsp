@@ -103,7 +103,12 @@
 <body>
 <form id="inputForm" action="${ctx}/question/updateQuestion" method="post" class="form-horizontal">
 	<div class="form">
-		<h1>问题管理</h1>
+	<h1>问题管理</h1>
+	<table>
+	 <tbody>
+	  <tr valign="top">
+	    <td>
+	    <div id="warning-block" class="alert alert-error hide" style="width:300px;margin-left:130px"><strong>注意!</strong> 问题正在使用中，已有选项不可删除</div>
 		<div class="control-group">
 				<label for="questionType" class="control-label required formlabel">类型:</label>
 				<div class="controls">
@@ -128,7 +133,7 @@
 				<label for="question" class="control-label formlabel">标题:</label>
 				<div class="controls">
 					<input type="hidden" name="id" value="${question.id}">
-					<input type="text" id="question" name="question"  value="${question.question}" style="width:600px"  maxlength="256"/>
+					<input type="text" id="question" name="question"  value="${question.question}" style="width:440px"  maxlength="256"/>
 					<span id="question_error" class="error" style="display:none">请填写标题!</span>
 				</div>
 		</div>
@@ -145,17 +150,44 @@
 					<label for="option" class="control-label formlabel" style="color:red">*</label>
 					<div class="controls">
 						<input type="text" name="splitOptions" onblur="checkOptions()"  value="${questionOption}" style="width:400px" placeholder="至少填写两个选项"  maxlength="64"/>
-						<a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a>
+						<c:choose>
+							<c:when test="${question.paperAnswered}">
+								<script type="text/javascript">
+									$("#warning-block").show();
+								</script>
+							</c:when>
+							<c:otherwise>
+						 		<a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><span style="margin:0px 0px -11px 5px" class="iconImg iconImg_delete"></span></a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</c:forEach>
 		</div>
 		<div id="option_error" style="padding-left:170px;display:none"></div>
-		
+		</td>
+		<td>
+		 <c:choose>
+		  <c:when test="${question.paperAnswered}"></c:when>
+		  <c:when test="${question.paperUsed}">
+			<div id="questionUsedAlert" class="alert" style="overflow: auto; margin-left: 100px; height: 250px; width: 300px;">
+				<p><strong>该问题正在被以下问卷所引用，请谨慎修改！</strong></p>
+				<ol id="papers" style="">
+					<c:forEach items="${papers}" var="paper">
+						<li><a href="${ctx}/paper/show/${paper.id}" id="showLink-${paper.id}" target="_blank">${paper.paperName}</a></li>
+					</c:forEach>
+				</ol>
+			</div>
+		  </c:when>
+	     </c:choose>
+		</td>
+	  </tr>	
+	  </tbody>
+	</table>
 		<div class="form-actions" style="padding-top:30px">
 			<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
 			<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
-		</div>	
+		</div>
 	</div>
 </form>
 </body>

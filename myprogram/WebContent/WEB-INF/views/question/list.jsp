@@ -5,7 +5,6 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 <!-- combotreee -->
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
@@ -37,16 +36,27 @@
 		
 		<tags:sort/>
 	</div>
+	<div id="error-block"></div>
 	<div style="padding:20px;">
 	<div id="questions" class="accordion">
 		<c:forEach items="${questions.content}" var="question" varStatus="status">
 			<div class="accordion-group">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.index+1+(pageNumber-1)*5}：</span>
-                    <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display: inline-block; word-wrap: break-word; width: 900px;">
-                      	${question.question}
+                    <a href="#collapse_${status.index+1+(pageNumber-1)*5}" data-parent="#questions" data-toggle="collapse" class="accordion-toggle" style="display: inline-block; word-wrap: break-word; width: 850px;text-decoration: none;">
+                      	${question.question}<c:if test="${question.paperAnswered}"><span style="color:#FF0000">(正在使用)</span></c:if>
                     </a>
-                    <span style="float: right; padding: 8px 20px;"><a href="${ctx}/question/editQuestion/question_${question.id}"><i class="icon-edit"></i>修改</a>&nbsp;<a href="javascript: if(confirm('确定删除吗')){location.href='${ctx}/question/deleteQuestion/question_${question.id}';}"><i class="icon-remove-circle"></i>删除</a></span>
+                    <span style="float: right; padding: 8px 20px;">
+                    	<a href="${ctx}/question/editQuestion/question_${question.id}"><i class="icon-edit"></i>修改</a>
+                    	<c:choose>
+                    		<c:when test="${question.paperAnswered}">
+                    			<a href="javascript:void(0);" onclick="errorAlert()"><i class="icon-remove-circle"></i>删除</a>
+                    		</c:when>
+                    		<c:otherwise>
+                    			<a href="javascript:void(0);" onclick="questionDeletePopupWindow(${question.id})"><i class="icon-remove-circle"></i>删除</a>
+                    		</c:otherwise>
+                    	</c:choose>
+                    </span>
                    </div>
                   <div class="accordion-body collapse" id="collapse_${status.index+1+(pageNumber-1)*5}">
                     <div class="accordion-inner" style="padding-left:55px">
@@ -76,6 +86,20 @@
 	</div>
 	<tags:pagination page="${questions}" paginationSize="4"/>
 	</div>
+</div>
+<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+<div id="questionDeleteModalWindow" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">&times;</button>
+		<h4>确定删除该问题吗？</h4>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"">关闭</a> 
+		<a id="deleteBtn" href="" class="btn btn-primary">确定</a>
+	</div>
+</div>
+</div>
     <script type="text/javascript">
  	   $(document).ready(function() {
 			$("#question-tab").addClass("active");
@@ -90,9 +114,18 @@
 				$("#cc").combotree('setValues', categoryIds);
 			}
 		});
+		
+		function errorAlert(){
+			var errorDiv = '<div class="alert alert-error" style="width:250px;margin-bottom:-10px;margin-left:20px"><button type="button" class="close" data-dismiss="alert">×</button><strong>注意!</strong> 问题正在使用中，无法删除</div>';
+			$("#error-block").empty();
+			$("#error-block").append(errorDiv);
+		}
+		
+		function questionDeletePopupWindow(id) {
+			var questionId = id;
+			$('#questionDeleteModalWindow').modal();
+			$('#deleteBtn').attr('href','${ctx}/question/deleteQuestion/question_' + questionId);
+		}
 	</script>
-</div>
-<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
-</div>
 </body>
 </html>

@@ -2,12 +2,14 @@ package com.eastteam.myprogram.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.entity.Question;
 
 public class QuestionMybatisDaoTest extends SpringTransactionalTestCase {
@@ -76,5 +78,20 @@ public class QuestionMybatisDaoTest extends SpringTransactionalTestCase {
 		logger.info("get Qestion");
 		
 		Question q = questionDao.getQuestion(1l);
+	}
+	
+	@Test
+	public void questionAnsweredCountTest() throws Exception {
+		logger.info("question Answered Count");
+		
+		Long count = questionDao.questionAnsweredCount(1l);
+	}	
+	
+	@Test
+	public void questionRelatedPaperTest() throws Exception {
+		logger.info("questionRelatedPaper");
+		
+		List<Paper> pq = questionDao.questionRelatedPaper(1l);
+		logger.info("questionRelatedPaper");
 	}
 }
