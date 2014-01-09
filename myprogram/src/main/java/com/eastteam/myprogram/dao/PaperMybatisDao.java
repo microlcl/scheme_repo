@@ -29,5 +29,6 @@ public interface PaperMybatisDao {
 	public void deleteQuestions(Long paperId);
 	public void publishPaper(Long paperId);
 	public void updatePaper(Paper paper);
+	public void discardPaper(Long paperId);
 
 }

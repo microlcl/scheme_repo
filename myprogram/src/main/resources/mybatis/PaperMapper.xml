@@ -105,4 +105,8 @@
 		update papers set paper_name = #{paperName}, business_type = #{businessType.id}, status = '1-0-1-0'
 		where paper_id=#{id}
 	</update>
+	<update id="discardPaper" parameterType="Long">
+		update papers set status='1-0-1-2'
+		where paper_id=#{id}
+	</update>
 </mapper>
