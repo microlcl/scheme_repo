@@ -24,7 +24,7 @@
 		<result property="question" column="question" />
 		<result property="questionType" column="question_type" />
 		<result property="questionOptions" column="question_options" />
-		<result property="business_type" column="business_type" />
+		<result property="businessType" column="business_type" />
 		<result property="trashed" column="trashed" />
 	</resultMap>
 	
@@ -77,5 +77,20 @@
 	<select id="getQuestion" resultMap="questionDetailMap">
 		select q.question_id, q.question, q.question_type, q.question_options, q.business_type, q.trashed from questions q
 		where q.question_id=#{questionId}
+	</select>
+	
+	<select id="questionAnsweredCount" parameterType="Long" resultType="Long">
+		select count(0) from paper_answers 
+		where question_id=#{questionId}
+	</select>
+	
+	<select id="questionUsedCount" parameterType="Long" resultType="Long">
+		select count(0) from paper_questions 
+		where question_id=#{questionId}
+	</select>
+	
+	<select id="questionRelatedPaper" parameterType="Long" resultType="Paper">
+		select p.paper_id as id, p.paper_name as paperName from paper_questions pq, papers p
+		where pq.question_id=#{questionId} and pq.paper_id=p.paper_id 
 	</select>
 </mapper>

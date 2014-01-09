@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.service.questions.QuestionService;
 import com.eastteam.myprogram.web.Servlets;
@@ -106,6 +107,9 @@ public class QuestionController {
 		Question question = this.questionService.getQuestion(Long.parseLong(id));
 		model.addAttribute("question", question);
 		
+		List<Paper> papers = this.questionService.questionPaper(Long.parseLong(id));
+		model.addAttribute("papers", papers);
+		
 		return "question/editQuestion";
 	}
 	
@@ -156,4 +160,10 @@ public class QuestionController {
 
 	    return questions;
 	  }	
+	
+//	@RequestMapping(value = "/searchPaper/question_{id}", method = RequestMethod.GET)
+//	@ResponseBody
+//	public Map paperQuestion(@PathVariable("id") String id,  RedirectAttributes redirectAttributes){
+//		Map papers = 
+//	}
 }
