@@ -5,8 +5,24 @@
 <html>
 <head>
 <title>用户管理</title>
-<link rel="stylesheet" type="text/css"
-	href="${ctx}/static/styles/form.css">
+<link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/themes/icon.css">
+<link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/mytree.css">
+<link rel="stylesheet" type="text/css"	href="${ctx}/static/styles/form.css">
+
+<script src="${ctx}/static/easyui/jquery.easyui.min.js"	type="text/javascript"></script>
+<script>
+	$(document).ready(function() {
+		// 必须在$(document).ready里面定义combotree的onChange事件
+		$('#assigned_department').combotree({
+			onChange : function(node) {
+				var url = '${ctx}/account/api/search?departmentId=' + node;
+				$('#case_owner').combobox('reload', url);
+			}
+		});
+	});
+</script>
+
 
 
 </head>
@@ -14,6 +30,22 @@
 <body>
 	<div class="form">
 		<h1>需求管理</h1>
+		<div class="form-horizontal">
+			<div class="row">
+				<div class="control-group span7">
+					<label class="control-label" for="case_title">概要：</label>
+					<div class="controls">
+						<input type="text" id="case_title" class="input-xxlarge" value="乔布斯的婚礼">
+					</div>
+				</div>
+				<div class="control-group span2">
+					<label class="control-label" for="case_status">状态：</label>
+					<div class="controls">
+						<input type="text" id="case_status" value="">
+					</div>
+				</div>
+			</div>
+		</div>
 		<div style="padding: 20px;">
 			<div class="tabbable">
 				<ul class="nav nav-tabs">

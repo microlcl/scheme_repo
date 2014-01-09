@@ -278,7 +278,7 @@ create table customer (
 	weibo varchar(16),
 	qq varchar(16),
 	birthday date,
-	interest varchar(128), -- 爱好
+	favorite varchar(128), -- 爱好
 	description varchar(256), -- 备注
 	primary key (customer_id)
 );
