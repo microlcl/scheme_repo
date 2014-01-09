@@ -7,6 +7,7 @@ public class Question extends IdEntity {
 	private String questionOptions;
 	private String trashed;
 	private String business_type;
+	private int position;
 
 	private String[] splitOptions;
 	
@@ -46,4 +47,11 @@ public class Question extends IdEntity {
 	public void setBusiness_type(String business_type) {
 		this.business_type = business_type;
 	}
+	public int getPosition() {
+		return position;
+	}
+	public void setPosition(int position) {
+		this.position = position;
+	}
+	
 }

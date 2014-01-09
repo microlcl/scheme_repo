@@ -3,30 +3,25 @@ package com.eastteam.myprogram.entity;
 import java.util.Date;
 
 /**
- * @author LSS
+ * @author LB
  *
  */
 public class Task extends IdEntity{
-	private Long parentId; //父task,为空就是没有父task，就是US
+	private Task parent; //父task,为空就是没有父task，就是US
 	private String summary; //类似于RTC中的summary，用作title
 	private String description; //描述
 	private Category taskType; // US的type
 	private Category status;  //US的状态
-	private String departmentId; // task所属的部门id
-	private String owner; // task拥有者
+	private Department department; // task所属的部门id
+	private User owner; // task拥有者
 	private int progress; //task进行百分百值
 	private Category priority; //优先级，在category的系统参数节点配置
 	private Date dueDate; // 计划完成时间
 	private int timeRemaining;  // 剩余多少时间
 	private Date createdTimestamp; // 创建时间
-	private String createdDy;  // 创建人
+	private User createdDy;  // 创建人
 
-	public Long getParentId() {
-		return parentId;
-	}
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
-	}
+
 	public String getSummary() {
 		return summary;
 	}
@@ -40,18 +35,6 @@ public class Task extends IdEntity{
 		this.description = description;
 	}
 
-	public String getDepartmentId() {
-		return departmentId;
-	}
-	public void setDepartmentId(String departmentId) {
-		this.departmentId = departmentId;
-	}
-	public String getOwner() {
-		return owner;
-	}
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
 	public int getProgress() {
 		return progress;
 	}
@@ -65,12 +48,7 @@ public class Task extends IdEntity{
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-	public String getCreatedDy() {
-		return createdDy;
-	}
-	public void setCreatedDy(String createdDy) {
-		this.createdDy = createdDy;
-	}
+
 	public int getTimeRemaining() {
 		return timeRemaining;
 	}
@@ -101,6 +79,29 @@ public class Task extends IdEntity{
 	public void setPriority(Category priority) {
 		this.priority = priority;
 	}
-
+	public Task getParent() {
+		return parent;
+	}
+	public void setParent(Task parent) {
+		this.parent = parent;
+	}
+	public User getOwner() {
+		return owner;
+	}
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+	public User getCreatedDy() {
+		return createdDy;
+	}
+	public void setCreatedDy(User createdDy) {
+		this.createdDy = createdDy;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 	
 }

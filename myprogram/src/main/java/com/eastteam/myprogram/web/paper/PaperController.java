@@ -84,37 +84,17 @@ public class PaperController {
 		return "paper/addPaper";
 	}
 	
-	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(Model model, HttpServletRequest request){
-		logger.info("in paper Controller save parper");
-		String paperTitle = request.getParameter("paperTitle");
-		logger.info("===========paperTitle:" + paperTitle);
-		Paper paper = new Paper();
-		paper.setPaperName(paperTitle);
-		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
-		Category businessType = new Category();
-		businessType.setId(searchParams.get("categoryId").toString());
-		paper.setBusinessType(businessType);
-		String[] questions = request.getParameterValues("selectedQuestionsOnPage");
-		logger.info("===========The selected questions' count:" + questions.length);
-		this.paperService.saveQuestions(paper, questions);
-		
-		return "redirect:/paper/list/";
-	}
-	
 	@RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") String id, Model model) {
-		List<Question> questions = this.paperService.getQuestions(id);
-		Iterator<Question> it = questions.iterator();
+		//List<Question> questions = this.paperService.getQuestions(id);
+		Paper paper = this.paperService.selectPaper(id);
+		Iterator<Question> it = paper.getQuestions().iterator();
 		while(it.hasNext()){
 			Question question = it.next();
 			String[] questionOptions = this.paperService.splitQuestionOptions(question.getQuestionOptions());
 			question.setSplitOptions(questionOptions);
 		}
-		model.addAttribute("questions", questions);
-		Paper paper = this.paperService.selectPaper(id);
 		model.addAttribute("selectpaper", paper);
-		this.paperService.deletePaper(id);
 		return "/paper/updatePaper";
 	}
 	
@@ -132,4 +112,32 @@ public class PaperController {
 		
 		return "redirect:/paper/list/";
 	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(Model model, Paper paperBean, HttpServletRequest request){
+		logger.info("=====in paper Controller update parper");
+		Paper paper = paperBean;
+		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		Category businessType = new Category();
+		businessType.setId(searchParams.get("categoryId").toString());
+		paper.setBusinessType(businessType);
+		this.paperService.updatePaper(paper);
+		
+		return "redirect:/paper/list/";
+	}
+	
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	public String save(Model model, Paper paperBean, HttpServletRequest request){
+		logger.info("in paper Controller save parper");
+		Paper paper = paperBean;
+		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		Category businessType = new Category();
+		businessType.setId(searchParams.get("categoryId").toString());
+		paper.setBusinessType(businessType);
+		
+		this.paperService.saveQuestions(paper);
+		
+		return "redirect:/paper/list/";
+	}
+	
 }

@@ -64,7 +64,7 @@
 			<tr>
 				<td>${task.summary}&nbsp;</td>
 				<td>${task.status}&nbsp;</td>
-				<td>${task.owner}</td> 
+				<td>${task.owner.name}</td> 
 				<td>${task.createdTimestamp}</td>
 				<td>${task.priority}</td>
 				<td></td>

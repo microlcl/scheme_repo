@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class Paper extends IdEntity {
 	
-	private Long id;
 	private String paperName;
 	private Category businessType;
 	private Category status;
@@ -36,12 +35,6 @@ public class Paper extends IdEntity {
 	}
 	public void setStatus(Category status) {
 		this.status = status;
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	public List<Question> getQuestions() {
 		return questions;

@@ -387,5 +387,7 @@ insert into paper_questions (paper_id, question_id, position) values (6, 5, 50);
 insert into paper_questions (paper_id, question_id, position) values (6, 6, 60);
 
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(1,1,'创建增加页面','添加一个增加页面，来增加数据','','','1','libo',40,'',now(),1,now(),'libo');
+		values(1,1,'创建增加页面','添加一个增加页面，来增加数据','','','D1-1','admin',40,'',now(),1,now(),'admin');
+insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
+		values(2,1,'创建删除页面','删除一个页面','','','D1-1','userid9',40,'',now(),1,now(),'userid9');
 

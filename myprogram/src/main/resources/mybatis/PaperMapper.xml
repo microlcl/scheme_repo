@@ -72,7 +72,7 @@
 		</where>)t
 	</select>
 	<select id="selectQuestions" resultType="Question">
-	    select q.question as question, q.question_id as id, q.question_type as questionType, question_options as questionOptions
+	    select q.question as question, q.question_id as id, q.question_type as questionType, q.question_options as questionOptions, pq.position as position
 	    from questions q, paper_questions pq 
 	    where q.question_id=pq.question_id and pq.paper_id=#{paper_id} order by pq.position
 	</select>
@@ -99,6 +99,10 @@
 	</delete>
 	<update id="publishPaper" parameterType="Long">
 		update papers set status='1-0-1-1'
+		where paper_id=#{id}
+	</update>
+	<update id="updatePaper" parameterType="Paper">
+		update papers set paper_name = #{paperName}, business_type = #{businessType.id}, status = '1-0-1-0'
 		where paper_id=#{id}
 	</update>
 </mapper>
