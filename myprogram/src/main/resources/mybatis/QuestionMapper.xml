@@ -15,9 +15,9 @@
 	</update>
 	
 	<!-- 删除问题 -->
-	<delete id="delete" parameterType="Long">
-		delete from questions where question_id=#{id}
-	</delete>
+	<update id="delete" parameterType="Long">
+		update questions set trashed='T' where question_id=#{id}
+	</update>
 	
 	<resultMap type="Question" id="questionDetailMap">
 		<id property="id" column="question_id" />
@@ -32,9 +32,8 @@
 	<select id="search" parameterType="map" resultMap="questionDetailMap">
 		select q.question_id, q.question, q.question_type, q.question_options, q.business_type, q.trashed from questions q
 		<where>
-			q.trashed = 'F'
 			<if test="keyword != null">
-				and q.question like '%${keyword}%'
+				q.question like '%${keyword}%'
 			</if>
 			<if test="categoryIdList != null">
 		        and q.business_type in 
@@ -58,9 +57,8 @@
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0) from questions
 		<where>
-			trashed = 'F'
 			<if test="keyword != null">
-				and question like '%${keyword}%'
+			    question like '%${keyword}%'
 			</if>
 			<if test="categoryIdList != null">
 		        and business_type in 

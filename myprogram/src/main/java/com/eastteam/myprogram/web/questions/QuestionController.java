@@ -53,6 +53,7 @@ public class QuestionController {
 			Model model, ServletRequest request){
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
+		searchParams.put("trashed", "F");
 		logger.info(searchParams.toString());
 		Page<Question> questions = questionService.getCurrentPageContent(
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("question.pagesize")), sortType);
