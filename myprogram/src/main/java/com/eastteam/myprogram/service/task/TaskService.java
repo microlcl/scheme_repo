@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.TaskMybatisDao;
+import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -36,5 +37,9 @@ public class TaskService extends PageableService{
 		return taskDao.getCount(parameters);
 	}
 	
+	public void save(Task task){
+		taskDao.save(task);
+		
+	}
 
 }

@@ -22,7 +22,11 @@
 	<div class="form">
 		<h1>增加任务</h1>
 		<form id="taskForm" action="${ctx}/task/save" method="post" class="form-horizontal" >
-		摘要：<input type="text" id="summary" name="summary"  class="input-large required" maxlength="64"/>
+		<div >
+		<p style="padding-left:24px;"> 
+		摘要：<input type="text" id="summary" name="summary"   maxlength="256" style="width: 60%"/>
+		</p>
+		</div>
 		<div style="padding: 20px;">
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
