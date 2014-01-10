@@ -28,24 +28,21 @@
 </head>
 
 <body>
-	<div class="form">
+	<div class="form" style="padding:20px;">
 		<h1>需求管理</h1>
-		<div class="form-horizontal">
-			<div class="row">
-				<div class="control-group span7">
-					<label class="control-label" for="case_title">概要：</label>
-					<div class="controls">
-						<input type="text" id="case_title" class="input-xxlarge" value="乔布斯的婚礼">
-					</div>
-				</div>
-				<div class="control-group span2">
-					<label class="control-label" for="case_status">状态：</label>
-					<div class="controls">
-						<input type="text" id="case_status" value="">
-					</div>
+		<div class="row">
+			<div class="span">
+				<div class="form-search" style="padding-left:20px;">
+					<label for="case_title">概要：</label> 
+					<input type="text" class="input-xxlarge" id="case_title" value="乔布斯的婚礼">
+
 				</div>
 			</div>
+								<div class="pull-right">
+						<input type="text" class="input-small" id="case_status" value="" placeholder="状态下拉栏">
+					</div>
 		</div>
+
 		<div style="padding: 20px;">
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
