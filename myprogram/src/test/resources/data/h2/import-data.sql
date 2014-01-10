@@ -73,12 +73,15 @@ insert into users(id, name, password, email, register_date, department_id) value
 insert into users(id, name, password, email, register_date, department_id) values('userid9','乔布斯9','userid9','userid9@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, register_date, department_id) values('userid99','乔布斯99','userid99','userid10@gmail.com', now(),'D1-2');
 insert into users(id, name, password, email, sex, register_date, department_id) values('ydq','ydq','ydq','ydq@gmail.com','男','2012-06-04 02:00:00','D1-1');
+insert into users(id, name, password, email, register_date, department_id) values('userid10','小丽','userid10','userid11@gmail.com', now(),'D1-3');
+insert into users(id, name, password, email, register_date, department_id) values('userid11','李经理','userid11','userid12@gmail.com', now(),'D1-3');
 
 
 insert into departments(department_id, name, pid, description) values('D1','EastTeam','','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-1','研发部','D1','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-2','销售部','D1','EastTeam公司');
 insert into departments(department_id, name, pid, description) values('D1-2-1','渠道销售部','D1-2','EastTeam公司');
+insert into departments(department_id, name, pid, description) values('D1-3','客服部','D1','EastTeam公司');
 
 insert into roles(role_id, name, description) values('R0', '管理员','超级用户');
 insert into roles(role_id, name, description) values('R1', '管理员1','超级用户1');
@@ -427,7 +430,7 @@ insert into customer (customer_id, customer_name, customer_phone, customer_sex, 
 	values (3, '王五', '13022222222', '22114433', '财务', 'wangwu', '300000', '1983-12-28', '理财', '此人善于沟通');
 		
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', '小丽', '李经理', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', '李经理', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C')
+	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C')
