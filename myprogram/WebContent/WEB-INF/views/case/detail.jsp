@@ -26,13 +26,13 @@
 		//时间控件
 		$('.form_date').datetimepicker({
 	        language:  'zh-CN',
-	        weekStart: 1,
+	        //weekStart: 1,
 	        todayBtn:  true,
 	        pickerPosition: "bottom-left",
 			autoclose: 1,
 			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
+			//startView: 2,
+			//minView: 2,
 			forceParse: 0,
 			format: 'yyyy-mm-dd hh:ii'
     	});
