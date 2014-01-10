@@ -435,3 +435,5 @@ insert into customer (customer_id, customer_name, customer_phone, customer_sex, 
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
 	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', '小丽', '李经理', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
 
+insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
+	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', '李经理', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C')
