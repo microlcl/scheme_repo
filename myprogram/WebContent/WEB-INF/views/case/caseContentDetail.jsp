@@ -16,13 +16,20 @@
 		<div class="control-group span pull-left">
 			<label class="control-label" for="business_type">策划类别：</label>
 			<div class="controls">
-				<input type="text" class="span4" id="business_type">
+				<input name="businessType" id="business_type"
+				class="span4 easyui-combotree"
+				data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false">
 			</div>
 		</div>
 		<div class="control-group pull-right">
 			<label class="control-label" for="event_time">举行时间：</label>
 			<div class="pull-right">
-				<input type="text" class="span4" id="event_time" placeholder="">
+				<!--input type="text" class="span4" id="event_time" placeholder=""-->
+				<div class="input-append date form_date" style="margin-left:20px" >
+                    <input size="16" type="text" id="event_time" name="eventTime" style="width:160px" value="" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -50,6 +57,14 @@
 			</div>
 		</div>
 		<div class="control-group span pull-right">
+			<label class="control-label" for="created_timestamp">创建时间：</label>
+			<div class="pull-right">
+				<input type="text" class="span4" name="createdTimestamp" id="created_timestamp" placeholder="">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-group span5 pull-left">
 			<label class="control-label" for="case_owner">责任人：</label>
 			<div class="controls">
 				<input name="caseOwner" id="case_owner"
@@ -57,7 +72,8 @@
 				data-options="method:'get',valueField:'id',textField:'name'">
 			</div>
 		</div>
-	</div>
+
+	</div>	
 	<div class="control-group">
 			<label class="control-label" for="description">描述：</label>
 			<div class="controls">

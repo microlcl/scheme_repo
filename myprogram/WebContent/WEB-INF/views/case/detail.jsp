@@ -5,12 +5,15 @@
 <html>
 <head>
 <title>用户管理</title>
+<link rel="stylesheet" type="text/css"  href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 <link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/mytree.css">
 <link rel="stylesheet" type="text/css"	href="${ctx}/static/styles/form.css">
 
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"	type="text/javascript"></script>
+<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 <script>
 	$(document).ready(function() {
 		// 必须在$(document).ready里面定义combotree的onChange事件
@@ -20,6 +23,19 @@
 				$('#case_owner').combobox('reload', url);
 			}
 		});
+		//时间控件
+		$('.form_date').datetimepicker({
+	        language:  'zh-CN',
+	        weekStart: 1,
+	        todayBtn:  true,
+	        pickerPosition: "bottom-left",
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0,
+			format: 'yyyy-mm-dd hh:ii'
+    	});
 	});
 </script>
 
