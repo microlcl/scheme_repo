@@ -99,5 +99,9 @@
 	    from  task  
 	    where task_id=#{parent_id} 
 	</select>
-
+	<!-- 插入任务-->
+	<insert id="save" parameterType="Task" useGeneratedKeys="true" keyProperty="id" >
+		insert into Task  (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
+		values(#{id},#{parent.id},#{summary},#{description},#{taskType.id},#{status.id},#{department.id},#{owner.id},#{progress},#{priority.id},#{dueDate},#{timeRemaining},#{createdTimestamp},#{createdBy.id});
+	</insert>
 </mapper> 

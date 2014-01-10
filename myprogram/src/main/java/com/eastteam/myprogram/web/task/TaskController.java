@@ -93,7 +93,7 @@ public class TaskController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Task task,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
-//			this.taskService.save(task);
+			this.taskService.save(task);
 			redirectAttributes.addFlashAttribute("message", "增加成功！");
 			return "redirect:/task/list/";
 	}
