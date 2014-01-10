@@ -198,3 +198,42 @@ CREATE TABLE `papers` (
 	PRIMARY KEY (`paper_id`)	
 );
 
+CREATE TABLE `cases` (
+	`case_id` bigint(11) NOT NULL AUTO_INCREMENT,
+	`case_title` varchar(32), -- case的title，比如： 张三的婚庆，李四公司的年会庆典等
+	`created_time` timestamp, -- case创建时间戳
+	`assigned_department_id` varchar(64), -- assigned 给哪个部门
+	`case_owner` varchar(64), -- 这个case的跟单人
+	`business_type` varchar(64),   -- 庆典种类：婚庆，生日，公司年会等，可以在category table配置
+	`event_time` timestamp,    -- 庆典时间
+	`guest_num` int,     -- 客人人数
+	`space_id` bigint(11),    -- 庆典地点,关联space table
+	`space_tip` varchar(64), -- 庆典地点信息，由前台文字输入。后续跟单者可以根据这个信息完成space_id字段的填写。
+	`description` varchar(1024),
+	`paper_id` bigint(11),
+	`status` varchar(64), -- case的状态（new, in progress, finished, trashed）,配置在category table的系统参数节点下
+	`business_code` varchar(6),-- 默认为C, 与case_id 联合组成business_id,与paper_answers table相关联
+	 PRIMARY KEY (case_id)
+);
+
+CREATE TABLE `visit_activities` (
+	`visit_id` bigint(11) NOT NULL AUTO_INCREMENT,
+	`customer_id` bigint(11),
+	`visit_type` varchar(64), -- 访问类别： 到访，回访，在category table配置
+	`visit_stime` timestamp,  -- 默认是系统时间，可以修改
+	`visitor_num` int,	-- 到访，回访人数
+	`assigned_department_id` varchar(64), -- assigned 给哪个部门
+	`recipient` varchar(64),  -- 接待者（前台接待）
+	`operator` varchar(64), -- 经办人（跟单者）
+	`business_type` varchar(64), -- 庆典种类：婚庆，生日，公司年会等，可以在category table配置
+	`case_id` bigint(11),   -- 这次到访是为了哪个case
+	`is_visited` varchar(1), -- 是否初次到访： Ture/False
+	`comment` varchar(256), -- 备注
+	`paper_id` bigint(11), -- 回访单id
+	-- 以下4个字段改由动态表单完成，更加灵活
+	-- appeal_point varchar(1024), -- 客户信息（诉求）要点
+	-- focus_on varchar(1024), -- 客户重点关心
+	-- remaining_issues varchar(1024), -- 需要进一步确认的问题
+	-- result varchar(1024), -- 洽谈结果
+	PRIMARY KEY (`visit_id`)
+);
