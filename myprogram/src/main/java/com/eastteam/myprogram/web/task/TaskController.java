@@ -1,7 +1,4 @@
 package com.eastteam.myprogram.web.task;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javax.servlet.ServletRequest;
@@ -15,22 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.eastteam.myprogram.entity.CategoryLiteBean;
-import com.eastteam.myprogram.entity.Holders;
-import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.Task;
-import com.eastteam.myprogram.service.category.CategoryService;
-import com.eastteam.myprogram.service.holder.HolderService;
 import com.eastteam.myprogram.service.task.TaskService;
 import com.eastteam.myprogram.web.Servlets;
-import com.eastteam.myprogram.web.holder.HolderController;
 import com.google.common.collect.Maps;
 
 @Controller
@@ -60,7 +49,7 @@ public class TaskController {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
 		logger.info(searchParams.toString());
-		Page<Spaces> tasks = taskService.getCurrentPageContent(
+		Page<Task> tasks = taskService.getCurrentPageContent(
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 		model.addAttribute("tasks", tasks);
 		model.addAttribute("sortType", sortType);

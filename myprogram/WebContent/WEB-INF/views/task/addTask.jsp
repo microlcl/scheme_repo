@@ -15,7 +15,15 @@
 	href="${ctx}/static/easyui/mytree.css">
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"
 	type="text/javascript"></script>
-
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#taskForm").validate({
+			errorPlacement: function (error, element) {
+            	error.appendTo(element.parent());    //将错误信息添加当前元素的父结点后面 
+    		}
+		});
+	});
+	</script>
 </head>
 
 <body>
@@ -24,7 +32,7 @@
 		<form id="taskForm" action="${ctx}/task/save" method="post" class="form-horizontal" >
 		<div >
 		<p style="padding-left:24px;"> 
-		摘要：<input type="text" id="summary" name="summary"   maxlength="256" style="width: 60%"/>
+		摘要：<input type="text" id="summary" name="summary"   maxlength="256" style="width: 60%" class="required"/>
 		</p>
 		</div>
 		<div style="padding: 20px;">

@@ -88,28 +88,28 @@
 	<tr>
 		<td style="width:60%" align="center">
 				任务进度：<input type="text" id="progress" name="progress"
-					class="input-large required" maxlength="64" readonly value="0"/>
+					class="input-large" maxlength="64" readonly value="0"/>
 		</td>
 		<td  align="right">
 					剩余时间：<input type="text" id="timeRemaining" name="timeRemaining" value="0"
-					class="input-large required" maxlength="64" />
+					class="input-large" maxlength="64" />
 		</td>
 	</tr>
 	
 	<tr>
 		<td style="width:60%" align="center">
 		创建人：<input type="text" id="createdBy" name="createdBy.id"
-					class="input-large required" maxlength="64" readonly /> 
+					class="input-large" maxlength="64" readonly /> 
 		</td>
 		<td  align="right">
 				创建时间：<input type="text" id="createdTimestamp" name="createdTimestamp"
-					class="input-large required" maxlength="64" readonly /> 
+					class="input-large" maxlength="64" readonly /> 
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2">
 				描述：<textarea id="description" name="description"
-					class="input-large required" maxlength="64" style="width: 90%" ></textarea>
+					class="input-large" maxlength="64" style="width: 90%" ></textarea>
 		</td>
 	</tr>
 </table>
