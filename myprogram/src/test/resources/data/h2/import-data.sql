@@ -417,3 +417,21 @@ insert into task (task_id,parent_id,summary,description,task_type,status,departm
 		values(2,1,'会场布置','年会会场布置','2-3-2','2-1-2','D1-2','userid9',40,'2-2-1',now(),1,now(),'userid9');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
 		values(3,1,'人员安排','年会人员安排','2-3-3','2-1-3','D1-2','userid8',40,'2-2-2',now(),1,now(),'userid9');
+		
+insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
+		values(1,0,'年会','举行年会','2-3-3','2-1-1','D1-1','admin',40,'2-2-3',now(),1,now(),'admin');
+insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
+		values(2,1,'会场布置','年会会场布置','2-3-2','2-1-2','D1-2','userid9',40,'2-2-1',now(),1,now(),'userid9');
+insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
+		values(3,1,'人员安排','年会人员安排','2-3-3','2-1-3','D1-2','userid8',40,'2-2-2',now(),1,now(),'userid9');
+
+insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
+	values (1, '张三', '13000000000', '12345678', 'IT', 'zhangsan', '100000', '1983-12-28', '玩游戏看电视', '此人性格孤僻');
+insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
+	values (2, '李四', '13011111111', '11223344', '厨师', 'lisi', '200000', '1983-12-28', '睡觉', '此人倾向于吃喝玩乐');
+insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
+	values (3, '王五', '13022222222', '22114433', '财务', 'wangwu', '300000', '1983-12-28', '理财', '此人善于沟通');
+		
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', '小丽', '李经理', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+
