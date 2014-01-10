@@ -21,32 +21,7 @@
 <script
 	src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js"
 	type="text/javascript"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
 
-		// 必须在$(document).ready里面定义combotree的onChange事件
-		$('#department').combotree({
-			onChange : function(node) {
-				var url = '${ctx}/account/api/search?departmentId=' + node;
-				$('#myaccount_id').combobox('reload', url);
-			}
-		});
-		var time=new Date();  
-		$("#createdTimestamp").val(time);
-	});
-
-	$('.form_date').datetimepicker({
-		language : 'zh-CN',
-		weekStart : 1,
-		todayBtn : true,
-		autoclose : 1,
-		todayHighlight : 1,
-		startView : 2,
-		minView : 2,
-		forceParse : 0,
-		format : 'yyyy-mm-dd'
-	});
-</script>
 <table>
 	<tr>
 		<td style="width:60%" align="center">任务类型：<input type="text" id="taskType" name="taskType.id"
@@ -73,16 +48,14 @@
 			class="easyui-combotree" style="width: 220px;"
 			data-options="url:'${ctx}/category/api/getAll/M1-9-2',method:'get',required:false">
 		</td>
-		<td  align="right">
+		<td  align="left">
 				计划完成时间：
-				<!-- 
 				<div class="input-append date form_date" style="margin-left: 20px">
 					<input size="16" type="text" id="dueDate" name="dueDate"
-						style="width: 160px" readonly> <span class="add-on"><i
-						class="icon-remove"></i></span> <span class="add-on"><i
-						class="icon-th"></i></span>
+						style="width: 160px" readonly>
+						 <span class="add-on"><i class="icon-remove"></i></span> 
+						 <span class="add-on"><i class="icon-th"></i></span>
 				</div>
-				 -->
 		</td>
 	</tr>
 	<tr>
@@ -113,3 +86,30 @@
 		</td>
 	</tr>
 </table>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		// 必须在$(document).ready里面定义combotree的onChange事件
+		$('#department').combotree({
+			onChange : function(node) {
+				var url = '${ctx}/account/api/search?departmentId=' + node;
+				$('#myaccount_id').combobox('reload', url);
+			}
+		});
+		var time=new Date();  
+		$("#createdTimestamp").val(time);
+	});
+
+	$('.form_date').datetimepicker({
+		language : 'zh-CN',
+		weekStart : 1,
+		todayBtn : true,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		pickerPosition: "bottom-left",
+		format : 'yyyy-mm-dd HH:ii'
+	});
+</script>
