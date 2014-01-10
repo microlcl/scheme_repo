@@ -223,21 +223,21 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-6-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-3','1-6','4','2012-06-04 02:00:00','F','45');
 
 --task 状态
-insert into category(id, pid, name, created_date, trashed, comment) values('2-1','1','作业状态','2012-06-04 02:00:00','F','作业状态');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-1-1','2-1','新建','2012-06-04 02:00:00','F','新建作业');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-1-2','2-1','进行中','2012-06-04 02:00:00','F','作业进行中');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-1-3','2-1','完成','2012-06-04 02:00:00','F','作业已完成');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-1-4','2-1','废弃','2012-06-04 02:00:00','F','作业被废弃');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4','1-0','作业状态','2012-06-04 02:00:00','F','作业状态');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-1','1-0-4','新建','2012-06-04 02:00:00','F','新建作业');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-2','1-0-4','进行中','2012-06-04 02:00:00','F','作业进行中');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-3','1-0-4','完成','2012-06-04 02:00:00','F','作业已完成');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-4','1-0-4','废弃','2012-06-04 02:00:00','F','作业被废弃');
 --task 优先级
-insert into category(id, pid, name, created_date, trashed, comment) values('2-2','1','作业优先级','2012-06-04 02:00:00','F','作业优先级');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-2-1','2-2','低优先级','2012-06-04 02:00:00','F','作业优先级低');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-2-2','2-2','中优先级','2012-06-04 02:00:00','F','作业优先级中');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-2-3','2-2','高优先级','2012-06-04 02:00:00','F','作业优先高');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5','1-0','作业优先级','2012-06-04 02:00:00','F','作业优先级');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-1','1-0-5','低优先级','2012-06-04 02:00:00','F','作业优先级低');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-2','1-0-5','中优先级','2012-06-04 02:00:00','F','作业优先级中');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-3','1-0-5','高优先级','2012-06-04 02:00:00','F','作业优先高');
 --task 类别
-insert into category(id, pid, name, created_date, trashed, comment) values('2-3','1','作业类型','2012-06-04 02:00:00','F','作业类型');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-3-1','2-3','设计','2012-06-04 02:00:00','F','设计');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-3-2','2-3','工程','2012-06-04 02:00:00','F','工程');
-insert into category(id, pid, name, created_date, trashed, comment) values('2-3-3','2-3','会议','2012-06-04 02:00:00','F','会议');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6','1-0','作业类型','2012-06-04 02:00:00','F','作业类型');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-1','1-0-6','设计','2012-06-04 02:00:00','F','设计');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-2','1-0-6','工程','2012-06-04 02:00:00','F','工程');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-3','1-0-6','会议','2012-06-04 02:00:00','F','会议');
 
 insert into function_category(function_id,category_id) values('M1-4','1-1');
 insert into function_category(function_id,category_id) values('M1-4','1-2');
@@ -246,8 +246,8 @@ insert into function_category(function_id,category_id) values('M1-5','1-6');
 insert into function_category(function_id,category_id) values('M1-7','1-0-2');
 insert into function_category(function_id,category_id) values('M1-8','1-0-1');
 insert into function_category(function_id,category_id) values('M1-6','1-0-0');
-insert into function_category(function_id,category_id) values('M1-9','2-1');
-insert into function_category(function_id,category_id) values('M1-9-2','2-2');
+insert into function_category(function_id,category_id) values('M1-9','1-0-4');
+insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
 
 
 
