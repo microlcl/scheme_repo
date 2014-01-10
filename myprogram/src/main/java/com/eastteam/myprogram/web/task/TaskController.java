@@ -42,7 +42,11 @@ public class TaskController {
 	private static Logger logger = LoggerFactory
 			.getLogger(TaskController.class);
 	private static Map<String, String> sortTypes = Maps.newLinkedHashMap();
-	
+	static {
+		sortTypes.put("task_type", "作业类型");
+		sortTypes.put("owner", "作业拥有者");
+		sortTypes.put("priority", "作业优先级");
+	}
 	@Autowired
   	@Qualifier("configProperties")
   	private Properties configProperties;
