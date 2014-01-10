@@ -223,11 +223,11 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-6-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-3','1-6','4','2012-06-04 02:00:00','F','45');
 
 --task 状态
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4','1-0','作业状态','2012-06-04 02:00:00','F','作业状态');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-1','1-0-4','新建','2012-06-04 02:00:00','F','新建作业');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-2','1-0-4','进行中','2012-06-04 02:00:00','F','作业进行中');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-3','1-0-4','完成','2012-06-04 02:00:00','F','作业已完成');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-4','1-0-4','废弃','2012-06-04 02:00:00','F','作业被废弃');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7','1-0','作业状态','2012-06-04 02:00:00','F','作业状态');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-1','1-0-7','新建','2012-06-04 02:00:00','F','新建作业');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-2','1-0-7','进行中','2012-06-04 02:00:00','F','作业进行中');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-3','1-0-7','完成','2012-06-04 02:00:00','F','作业已完成');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-4','1-0-7','废弃','2012-06-04 02:00:00','F','作业被废弃');
 --task 优先级
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5','1-0','作业优先级','2012-06-04 02:00:00','F','作业优先级');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-1','1-0-5','低优先级','2012-06-04 02:00:00','F','作业优先级低');
@@ -246,7 +246,7 @@ insert into function_category(function_id,category_id) values('M1-5','1-6');
 insert into function_category(function_id,category_id) values('M1-7','1-0-2');
 insert into function_category(function_id,category_id) values('M1-8','1-0-1');
 insert into function_category(function_id,category_id) values('M1-6','1-0-0');
-insert into function_category(function_id,category_id) values('M1-9','1-0-4');
+insert into function_category(function_id,category_id) values('M1-9','1-0-7');
 insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
 
 
@@ -412,18 +412,12 @@ insert into paper_questions (paper_id, question_id, position) values (6, 5, 50);
 insert into paper_questions (paper_id, question_id, position) values (6, 6, 60);
 
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(1,0,'年会','举行年会','2-3-3','2-1-1','D1-1','admin',40,'2-2-3',now(),1,now(),'admin');
+		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3',now(),1,now(),'admin');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(2,1,'会场布置','年会会场布置','2-3-2','2-1-2','D1-2','userid9',40,'2-2-1',now(),1,now(),'userid9');
+		values(2,1,'会场布置','年会会场布置','1-0-6-2','1-0-7-2','D1-2','userid9',40,'1-0-5-1',now(),1,now(),'userid9');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(3,1,'人员安排','年会人员安排','2-3-3','2-1-3','D1-2','userid8',40,'2-2-2',now(),1,now(),'userid9');
+		values(3,1,'人员安排','年会人员安排','1-0-6-3','1-0-7-3','D1-2','userid8',40,'1-0-5-2',now(),1,now(),'userid9');
 		
-insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(1,0,'年会','举行年会','2-3-3','2-1-1','D1-1','admin',40,'2-2-3',now(),1,now(),'admin');
-insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(2,1,'会场布置','年会会场布置','2-3-2','2-1-2','D1-2','userid9',40,'2-2-1',now(),1,now(),'userid9');
-insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(3,1,'人员安排','年会人员安排','2-3-3','2-1-3','D1-2','userid8',40,'2-2-2',now(),1,now(),'userid9');
 
 insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
 	values (1, '张三', '13000000000', '12345678', 'IT', 'zhangsan', '100000', '1983-12-28', '玩游戏看电视', '此人性格孤僻');
