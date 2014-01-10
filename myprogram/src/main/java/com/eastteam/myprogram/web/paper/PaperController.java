@@ -52,10 +52,15 @@ public class PaperController {
 			Model model, ServletRequest request){
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
-		Page<Paper> papers = paperService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("question.pagesize")), sortType);
+		if ((request.getParameter("search_categoryId1") != "") && (request.getParameter("search_categoryId1") != null)) {
+			searchParams.put("status", request.getParameter("search_categoryId1"));
+		}
+		if (request.getParameter("search_categoryId2") != "" && (request.getParameter("search_categoryId2") != null) ) {
+			searchParams.put("businessType", request.getParameter("search_categoryId2"));
+		}
+		List<Paper> papers = this.paperService.search(searchParams);
 		model.addAttribute("papers", papers);
 		model.addAttribute("sortType", sortType);
-		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("in paper Controller: searchParams=" + searchParams);
 		Object status = searchParams.get("categoryId1");

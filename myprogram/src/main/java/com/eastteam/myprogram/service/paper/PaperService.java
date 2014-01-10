@@ -28,7 +28,7 @@ import com.google.common.collect.Maps;
 
 @Component
 @Transactional
-public class PaperService extends PageableService {
+public class PaperService {
 	@Autowired
 	private PaperMybatisDao paperMybatisDao;
 	
@@ -36,21 +36,13 @@ public class PaperService extends PageableService {
 	
 	private static Logger logger = LoggerFactory.getLogger(PaperService.class);
 	
-	@Override
-	public List search(Map parameters, Pageable pageRequest) {
+	
+	public List search(Map parameters) {
 		logger.info("in service, pagesize = " + pageSize);
 		Map param = Maps.newHashMap(parameters);
-		param.put("offset", pageRequest.getOffset());
-		param.put("pageSize", pageRequest.getPageSize());
-		param.put("sort", this.getOrderValue(pageRequest.getSort()));
 		return paperMybatisDao.search(param);
 	}
 	
-	@Override
-	public Long getCount(Map parameters) {
-		Map param = Maps.newHashMap(parameters);
-		return paperMybatisDao.getCount(param);
-	}
 
 	public List<Question> getQuestions(String paper_id){
 		return paperMybatisDao.selectQuestions(paper_id);
