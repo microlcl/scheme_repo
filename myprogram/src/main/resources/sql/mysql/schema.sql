@@ -156,5 +156,45 @@ CREATE TABLE `spaces` (
   PRIMARY KEY (`space_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `questions` (
+	`question_id` bigint(11) NOT NULL AUTO_INCREMENT,
+	`question` varchar(256) NOT NULL,
+	`question_type` varchar(64) NOT NULL, -- 问题种类：单选，多选，开放式问题等 ,不用在category table里面配置
+	`question_options` varchar(512), -- 问题答案选项，用特殊字符^分隔， 如果是开放式问题， 此字段为空
+	`business_type` varchar(64), -- 庆典种类：婚庆，生日，公司年会,年终员工调查等，可以在category table配置
+	`trashed` varchar(1),
+	 PRIMARY KEY (`question_id`)
+);
 
+CREATE TABLE `paper_questions` (
+	`paper_id` bigint(11) NOT NULL,
+	`question_id` bigint(11) NOT NULL,
+	`position` int(3) not null, -- 问题在调查问卷中的位置
+	PRIMARY KEY (`paper_id`, `question_id`)	
+);
+
+CREATE TABLE `question_type` (
+	`question_type` varchar(1) NOT NULL,
+	`question_name` varchar(16) NOT NULL,
+	PRIMARY KEY(`question_type`, `question_name`)
+);
+
+
+CREATE TABLE `paper_answers` (
+	`business_id` varchar(64), -- 由business_code与具体业务表的sequence构成
+	`paper_id` bigint(11) NOT NULL,
+	`question_id` bigint(11) NOT NULL,
+	`answer` varchar(256), -- 多选项的答案应该是用逗号隔开的所选答案的index
+	PRIMARY KEY (`business_id`,`paper_id`,`question_id`)
+);
+
+
+CREATE TABLE `papers` (
+	`paper_id` bigint(11) NOT NULL AUTO_INCREMENT,
+	`paper_name` varchar(32) NOT NULL,
+	`creat_timestamp` timestamp,
+	`status` varchar(64) NOT NULL, -- 调查问卷的状态： draft, publish, trashed,只有publish状态的才能使用。此status在category的系统参数节点下配置，此处保存的是category id.
+	`business_type` varchar(64) NOT NULL, -- 庆典种类：婚庆，生日，公司年会,年终员工调查等，可以在category table配置
+	PRIMARY KEY (`paper_id`)	
+);
 
