@@ -199,6 +199,11 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-2','1-0-3','宝宝','2013-12-28 02:00:00','F','通用系统参数');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-3','1-0-3','单位领导','2013-12-28 02:00:00','F','通用系统参数');
 
+-- 访问类别
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4','1-0','到访类别','2014-01-10 00:00:00','F','到访类别');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-0','1-0-4','到访','2014-01-10 00:00:00','F','到访类别');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-1','1-0-4','回访','2014-01-10 00:00:00','F','到访类别');
+
 -- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
