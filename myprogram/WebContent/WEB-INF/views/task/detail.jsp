@@ -26,19 +26,19 @@
 	<form class="form-horizontal">
 		<fieldset>
 	<div class="control-group">
-		<label class="control-label">任务类型:</label>
+		<label class="control-label formlabel">任务类型:</label>
 		<div class="controls">
 			<input id="taskType" name="taskType.id" class="easyui-combotree" style="width:225px;" data-options="url:'${ctx}/category/api/getAll/M1-9-1',method:'get',required:false">
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">任务状态:</label> 
+		<label class="control-label formlabel">任务状态:</label> 
 		<div class="controls">
 			<input id="status" name="status.id" class="easyui-combotree" style="width:225px;" data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">所属部门:</label> 
+		<label class="control-label formlabel">所属部门:</label> 
 		<div class="controls">
 		<input id="department" name="department.id"
 			class="easyui-combotree" style="width:225px;"
@@ -46,7 +46,7 @@
 		</div>
 	</div>
 	<div class="control-group">		
-		<label class="control-label">拥有者：</label>
+		<label class="control-label formlabel">拥有者：</label>
 		<div class="controls">
 		 <input id="myaccount_id" name="owner.id"
 			class="easyui-combobox" style="width:225px;"
@@ -54,7 +54,7 @@
 			</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">优先级：</label>
+		<label class="control-label formlabel">优先级：</label>
 		<div class="controls">
 		<input type="text" id="priority" name="priority.id"
 			class="easyui-combotree" style="width:225px;"
@@ -69,7 +69,7 @@
 		<fieldset>
 
 	<div class="control-group">
-		<label class="control-label">计划完成时间：</label>
+		<label class="control-label formlabel">计划完成时间：</label>
 		<div class="input-append date form_date controls" style="margin-left: 20px">
 					<input size="16" type="text" id="dueDate" name="dueDate"
 						style="width: 160px" readonly>
@@ -78,28 +78,28 @@
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">任务进度：</label>
+		<label class="control-label formlabel">任务进度：</label>
 		<div class="controls">
 		<input type="text" id="progress" name="progress"
 					class="input-large" maxlength="64" readonly value="0"/>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">剩余时间：</label>
+		<label class="control-label formlabel">剩余时间：</label>
 		<div class="controls">
 		<input type="text" id="timeRemaining" name="timeRemaining" value="0"
 					class="input-large" maxlength="64" />
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label">创建人：</label>
+		<label class="control-label formlabel">创建人：</label>
 		<div class="controls">
 		<input type="text" id="createdBy" name="createdBy.id"
 					class="input-large" maxlength="64" readonly />
 		</div>
 	</div>
 	 <div class="control-group">
-		<label class="control-label">创建时间:</label>
+		<label class="control-label formlabel">创建时间:</label>
 		<div class="controls">
 		<input type="text" id="createdTimestamp" name="createdTimestamp"
 					class="input-large" maxlength="64" readonly /> 
@@ -110,7 +110,7 @@
 </div>
 
 </div>
-<label class=" offset1">描述:</label>
+<label class=" offset1 formlabel">描述:</label>
 		<textarea id="description" name="description"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
 
