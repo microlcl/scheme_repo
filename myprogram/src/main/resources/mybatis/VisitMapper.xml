@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eastteam.myprogram.dao.VisitMybatisDao">
-	<select id="search" parameterType="map" resultMap="paperDetailMap">
+	<select id="search" parameterType="map" resultType="VisitActivity">
 		select visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id
 		from visit_activities
 	</select>
