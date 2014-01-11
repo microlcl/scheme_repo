@@ -250,6 +250,7 @@ insert into function_category(function_id,category_id) values('M1-7','1-0-2');
 insert into function_category(function_id,category_id) values('M1-8','1-0-1');
 insert into function_category(function_id,category_id) values('M1-6','1-0-0');
 insert into function_category(function_id,category_id) values('M1-9','1-0-7');
+insert into function_category(function_id,category_id) values('M1-9-1','1-0-6');
 insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
 
 

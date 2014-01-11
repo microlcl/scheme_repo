@@ -32,25 +32,26 @@
 	</script>
 	</head>
 <body>
-	<div class="form" style="padding:20px;">
+	<div class="form">
 	<h1>协同作业</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
-    <div class="row">
-		<div class="span">
-			<form class="form-search" action="#">
+    <div class="row" style="margin:20px;">
+		<div class="span" style="border: 1px solid #CCCCCC;border-radius: 4px;padding:10px;margin-left:0px;background-color: white;">
+			<form class="form-search " action="#" style="margin-bottom:0px;">
 			 	<label>部&nbsp;&nbsp;&nbsp;门：</label> <input name="search_department_id" id="mydepartment_id" value="${param.search_department_id }" class="easyui-combotree" data-options="url:'${ctx}/department/api/get',method:'get',required:false">
-		 	    <label style="margin-left: 25px;">状&nbsp; &nbsp;态：</label> <input  name="search_statusId" id="search_statusId" class="easyui-combotree" value="${param.search_statusId}" style="width:220px;" data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
-		 	    <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 100px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建任务</button>
+		 	    <label style="margin-left: 100px;">状&nbsp; &nbsp;态：</label> <input  name="search_statusId" id="search_statusId" class="easyui-combotree" value="${param.search_statusId}"  data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
 		 	    <div style="padding-top:10px">
 		 	    <label>拥有者：</label> <input name="search_owner_id" id="myaccount_id" value="${param.search_owner_id }" class="easyui-combobox" data-options="method:'get',valueField:'id',textField:'name'"> 
-		 	    <label style="margin-left: 25px;">关键字：</label><input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
-                <button type="submit" class="btn" id="search_btn" style="margin-left: 100px;" style="width:100px;">搜索</button>
+		 	    <label style="margin-left: 100px;">关键字：</label><input type="text" name="search_keyword" class="input-small" style="width:200px;" value="${param.search_keyword}">
+                <button type="submit" class="btn" id="search_btn" style="margin-left: 15px;"><i class="icon-search"></i></button>
                 </div>
 	    </div>
+	    <button type="button" class="btn btn-success" onclick="location.href='${ctx}/task/add/'" style="margin-left: 75px;margin-top:5px"><i class="icon-plus"></i>新建任务</button>
 	    <tags:sort/>
 	    </div>
+	<div style="padding:20px;">
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 		<tr>
@@ -76,6 +77,7 @@
 		</tbody>		
 	</table>
 	<tags:pagination page="${tasks}" paginationSize="4"/>
+	</div>
  </div>
 
 <div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">

@@ -21,71 +21,104 @@
 <script
 	src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js"
 	type="text/javascript"></script>
-
-<table>
-	<tr>
-		<td style="width:60%" align="center">任务类型：<input type="text" id="taskType" name="taskType.id"
-			class="input-large required" maxlength="64" />
-		</td>
-		<td  align="right">任务状态： <input id="status" name="status.id"
-			class="easyui-combotree" style="width: 220px;"
-			data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
-		</td>
-	</tr>
-	<tr>
-		<td style="width:60%" align="center">所属部门： <input id="department" name="department.id"
-			class="easyui-combotree"
+<div class="row" style="margin:0px;">
+<div class="span5" style="padding:10px;margin-left:0px;">
+	<form class="form-horizontal">
+		<fieldset>
+	<div class="control-group">
+		<label class="control-label">任务类型:</label>
+		<div class="controls">
+			<input id="taskType" name="taskType.id" class="easyui-combotree" style="width:225px;" data-options="url:'${ctx}/category/api/getAll/M1-9-1',method:'get',required:false">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">任务状态:</label> 
+		<div class="controls">
+			<input id="status" name="status.id" class="easyui-combotree" style="width:225px;" data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">所属部门:</label> 
+		<div class="controls">
+		<input id="department" name="department.id"
+			class="easyui-combotree" style="width:225px;"
 			data-options="url:'${ctx}/department/api/get',method:'get',required:false">
-		</td>
-		<td  align="right">拥有者： <input id="myaccount_id" name="owner.id"
-			class="easyui-combobox"
+		</div>
+	</div>
+	<div class="control-group">		
+		<label class="control-label">拥有者：</label>
+		<div class="controls">
+		 <input id="myaccount_id" name="owner.id"
+			class="easyui-combobox" style="width:225px;"
 			data-options="method:'get',valueField:'id',textField:'name'">
-		</td>
-	</tr>
-	<tr>
-		<td style="width:60%" align="center">	
-			优先级：<input type="text" id="priority" name="priority.id"
-			class="easyui-combotree" style="width: 220px;"
+			</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">优先级：</label>
+		<div class="controls">
+		<input type="text" id="priority" name="priority.id"
+			class="easyui-combotree" style="width:225px;"
 			data-options="url:'${ctx}/category/api/getAll/M1-9-2',method:'get',required:false">
-		</td>
-		<td  align="left">
-				计划完成时间：
-				<div class="input-append date form_date" style="margin-left: 20px">
+		</div>
+	</div>	
+	</fieldset>
+      </form>
+</div>
+<div class="span5" style="padding:10px;margin-left:0px;">	
+	<form class="form-horizontal">
+		<fieldset>
+
+	<div class="control-group">
+		<label class="control-label">计划完成时间：</label>
+		<div class="input-append date form_date controls" style="margin-left: 20px">
 					<input size="16" type="text" id="dueDate" name="dueDate"
 						style="width: 160px" readonly>
 						 <span class="add-on"><i class="icon-remove"></i></span> 
 						 <span class="add-on"><i class="icon-th"></i></span>
-				</div>
-		</td>
-	</tr>
-	<tr>
-		<td style="width:60%" align="center">
-				任务进度：<input type="text" id="progress" name="progress"
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">任务进度：</label>
+		<div class="controls">
+		<input type="text" id="progress" name="progress"
 					class="input-large" maxlength="64" readonly value="0"/>
-		</td>
-		<td  align="right">
-					剩余时间：<input type="text" id="timeRemaining" name="timeRemaining" value="0"
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">剩余时间：</label>
+		<div class="controls">
+		<input type="text" id="timeRemaining" name="timeRemaining" value="0"
 					class="input-large" maxlength="64" />
-		</td>
-	</tr>
-	
-	<tr>
-		<td style="width:60%" align="center">
-		创建人：<input type="text" id="createdBy" name="createdBy.id"
+		</div>
+	</div>
+	<div class="control-group">
+		<label class="control-label">创建人：</label>
+		<div class="controls">
+		<input type="text" id="createdBy" name="createdBy.id"
+					class="input-large" maxlength="64" readonly />
+		</div>
+	</div>
+	 <div class="control-group">
+		<label class="control-label">创建时间:</label>
+		<div class="controls">
+		<input type="text" id="createdTimestamp" name="createdTimestamp"
 					class="input-large" maxlength="64" readonly /> 
-		</td>
-		<td  align="right">
-				创建时间：<input type="text" id="createdTimestamp" name="createdTimestamp"
-					class="input-large" maxlength="64" readonly /> 
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-				描述：<textarea id="description" name="description"
-					class="input-large" maxlength="64" style="width: 90%" ></textarea>
-		</td>
-	</tr>
-</table>
+		</div>
+	</div>
+		</fieldset>
+      </form>
+</div>
+
+</div>
+<label class=" offset1">描述:</label>
+		<textarea id="description" name="description"
+					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+
+
+
+
+  
+
 <script type="text/javascript">
 	$(document).ready(function() {
 
