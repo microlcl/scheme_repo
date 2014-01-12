@@ -37,6 +37,12 @@
 			$("#cc1").combotree({ 
 				onLoadSuccess:function(node){//数据加载成功触发 
 					$("#cc1").combotree('setValues', statusId);
+				},
+				onBeforeSelect:function(node){ 
+					var tree = $(this).tree;
+					var isLeaf = tree('isLeaf', node.target);
+					console.log("isLeaf=" + isLeaf);
+					return isLeaf;
 				}
 			});
 			
@@ -47,6 +53,12 @@
 			$("#cc2").combotree({ 
 				onLoadSuccess:function(node){//数据加载成功触发 
 					$("#cc2").combotree('setValues', businessTypeId);
+				},
+				onBeforeSelect:function(node){ 
+					var tree = $(this).tree;
+					var isLeaf = tree('isLeaf', node.target);
+					console.log("isLeaf=" + isLeaf);
+					return isLeaf;
 				}
 			});
 

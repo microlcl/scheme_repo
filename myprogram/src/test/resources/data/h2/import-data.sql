@@ -21,6 +21,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-6','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-7','M1','问题管理','问题管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-8','M1','问卷管理','问卷管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-9','M1','协同作业','协同作业','');
+insert into modules(module_id, pid, name, description, path) values('M1-10','M1','客户到访类别','客户到访类别','');
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
 insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll');
@@ -261,6 +262,7 @@ insert into function_category(function_id,category_id) values('M1-6','1-0-0');
 insert into function_category(function_id,category_id) values('M1-9','1-0-7');
 insert into function_category(function_id,category_id) values('M1-9-1','1-0-6');
 insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
+insert into function_category(function_id,category_id) values('M1-10','1-0-4');
 
 
 
