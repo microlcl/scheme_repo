@@ -30,7 +30,37 @@
 			</form>
 		</div>
 		<div  style="padding:20px;">
-
+			<table id="contentTable" class="table table-striped table-bordered table-condensed">
+				<thead>
+				<tr>
+					<th>访问ID</th>
+					<th>访问案例</th>
+					<th>进店时间</th>
+					<th>访问类型</th>
+					<th>是否初次到访</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<c:forEach items="${visits.content}" var="visit">
+					<tr>
+						<td>${visit.id}&nbsp;</td>
+						<td>${visit.thisCase.title}&nbsp;</td>
+						<td>${visit.visitTime}&nbsp;</td>
+						<td>${visit.businessType.name}&nbsp;</td>
+						<td>
+							<c:if test="${visit.isVisited=='T'}">否</c:if>
+							<c:if test="${visit.isVisited=='F'}"><span style="color:#FF0000">是</span></c:if>
+						</td>
+						<td>
+							<a href="${ctx}/paper/show/${visit.id}" id="showLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+							<a href="${ctx}/paper/edit/${visit.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
+							<a href="${ctx}/paper/delete/${visit.id}" id="deleteLink-${paper.id}"><i class="icon-remove"></i>删除</a>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>		
+			</table>
 		</div>
 	</div>
 	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">

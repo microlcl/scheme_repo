@@ -16,11 +16,11 @@ public class VisitActivity extends IdEntity {
 	private Date visitTime;
 	private int visitNum;
 	private Department assignedDepartment;
-	private String recipient;
-	private String operator;
+	private User recipient;
+	private User operator;
 	private Category businessType;
 	private Case thisCase;
-	private boolean isVisited;
+	private String isVisited;
 	private String comment;
 	private Paper paper;
 	
@@ -54,16 +54,16 @@ public class VisitActivity extends IdEntity {
 	public void setAssignedDepartment(Department assignedDepartment) {
 		this.assignedDepartment = assignedDepartment;
 	}
-	public String getRecipient() {
+	public User getRecipient() {
 		return recipient;
 	}
-	public void setRecipient(String recipient) {
+	public void setRecipient(User recipient) {
 		this.recipient = recipient;
 	}
-	public String getOperator() {
+	public User getOperator() {
 		return operator;
 	}
-	public void setOperator(String operator) {
+	public void setOperator(User operator) {
 		this.operator = operator;
 	}
 	public Category getBusinessType() {
@@ -78,10 +78,10 @@ public class VisitActivity extends IdEntity {
 	public void setThisCase(Case thisCase) {
 		this.thisCase = thisCase;
 	}
-	public boolean isVisited() {
+	public String getIsVisited() {
 		return isVisited;
 	}
-	public void setVisited(boolean isVisited) {
+	public void setIsVisited(String isVisited) {
 		this.isVisited = isVisited;
 	}
 	public String getComment() {
