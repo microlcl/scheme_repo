@@ -243,7 +243,7 @@ create table paper_answers (
 );
 
 -- case与customer的映射表，存储某一个case中的主角及相关人员
-create table case_character (
+create table case_customers (
 	case_id bigint,
 	character_id varchar(64) not null,   -- 角色id(角色：新娘，新郎，宝宝...)， 保存在category表
 	customer_id bigint,
