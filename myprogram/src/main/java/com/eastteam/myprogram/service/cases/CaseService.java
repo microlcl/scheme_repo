@@ -31,7 +31,7 @@ public class CaseService extends PageableService {
 		return 0L;
 	}
 	
-	public Case get(String caseId) {
+	public Case get(Long caseId) {
 		return this.CaseDao.get(caseId);
 	}
 

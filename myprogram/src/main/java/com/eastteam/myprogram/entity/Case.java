@@ -23,6 +23,7 @@ public class Case extends IdEntity {
 	private Paper paper;
 	private Category status;
 	private List<Task> tasks;
+	private Date createdTimestamp;
 	// TODO 后续要加上到访，回访的entities list
 	
 	public String getTitle() {
@@ -97,8 +98,10 @@ public class Case extends IdEntity {
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
-	
-	
-
-
+	public Date getCreatedTimestamp() {
+		return createdTimestamp;
+	}
+	public void setCreatedTimestamp(Date createdTimestamp) {
+		this.createdTimestamp = createdTimestamp;
+	}
 }

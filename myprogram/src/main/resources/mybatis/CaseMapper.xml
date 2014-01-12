@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.eastteam.myprogram.dao.CaseMybatisDao">	
+
+	<resultMap id="caseDetailMap" type="Case">
+		<id property="id" column="id" />
+		<association property="department" column="assigned_department_id" javaType="Department">
+			<id property="id" column="assigned_department_id" />
+		</association>
+		<association property="owner" column="case_owner" javaType="User">
+			<id property="id" column="case_owner" />
+		</association>
+		<association property="paper" column="paper_id" javaType="Paper">
+			<id property="id" column="paper_id" />
+		</association>	
+		<association property="space" column="space_id" javaType="Spaces">
+			<id property="id" column="space_id" />
+		</association>	
+		<association property="status" column="status" javaType="Category">
+			<id property="id" column="status" />
+		</association>	
+		<association property="businessType" column="business_type" javaType="Category">
+			<id property="id" column="business_type" />
+		</association>
+	</resultMap>
+	
+	<select id="get" resultMap="caseDetailMap">
+		select 
+		c.case_id as id, c.case_title as title, c.created_time as createdTimestamp, 
+		c.event_time as eventTime, c.guest_num as guestNum, c.description,
+		c.assigned_department_id, c.case_owner, c.paper_id , c.space_id, c.status, c.business_type
+		from cases c
+		where c.case_id=#{id}
+	</select>
+
+</mapper> 

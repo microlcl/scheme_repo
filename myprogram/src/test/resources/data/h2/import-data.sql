@@ -207,6 +207,32 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-0','1-0-4','到访','2014-01-10 00:00:00','F','到访类别');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4-1','1-0-4','回访','2014-01-10 00:00:00','F','到访类别');
 
+-- task 优先级
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5','1-0','作业优先级','2012-06-04 02:00:00','F','作业优先级');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-1','1-0-5','低优先级','2012-06-04 02:00:00','F','作业优先级低');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-2','1-0-5','中优先级','2012-06-04 02:00:00','F','作业优先级中');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-3','1-0-5','高优先级','2012-06-04 02:00:00','F','作业优先高');
+
+-- task 类别
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6','1-0','作业类型','2012-06-04 02:00:00','F','作业类型');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-1','1-0-6','设计','2012-06-04 02:00:00','F','设计');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-2','1-0-6','工程','2012-06-04 02:00:00','F','工程');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-3','1-0-6','会议','2012-06-04 02:00:00','F','会议');
+
+-- task 状态
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7','1-0','作业状态','2012-06-04 02:00:00','F','作业状态');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-1','1-0-7','新建','2012-06-04 02:00:00','F','新建作业');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-2','1-0-7','进行中','2012-06-04 02:00:00','F','作业进行中');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-3','1-0-7','完成','2012-06-04 02:00:00','F','作业已完成');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-4','1-0-7','废弃','2012-06-04 02:00:00','F','作业被废弃');
+
+-- Case 状态
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8','1-0','需求状态','2012-06-04 02:00:00','F','需求状态');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-1','1-0-8','新建','2012-06-04 02:00:00','F','新建');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-2','1-0-8','进行中','2012-06-04 02:00:00','F','进行中');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-3','1-0-8','完成','2012-06-04 02:00:00','F','已完成');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-4','1-0-8','废弃','2012-06-04 02:00:00','F','被废弃');
+
 -- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
@@ -224,23 +250,6 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-6'
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-1','1-6','40','2012-06-04 02:00:00','F','40');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-2','1-6','42','2012-06-04 02:00:00','F','42');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-6-3','1-6','4','2012-06-04 02:00:00','F','45');
-
---task 状态
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7','1-0','作业状态','2012-06-04 02:00:00','F','作业状态');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-1','1-0-7','新建','2012-06-04 02:00:00','F','新建作业');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-2','1-0-7','进行中','2012-06-04 02:00:00','F','作业进行中');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-3','1-0-7','完成','2012-06-04 02:00:00','F','作业已完成');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-7-4','1-0-7','废弃','2012-06-04 02:00:00','F','作业被废弃');
---task 优先级
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5','1-0','作业优先级','2012-06-04 02:00:00','F','作业优先级');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-1','1-0-5','低优先级','2012-06-04 02:00:00','F','作业优先级低');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-2','1-0-5','中优先级','2012-06-04 02:00:00','F','作业优先级中');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-5-3','1-0-5','高优先级','2012-06-04 02:00:00','F','作业优先高');
---task 类别
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6','1-0','作业类型','2012-06-04 02:00:00','F','作业类型');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-1','1-0-6','设计','2012-06-04 02:00:00','F','设计');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-2','1-0-6','工程','2012-06-04 02:00:00','F','工程');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-6-3','1-0-6','会议','2012-06-04 02:00:00','F','会议');
 
 insert into function_category(function_id,category_id) values('M1-4','1-1');
 insert into function_category(function_id,category_id) values('M1-4','1-2');
@@ -434,4 +443,7 @@ insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, vi
 	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C')
+	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C');
+insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
+	values (2, '李四的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大2', '场面极尽奢华2', 1, '1-0-4-3', 'C');
+
