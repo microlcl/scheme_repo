@@ -22,6 +22,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-7','M1',
 insert into modules(module_id, pid, name, description, path) values('M1-8','M1','问卷管理','问卷管理','');
 insert into modules(module_id, pid, name, description, path) values('M1-9','M1','协同作业','协同作业','');
 insert into modules(module_id, pid, name, description, path) values('M1-10','M1','客户到访类别','客户到访类别','');
+insert into modules(module_id, pid, name, description, path) values('M1-11','M1','案例类型','案例类型','');
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
 insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll');
@@ -234,6 +235,13 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-3','1-0-8','完成','2012-06-04 02:00:00','F','已完成');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-4','1-0-8','废弃','2012-06-04 02:00:00','F','被废弃');
 
+-- 访问类别
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9','1-0','案例类别','2014-01-10 00:00:00','F','案例类别');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-0','1-0-9','婚礼','2014-01-10 00:00:00','F','案例类别');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-1','1-0-9','丧礼','2014-01-10 00:00:00','F','案例类别');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-2','1-0-9','生日','2014-01-10 00:00:00','F','案例类别');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-3','1-0-9','年会','2014-01-10 00:00:00','F','案例类别');
+
 -- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
@@ -263,6 +271,7 @@ insert into function_category(function_id,category_id) values('M1-9','1-0-7');
 insert into function_category(function_id,category_id) values('M1-9-1','1-0-6');
 insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
 insert into function_category(function_id,category_id) values('M1-10','1-0-4');
+insert into function_category(function_id,category_id) values('M1-11','1-0-9');
 
 
 
@@ -442,10 +451,23 @@ insert into customer (customer_id, customer_name, customer_phone, customer_sex, 
 	values (3, '王五', '13022222222', '22114433', '财务', 'wangwu', '300000', '1983-12-28', '理财', '此人善于沟通');
 		
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-9-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (2, 2, '1-0-4-0', '2013-10-05 02:00:00', 50, 'D1-2-1', 'userid10', 'userid11', '1-0-9-2', 2, 'T', '此人生日宴会非常简单', 2);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (3, 3, '1-0-4-0', '2013-08-06 02:00:00', 500, 'D1-2-1', 'userid10', 'userid11', '1-0-9-3', 3, 'T', '此人婚礼喜欢极尽奢华', 3);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (4, 1, '1-0-4-0', '2013-07-05 10:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-9-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (5, 2, '1-0-4-0', '2013-11-06 02:00:00', 50, 'D1-2-1', 'userid10', 'userid11', '1-0-9-2', 2, 'T', '此人生日宴会喜欢非常简单', 2);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (6, 3, '1-0-4-0', '2013-09-08 02:00:00', 500, 'D1-2-1', 'userid10', 'userid11', '1-0-9-3', 3, 'T', '此人婚礼喜欢极尽奢华', 3);
+
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C');
+	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-9-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (2, '李四的婚礼', '2013-06-05 02:00:00', 'D1-2-1', 'userid11', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大2', '场面极尽奢华2', 1, '1-0-4-3', 'C');
+	values (2, '李四的生日', '2013-10-06 02:00:00', 'D1-2-1', 'userid11', '1-0-9-2', '2013-06-04 02:00:00', 50, 2, '场地很小', '场面简单', 2, '1-0-4-3', 'C');
+insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
+	values (3, '王五的公司年会', '2013-08-07 02:00:00', 'D1-2-1', 'userid11', '1-0-9-3', '2013-06-04 02:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-4-3', 'C');
 

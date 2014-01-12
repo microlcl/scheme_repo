@@ -50,6 +50,9 @@ public class VisitContrller {
 			Model model, ServletRequest request) {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
+		if ((request.getParameter("search_categoryId1") != "") && (request.getParameter("search_categoryId1") != null)) {
+			searchParams.put("businessType", request.getParameter("search_categoryId1"));
+		}
 		Page<VisitActivity> visits = visitService.getCurrentPageContent(
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("visitActivity.pagesize")), sortType);
 		List<VisitActivity> visitList = visits.getContent();
@@ -59,6 +62,9 @@ public class VisitContrller {
 		model.addAttribute("sortTypes", sortType);
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams, "search_"));
 		logger.info("searchParams=" + searchParams);
+		
+		Object businessType = searchParams.get("categoryId1");
+		model.addAttribute("businessType", businessType);
 		
 
 		return "visit/list";

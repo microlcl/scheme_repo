@@ -8,6 +8,20 @@
 		left join cases c on v.case_id= c.case_id
 		left join category cg on v.visit_type=cg.id
 		left join category cb on v.business_type=cb.id
+		<where>
+			<if test="businessType != null">
+		        and cb.id = #{businessType}
+			</if>
+			<if test="keyword != null">
+				and (c.title like '%${keyword}%')
+			</if>
+		</where>
+		<if test="sort != null">
+			order by ${sort}
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
 	</select>
 	
 	<resultMap id="visitDetailMap" type="VisitActivity">
@@ -34,7 +48,15 @@
 		from visit_activities v
 		left join cases c on v.case_id= c.case_id
 		left join category cg on v.visit_type=cg.id
-		left join category cb on v.business_type=cb.id) t
+		left join category cb on v.business_type=cb.id
+		<where>
+			<if test="businessType != null">
+		        and cb.id = #{businessType}
+			</if>
+			<if test="keyword != null">
+				and (c.title like '%${keyword}%')
+			</if>
+		</where>) t
 	</select>
 
 </mapper>

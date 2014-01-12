@@ -15,6 +15,23 @@
 	<script>
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
+			
+			var businessTypeId = [];
+			<c:forEach items="${businessType}" var="category">
+				businessTypeId.push('${category}');
+			</c:forEach>
+			$("#cc1").combotree({ 
+				onLoadSuccess:function(node){//数据加载成功触发 
+					$("#cc1").combotree('setValues', businessTypeId);
+				},
+				onBeforeSelect:function(node){ 
+					var tree = $(this).tree;
+					var isLeaf = tree('isLeaf', node.target);
+					console.log("isLeaf=" + isLeaf);
+					return isLeaf;
+				}
+			
+			});
 		});
 
 	</script>
@@ -25,6 +42,10 @@
 		<h1>进店管理</h1>
 		<div class=" onefield" style="height:40px !important; text-align: right !important;padding-right: 10px;padding-top: 7px;margin-left:20px;background-color: white;">
 			<form style="padding-left:10px;">
+				<span  style="float:left;">
+					案例类别：
+					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-11',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
+				</span>
 				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
 				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>
 			</form>
@@ -61,6 +82,7 @@
 				</c:forEach>
 				</tbody>		
 			</table>
+		<tags:pagination page="${visits}" paginationSize="4"/>
 		</div>
 	</div>
 	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
