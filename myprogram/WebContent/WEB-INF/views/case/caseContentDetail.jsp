@@ -37,7 +37,7 @@
 		<div class="control-group span pull-left">
 			<label class="control-label" for="guest_num">宾客人数：</label>
 			<div class="controls">
-				<input type="text" class="span4" id="guest_num">
+				<input type="text" class="span4" id="guest_num" value="${mycase.guestNum}">
 			</div>
 		</div>
 		<div class="control-group span pull-right">
@@ -59,7 +59,7 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="created_timestamp">创建时间：</label>
 			<div class="pull-right">
-				<input type="text" class="span4" name="createdTimestamp" id="created_timestamp" placeholder="">
+				<input type="text" class="span4" name="createdTimestamp" id="created_timestamp" placeholder="" value="<fmt:formatDate value='${mycase.createdTimestamp}' pattern='yyyy-MM-dd hh:mm'/>" readonly>
 			</div>
 		</div>
 	</div>
@@ -77,7 +77,7 @@
 	<div class="control-group">
 			<label class="control-label" for="description">描述：</label>
 			<div class="controls">
-				<textarea rows="10" class="input-block-level" id="description" name="description" maxlength="1024"></textarea>
+				<textarea rows="10" class="input-block-level" id="description" name="description" maxlength="1024">${mycase.description}</textarea>
 			</div>
 		</div>
 </div>

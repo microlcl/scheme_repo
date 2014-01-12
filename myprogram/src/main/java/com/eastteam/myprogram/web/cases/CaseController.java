@@ -32,7 +32,7 @@ public class CaseController {
 	public String dispalyDetail(@PathVariable("id") Long id, Model model) {
 		logger.info("caseid = " + id);
 		Case mycase =  this.caseService.get(id);
-
+		logger.info("case = " + mycase);
 		model.addAttribute("mycase", mycase);
 		return "case/detail";
 	}

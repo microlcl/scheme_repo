@@ -50,7 +50,7 @@
 			<div class="span">
 				<div class="form-search" style="padding-left:20px;">
 					<label for="case_title">概要：</label> 
-					<input type="text" class="input-xxlarge" id="case_title" value="乔布斯的婚礼">
+					<input type="text" class="input-xxlarge" id="case_title" value="${mycase.title}">
 
 				</div>
 			</div>

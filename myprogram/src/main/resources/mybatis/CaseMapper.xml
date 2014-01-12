@@ -6,6 +6,11 @@
 
 	<resultMap id="caseDetailMap" type="Case">
 		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="createdTimestamp" column="createdTimestamp" />
+		<result property="eventTime" column="eventTime" />
+		<result property="guestNum" column="guestNum" />
+		<result property="description" column="description" />
 		<association property="department" column="assigned_department_id" javaType="Department">
 			<id property="id" column="assigned_department_id" />
 		</association>
