@@ -12,21 +12,24 @@ import java.util.Properties;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.entity.Question;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.paper.PaperService;
 import com.eastteam.myprogram.web.Servlets;
 
@@ -143,6 +146,21 @@ public class PaperController {
 		this.paperService.saveQuestions(paper);
 		
 		return "redirect:/paper/list/";
+	}
+	
+	/**
+	 * 得到某一种businessType下的的papers
+	 * @param departmentId
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/api/search", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<User> search(@RequestParam(value = "businessType")String businessType) {
+		Map parameters = new HashMap();
+		if (!StringUtils.isBlank(businessType)) {
+			parameters.put("businessType", businessType);
+		}
+		return this.paperService.search(parameters);
 	}
 	
 }
