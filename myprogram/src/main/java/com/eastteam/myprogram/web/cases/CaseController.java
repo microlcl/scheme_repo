@@ -37,6 +37,12 @@ public class CaseController {
 		model.addAttribute("mycase", mycase);
 		return "case/detail";
 	}
+	
+	@RequestMapping(value = "list", method = RequestMethod.GET)
+	public String list(Model model) {
+		logger.info("in case controller");
+		return "case/list";
+	}
 
 
 }

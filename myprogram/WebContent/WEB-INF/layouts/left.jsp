@@ -23,6 +23,7 @@
 			<a id="caselist-tab" href="${ctx}/case/list">需求管理列表</a>	
 			<a id="casemaintain-tab" href="${ctx}/case/detail/1">详情(暂放此)</a>
 			<a id="visit-tab" href="${ctx}/visit/list">进店管理</a>
+			<a id="case-tab" href="${ctx}/case/list">案例管理</a>
 		</div>
 		<h1>页面效果测试</h1>
 		<div class="submenu">
