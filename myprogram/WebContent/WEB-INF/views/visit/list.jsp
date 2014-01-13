@@ -35,6 +35,11 @@
 		});
 
 	</script>
+	<style>
+		.combo{
+			margin-bottom: 9px;
+		}
+	</style>
 
 </head>
 <body>
@@ -42,9 +47,15 @@
 		<h1>进店管理</h1>
 		<div class=" onefield" style="height:40px !important; text-align: right !important;padding-right: 10px;padding-top: 7px;margin-left:20px;background-color: white;">
 			<form style="padding-left:10px;">
-				<span  style="float:left;">
+				<span  style="float:left;vertical-align: middle; ">
 					策划类别：
 					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
+					&nbsp;&nbsp;初次到访：
+					<select style="height: 30px;">
+						<option>全部</option>
+						<option>是</option>
+						<option>否</option>
+					</select>
 				</span>
 				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
 				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>
