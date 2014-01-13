@@ -258,6 +258,7 @@ insert into function_category(function_id,category_id) values('M1-4','1-2');
 insert into function_category(function_id,category_id) values('M1-5','1-5');
 insert into function_category(function_id,category_id) values('M1-5','1-6');
 insert into function_category(function_id,category_id) values('getBusinessType','1-0-2');
+insert into function_category(function_id,category_id) values('getCaseStatus', '1-0-8');
 insert into function_category(function_id,category_id) values('M1-8','1-0-1');
 insert into function_category(function_id,category_id) values('M1-6','1-0-0');
 insert into function_category(function_id,category_id) values('M1-9','1-0-7');
@@ -464,9 +465,9 @@ insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, vi
 
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-1', 'userid1', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-4-3', 'C');
+	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-1', 'userid1', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-8-1', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (2, '李四的生日', '2013-10-06 02:00:00', 'D1-2-1', 'userid6', '1-0-2-2', '2013-06-04 02:00:00', 50, 2, '场地很小', '场面简单', 2, '1-0-4-3', 'C');
+	values (2, '李四的生日', '2013-10-06 02:00:00', 'D1-2-1', 'userid6', '1-0-2-2', '2013-06-04 02:00:00', 50, 2, '场地很小', '场面简单', 2, '1-0-8-2', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (3, '王五的公司年会', '2013-08-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-06-04 02:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-4-3', 'C');
+	values (3, '王五的公司年会', '2013-08-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-06-04 02:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-8-3', 'C');
 

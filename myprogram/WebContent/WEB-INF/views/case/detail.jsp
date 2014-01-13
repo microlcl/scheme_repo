@@ -66,7 +66,9 @@
 				</div>
 			</div>
 								<div class="pull-right">
-						<input type="text" class="input-small" id="case_status" value="" placeholder="状态下拉栏">
+										<input name="businessType" id="case_status"
+				class="span2 easyui-combotree"
+				data-options="url:'${ctx}/category/api/getAll/getCaseStatus',method:'get',required:false" value="${mycase.status.id}">
 					</div>
 		</div>
 
