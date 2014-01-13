@@ -32,7 +32,7 @@
 			});
 			
 			$('#cc2').combotree({
-				url:'${ctx}/category/api/getAll/M1-7',
+				url:'${ctx}/category/api/getAll/getBusinessType',
 				required: false,
 				valueField: 'id',
 				textField: 'text',

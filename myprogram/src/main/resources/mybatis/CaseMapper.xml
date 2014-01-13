@@ -19,6 +19,7 @@
 		</association>
 		<association property="paper" column="paper_id" javaType="Paper">
 			<id property="id" column="paper_id" />
+			<collection property="questions" column="paper_id" ofType="Question" select="selectQuestions"/>
 		</association>	
 		<association property="space" column="space_id" javaType="Spaces">
 			<id property="id" column="space_id" />
@@ -30,6 +31,12 @@
 			<id property="id" column="business_type" />
 		</association>
 	</resultMap>
+	
+	<select id="selectQuestions" resultType="Question">
+	    select q.question as question, q.question_id as id, q.question_type as questionType, q.question_options as questionOptions, q.trashed as trashed, pq.position as position
+	    from questions q, paper_questions pq 
+	    where q.question_id=pq.question_id and pq.paper_id=#{paper_id} order by pq.position
+	</select>
 	
 	<select id="get" resultMap="caseDetailMap">
 		select 

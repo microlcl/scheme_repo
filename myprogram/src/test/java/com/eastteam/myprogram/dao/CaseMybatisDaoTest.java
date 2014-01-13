@@ -18,6 +18,7 @@ public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 	public void get() {
 		Case mycase = caseyDao.get(1L);
 		logger.info("spaceid = " + mycase.getSpace().getId());
+		logger.info("question = " + mycase.getPaper().getQuestions());
 		logger.info(mycase.toString());
 	}
 

@@ -31,6 +31,8 @@ public class Question extends IdEntity {
 	}
 	public void setQuestionOptions(String questionOptions) {
 		this.questionOptions = questionOptions;
+		// 得到questionOptions的同时，用^分隔此字符串，并初始化选项List
+		this.splitOptions = questionOptions.split("\\^");
 	}	
 	public String[] getSplitOptions() {
 		return splitOptions;

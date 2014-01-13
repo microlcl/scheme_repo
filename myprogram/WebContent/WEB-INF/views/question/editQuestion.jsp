@@ -126,7 +126,7 @@
 		<div class="control-group">
 				<label for="business_type" class="control-label formlabel">类别:</label>
 				<div class="controls">
-					<input id="business_type" name="business_type" class="easyui-combotree" value="${question.business_type}" data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;">
+					<input id="business_type" name="business_type" class="easyui-combotree" value="${question.business_type}" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;">
 				</div>
 		</div>
 		<div class="control-group">

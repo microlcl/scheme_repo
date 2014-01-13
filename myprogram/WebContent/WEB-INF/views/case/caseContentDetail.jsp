@@ -18,7 +18,7 @@
 			<div class="controls">
 				<input name="businessType" id="business_type"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false">
+				data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" value="${mycase.businessType.id}">
 			</div>
 		</div>
 		<div class="control-group pull-right">
@@ -82,48 +82,33 @@
 		</div>
 </div>
 <div>
-
-	<div class="accordion-heading">
-		<span>Q1：</span> 你喜欢的灯具材质是9？
-	</div>
-	<div class="accordion-inner" style="padding-left:32px">
-		<label class="checkbox"> <input type="checkbox"
-			name="questionOption"> 木质
-		</label> <label class="checkbox"> <input type="checkbox"
-			name="questionOption"> 金属
-		</label> <label class="checkbox"> <input type="checkbox"
-			name="questionOption"> 水晶
-		</label> <label class="checkbox"> <input type="checkbox"
-			name="questionOption"> 其他
-		</label>
-
-	</div>
-	                  <div class="accordion-heading">
-                  	<span>Q2：</span>
-                      	你是通过什么途径知道我们的产品的8？
+				<c:forEach items="${mycase.paper.questions}" var="question" varStatus="status">
+                  <div class="accordion-heading">
+                  	<span style="padding-left:8px">Q${status.count}：</span>
+                      	${question.question}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
                    </div>
-                    <div style="padding-left:32px" class="accordion-inner">
-						
-							
+                    <div class="accordion-inner" style="padding-left:55px">
+						<c:if test="${question.questionType == '1'}">
+							<c:forEach items="${question.splitOptions}" var="splitOption">
 								<label class="radio">
-									<input type="radio" name="questionOption">
-										网上搜索
+									<input type="radio" name="questionOption" >
+										${splitOption}
 								</label>
-							
-								<label class="radio">
-									<input type="radio" name="questionOption">
-										朋友分享
+							</c:forEach>
+						</c:if>
+						<c:if test="${question.questionType == '2'}">
+							<c:forEach items="${question.splitOptions}" var="splitOption">
+								<label class="checkbox">
+									<input type="checkbox" name="questionOption" >
+										${splitOption}
 								</label>
-							
-								<label class="radio">
-									<input type="radio" name="questionOption">
-										无意间了解
-								</label>
-							
-						
-						
-						
+							</c:forEach>
+						</c:if>
+						<c:if test="${question.questionType == '3'}">
+							<textarea></textarea>
+						</c:if>
                     </div>
+			</c:forEach>
 
 </div>
 

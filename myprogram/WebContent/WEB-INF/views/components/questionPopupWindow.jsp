@@ -27,7 +27,7 @@
 		<div class="search-panel">
 			<form class="form-search form-inline" action="#">
 					<label>类别：</label> 
-					<input id="categorySelector" name="search_categoryId" class="easyui-combotree" multiple data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;">	
+					<input id="categorySelector" name="search_categoryId" class="easyui-combotree" multiple data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;">	
 						
 					<div class="input-append">
 					    <input class="span2" id="searchKeyword" type="text">

@@ -36,6 +36,7 @@
 			forceParse: 0,
 			format: 'yyyy-mm-dd hh:ii'
     	});
+
 	});
 </script>
 

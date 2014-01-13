@@ -26,7 +26,7 @@
 				</div>
 				<div style="padding-top:15px">
 			 		<label>类别：</label> 
-					<input id="cc" name="search_categoryId" class="easyui-combotree" value="${param.search_categoryId}" multiple data-options="url:'${ctx}/category/api/getAll/M1-7',method:'get',required:false" style="width:200px;">		
+					<input id="cc" name="search_categoryId" class="easyui-combotree" value="${param.search_categoryId}" multiple data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;">		
 				</div>
 			</form>
 		</div>
