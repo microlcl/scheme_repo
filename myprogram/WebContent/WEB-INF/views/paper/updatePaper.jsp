@@ -158,8 +158,8 @@
 				<input type="text" name="paperName"  maxlength="64" class="span3 required" placeholder="0~64个字符" style="margin-right:100px;" value="${selectpaper.paperName}"/><br>
 				<label class="span3 control-label" style="width: 40%;font-weight: bold;line-height: 30px;text-align: right; padding-right: 20px;">问卷类型:</label>
 				<input id="cc2" class="easyui-combotree" style="width:200px;margin-right:100px !important;" name="search_categoryId" value="${param.search_categoryId}"/><br>
-				<button id="select_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" id="search_btn" onclick="questionPopupWindow({callback:addQuestions})">请点击此处选择问题</button>
-				<button id="delete_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px; margin-left:40px; " type="button" class="btn btn-danger" id="delete_btn" onclick="removeAllQuestions();">删除所有所选问题</button>
+				<button id="select_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" onclick="questionPopupWindow({callback:addQuestions})">请点击此处选择问题</button>
+				<button id="delete_questions_button" style="height: 40px !important;width: 180px !important; margin-top: 10px; margin-left:40px; " type="button" class="btn btn-danger" onclick="removeAllQuestions();">删除所有所选问题</button>
 				<div id="selected_questions" style="">
 					<label style="width: 100%;font-weight: bold;line-height: 30px;text-align: left; padding-left: 20px;">您所选择的问题如下:</label>
 					<div class="accordion" style="border-color: transparent;  width: 80%; margin-left: 100px;"  id="myaccordion1">
