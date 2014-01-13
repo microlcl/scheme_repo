@@ -14,7 +14,7 @@
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
-			$("#visit-tab").addClass("active");
+			$("#case-tab").addClass("active");
 			
 			var businessTypeId = [];
 			<c:forEach items="${businessType}" var="category">

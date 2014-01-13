@@ -48,6 +48,7 @@ public class VisitContrller {
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
 			@RequestParam(value = "sortType", defaultValue = "visit_id") String sortType,
 			Model model, ServletRequest request) {
+		logger.info("in vist controller: list");
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
 		if ((request.getParameter("search_categoryId1") != "") && (request.getParameter("search_categoryId1") != null)) {
@@ -70,4 +71,10 @@ public class VisitContrller {
 		return "visit/list";
 	}
 
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add(Model model, ServletRequest request) {
+		logger.info("in visit controller: add");
+		
+		return "visit/addVisit";
+	}
 }
