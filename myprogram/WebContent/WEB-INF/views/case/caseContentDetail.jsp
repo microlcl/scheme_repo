@@ -81,4 +81,49 @@
 			</div>
 		</div>
 </div>
-	
+<div>
+
+	<div class="accordion-heading">
+		<span>Q1：</span> 你喜欢的灯具材质是9？
+	</div>
+	<div class="accordion-inner" style="padding-left:32px">
+		<label class="checkbox"> <input type="checkbox"
+			name="questionOption"> 木质
+		</label> <label class="checkbox"> <input type="checkbox"
+			name="questionOption"> 金属
+		</label> <label class="checkbox"> <input type="checkbox"
+			name="questionOption"> 水晶
+		</label> <label class="checkbox"> <input type="checkbox"
+			name="questionOption"> 其他
+		</label>
+
+	</div>
+	                  <div class="accordion-heading">
+                  	<span>Q2：</span>
+                      	你是通过什么途径知道我们的产品的8？
+                   </div>
+                    <div style="padding-left:32px" class="accordion-inner">
+						
+							
+								<label class="radio">
+									<input type="radio" name="questionOption">
+										网上搜索
+								</label>
+							
+								<label class="radio">
+									<input type="radio" name="questionOption">
+										朋友分享
+								</label>
+							
+								<label class="radio">
+									<input type="radio" name="questionOption">
+										无意间了解
+								</label>
+							
+						
+						
+						
+                    </div>
+
+</div>
+
