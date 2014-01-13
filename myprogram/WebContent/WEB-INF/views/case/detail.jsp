@@ -76,6 +76,7 @@
 			<div class="tabbable">
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#caseDetail" data-toggle="tab">详细</a></li>
+					<li><a href="#paper" data-toggle="tab">调查问卷</a></li>
 					<li><a href="#visitActivities" data-toggle="tab">到访/回访记录</a></li>
 					<li><a href="#tasks" data-toggle="tab">相关任务</a></li>
 					<li><a href="#subscribers" data-toggle="tab">相关人员</a></li>
@@ -84,6 +85,9 @@
 					<div class="tab-pane active" id="caseDetail">
 						 <%@ include file="caseContentDetail.jsp"%>
 					</div>
+					<div class="tab-pane" id="paper">
+						<%@ include file="casePaper.jsp"%>
+					</div>					
 					<div class="tab-pane" id="visitActivities">
 						<%@ include file="visitActivities.jsp"%>
 					</div>

@@ -81,34 +81,3 @@
 			</div>
 		</div>
 </div>
-<div>
-				<c:forEach items="${mycase.paper.questions}" var="question" varStatus="status">
-                  <div class="accordion-heading">
-                  	<span style="padding-left:8px">Q${status.count}：</span>
-                      	${question.question}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
-                   </div>
-                    <div class="accordion-inner" style="padding-left:55px">
-						<c:if test="${question.questionType == '1'}">
-							<c:forEach items="${question.splitOptions}" var="splitOption">
-								<label class="radio">
-									<input type="radio" name="questionOption" >
-										${splitOption}
-								</label>
-							</c:forEach>
-						</c:if>
-						<c:if test="${question.questionType == '2'}">
-							<c:forEach items="${question.splitOptions}" var="splitOption">
-								<label class="checkbox">
-									<input type="checkbox" name="questionOption" >
-										${splitOption}
-								</label>
-							</c:forEach>
-						</c:if>
-						<c:if test="${question.questionType == '3'}">
-							<textarea></textarea>
-						</c:if>
-                    </div>
-			</c:forEach>
-
-</div>
-
