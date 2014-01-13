@@ -235,13 +235,6 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-3','1-0-8','完成','2012-06-04 02:00:00','F','已完成');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-8-4','1-0-8','废弃','2012-06-04 02:00:00','F','被废弃');
 
--- 访问类别
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9','1-0','案例类别','2014-01-10 00:00:00','F','案例类别');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-0','1-0-9','婚礼','2014-01-10 00:00:00','F','案例类别');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-1','1-0-9','丧礼','2014-01-10 00:00:00','F','案例类别');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-2','1-0-9','生日','2014-01-10 00:00:00','F','案例类别');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-9-3','1-0-9','年会','2014-01-10 00:00:00','F','案例类别');
-
 -- 系统参数 end
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1','1','婚庆','2012-06-04 02:00:00','F','婚庆根节点');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-1-1','1-1','婚庆:搞笑','2012-06-04 02:00:00','F','搞笑的媒体资源');
@@ -271,7 +264,6 @@ insert into function_category(function_id,category_id) values('M1-9','1-0-7');
 insert into function_category(function_id,category_id) values('M1-9-1','1-0-6');
 insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
 insert into function_category(function_id,category_id) values('M1-10','1-0-4');
-insert into function_category(function_id,category_id) values('M1-11','1-0-9');
 
 
 
