@@ -33,6 +33,7 @@ public class CaseController {
 		logger.info("caseid = " + id);
 		Case mycase =  this.caseService.get(id);
 		logger.info("case = " + mycase);
+		logger.info("case.businessType = " + mycase.getBusinessType().getId());
 		model.addAttribute("mycase", mycase);
 		return "case/detail";
 	}

@@ -21,6 +21,9 @@
 			onChange : function(node) {
 				var url = '${ctx}/account/api/search?departmentId=' + node;
 				$('#case_owner').combobox('reload', url);
+			},
+			onLoadSuccess: function(node, data) {
+				console.log("department load successfully: ");
 			}
 		});
 		//时间控件
@@ -36,6 +39,13 @@
 			forceParse: 0,
 			format: 'yyyy-mm-dd hh:ii'
     	});
+    	// 如果department有初始值，初始化人员选择列表
+    	var defaultDept = $('#assigned_department').combotree('getValue');
+    	if (defaultDept) {
+    		var url = '${ctx}/account/api/search?departmentId=' + defaultDept;
+			$('#case_owner').combobox('reload', url);
+    	}
+
 
 	});
 </script>

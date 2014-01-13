@@ -26,7 +26,7 @@
 			<div class="pull-right">
 				<!--input type="text" class="span4" id="event_time" placeholder=""-->
 				<div class="input-append date form_date" >
-                    <input size="16" type="text" id="event_time" name="eventTime" style="width:302px" value="" readonly>
+                    <input size="16" type="text" id="event_time" name="eventTime" style="width:302px" value="<fmt:formatDate value='${mycase.eventTime}' pattern='yyyy-MM-dd hh:mm'/>" value="" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
@@ -53,7 +53,7 @@
 			<div class="controls">
 				<input name="assignedDepartment" id="assigned_department"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+				data-options="url:'${ctx}/department/api/get',method:'get',required:false" value=${mycase.department.id}>
 			</div>
 		</div>
 		<div class="control-group span pull-right">
@@ -69,7 +69,7 @@
 			<div class="controls">
 				<input name="caseOwner" id="case_owner"
 				class="span4 easyui-combobox"
-				data-options="method:'get',valueField:'id',textField:'name'">
+				data-options="method:'get',valueField:'id',textField:'name'" value=${mycase.owner.id}>
 			</div>
 		</div>
 
