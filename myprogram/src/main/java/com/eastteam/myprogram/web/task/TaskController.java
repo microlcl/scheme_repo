@@ -89,15 +89,17 @@ public class TaskController {
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Task task,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dueDate = new Date();
-		try {
-			dueDate = sdf.parse(finishTime);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(finishTime!=null&&!finishTime.equals("")){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date dueDate = new Date();
+			try {
+				dueDate = sdf.parse(finishTime);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			task.setDueDate(dueDate);
 		}
-		task.setDueDate(dueDate);
 		task.setCreatedTimestamp(new Date());
 		this.taskService.save(task);
 			

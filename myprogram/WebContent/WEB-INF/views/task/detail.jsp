@@ -85,7 +85,7 @@
 		<label class="control-label formlabel">剩余时间：</label>
 		<div class="controls">
 		<input type="text" id="timeRemaining" name="timeRemaining" value="0"
-					class="input-large" maxlength="64" />
+					class="input-large" maxlength="64" onkeyup="clearNoNum(this)"/>
 		</div>
 	</div>
 	<div class="control-group">
@@ -120,6 +120,7 @@
   
 
 <script type="text/javascript">
+//显示创建时间
 	$(document).ready(function() {
 		var d = new Date();
 		var vYear = d.getFullYear();
@@ -139,7 +140,7 @@
 		});
 		
 	});
-
+//时间控件
 	$('.form_date').datetimepicker({
 		language : 'zh-CN',
 		weekStart : 1,
@@ -152,4 +153,10 @@
 		pickerPosition: "bottom-left",
 		format : 'yyyy-mm-dd HH:ii'
 	});
+//验证输入数字	
+	function clearNoNum(obj)
+	{
+	    //先把非数字的都替换掉，除了数字和.
+	    obj.value = obj.value.replace(/[^\d.]/g,"");
+	}
 </script>
