@@ -68,7 +68,7 @@
 	<div class="control-group">
 		<label class="control-label formlabel">计划完成时间：</label>
 		<div class="input-append date form_date controls" style="margin-left: 20px">
-					<input size="16" type="text" id="dueDate" name="dueDate"
+					<input size="16" type="text" id="finishTime" name="finishTime"
 						style="width: 160px" readonly>
 						 <span class="add-on"><i class="icon-remove"></i></span> 
 						 <span class="add-on"><i class="icon-th"></i></span>
@@ -91,14 +91,16 @@
 	<div class="control-group">
 		<label class="control-label formlabel">创建人：</label>
 		<div class="controls">
-		<input type="text" id="createdBy" name="createdBy.id"
-					class="input-large" maxlength="64" readonly />
+		<input type="text" 
+					class="input-large" value="${user.name}" maxlength="64" readonly />
+		<input type="hidden" id="createdBy" name="createdBy.id" 
+					class="input-large" value="${user.id}" maxlength="64" readonly />
 		</div>
 	</div>
 	 <div class="control-group">
 		<label class="control-label formlabel">创建时间:</label>
 		<div class="controls">
-		<input type="text" id="createdTimestamp" name="createdTimestamp"
+		<input type="text" id="createdTimestamp" 
 					class="input-large" maxlength="64" readonly /> 
 		</div>
 	</div>
@@ -110,7 +112,9 @@
 		<textarea id="description" name="description"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
 
-
+<div class="form-actions">
+			<input id="cancel_btn" class="btn" type="submit" value="保存" />
+		</div>
 
 
   

@@ -52,9 +52,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-actions">
-			<input id="cancel_btn" class="btn" type="submit" value="保存" />
-		</div>
+		
 	</form>
 	</div>
 </body>

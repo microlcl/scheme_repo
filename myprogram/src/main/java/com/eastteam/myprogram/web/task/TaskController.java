@@ -1,4 +1,7 @@
 package com.eastteam.myprogram.web.task;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 import javax.servlet.ServletRequest;
@@ -84,11 +87,22 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Task task,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String save(@ModelAttribute Task task,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
-			this.taskService.save(task);
-			redirectAttributes.addFlashAttribute("message", "增加成功！");
-			return "redirect:/task/list/";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dueDate = new Date();
+		try {
+			dueDate = sdf.parse(finishTime);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		task.setDueDate(dueDate);
+		task.setCreatedTimestamp(new Date());
+		this.taskService.save(task);
+			
+		redirectAttributes.addFlashAttribute("message", "增加成功！");
+		return "redirect:/task/list/";
 	}
 	@RequestMapping(value="upload",method = RequestMethod.GET)
 	public String showUplaodPage() {
