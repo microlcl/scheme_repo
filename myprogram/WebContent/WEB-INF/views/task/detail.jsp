@@ -116,7 +116,9 @@
 			<small>讨论</small>
 			
 		</legend>
-
+<label class=" offset1 formlabel">评论:</label>
+		<textarea id="description" name="comment"
+					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
 
 <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />

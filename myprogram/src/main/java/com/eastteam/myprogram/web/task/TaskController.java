@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.web.task;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.CategoryLiteBean;
+import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.task.TaskService;
@@ -91,7 +93,7 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute Task task,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String save(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in holder save action");
 		if(finishTime!=null&&!finishTime.equals("")){
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -105,6 +107,9 @@ public class TaskController {
 			task.setDueDate(dueDate);
 		}
 		task.setCreatedTimestamp(new Date());
+		List comments=new ArrayList();
+		comments.add(comment);
+		task.setComments(comments);
 		this.taskService.save(task);
 			
 		redirectAttributes.addFlashAttribute("message", "增加成功！");
