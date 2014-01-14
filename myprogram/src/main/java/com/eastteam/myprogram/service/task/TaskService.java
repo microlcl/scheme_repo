@@ -52,6 +52,7 @@ public class TaskService extends PageableService{
 			for (Iterator iterator = comments.iterator(); iterator.hasNext();) {
 				Comment comment = (Comment) iterator.next();
 				taskDao.saveComments(comment);
+				taskDao.saveTaskComment(task, comment);
 			}
 		}
 		List attachments=task.getAttachments();

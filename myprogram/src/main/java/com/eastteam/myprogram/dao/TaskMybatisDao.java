@@ -25,5 +25,5 @@ public interface TaskMybatisDao {
 	void saveAttachment(Attachment attachment);
 	void saveTaskSubscriber(Attachment attachment);
 	void saveComments(Comment comment);
-	
+	void saveTaskComment(Task task,Comment comment);
 }

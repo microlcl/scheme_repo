@@ -32,6 +32,8 @@
     $(document).ready(function() {
 		$("#task-tab").addClass("active");
 		
+		var url = '${ctx}/account/api/search?departmentId=D1';
+		$('#myaccount_id').combobox('reload', url);
 	
 		// 必须在$(document).ready里面定义combotree的onChange事件
 		$('#department').combotree({
@@ -79,7 +81,7 @@
 		<label class="control-label formlabel">拥有者：</label>
 		<div class="controls">
 		 <input id="myaccount_id" name="owner.id"
-			class="easyui-combobox" style="width:225px;" value="${task.owner.name}"
+			class="easyui-combobox" style="width:225px;" value="${task.owner.id}"
 			data-options="method:'get',valueField:'id',textField:'name'">
 			</div>
 	</div>
@@ -142,6 +144,10 @@
 		<textarea id="description" name="description"  
 					class="input-large offset1" maxlength="64" style="width: 70%" >${task.description}</textarea>
 
+<label class=" offset1 formlabel">评论:</label>
+		<textarea id="description" name="comment"
+					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+					
   <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />
 		</div>
