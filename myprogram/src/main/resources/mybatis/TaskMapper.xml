@@ -123,4 +123,19 @@
 		values(#{user.id},#{comment},#{createdTimestamp});
 	</insert>
 	
+	<!-- 获取task -->
+	<select id="getTask" resultMap="taskDetailMap">
+		select t.task_id,t.parent_id,t.summary,t.description,t.department_id,t.progress,t.due_date,t.time_remaining,
+		t.created_timestamp,cb.id as cb_id,cs.id as cs_id,uo.id as uo_id,uc.id as uc_id,cp.id as cp_id,
+		cb.name as cb_name,cs.name as cs_name,uo.name as uo_name,uc.name as uc_name,cp.name as cp_name,
+		d.department_id,d.name as department_name,d.description as department_description
+		from task t
+		left join category cb on t.task_type=cb.id
+		left join category cs on t.status=cs.id
+		left join users uo on t.owner=uo.id 
+		left join users uc on t.created_by=uc.id 
+		left join category cp on t.priority=cp.id 
+		left join departments d on t.department_id=d.department_id 
+		where t.task_id=#{id}
+	</select>
 </mapper> 

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -20,6 +21,8 @@
     <script>
     $(document).ready(function() {
 		$("#task-tab").addClass("active");
+		
+		
 
 		// 必须在$(document).ready里面定义combotree的onChange事件
 		$('#mydepartment_id').combotree({
@@ -61,6 +64,7 @@
 			<th>创建时间</th>
 			<th>优先度</th>
 			<th>所属任务</th>
+			<th>操作</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -69,9 +73,12 @@
 				<td>${task.summary}&nbsp;</td>
 				<td>${task.status.name}&nbsp;</td>
 				<td>${task.owner.name}</td> 
-				<td>${task.createdTimestamp}</td>
+				<td><fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
 				<td>${task.priority.name}</td>
 				<td>${task.parent.summary}</td>
+				<td>
+					<a href='${ctx}/task/update?id=${task.id}' id='editLink-${task.id}'><i class='icon-edit'></i> 修改</a>
+				</td>
 			</tr>
 		</c:forEach>
 		</tbody>		

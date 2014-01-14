@@ -12,6 +12,7 @@ import com.eastteam.myprogram.dao.TaskMybatisDao;
 import com.eastteam.myprogram.entity.Attachment;
 import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
+import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -37,6 +38,11 @@ public class TaskService extends PageableService{
 	public Long getCount(Map parameters) {
 		// TODO Auto-generated method stub
 		return taskDao.getCount(parameters);
+	}
+	
+	
+	public Task getTask(String id) {
+		return this.taskDao.getTask(id);
 	}
 	
 	public void save(Task task){

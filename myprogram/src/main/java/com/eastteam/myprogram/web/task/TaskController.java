@@ -2,6 +2,7 @@ package com.eastteam.myprogram.web.task;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javax.servlet.ServletRequest;
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.eastteam.myprogram.entity.CategoryLiteBean;
+import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.task.TaskService;
 import com.eastteam.myprogram.web.Servlets;
@@ -133,5 +137,12 @@ public class TaskController {
 //		taskService.saveFile(file, realPath, filename);
 		
 //		return "";
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(@RequestParam(value="id") String id,Model model, HttpServletRequest request) {
+		Task task = this.taskService.getTask(id);
+		model.addAttribute("task", task);
+		return "task/updateTask";
 	}
 }
