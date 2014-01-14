@@ -30,6 +30,7 @@ import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Task;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.task.TaskService;
 import com.eastteam.myprogram.web.Servlets;
 import com.eastteam.myprogram.web.WebUtils;
@@ -108,6 +109,9 @@ public class TaskController {
 		}
 		task.setCreatedTimestamp(new Date());
 		List comments=new ArrayList();
+		User user=(User) request.getSession().getAttribute("user");
+		comment.setUser(user);
+		comment.setCreatedTimestamp(new Date());
 		comments.add(comment);
 		task.setComments(comments);
 		this.taskService.save(task);

@@ -132,12 +132,12 @@
 	<!-- 插入task_comments-->
 	<insert id="saveTaskComment" parameterType="map">
 		insert into task_comments  (comment_id,task_id)
-		values(#{comment_id},#{user_id});
+		values(#{comment_id},#{task_id});
 	</insert>
 	
 	<!-- 插入comments-->
 	<insert id="saveComments" parameterType="Comment" useGeneratedKeys="true" keyProperty="id" >
-		insert into comments  (user_id,comment,created_timestamp)
+		insert into comments(user_id,comment,created_timestamp)
 		values(#{user.id},#{comment},#{createdTimestamp});
 	</insert>
 	

@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.service.task;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +53,10 @@ public class TaskService extends PageableService{
 			for (Iterator iterator = comments.iterator(); iterator.hasNext();) {
 				Comment comment = (Comment) iterator.next();
 				taskDao.saveComments(comment);
-				taskDao.saveTaskComment(task, comment);
+				Map<String, Object> parameters=new HashMap<String, Object>();
+				parameters.put("comment_id", comment.getId());
+				parameters.put("task_id", task.getId());
+				taskDao.saveTaskComment(parameters);
 			}
 		}
 		List attachments=task.getAttachments();
