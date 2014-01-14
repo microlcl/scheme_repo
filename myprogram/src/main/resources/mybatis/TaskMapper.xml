@@ -41,7 +41,9 @@
 			<id property="id" column="id" />
 			<result property="summary" column="summary" />
 			<collection property="parent" column="parent_id" javaType="Task" select="selectTask"/>			
-		</collection>	
+		</collection>
+		<collection property="comments" column="task_id" ofType="Comment" select="selectcomments">
+		</collection>
 	</resultMap>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
@@ -94,6 +96,16 @@
 		</if>
 	</select>
 	
+	<select id="selectcomments" resultType="Comment">
+	   select c.comment_id,c.user_id,c.comment,c.created_timestamp
+	   from comments c 
+	   where c.comment_id in (
+	       select tc.comment_id
+	       from task_comments tc
+	       where tc.task_id = #{task_id}
+	   )
+	</select>
+	
 	<select id="selectTask" resultType="Task">
 	    select task_id as id,summary
 	    from  task  
@@ -117,7 +129,13 @@
 		values(#{task_id},#{user_id});
 	</insert>
 	
-	<!-- 插入task_subscribers-->
+	<!-- 插入task_comments-->
+	<insert id="saveTaskComment" parameterType="map">
+		insert into task_comments  (comment_id,task_id)
+		values(#{comment_id},#{user_id});
+	</insert>
+	
+	<!-- 插入comments-->
 	<insert id="saveComments" parameterType="Comment" useGeneratedKeys="true" keyProperty="id" >
 		insert into comments  (user_id,comment,created_timestamp)
 		values(#{user.id},#{comment},#{createdTimestamp});

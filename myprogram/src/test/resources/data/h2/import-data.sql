@@ -471,3 +471,6 @@ insert into cases (case_id, case_title, created_time, assigned_department_id, ca
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
 	values (3, '王五的公司年会', '2013-08-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-06-04 02:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-8-3', 'C');
 
+insert into task_comments (comment_id,task_id) values (1,1);
+
+insert into comments (comment_id,user_id,comment,created_timestamp) values (1,'userid1','需要更多修改'，now());
