@@ -23,7 +23,6 @@
 	type="text/javascript"></script>
 <div class="row" style="margin:0px;">
 <div class="span5" style="padding:10px;margin-left:0px;">
-	<form class="form-horizontal">
 		<fieldset>
 	<div class="control-group">
 		<label class="control-label formlabel">任务类型:</label>
@@ -62,10 +61,8 @@
 		</div>
 	</div>	
 	</fieldset>
-      </form>
 </div>
 <div class="span5" style="padding:10px;margin-left:0px;">	
-	<form class="form-horizontal">
 		<fieldset>
 
 	<div class="control-group">
@@ -106,7 +103,6 @@
 		</div>
 	</div>
 		</fieldset>
-      </form>
 </div>
 
 </div>
@@ -121,7 +117,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		var d = new Date();
+		var vYear = d.getFullYear();
+		var vMon = d.getMonth() + 1;
+		var vDay = d.getDate();
+		var h = d.getHours(); 
+		var m = d.getMinutes(); 
+		var se = d.getSeconds(); 
+		s=vYear+"-"+(vMon<10 ? "0" + vMon : vMon)+"-"+(vDay<10 ? "0"+ vDay : vDay)+" "+(h<10 ? "0"+ h : h)+":"+(m<10 ? "0" + m : m)+":"+(se<10 ? "0" +se : se);
+		$("#createdTimestamp").val(s);
 		// 必须在$(document).ready里面定义combotree的onChange事件
 		$('#department').combotree({
 			onChange : function(node) {
@@ -129,8 +133,7 @@
 				$('#myaccount_id').combobox('reload', url);
 			}
 		});
-		var time=new Date();  
-		$("#createdTimestamp").val(time);
+		
 	});
 
 	$('.form_date').datetimepicker({

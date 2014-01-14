@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.entity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author LB
@@ -20,8 +21,8 @@ public class Task extends IdEntity{
 	private int timeRemaining;  // 剩余多少时间
 	private Date createdTimestamp; // 创建时间
 	private User createdBy;  // 创建人
-
-
+	private List<Comment> comments;
+	private List<Attachment> attachments;
 	public String getSummary() {
 		return summary;
 	}
@@ -102,6 +103,18 @@ public class Task extends IdEntity{
 	}
 	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	public List<Attachment> getAttachments() {
+		return attachments;
+	}
+	public void setAttachments(List<Attachment> attachments) {
+		this.attachments = attachments;
 	}
 	
 }

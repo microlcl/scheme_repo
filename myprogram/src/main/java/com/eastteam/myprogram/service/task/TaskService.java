@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.TaskMybatisDao;
+import com.eastteam.myprogram.entity.Attachment;
+import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.PageableService;
@@ -39,7 +41,21 @@ public class TaskService extends PageableService{
 	
 	public void save(Task task){
 		taskDao.save(task);
-		
+		List comments=task.getComments();
+		if(comments!=null){
+			for (Iterator iterator = comments.iterator(); iterator.hasNext();) {
+				Comment comment = (Comment) iterator.next();
+				taskDao.saveComments(comment);
+			}
+		}
+		List attachments=task.getAttachments();
+		if(attachments!=null){
+			for (Iterator iterator = attachments.iterator(); iterator.hasNext();) {
+				Attachment attachment = (Attachment) iterator.next();
+				taskDao.saveAttachment(attachment);
+			}
+		}
+		task.getAttachments();
 	}
 
 }

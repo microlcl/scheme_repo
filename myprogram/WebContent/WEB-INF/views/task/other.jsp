@@ -61,7 +61,7 @@
 					// Specify what files to browse for
 					mime_types : [ {
 						title : "Image files",
-						extensions : "jpg,gif,png"
+						extensions : "jpg,gif,png,txt,doc"
 					}, {
 						title : "Zip files",
 						extensions : "zip"

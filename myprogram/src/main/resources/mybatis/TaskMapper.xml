@@ -102,6 +102,25 @@
 	<!-- 插入任务-->
 	<insert id="save" parameterType="Task" useGeneratedKeys="true" keyProperty="id" >
 		insert into Task  (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(#{id},#{parent.id},#{summary},#{description},#{taskType.id},#{status.id},#{department.id},#{owner.id},#{progress},#{priority.id},#{dueDate},#{timeRemaining},#{createdTimestamp},#{createdBy.id});
+		values(#{parent.id},#{summary},#{description},#{taskType.id},#{status.id},#{department.id},#{owner.id},#{progress},#{priority.id},#{dueDate},#{timeRemaining},#{createdTimestamp},#{createdBy.id});
 	</insert>
+	
+	<!-- 插入附件-->
+	<insert id="saveAttachment" parameterType="Attachment" useGeneratedKeys="true" keyProperty="id" >
+		insert into attachments  (user_id,uploaded_timestamp,path,file_size)
+		values(#{user.id},#{uploadedTimestamp},#{path},#{fileSize});
+	</insert>
+	
+	<!-- 插入task_subscribers-->
+	<insert id="saveTaskSubscriber" parameterType="map">
+		insert into task_subscribers  (task_id,user_id)
+		values(#{task_id},#{user_id});
+	</insert>
+	
+	<!-- 插入task_subscribers-->
+	<insert id="saveComments" parameterType="Comment" useGeneratedKeys="true" keyProperty="id" >
+		insert into comments  (user_id,comment,created_timestamp)
+		values(#{user.id},#{comment},#{createdTimestamp});
+	</insert>
+	
 </mapper> 

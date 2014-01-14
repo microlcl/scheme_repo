@@ -106,16 +106,16 @@ public class TaskController {
 	 */
 	@ResponseBody
 	@RequestMapping(value="upload",method=RequestMethod.POST)	
-	public String plupload(@RequestParam MultipartFile file, HttpSession session, String name) {
-//		String relativePath = "/plupload/files/large";
-//		String realPath = WebUtils.getRealPath(session);
-//		String mediafolder = realPath + relativePath;
-		//加上sessionId作为上传文件名
-//		String filename = session.getId() + "_" + name;
-//		logger.info("文件保存路径：" + mediafolder);
-//		logger.info("文件名称：" + filename);		
-//		mediaService.saveFile(file, realPath, filename);
+	public void plupload(@RequestParam MultipartFile file, HttpSession session, String name) {
+		String relativePath = "/plupload/files/attachment";
+		String realPath = WebUtils.getRealPath(session);
+		String mediafolder = realPath + relativePath;
+//		加上sessionId作为上传文件名
+		String filename = session.getId() + "_" + name;
+		logger.info("文件保存路径：" + mediafolder);
+		logger.info("文件名称：" + filename);		
+//		taskService.saveFile(file, realPath, filename);
 		
-		return "";
+//		return "";
 	}
 }

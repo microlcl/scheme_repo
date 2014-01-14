@@ -3,6 +3,8 @@ package com.eastteam.myprogram.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.eastteam.myprogram.entity.Attachment;
+import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Task;
 
 
@@ -20,4 +22,8 @@ public interface TaskMybatisDao {
 	List<Task> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
 	Task getTask(String id);
+	void saveAttachment(Attachment attachment);
+	void saveTaskSubscriber(Attachment attachment);
+	void saveComments(Comment comment);
+	
 }
