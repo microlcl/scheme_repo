@@ -12,6 +12,9 @@
 			<if test="businessType != null">
 		        and cb.id = #{businessType}
 			</if>
+			<if test="isVisited != null">
+		        and v.is_visited = #{isVisited}
+			</if>
 			<if test="keyword != null">
 				and (c.title like '%${keyword}%')
 			</if>
@@ -52,6 +55,9 @@
 		<where>
 			<if test="businessType != null">
 		        and cb.id = #{businessType}
+			</if>
+			<if test="isVisited != null">
+		        and v.is_visited = #{isVisited}
 			</if>
 			<if test="keyword != null">
 				and (c.title like '%${keyword}%')

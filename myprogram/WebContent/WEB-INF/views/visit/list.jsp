@@ -2,17 +2,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
 	<title>进店管理</title>
+	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 	
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 	<script>
+
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
 			
@@ -32,12 +37,32 @@
 				}
 			
 			});
+			
+			var visit = "${isVisited}";
+			$("#isVisited").val(visit);
+			
+			$('.form_date').datetimepicker({
+		        language:  'zh-CN',
+		        weekStart: 1,
+		        todayBtn:  true,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				minView: 2,
+				forceParse: 0,
+				format: 'yyyy-mm-dd'
+		    });
 		});
+		
 
 	</script>
 	<style>
 		.combo{
-			margin-bottom: 9px;
+			margin-bottom: 10px;
+			width: 128px !important;
+		}
+		.combo-text{
+			width:106px;
 		}
 	</style>
 
@@ -51,11 +76,23 @@
 					策划类别：
 					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
 					&nbsp;&nbsp;初次到访：
-					<select style="height: 30px;">
-						<option>全部</option>
-						<option>是</option>
-						<option>否</option>
+					<select style="height: 30px; width: 80px;" name="search_isVisited" id="isVisited">
+						<option value ="*" selected>全部</option>
+						<option value ="F">是</option>
+						<option value ="T">否</option>
 					</select>
+					&nbsp;&nbsp;起始日期：
+					<div class="input-append date form_date">
+	                    <input size="16" type="text" id="dateFrom" name="dateFrom" style="width:80px" readonly>
+	                    <span class="add-on"><i class="icon-remove"></i></span>
+						<span class="add-on"><i class="icon-th"></i></span>
+	                </div>
+	                &nbsp;&nbsp;终止日期：
+					<div class="input-append date form_date">
+	                    <input size="16" type="text" id="dateTo" name="dateTo" style="width:80px" readonly>
+	                    <span class="add-on"><i class="icon-remove"></i></span>
+						<span class="add-on"><i class="icon-th"></i></span>
+	                </div>
 				</span>
 				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
 				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>

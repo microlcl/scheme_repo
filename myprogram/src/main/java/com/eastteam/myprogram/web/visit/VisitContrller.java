@@ -51,6 +51,10 @@ public class VisitContrller {
 		logger.info("in vist controller: list");
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
 				request, "search_");
+		logger.info("是否初次到访 " + request.getParameter("isVisited"));
+		if ((request.getParameter("isVisited") != "") && (request.getParameter("isVisited") != null)) {
+			searchParams.put("isVisited", request.getParameter("isVisited"));
+		}
 		if ((request.getParameter("search_categoryId1") != "") && (request.getParameter("search_categoryId1") != null)) {
 			searchParams.put("businessType", request.getParameter("search_categoryId1"));
 		}
@@ -66,6 +70,8 @@ public class VisitContrller {
 		
 		Object businessType = searchParams.get("categoryId1");
 		model.addAttribute("businessType", businessType);
+		Object isVisited = searchParams.get("isVisited");
+		model.addAttribute("isVisited", isVisited);
 		
 
 		return "visit/list";
