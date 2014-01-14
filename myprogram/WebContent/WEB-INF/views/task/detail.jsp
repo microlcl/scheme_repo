@@ -21,6 +21,8 @@
 <script
 	src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js"
 	type="text/javascript"></script>
+<!-- CKEditor (Rich Text Editor) -->
+<script type="text/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>
 <div class="row" style="margin:0px;">
 <div class="span5" style="padding:10px;margin-left:0px;">
 		<fieldset>
@@ -117,8 +119,9 @@
 			
 		</legend>
 <label class=" offset1 formlabel">评论:</label>
-		<textarea id="description" name="comment"
+		<textarea id="comment" name="comment"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+					
 
 <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />
@@ -167,4 +170,6 @@
 	    //先把非数字的都替换掉，除了数字和.
 	    obj.value = obj.value.replace(/[^\d.]/g,"");
 	}
+	
+	CKEDITOR.replace('comment');
 </script>
