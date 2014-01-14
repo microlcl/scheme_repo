@@ -472,5 +472,9 @@ insert into cases (case_id, case_title, created_time, assigned_department_id, ca
 	values (3, '王五的公司年会', '2013-08-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-06-04 02:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-8-3', 'C');
 
 insert into task_comments (comment_id,task_id) values (1,1);
+insert into task_comments (comment_id,task_id) values (2,2);
+insert into task_comments (comment_id,task_id) values (3,3);
 
-insert into comments (comment_id,user_id,comment,created_timestamp) values (1,'userid1','需要更多修改'，now());
+insert into comments (comment_id,user_id,comment,created_timestamp) values (1,'userid1','需要更多修改',now());
+insert into comments (comment_id,user_id,comment,created_timestamp) values (2,'userid1','需要更多修改',now());
+insert into comments (comment_id,user_id,comment,created_timestamp) values (3,'userid1','需要更多修改',now());
