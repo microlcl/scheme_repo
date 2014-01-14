@@ -17,19 +17,39 @@
 <script type="text/javascript"
 	src="${ctx}/static/plupload/js/i18n/zh_CN.js"></script>
 
-<div class="row" style="margin:0px;">
-	
-	<form id="form" method="post" action="add" class="form-horizontal">
-		<legend>
-			<small>附件上传</small>
-		</legend>
 
-		<div id="uploader" class="control-group">
-			<p>你的浏览器不支持 Flash, Silverlight or HTML5.</p>
+<div class="row">
+	<div class="span9">
+		<div class="row">
+			<div class="span7">
+				<div id="uploader" class="control-group">
+					<p>你的浏览器不支持 Flash, Silverlight or HTML5.</p>
+				</div>
+			</div>
+			<div class="span2">
+				<table class="table table-condensed">
+					<tr class="success">
+						<td>subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add...</td>
+					</tr>
+					<tr class="success">
+						<td>yangbin</td>
+					</tr>
+					<tr class="success">
+						<td>libo</td>
+					</tr>
+					<tr class="success">
+						<td>zhangyang</td>
+					</tr>
+					<tr class="success">
+						<td>yidequan</td>
+					</tr>
+				</table>
+			</div>
 		</div>
-	</form>
-
-
+	</div>
+</div>
+<div class="row" style="margin:0px;">
+		
 </div>
 
 <script type="text/javascript">
