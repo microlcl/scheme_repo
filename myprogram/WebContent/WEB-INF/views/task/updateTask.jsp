@@ -27,7 +27,7 @@
 <script
 	src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js"
 	type="text/javascript"></script>
-	
+<script type="text/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>	
     <script>
     $(document).ready(function() {
 		$("#task-tab").addClass("active");
@@ -82,7 +82,7 @@
 		<div class="controls">
 		 <input id="myaccount_id" name="owner.id"
 			class="easyui-combobox" style="width:225px;" value="${task.owner.id}"
-			data-options="method:'get',valueField:'id',textField:'name'">
+			data-options="method:'get',valueField:'id',textField:'name'"> 
 			</div>
 	</div>
 	<div class="control-group">
@@ -144,9 +144,27 @@
 		<textarea id="description" name="description"  
 					class="input-large offset1" maxlength="64" style="width: 70%" >${task.description}</textarea>
 
-<label class=" offset1 formlabel">评论:</label>
-		<textarea id="description" name="comment"
+		<legend>
+			<small>讨论</small>
+			
+		</legend>
+	<div style="margin:10px 20px 15px;">	
+	
+	<label class="formlabel">评论:</label>
+	<c:forEach items="${task.comments}" var="comment">
+	     <p>${comment.user.name}</p>
+	     <p><fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></p>
+		<textarea  name="comment" 
+					class="input-large offset1" maxlength="64" style="width: 60%" readonly>${comment.comment}</textarea>
+	</c:forEach>
+	
+	<label class="formlabel">添加评论:</label>
+	
+	<textarea id="comment" name="comment"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+					
+	</div>
+	
 					
   <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />
@@ -168,6 +186,8 @@ $('.form_date').datetimepicker({
 		pickerPosition: "bottom-left",
 		format : 'yyyy-mm-dd HH:ii'
 	});
+	
+CKEDITOR.replace('comment');
 </script>
 </body>
 </html>
