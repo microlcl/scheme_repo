@@ -6,17 +6,19 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
     <title>协同作业</title>
-    <link rel="stylesheet" type="text/css"
+    
+    <link
+	href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css"
+	type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/static/styles/form.css">
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/static/easyui/mytree.css">
-<link
-	href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css"
-	type="text/css" rel="stylesheet" />
 <script src="${ctx}/static/easyui/jquery.easyui.min.js"
 	type="text/javascript"></script>
 <script
@@ -25,6 +27,7 @@
 <script
 	src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js"
 	type="text/javascript"></script>
+	
     <script>
     $(document).ready(function() {
 		$("#task-tab").addClass("active");
@@ -96,8 +99,7 @@
 	<div class="control-group">
 		<label class="control-label formlabel">计划完成时间：</label>
 		<div class="input-append date form_date controls" style="margin-left: 20px">
-					<input size="16" type="text" id="finishTime" name="finishTime" value="<fmt:formatDate value="${task.dueDate}" type="both" pattern="yyyy-MM-dd HH:mm"/>"
-						style="width: 160px">
+					<input size="16" type="text" id="finishTime" name="finishTime" value="<fmt:formatDate value='${task.dueDate}' type='both' pattern='yyyy-MM-dd HH:mm'/>" style="width: 160px">
 						 <span class="add-on"><i class="icon-remove"></i></span> 
 						 <span class="add-on"><i class="icon-th"></i></span>
 		</div>
@@ -137,8 +139,8 @@
 
 </div>
 <label class=" offset1 formlabel">描述:</label>
-		<textarea id="description" name="description"  value="${task.description}"
-					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+		<textarea id="description" name="description"  
+					class="input-large offset1" maxlength="64" style="width: 70%" >${task.description}</textarea>
 
   <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />
@@ -147,10 +149,6 @@
 </form>
 </div>
 		
-
-</body>
-</html>
-
 <script type="text/javascript">
 $('.form_date').datetimepicker({
 		language : 'zh-CN',
@@ -165,3 +163,6 @@ $('.form_date').datetimepicker({
 		format : 'yyyy-mm-dd HH:ii'
 	});
 </script>
+</body>
+</html>
+

@@ -111,6 +111,12 @@
 <label class=" offset1 formlabel">描述:</label>
 		<textarea id="description" name="description"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+					
+		<legend>
+			<small>讨论</small>
+			
+		</legend>
+
 
 <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />
