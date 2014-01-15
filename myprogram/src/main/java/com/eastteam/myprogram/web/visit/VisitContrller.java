@@ -58,6 +58,12 @@ public class VisitContrller {
 		if ((request.getParameter("search_categoryId1") != "") && (request.getParameter("search_categoryId1") != null)) {
 			searchParams.put("businessType", request.getParameter("search_categoryId1"));
 		}
+		if ((request.getParameter("dateFrom") != "") && (request.getParameter("dateFrom") != null)) {
+			searchParams.put("dateFrom", request.getParameter("dateFrom"));
+		}
+		if ((request.getParameter("dateTo") != "") && (request.getParameter("dateTo") != null)) {
+			searchParams.put("dateTo", request.getParameter("dateTo"));
+		}
 		Page<VisitActivity> visits = visitService.getCurrentPageContent(
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("visitActivity.pagesize")), sortType);
 		List<VisitActivity> visitList = visits.getContent();
@@ -72,6 +78,10 @@ public class VisitContrller {
 		model.addAttribute("businessType", businessType);
 		Object isVisited = searchParams.get("isVisited");
 		model.addAttribute("isVisited", isVisited);
+		Object dateFrom = searchParams.get("dateFrom");
+		model.addAttribute("dateFrom", dateFrom);
+		Object dateTo = searchParams.get("dateTo");
+		model.addAttribute("dateTo", dateTo);
 		
 
 		return "visit/list";

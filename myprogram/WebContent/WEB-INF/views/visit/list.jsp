@@ -38,8 +38,10 @@
 			
 			});
 			
-			var visit = "${isVisited}";
-			$("#isVisited").val(visit);
+			$("#isVisited").val("${isVisited}");
+			$("#dateFrom").val("${dateFrom}");
+			$("#dateTo").val("${dateTo}");
+			
 			
 			$('.form_date').datetimepicker({
 		        language:  'zh-CN',
@@ -76,8 +78,8 @@
 					策划类别：
 					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
 					&nbsp;&nbsp;初次到访：
-					<select style="height: 30px; width: 80px;" name="search_isVisited" id="isVisited">
-						<option value ="*" selected>全部</option>
+					<select style="height: 30px; width: 80px;" name="isVisited" id="isVisited">
+						<option value ="%" selected>全部</option>
 						<option value ="F">是</option>
 						<option value ="T">否</option>
 					</select>

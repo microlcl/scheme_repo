@@ -13,11 +13,18 @@
 		        and cb.id = #{businessType}
 			</if>
 			<if test="isVisited != null">
-		        and v.is_visited = #{isVisited}
+		        and v.is_visited like '${isVisited}'
 			</if>
+			<if test="dateFrom != null">
+				and v.visit_stime &gt;= #{dateFrom}
+			</if>
+			<if test="dateTo != null">
+				and v.visit_stime &lt;= dateadd(day,1,#{dateTo})
+			</if>			
 			<if test="keyword != null">
 				and (c.title like '%${keyword}%')
 			</if>
+			
 		</where>
 		<if test="sort != null">
 			order by ${sort}
@@ -57,8 +64,14 @@
 		        and cb.id = #{businessType}
 			</if>
 			<if test="isVisited != null">
-		        and v.is_visited = #{isVisited}
+		        and v.is_visited like '${isVisited}'
 			</if>
+			<if test="dateFrom != null">
+				and v.visit_stime &gt;= #{dateFrom}
+			</if>
+			<if test="dateTo != null">
+				and v.visit_stime &lt;= dateadd(day,1,#{dateTo})
+			</if>			
 			<if test="keyword != null">
 				and (c.title like '%${keyword}%')
 			</if>
