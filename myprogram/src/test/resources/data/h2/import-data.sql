@@ -451,25 +451,25 @@ insert into customer (customer_id, customer_name, customer_phone, customer_sex, 
 	values (3, '王五', '13022222222', '22114433', '财务', 'wangwu', '300000', '1983-12-28', '理财', '此人善于沟通');
 		
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (1, 1, '1-0-4-0', '2013-06-04 02:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'F', '此人婚礼喜欢极尽奢华', 1);
+	values (1, 1, '1-0-4-0', '2013-06-04 08:00:00', 3, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'F', '此人婚礼喜欢极尽奢华', 1);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (2, 2, '1-0-4-0', '2013-10-05 02:00:00', 50, 'D1-2-1', 'userid10', 'userid11', '1-0-2-1', 2, 'F', '此人生日宴会非常简单', 2);
+	values (2, 2, '1-0-4-0', '2013-10-05 02:00:00', 1, 'D1-2-1', 'userid10', 'userid11', '1-0-2-1', 2, 'F', '此人生日宴会非常简单', 2);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (3, 3, '1-0-4-0', '2013-08-06 02:00:00', 500, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'F', '此人婚礼喜欢极尽奢华', 3);
+	values (3, 3, '1-0-4-0', '2013-12-06 18:00:00', 10, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'F', '年会要布置合理', 3);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (4, 1, '1-0-4-0', '2013-07-05 10:00:00', 100, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+	values (4, 1, '1-0-4-0', '2013-07-05 10:00:00', 5, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (5, 2, '1-0-4-0', '2013-11-06 02:00:00', 50, 'D1-2-1', 'userid10', 'userid11', '1-0-2-1', 2, 'T', '此人生日宴会喜欢非常简单', 2);
+	values (5, 2, '1-0-4-0', '2013-11-06 02:00:00', 2, 'D1-2-1', 'userid10', 'userid11', '1-0-2-1', 2, 'T', '此人生日宴会喜欢非常简单', 2);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (6, 3, '1-0-4-0', '2013-09-08 02:00:00', 500, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'T', '此人婚礼喜欢极尽奢华', 3);
+	values (6, 3, '1-0-4-0', '2013-12-25 12:00:00', 15, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'T', '年会要布置合理', 3);
 
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-1', 'userid1', '1-0-2-0', '2013-06-04 02:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-8-1', 'C');
+	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-1', 'userid1', '1-0-2-0', '2013-07-10 12:00:00', 100, 1, '场地足够大', '场面极尽奢华', 1, '1-0-8-1', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (2, '李四的生日', '2013-10-06 02:00:00', 'D1-2-1', 'userid6', '1-0-2-2', '2013-06-04 02:00:00', 50, 2, '场地很小', '场面简单', 2, '1-0-8-2', 'C');
+	values (2, '李四的生日', '2013-10-06 02:00:00', 'D1-2-1', 'userid6', '1-0-2-2', '2013-11-15 18:00:00', 10, 2, '场地很小', '场面简单', 2, '1-0-8-2', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (3, '王五的公司年会', '2013-08-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-06-04 02:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-8-3', 'C');
+	values (3, '王五的公司年会', '2013-12-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-12-31 19:00:00', 500, 3, '场地足够大3', '人员很多', 3, '1-0-8-3', 'C');
 
 insert into task_comments (comment_id,task_id) values (1,1);
 insert into task_comments (comment_id,task_id) values (2,2);
