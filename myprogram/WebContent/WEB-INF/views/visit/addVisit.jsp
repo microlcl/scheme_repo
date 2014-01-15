@@ -53,73 +53,75 @@
 </head>
 <body>
 	<div class="form">
-		<h1>增加到访记录</h1>
-		<div  style="padding:20px;">
-			<div class="control-group">
-				<span class="formlabel span2 control-label">访问类别：</span>
-				<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
-			</div>
-			
-           	<div class="control-group">
-				<span class="formlabel span2 control-label">访问人数：</span>
-				<input type="text" id="visitNum" name="visitNum" style="width:186px" class="input-large " value="" maxlength="20"/>
-			</div>
-			
-			<div class="control-group">	
-				<span class="formlabel span2 control-label">访问时间：</span>
-				<div class="input-append date form_date">
-                	<input size="16" type="text" id="dateFrom" name="dateFrom" style="width:132px" readonly>
-                    <span class="add-on"><i class="icon-remove"></i></span>
-					<span class="add-on"><i class="icon-th"></i></span>
-               </div>
-            </div>
-			
-			<div class="control-group">
-				<span class="formlabel span2 control-label">策划类别：</span>
-				<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
-			</div>
-	
-			<div class="control-group">
-				<span class="formlabel span2 control-label">是否初次到访：</span>
-				<div class="controls">
-					<label class="radio inline">
-						<input type="radio" name="sex" id="sex" value="F" >是
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="sex" id="sex" value="T" >否
-					</label>
+		<form action="${ctx}/visit/save" method="post">
+			<h1>增加到访记录</h1>
+			<div id="inputForm" style="padding:20px;">
+				<div class="control-group">
+					<span class="formlabel span2 control-label">访问类别：</span>
+					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="visitType" value="${visitType.id}" />
 				</div>
-			</div>		
-			
-           	<div class="control-group">
-				<span class="formlabel span2 control-label">到访备注：</span>
-				<input type="text" id="visitComment" name="visitComment" style="width:186px" class="input-large " value="" maxlength="64"/>
+				
+	           	<div class="control-group">
+					<span class="formlabel span2 control-label">访问人数：</span>
+					<input type="text" id="visitNum" name="visitNum" style="width:186px" class="input-large " value="${visitNum}" maxlength="20"/>
+				</div>
+				
+				<div class="control-group">	
+					<span class="formlabel span2 control-label">访问时间：</span>
+					<div class="input-append date form_date">
+	                	<input size="16" type="text" id="visitTime" name="visitTime" style="width:132px" readonly>
+	                    <span class="add-on"><i class="icon-remove"></i></span>
+						<span class="add-on"><i class="icon-th"></i></span>
+	               </div>
+	            </div>
+				
+				<div class="control-group">
+					<span class="formlabel span2 control-label">策划类别：</span>
+					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="businessType" value="${businessType.id}" />
+				</div>
+		
+				<div class="control-group">
+					<span class="formlabel span2 control-label">是否初次到访：</span>
+					<div class="controls">
+						<label class="radio inline">
+							<input type="radio" name="isVisited" id="sex" value="F" >是
+						</label>
+						<label class="radio inline">
+							<input type="radio" name="isVisited" id="sex" value="T" >否
+						</label>
+					</div>
+				</div>		
+				
+	           	<div class="control-group">
+					<span class="formlabel span2 control-label">到访备注：</span>
+					<input type="text" id="visitComment" name="comment" style="width:186px" class="input-large " value="${comment}" maxlength="64"/>
+				</div>
+				
+				<div class="control-group">	
+					<span class="formlabel span2 control-label">案例时间：</span>
+					<div class="input-append date form_date">
+	                	<input size="16" type="text" id="eventTime" name="eventTime" value="${eventTime}" style="width:132px" readonly>
+	                    <span class="add-on"><i class="icon-remove"></i></span>
+						<span class="add-on"><i class="icon-th"></i></span>
+	               </div>
+	            </div>
+	            
+	           	<div class="control-group">
+					<span class="formlabel span2 control-label">客人人数：</span>
+					<input type="text" id="guestNum" name="guestNum" style="width:186px" class="input-large " value="${guestNum}" maxlength="20"/>
+				</div>
+				
+				<div class="control-group">
+					<span class="formlabel span2 control-label">会场简介：</span>
+					<input type="text" id="spaceTip" name="spaceTip" style="width:186px" class="input-large " value="${spaceTip}" maxlength="64"/>
+				</div>
+	            
 			</div>
-			
-			<div class="control-group">	
-				<span class="formlabel span2 control-label">案例时间：</span>
-				<div class="input-append date form_date">
-                	<input size="16" type="text" id="dateFrom" name="dateFrom" style="width:132px" readonly>
-                    <span class="add-on"><i class="icon-remove"></i></span>
-					<span class="add-on"><i class="icon-th"></i></span>
-               </div>
-            </div>
-            
-           	<div class="control-group">
-				<span class="formlabel span2 control-label">客人人数：</span>
-				<input type="text" id="visitNum" name="visitNum" style="width:186px" class="input-large " value="" maxlength="20"/>
+			<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
+				<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
+				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
-			
-			<div class="control-group">
-				<span class="formlabel span2 control-label">会场简介：</span>
-				<input type="text" id="visitComment" name="visitComment" style="width:186px" class="input-large " value="" maxlength="64"/>
-			</div>
-            
-		</div>
-	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
-		<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
-		<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
-	</div>
+		</form>
 	</div>
 </body>
 </html>

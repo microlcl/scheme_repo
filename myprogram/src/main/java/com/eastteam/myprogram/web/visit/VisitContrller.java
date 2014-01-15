@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,5 +93,12 @@ public class VisitContrller {
 		logger.info("in visit controller: add");
 		
 		return "visit/addVisit";
+	}
+	
+	@RequestMapping(value = "save",method = RequestMethod.POST)
+	public String save(VisitFormBean visitFormBean, HttpSession session) {
+		logger.info("in visit save" + visitFormBean.toString());
+		
+		return "visit/list";
 	}
 }
