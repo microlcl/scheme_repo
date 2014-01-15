@@ -81,10 +81,14 @@
 	
 			<div class="control-group">
 				<span class="formlabel span2 control-label">是否初次到访：</span>
-				<select style="width:200px"  name="isVisited" id="isVisited">
-					<option value ="F" selected>是</option>
-					<option value ="T">否</option>
-				</select>
+				<div class="controls">
+					<label class="radio inline">
+						<input type="radio" name="sex" id="sex" value="F" >是
+					</label>
+					<label class="radio inline">
+						<input type="radio" name="sex" id="sex" value="T" >否
+					</label>
+				</div>
 			</div>		
 			
            	<div class="control-group">
@@ -112,9 +116,10 @@
 			</div>
             
 		</div>
+	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
+		<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
+		<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 	</div>
-	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
-	
 	</div>
 </body>
 </html>
