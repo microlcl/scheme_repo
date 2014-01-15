@@ -6,15 +6,46 @@
 <html>
 <head>
 	<title>进店管理</title>
+	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
-	
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
+			
+			var businessTypeId = [];
+			<c:forEach items="${businessType}" var="category">
+				businessTypeId.push('${category}');
+			</c:forEach>
+			$("#cc1").combotree({ 
+				onLoadSuccess:function(node){//数据加载成功触发 
+					$("#cc1").combotree('setValues', businessTypeId);
+				},
+				onBeforeSelect:function(node){ 
+					var tree = $(this).tree;
+					var isLeaf = tree('isLeaf', node.target);
+					console.log("isLeaf=" + isLeaf);
+					return isLeaf;
+				}
+			
+			});
+			
+			$('.form_date').datetimepicker({
+		        language:  'zh-CN',
+		        weekStart: 1,
+		        todayBtn:  true,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				minView: 2,
+				forceParse: 0,
+				format: 'yyyy-mm-dd'
+		    });
 		});
 
 	</script>
@@ -24,7 +55,62 @@
 	<div class="form">
 		<h1>增加到访记录</h1>
 		<div  style="padding:20px;">
-			Place Holder
+			<div class="control-group">
+				<span class="formlabel span2 control-label">访问类别：</span>
+				<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
+			</div>
+			
+           	<div class="control-group">
+				<span class="formlabel span2 control-label">访问人数：</span>
+				<input type="text" id="visitNum" name="visitNum" style="width:186px" class="input-large " value="" maxlength="20"/>
+			</div>
+			
+			<div class="control-group">	
+				<span class="formlabel span2 control-label">访问时间：</span>
+				<div class="input-append date form_date">
+                	<input size="16" type="text" id="dateFrom" name="dateFrom" style="width:132px" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+               </div>
+            </div>
+			
+			<div class="control-group">
+				<span class="formlabel span2 control-label">策划类别：</span>
+				<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
+			</div>
+	
+			<div class="control-group">
+				<span class="formlabel span2 control-label">是否初次到访：</span>
+				<select style="width:200px"  name="isVisited" id="isVisited">
+					<option value ="F" selected>是</option>
+					<option value ="T">否</option>
+				</select>
+			</div>		
+			
+           	<div class="control-group">
+				<span class="formlabel span2 control-label">到访备注：</span>
+				<input type="text" id="visitComment" name="visitComment" style="width:186px" class="input-large " value="" maxlength="64"/>
+			</div>
+			
+			<div class="control-group">	
+				<span class="formlabel span2 control-label">案例时间：</span>
+				<div class="input-append date form_date">
+                	<input size="16" type="text" id="dateFrom" name="dateFrom" style="width:132px" readonly>
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+               </div>
+            </div>
+            
+           	<div class="control-group">
+				<span class="formlabel span2 control-label">客人人数：</span>
+				<input type="text" id="visitNum" name="visitNum" style="width:186px" class="input-large " value="" maxlength="20"/>
+			</div>
+			
+			<div class="control-group">
+				<span class="formlabel span2 control-label">会场简介：</span>
+				<input type="text" id="visitComment" name="visitComment" style="width:186px" class="input-large " value="" maxlength="64"/>
+			</div>
+            
 		</div>
 	</div>
 	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
