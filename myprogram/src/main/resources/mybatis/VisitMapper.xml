@@ -77,5 +77,21 @@
 			</if>
 		</where>) t
 	</select>
-
+	
+	<insert id="insertCustomer" parameterType="String" useGeneratedKeys="true" keyProperty="id">
+		insert into customer (customer_name) 
+		values (#{customerName});
+	</insert>
+	
+	<insert id="insertCase" parameterType="Case" useGeneratedKeys="true" keyProperty="id">
+		insert into cases (business_type, created_time, event_time, guest_num, space_tip, business_code) 
+		values (#{businessType.id}, now(), #{eventTime}, #{guestNum}, #{spaceTip}, 'C');
+	</insert>
+	
+	<insert id="insertVisit" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		insert into visit_activities (customer_id, visit_type, visit_stime, business_type, case_id, is_visited, comment) 
+		values (#{customerId}, #{visitType}, #{visitTime}, #{businessType}, #{caseId}, #{isVisited}, #{comment});
+	</insert>
+	
+	
 </mapper>

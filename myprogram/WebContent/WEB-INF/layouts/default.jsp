@@ -23,7 +23,11 @@
 <script src="${ctx}/static/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery-validation/1.11.1/jquery.validate.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/jquery-validation/1.11.1/messages_bs_zh.js" type="text/javascript"></script>
-
+<style>
+	body {
+    	background: none repeat scroll 0 0 #F2F2F2 !important;
+	}
+</style>
 
 <sitemesh:head/>
 </head>

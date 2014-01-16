@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.VisitActivity;
 import com.eastteam.myprogram.service.visit.VisitService;
@@ -95,10 +97,25 @@ public class VisitContrller {
 		return "visit/addVisit";
 	}
 	
-	@RequestMapping(value = "save",method = RequestMethod.POST)
-	public String save(VisitFormBean visitFormBean, HttpSession session) {
-		logger.info("in visit save" + visitFormBean.toString());
+	@RequestMapping(value = "save", method = RequestMethod.POST)
+	public String save(HttpSession session, VisitFormBean visitFormBean, @RequestParam(value="customerVisitTime") String visitTime, 
+			@RequestParam(value="customerEventTime") String eventTime, @RequestParam(value="visitNumber") String visitNumber, 
+			@RequestParam(value="guestNumber") String guestNumber, @RequestParam(value="visitTypeId") String visitTypeId,
+			@RequestParam(value="businessTypeId") String businessTypeId) {
+		logger.info("in visit save");
 		
-		return "visit/list";
+		visitFormBean.setVisitTime(visitTime);
+		visitFormBean.setEventTime(eventTime);
+		visitFormBean.setVisitNum(Integer.parseInt(visitNumber));
+		visitFormBean.setGuestNum(Integer.parseInt(guestNumber));
+		Category visitType = new Category();
+		visitType.setId(visitTypeId);
+		Category businessType = new Category();
+		businessType.setId(businessTypeId);
+		visitFormBean.setBusinessType(businessType);
+		visitFormBean.setVisitType(visitType);
+		logger.info("VisitFormBean: " + visitFormBean.toString());
+		
+		return "redirect:/visit/list";
 	}
 }

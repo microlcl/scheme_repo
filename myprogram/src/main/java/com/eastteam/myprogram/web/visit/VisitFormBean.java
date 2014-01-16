@@ -3,6 +3,8 @@
  */
 package com.eastteam.myprogram.web.visit;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.eastteam.myprogram.entity.Category;
@@ -23,6 +25,7 @@ public class VisitFormBean extends BaseFormBean {
 	private Date eventTime;
 	private int guestNum;
 	private String spaceTip;
+	private String customerName;
 	
 	public Category getVisitType() {
 		return visitType;
@@ -33,8 +36,20 @@ public class VisitFormBean extends BaseFormBean {
 	public Date getVisitTime() {
 		return visitTime;
 	}
-	public void setVisitTime(Date visitTime) {
-		this.visitTime = visitTime;
+	public void setVisitTime(String visitTime) {
+		if(visitTime != null && visitTime != ""){	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			try {
+				date = sdf.parse(visitTime);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.visitTime = date;
+		}
+		else 
+			this.visitTime = null;
 	}
 	public int getVisitNum() {
 		return visitNum;
@@ -63,8 +78,20 @@ public class VisitFormBean extends BaseFormBean {
 	public Date getEventTime() {
 		return eventTime;
 	}
-	public void setEventTime(Date eventTime) {
-		this.eventTime = eventTime;
+	public void setEventTime(String eventTime) {
+		if(eventTime != null && eventTime != ""){	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date date = new Date();
+			try {
+				date = sdf.parse(eventTime);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			this.eventTime = date;
+		}
+		else 
+			this.visitTime = null;
 	}
 	public int getGuestNum() {
 		return guestNum;
@@ -77,6 +104,12 @@ public class VisitFormBean extends BaseFormBean {
 	}
 	public void setSpaceTip(String spaceTip) {
 		this.spaceTip = spaceTip;
+	}
+	public String getCustomerName() {
+		return customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	
 	

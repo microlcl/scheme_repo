@@ -18,14 +18,17 @@
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
 			
-			var businessTypeId = [];
-			<c:forEach items="${businessType}" var="category">
-				businessTypeId.push('${category}');
-			</c:forEach>
 			$("#cc1").combotree({ 
-				onLoadSuccess:function(node){//数据加载成功触发 
-					$("#cc1").combotree('setValues', businessTypeId);
-				},
+				onBeforeSelect:function(node){ 
+					var tree = $(this).tree;
+					var isLeaf = tree('isLeaf', node.target);
+					console.log("isLeaf=" + isLeaf);
+					return isLeaf;
+				}
+			
+			});
+			
+			$("#cc2").combotree({ 
 				onBeforeSelect:function(node){ 
 					var tree = $(this).tree;
 					var isLeaf = tree('isLeaf', node.target);
@@ -58,18 +61,18 @@
 			<div id="inputForm" style="padding:20px;">
 				<div class="control-group">
 					<span class="formlabel span2 control-label">访问类别：</span>
-					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="visitType" value="${visitType.id}" />
+					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="visitTypeId"/>
 				</div>
 				
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">访问人数：</span>
-					<input type="text" id="visitNum" name="visitNum" style="width:186px" class="input-large " value="${visitNum}" maxlength="20"/>
+					<input type="text" id="visitNumber" name="visitNumber" style="width:186px" class="input-large " maxlength="20"/>
 				</div>
 				
 				<div class="control-group">	
 					<span class="formlabel span2 control-label">访问时间：</span>
 					<div class="input-append date form_date">
-	                	<input size="16" type="text" id="visitTime" name="visitTime" style="width:132px" readonly>
+	                	<input size="16" type="text" id=customerVisitTime name="customerVisitTime" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
 						<span class="add-on"><i class="icon-th"></i></span>
 	               </div>
@@ -77,7 +80,7 @@
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">策划类别：</span>
-					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="businessType" value="${businessType.id}" />
+					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="businessTypeId"/>
 				</div>
 		
 				<div class="control-group">
@@ -90,17 +93,22 @@
 							<input type="radio" name="isVisited" id="sex" value="T" >否
 						</label>
 					</div>
+				</div>
+				
+				<div class="control-group">
+					<span class="formlabel span2 control-label">客户名字：</span>
+					<input type="text" id="customerName" name="customerName" style="width:186px" class="input-large " maxlength="64"/>
 				</div>		
 				
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">到访备注：</span>
-					<input type="text" id="visitComment" name="comment" style="width:186px" class="input-large " value="${comment}" maxlength="64"/>
+					<input type="text" id="comment" name="comment" style="width:186px" class="input-large " maxlength="64"/>
 				</div>
 				
 				<div class="control-group">	
 					<span class="formlabel span2 control-label">案例时间：</span>
 					<div class="input-append date form_date">
-	                	<input size="16" type="text" id="eventTime" name="eventTime" value="${eventTime}" style="width:132px" readonly>
+	                	<input size="16" type="text" id="customerEventTime" name="customerEventTime" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
 						<span class="add-on"><i class="icon-th"></i></span>
 	               </div>
@@ -108,12 +116,12 @@
 	            
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">客人人数：</span>
-					<input type="text" id="guestNum" name="guestNum" style="width:186px" class="input-large " value="${guestNum}" maxlength="20"/>
+					<input type="text" id="guestNumber" name="guestNumber" style="width:186px" class="input-large " maxlength="20"/>
 				</div>
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">会场简介：</span>
-					<input type="text" id="spaceTip" name="spaceTip" style="width:186px" class="input-large " value="${spaceTip}" maxlength="64"/>
+					<input type="text" id="spaceTip" name="spaceTip" style="width:186px" class="input-large " maxlength="64"/>
 				</div>
 	            
 			</div>
