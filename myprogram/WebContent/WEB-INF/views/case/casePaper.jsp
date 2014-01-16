@@ -15,27 +15,27 @@
 				<c:forEach items="${mycase.paper.questions}" var="question" varStatus="status">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.count}：</span>
-                      	${question.question}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
+                      	${question.question}-----${question.id}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
                    </div>
                     <div class="accordion-inner" style="padding-left:55px">
 						<c:if test="${question.questionType == '1'}">
-							<c:forEach items="${question.splitOptions}" var="splitOption">
+							<c:forEach items="${question.options}" var="myoption">
 								<label class="radio">
 									<input type="radio" name="questionOption" >
-										${splitOption}
+										${myoption.content}
 								</label>
 							</c:forEach>
 						</c:if>
 						<c:if test="${question.questionType == '2'}">
-							<c:forEach items="${question.splitOptions}" var="splitOption">
+							<c:forEach items="${question.options}" var="myoption">
 								<label class="checkbox">
 									<input type="checkbox" name="questionOption" >
-										${splitOption}
+										${myoption.content}
 								</label>
 							</c:forEach>
 						</c:if>
 						<c:if test="${question.questionType == '3'}">
-							<textarea></textarea>
+							<textarea>${question.questionOptions}</textarea>
 						</c:if>
                     </div>
 			</c:forEach>

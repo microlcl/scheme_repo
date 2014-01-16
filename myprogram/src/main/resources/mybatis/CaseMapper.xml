@@ -100,5 +100,10 @@
 			</if>
 		</where>
 	</select>
-
+	
+	<select id="getAnswers" resultType="Answer">
+		select pa.question_id as questionId , pa.answer 
+		from paper_answers pa  
+		where pa.business_id='C'||#{businessId}
+	</select>
 </mapper> 

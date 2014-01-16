@@ -24,6 +24,7 @@ public class Case extends IdEntity {
 	private Category status;
 	private List<Task> tasks;
 	private Date createdTimestamp;
+	private List<Answer> answers;
 	// TODO 后续要加上到访，回访的entities list
 	
 	public String getTitle() {

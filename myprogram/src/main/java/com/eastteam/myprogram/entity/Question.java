@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.entity;
 
+
 public class Question extends IdEntity {
 
 	private String question;
@@ -10,8 +11,9 @@ public class Question extends IdEntity {
 	private int position;
 	private boolean paperAnswered = false;
 	private boolean paperUsed = false;
+	private Option[] options;
 
-
+	@Deprecated
 	private String[] splitOptions;
 	
 	public String getQuestion() {
@@ -29,14 +31,23 @@ public class Question extends IdEntity {
 	public String getQuestionOptions() {
 		return questionOptions;
 	}
+	
 	public void setQuestionOptions(String questionOptions) {
 		this.questionOptions = questionOptions;
 		// 得到questionOptions的同时，用^分隔此字符串，并初始化选项List
-		this.splitOptions = questionOptions.split("\\^");
+		String[] optionsArray = questionOptions.split("\\^");
+		if (optionsArray != null) {
+			this.options = new Option[optionsArray.length];
+		}
+		for(int i = 0; i < optionsArray.length; i ++) {
+			options[i] = (new Option(optionsArray[i]));
+		}
 	}	
+	@Deprecated
 	public String[] getSplitOptions() {
 		return splitOptions;
 	}
+	@Deprecated
 	public void setSplitOptions(String[] splitOptions) {
 		this.splitOptions = splitOptions;
 	}
@@ -69,6 +80,12 @@ public class Question extends IdEntity {
 	}
 	public void setPaperUsed(boolean paperUsed) {
 		this.paperUsed = paperUsed;
+	}
+	public Option[] getOptions() {
+		return options;
+	}
+	public void setOptions(Option[] options) {
+		this.options = options;
 	}
 	
 }
