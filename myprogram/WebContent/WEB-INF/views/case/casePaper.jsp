@@ -21,7 +21,7 @@
 						<c:if test="${question.questionType == '1'}">
 							<c:forEach items="${question.options}" var="myoption">
 								<label class="radio">
-									<input type="radio" name="questionOption" >
+									<input type="radio" name="questionOption" <c:if test="${myoption.checked==true }">checked="true"</c:if>>
 										${myoption.content}
 								</label>
 							</c:forEach>
@@ -29,7 +29,7 @@
 						<c:if test="${question.questionType == '2'}">
 							<c:forEach items="${question.options}" var="myoption">
 								<label class="checkbox">
-									<input type="checkbox" name="questionOption" >
+									<input type="checkbox" name="questionOption" <c:if test="${myoption.checked==true }">checked="true"</c:if>>
 										${myoption.content}
 								</label>
 							</c:forEach>

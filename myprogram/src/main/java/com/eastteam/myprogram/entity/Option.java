@@ -5,9 +5,9 @@ package com.eastteam.myprogram.entity;
  * @author lichlei
  *
  */
-public class Option {
+public class Option extends BaseEntity{
 	private String content;
-	boolean checked;
+	boolean checked = false;
 	
 	public Option() {
 		
