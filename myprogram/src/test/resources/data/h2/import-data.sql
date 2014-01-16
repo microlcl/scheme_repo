@@ -389,7 +389,7 @@ insert into papers (paper_id, paper_name, business_type, creat_timestamp, status
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (3, '婚礼问卷3', '1-0-2-0', now(), '1-0-1-0');
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (4, '年会问卷4', '1-0-2-2', now(), '1-0-1-2');
 insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (5, '年会问卷5', '1-0-2-2', now(), '1-0-1-1');
-insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (6, '年会问卷6', '1-0-2-2', now(), '1-0-1-1');
+insert into papers (paper_id, paper_name, business_type, creat_timestamp, status) values (6, '生日问卷', '1-0-2-1', now(), '1-0-1-1');
 
 insert into paper_questions (paper_id, question_id, position) values (1, 9, 10);
 insert into paper_questions (paper_id, question_id, position) values (1, 8, 20);
@@ -469,7 +469,7 @@ insert into cases (case_id, case_title, created_time, assigned_department_id, ca
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
 	values (2, '李四的年会', '2013-10-06 02:00:00', 'D1-2-1', 'userid6', '1-0-2-2', '2013-11-15 18:00:00', 10, 2, '场地很小', '场面简单', 5, '1-0-8-2', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
-	values (3, '王五的公司年会', '2013-12-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-12-31 19:00:00', 500, 3, '场地足够大3', '人员很多', 5, '1-0-8-3', 'C');
+	values (3, '王五生日宴会', '2013-12-07 02:00:00', 'D1-2', 'userid9', '1-0-2-1', '2013-12-31 19:00:00', 500, 3, '场地足够大3', '人员很多', 6, '1-0-8-3', 'C');
 
 insert into task_comments (comment_id,task_id) values (1,1);
 insert into task_comments (comment_id,task_id) values (2,2);

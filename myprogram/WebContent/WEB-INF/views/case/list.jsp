@@ -5,7 +5,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-	<title>案例管理</title>
+	<title>需求管理</title>
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
@@ -47,7 +47,7 @@
 </head>
 <body>
 	<div class="form">
-		<h1>案例管理</h1>
+		<h1>需求管理</h1>
 		 <div class="row" style="margin:20px;">
 		<div class="span" style="border: 1px solid #CCCCCC;border-radius: 4px;padding:10px;margin-left:0px;background-color: white;">
 			<form class="form-search " action="#" style="margin-bottom:0px;">
@@ -66,7 +66,6 @@
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 		<tr>
-			<th>案例编号</th>
 			<th>案例名称</th>
 			<th>所属部门</th>
 			<th>拥有者</th>
@@ -80,8 +79,7 @@
 		<tbody>
 		<c:forEach items="${cases.content}" var="cases">
 			<tr>
-				<td>${cases.id}&nbsp;</td>
-				<td>${cases.title}&nbsp;</td>
+				<td><a href="${ctx}/case/detail/${cases.id}">${cases.title}</a></td>
 				<td>${cases.department.name}</td> 
 				<td>${cases.owner.name}</td> 
 				<td>${cases.businessType.name}</td>

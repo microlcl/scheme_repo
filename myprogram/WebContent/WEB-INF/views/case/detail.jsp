@@ -16,6 +16,7 @@
 <script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 <script>
 	$(document).ready(function() {
+		$("#case-tab").addClass("active");
 		// 必须在$(document).ready里面定义combotree的onChange事件
 		$('#assigned_department').combotree({
 			onChange : function(node) {
