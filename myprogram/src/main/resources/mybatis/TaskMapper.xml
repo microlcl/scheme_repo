@@ -43,11 +43,26 @@
 			<collection property="parent" column="parent_id" javaType="Task" select="selectTask"/>			
 		</collection>
 		<collection property="comments" column="task_id" ofType="Comment" select="selectcomments">
-			<id property="id" column="id" />
-			<result property="comment" column="comment" />
-			<result property="createdTimestamp" column="createdTimestamp" />
 		</collection>
 	</resultMap>
+	
+	<resultMap type="Comment" id="commentMap">
+			<id property="id" column="id" />
+			<result property="comment" column="comment" />
+			<result property="createdTimestamp"  column="createdTimestamp" />
+			<association property="user" column="c_user_id" javaType="User">
+			 <id property="id" column="c_user_id" />
+			 <result property="name" column="u_name" />
+			 </association>
+	</resultMap>
+	
+	<select id="selectcomments" resultMap="commentMap">
+	   select c.comment_id as id,c.comment as comment,c.created_timestamp as createdTimestamp,c.user_id as c_user_id,u.name as u_name
+	   from comments c,task_comments tc,users u 	   
+	   where c.comment_id = tc.comment_id
+	        and tc.task_id=#{task_id}
+	        and c.user_id = u.id 	       
+	</select>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0)
@@ -99,12 +114,6 @@
 		</if>
 	</select>
 	
-	<select id="selectcomments" resultType="Comment">
-	   select c.comment_id as id,c.comment as comment,c.created_timestamp as createdTimestamp
-	   from comments c ,task_comments tc
-	   where c.comment_id=tc.comment_id 
-	        and tc.task_id = #{task_id}
-	</select>
 	
 	<select id="selectTask" resultType="Task">
 	    select task_id as id,summary

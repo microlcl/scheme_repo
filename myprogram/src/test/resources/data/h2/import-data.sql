@@ -474,7 +474,14 @@ insert into cases (case_id, case_title, created_time, assigned_department_id, ca
 insert into task_comments (comment_id,task_id) values (1,1);
 insert into task_comments (comment_id,task_id) values (2,2);
 insert into task_comments (comment_id,task_id) values (3,3);
+insert into task_comments (comment_id,task_id) values (4,1);
+insert into task_comments (comment_id,task_id) values (5,2);
+insert into task_comments (comment_id,task_id) values (6,3);
 
 insert into comments (comment_id,user_id,comment,created_timestamp) values (1,'userid1','需要更多修改',now());
 insert into comments (comment_id,user_id,comment,created_timestamp) values (2,'userid1','需要更多修改',now());
 insert into comments (comment_id,user_id,comment,created_timestamp) values (3,'userid1','需要更多修改',now());
+insert into comments (comment_id,user_id,comment,created_timestamp) values (4,'userid2','添加页面',now());
+insert into comments (comment_id,user_id,comment,created_timestamp) values (5,'userid2','添加页面',now());
+insert into comments (comment_id,user_id,comment,created_timestamp) values (6,'userid2','添加页面',now());
+

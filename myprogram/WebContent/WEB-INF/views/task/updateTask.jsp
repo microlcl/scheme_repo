@@ -148,18 +148,18 @@
 			<small>讨论</small>
 			
 		</legend>
-	<div style="margin:10px 20px 15px;">	
 	
-	<label class="formlabel">评论:</label>
-	<c:forEach items="${task.comments}" var="comment">
-	     <p>${comment.user.name}</p>
-	     <p><fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></p>
+	
+	<label class="formlabel offset1">评论:</label>
+	<c:forEach items="${task.comments}" var="comment">	    
+	     <label class=" offset1 formlabel">${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></label>
 		<textarea  name="comment" 
-					class="input-large offset1" maxlength="64" style="width: 60%" readonly>${comment.comment}</textarea>
+					class="input-large offset1" maxlength="64" style="width: 70%" readonly>${comment.comment}</textarea>
 	</c:forEach>
 	
-	<label class="formlabel">添加评论:</label>
+	<label class="formlabel offset1">添加评论:</label>
 	
+	<div style="margin:10px 100px 15px;">	
 	<textarea id="comment" name="comment"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
 					
