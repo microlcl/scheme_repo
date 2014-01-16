@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.CaseMybatisDao;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.service.PageableService;
+import com.google.common.collect.Maps;
 
 @Component
 @Transactional
@@ -22,13 +23,17 @@ public class CaseService extends PageableService {
 	
 	public List<Case> search(Map parameters, Pageable pageRequest) {
 		// TODO
-		return null;
+		Map param = Maps.newHashMap(parameters);
+		param.put("offset", pageRequest.getOffset());
+		param.put("pageSize", pageRequest.getPageSize());
+		param.put("sort", this.getOrderValue(pageRequest.getSort()));
+		return CaseDao.search(param);
 	}
 
 	
 	public Long getCount(Map parameters) {
 		// TODO
-		return 0L;
+		return CaseDao.getCount(parameters);
 	}
 	
 	public Case get(Long caseId) {

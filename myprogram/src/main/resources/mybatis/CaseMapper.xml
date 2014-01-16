@@ -13,9 +13,11 @@
 		<result property="description" column="description" />
 		<association property="department" column="assigned_department_id" javaType="Department">
 			<id property="id" column="assigned_department_id" />
+			<result property="name" column="department_name" />
 		</association>
 		<association property="owner" column="case_owner" javaType="User">
 			<id property="id" column="case_owner" />
+			<result property="name" column="case_owner_name" />
 		</association>
 		<association property="paper" column="paper_id" javaType="Paper">
 			<id property="id" column="paper_id" />
@@ -23,12 +25,15 @@
 		</association>	
 		<association property="space" column="space_id" javaType="Spaces">
 			<id property="id" column="space_id" />
+			<result property="space_name" column="space_name" />
 		</association>	
 		<association property="status" column="status" javaType="Category">
 			<id property="id" column="status" />
+			<result property="name" column="status_name" />
 		</association>	
 		<association property="businessType" column="business_type" javaType="Category">
 			<id property="id" column="business_type" />
+			<result property="name" column="business_type_name" />
 		</association>
 	</resultMap>
 	
@@ -45,6 +50,55 @@
 		c.assigned_department_id, c.case_owner, c.paper_id , c.space_id, c.status, c.business_type
 		from cases c
 		where c.case_id=#{id}
+	</select>
+	
+	<select id="search" parameterType="map" resultMap="caseDetailMap">
+		select 
+		c.case_id as id, c.case_title as title, c.created_time as createdTimestamp, 
+		c.event_time as eventTime, c.guest_num as guestNum,c.description as description,
+		d.department_id as assigned_department_id,d.name as department_name,
+		uo.id as case_owner,uo.name as case_owner_name,p.paper_id as paper_id,sp.space_id as space_id,sp.space_name as space_name,
+		cb.id as business_type,cb.name as business_type_name,cs.id as status,cs.name as status_name
+		from cases c
+		left join category cb on c.business_type=cb.id
+		left join category cs on c.status=cs.id
+		left join users uo on c.case_owner=uo.id 
+		left join papers p on c.paper_id=p.paper_id
+		left join spaces sp on c.space_id=sp.space_id
+		left join departments d on c.assigned_department_id=d.department_id 
+		<where> 
+			<if test="department_id != null">
+				and c.assigned_department_id like '${department_id}%'
+			</if>
+			<if test="owner_id != null">
+				and c.case_owner like '${owner_id}%'
+			</if>
+			<if test="business_type != null">
+				and c.business_type like '${business_type}%'
+			</if>
+			<if test="keyword != null">
+				and c.case_title||c.description like '%${keyword}%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0)
+		from cases c 
+		<where> 
+			<if test="department_id != null">
+				and c.assigned_department_id like '${department_id}%'
+			</if>
+			<if test="owner_id != null">
+				and c.case_owner like '${owner_id}%'
+			</if>
+			<if test="business_type != null">
+				and c.business_type like '${business_type}%'
+			</if>
+			<if test="keyword != null">
+				and c.case_title||c.description like '%${keyword}%'
+			</if>
+		</where>
 	</select>
 
 </mapper> 
