@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eastteam.myprogram.entity.Case;
-import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.service.cases.CaseService;
 import com.eastteam.myprogram.web.Servlets;
 
@@ -40,8 +39,9 @@ public class CaseController {
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String dispalyDetail(@PathVariable("id") Long id, Model model) {
 		logger.info("caseid = " + id);
-		Case mycase =  this.caseService.get(id);
+		Case mycase =  this.caseService.getCaseWithAnswer(id);
 		logger.info("case = " + mycase);
+		logger.info("case.paper.questions = " + mycase.getPaper().getQuestions());
 		logger.info("case.businessType = " + mycase.getBusinessType().getId());
 		model.addAttribute("mycase", mycase);
 		return "case/detail";

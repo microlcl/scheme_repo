@@ -2,6 +2,13 @@ package com.eastteam.myprogram.entity;
 
 
 public class Question extends IdEntity {
+	
+	/** 单选题 **/
+	public static final String SINGLE_CHOICE = "1";
+	/** 多选题 **/
+	public static final String MULTIPLE_CHOICE = "2";
+	/** 开放性问题 **/
+	public static final String OPEN_QUESTION = "3";
 
 	private String question;
 	private String questionType;
