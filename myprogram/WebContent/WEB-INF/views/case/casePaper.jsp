@@ -6,7 +6,7 @@
 			<label for="paperList">调查问卷：</label> 
 				<input name="paperList" id="case_owner"
 				class="span4 easyui-combobox"
-				data-options="method:'get',valueField:'id',textField:'name'" value=${mycase.owner.id}>
+				data-options="url:'${ctx}/paper/api/search?businessType=${mycase.businessType.id}',method:'get',valueField:'id',textField:'paperName'" value=${mycase.paper.id}>
 
 		</div>
 	</div>
