@@ -7,6 +7,7 @@ package com.eastteam.myprogram.entity;
  */
 public class Option extends BaseEntity{
 	private String content;
+	private String value;
 	boolean checked = false;
 	
 	public Option() {
@@ -28,6 +29,14 @@ public class Option extends BaseEntity{
 	}
 	public void setChecked(boolean checked) {
 		this.checked = checked;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
 	
 

@@ -49,6 +49,11 @@
 
 
 	});
+	
+	function mySubmit() {
+		console.log('in mySubmit');
+		$('#caseForm').submit();
+	}
 </script>
 
 
@@ -56,19 +61,20 @@
 </head>
 
 <body>
-	<form class="form" style="padding:20px;" action="${ctx}/case/save" method="post">
+	<form id="caseForm" class="form" style="padding:20px;" action="${ctx}/case/save" method="post">
 		<h1>需求管理</h1>
 		<div class="row">
 			<div class="span">
 				<div class="form-search" style="padding-left:20px;">
 					<label for="case_title">概要：</label> 
 					<input type="text" class="input-xxlarge" name="title" id="case_title" value="${mycase.title}">
+					<input type="hidden" name="id" value="${mycase.id}">
 
 				</div>
 			</div>
 								<div class="pull-right">
-										<input name="businessType.id" id="case_status"
-				class="span2 easyui-combotree"
+										<input id="case_status"
+				class="span2 easyui-combotree" name="status.id"
 				data-options="url:'${ctx}/category/api/getAll/getCaseStatus',method:'get',required:false" value="${mycase.status.id}">
 					</div>
 		</div>
@@ -102,7 +108,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<input id="save_btn" class="btn" type="submit" value="保存" />
+			<input id="save_btn" class="btn" type="submit" value="保存"/>
 		</div>
 	</form>
 

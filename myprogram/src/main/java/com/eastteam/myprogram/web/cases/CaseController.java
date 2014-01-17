@@ -84,6 +84,7 @@ public class CaseController {
 	@RequestMapping(value="save",method = RequestMethod.POST)
 	public String save(Case mycase) {
 		logger.info("in case save action!" + mycase.toString());
+		this.caseService.update(mycase);
 		return "redirect:list";		
 	}
 
