@@ -3,6 +3,8 @@ package com.eastteam.myprogram.entity;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * Case实体类
  * @author lichlei
@@ -11,11 +13,14 @@ import java.util.List;
 public class Case extends IdEntity {
 	public static final String businessCode = "c";
 	
-	private String title;
+	private String title;	
 	private Department department;
 	private User owner;
 	private Category businessType;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
 	private Date eventTime;
+	
 	private int guestNum;
 	private Spaces space;
 	private String spaceTip;
@@ -54,8 +59,9 @@ public class Case extends IdEntity {
 	public Date getEventTime() {
 		return eventTime;
 	}
+	
 	public void setEventTime(Date eventTime) {
-		this.eventTime = eventTime;
+		this.eventTime = eventTime;	
 	}
 	public int getGuestNum() {
 		return guestNum;

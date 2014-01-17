@@ -80,6 +80,12 @@ public class CaseController {
 				searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 		return cases;
 	}
+	
+	@RequestMapping(value="save",method = RequestMethod.POST)
+	public String save(Case mycase) {
+		logger.info("in case save action!" + mycase.toString());
+		return "redirect:list";		
+	}
 
 
 }

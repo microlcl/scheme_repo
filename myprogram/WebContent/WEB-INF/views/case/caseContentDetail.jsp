@@ -16,7 +16,7 @@
 		<div class="control-group span pull-left">
 			<label class="control-label" for="business_type">策划类别：</label>
 			<div class="controls">
-				<input name="businessType" id="business_type"
+				<input name="businessType.id" id="business_type"
 				class="span4 easyui-combotree"
 				data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" value="${mycase.businessType.id}">
 			</div>
@@ -26,7 +26,7 @@
 			<div class="pull-right">
 				<!--input type="text" class="span4" id="event_time" placeholder=""-->
 				<div class="input-append date form_date" >
-                    <input size="16" type="text" id="event_time" name="eventTime" style="width:302px" value="<fmt:formatDate value='${mycase.eventTime}' pattern='yyyy-MM-dd hh:mm'/>" value="" readonly>
+                    <input size="16" type="text" name="eventTime" id="event_time" style="width:302px" value="<fmt:formatDate value='${mycase.eventTime}' pattern='yyyy-MM-dd hh:mm'/>" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
@@ -37,7 +37,7 @@
 		<div class="control-group span pull-left">
 			<label class="control-label" for="guest_num">宾客人数：</label>
 			<div class="controls">
-				<input type="text" class="span4" id="guest_num" value="${mycase.guestNum}">
+				<input type="text" class="span4" id="guest_num" name="guestNum" value="${mycase.guestNum}">
 			</div>
 		</div>
 		<div class="control-group span pull-right">
@@ -51,7 +51,7 @@
 		<div class="control-group span5 pull-left">
 			<label class="control-label" for="assigned_department">所属部门：</label>
 			<div class="controls">
-				<input name="assignedDepartment" id="assigned_department"
+				<input name="department.id" id="assigned_department"
 				class="span4 easyui-combotree"
 				data-options="url:'${ctx}/department/api/get',method:'get',required:false" value=${mycase.department.id}>
 			</div>
@@ -59,7 +59,7 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="created_timestamp">创建时间：</label>
 			<div class="pull-right">
-				<input type="text" class="span4" name="createdTimestamp" id="created_timestamp" placeholder="" value="<fmt:formatDate value='${mycase.createdTimestamp}' pattern='yyyy-MM-dd hh:mm'/>" readonly>
+				<input type="text" class="span4" id="created_timestamp" placeholder="" value="<fmt:formatDate value='${mycase.createdTimestamp}' pattern='yyyy-MM-dd hh:mm'/>" readonly>
 			</div>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 			<label class="control-label" for="case_owner">责任人：</label>
 			<div class="controls">
 				<input name="caseOwner" id="case_owner"
-				class="span4 easyui-combobox"
+				class="span4 easyui-combobox" name="owner.id"
 				data-options="method:'get',valueField:'id',textField:'name'" value=${mycase.owner.id}>
 			</div>
 		</div>

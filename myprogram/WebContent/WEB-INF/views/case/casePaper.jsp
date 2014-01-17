@@ -4,7 +4,7 @@
 	<div class="span">
 		<div class="form-search" style="padding: 0px 0 20px 2px;">
 			<label for="paperList">调查问卷：</label> 
-				<input name="paperList" id="case_owner"
+				<input id="case_owner"
 				class="span4 easyui-combobox"
 				data-options="url:'${ctx}/paper/api/search?businessType=${mycase.businessType.id}',method:'get',valueField:'id',textField:'paperName'" value=${mycase.paper.id}>
 
@@ -21,7 +21,7 @@
 						<c:if test="${question.questionType == '1'}">
 							<c:forEach items="${question.options}" var="myoption">
 								<label class="radio">
-									<input type="radio" name="questionOption" <c:if test="${myoption.checked==true }">checked="true"</c:if>>
+									<input type="radio" <c:if test="${myoption.checked==true }">checked=true</c:if>>
 										${myoption.content}
 								</label>
 							</c:forEach>
@@ -29,7 +29,7 @@
 						<c:if test="${question.questionType == '2'}">
 							<c:forEach items="${question.options}" var="myoption">
 								<label class="checkbox">
-									<input type="checkbox" name="questionOption" <c:if test="${myoption.checked==true }">checked="true"</c:if>>
+									<input type="checkbox" <c:if test="${myoption.checked==true }">checked="true"</c:if>>
 										${myoption.content}
 								</label>
 							</c:forEach>
