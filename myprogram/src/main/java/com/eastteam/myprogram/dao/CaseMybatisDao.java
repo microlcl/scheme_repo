@@ -13,5 +13,7 @@ public interface CaseMybatisDao {
 	Long getCount(Map<String, Object> parameters);
 	public Case get(Long CaseId);
 	public List<Answer> getAnswers(Long CaseId);
-	public void update(Case mycase);	
+	public void update(Case mycase);
+	public void deleteAnswers(Case mycase);
+	public void insertAnswers(Map<String, Object> parameters);
 }

@@ -104,7 +104,7 @@
 	<select id="getAnswers" resultType="Answer">
 		select pa.question_id as questionId , pa.answer 
 		from paper_answers pa  
-		where pa.business_id='C'||#{businessId}
+		where pa.business_id='C'||#{id}
 	</select>
 	
 	<update id="update" parameterType="Case">
@@ -120,4 +120,12 @@
 		status=#{status.id}		
 		where case_id=#{id}
 	</update>
+	
+	<delete id="deleteAnswers" parameterType="Case">
+		delete from paper_answers where business_id='C'||#{id} and paper_id=#{paper.id}
+	</delete>
+	<insert id="insertAnswers" parameterType="map">
+	    insert into paper_answers(business_id, paper_id, question_id, answer) values
+	    ('C'||#{caseId},#{paperId},#{question.id},#{question.questionOptions});
+	</insert>	
 </mapper> 

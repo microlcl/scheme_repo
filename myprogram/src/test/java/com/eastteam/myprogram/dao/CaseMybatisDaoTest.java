@@ -45,4 +45,22 @@ public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 		assertTrue(title.equals(mycase2.getTitle()));
 
 	}
+	
+	@Test
+	public void deleteAnswers() {
+		Case mycase = casesDao.get(1L);
+		this.casesDao.deleteAnswers(mycase);
+		List<Answer> answers = casesDao.getAnswers(1L);
+		logger.info(answers.toString());
+		assertTrue(answers.size() == 0);
+	}
+	
+	@Test
+	public void insertAnswers() {
+		Case mycase = casesDao.get(1L);
+		this.casesDao.deleteAnswers(mycase);
+//		List<Question> questions = mycase.getPaper().getQuestions();
+//		logger.info(answers.toString());
+//		assertTrue(answers.size() == 0);
+	}
 }

@@ -1,9 +1,13 @@
 package com.eastteam.myprogram.service.cases;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
@@ -21,8 +25,10 @@ import com.google.common.collect.Maps;
 @Transactional
 public class CaseService extends PageableService {
 	
+	private static Logger logger = LoggerFactory.getLogger(CaseService.class);
+	
 	@Autowired
-	private CaseMybatisDao CaseDao;
+	private CaseMybatisDao caseDao;
 	
 	
 	public List<Case> search(Map parameters, Pageable pageRequest) {
@@ -31,21 +37,21 @@ public class CaseService extends PageableService {
 		param.put("offset", pageRequest.getOffset());
 		param.put("pageSize", pageRequest.getPageSize());
 		param.put("sort", this.getOrderValue(pageRequest.getSort()));
-		return CaseDao.search(param);
+		return caseDao.search(param);
 	}
 
 	
 	public Long getCount(Map parameters) {
 		// TODO
-		return CaseDao.getCount(parameters);
+		return caseDao.getCount(parameters);
 	}
 	
 	public Case get(Long caseId) {
-		return this.CaseDao.get(caseId);
+		return this.caseDao.get(caseId);
 	}
 	
 	public List<Answer> getAnswers(Long caseId) {
-		return this.CaseDao.getAnswers(caseId);
+		return this.caseDao.getAnswers(caseId);
 	}
 	
 	public Case getCaseWithAnswer(Long caseId) {
@@ -85,9 +91,11 @@ public class CaseService extends PageableService {
 		for(Answer answer : answerList) {
 			if (answer.getQuestionId() == questionId) {
 				String answerStr = answer.getAnswer();
-				String[] answerArray = answerStr.split(",");
-				if (Arrays.binarySearch(answerArray, position + "") >= 0) {
-					return true;
+				if(!StringUtils.isBlank(answerStr)) {
+					String[] answerArray = answerStr.split(",");
+					if (Arrays.binarySearch(answerArray, position + "") >= 0) {
+						return true;
+					}
 				}
 			}
 		}
@@ -96,7 +104,20 @@ public class CaseService extends PageableService {
 	}
 	
 	public void update(Case mycase) {
-		this.CaseDao.update(mycase);
+		this.caseDao.update(mycase);
+		this.caseDao.deleteAnswers(mycase);
+		for(Question question : mycase.getPaper().getQuestions()) {
+			Map parameters = new HashMap<String, Object>();
+			parameters.put("caseId", mycase.getId());
+			parameters.put("paperId", mycase.getPaper().getId());
+			parameters.put("question", question);
+			logger.info("--------------------");
+			logger.info("caseid=" + mycase.getId());
+			logger.info("paperId=" + mycase.getPaper().getId());
+			logger.info("questionid=" + question.getId());
+			logger.info("answer=" + question.getQuestionOptions());
+			this.caseDao.insertAnswers(parameters);
+		}
 	}	
 
 }
