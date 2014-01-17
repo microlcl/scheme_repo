@@ -95,5 +95,8 @@ public class CaseService extends PageableService {
 		return false;
 	}
 	
+	public void update(Case mycase) {
+		this.CaseDao.update(mycase);
+	}	
 
 }

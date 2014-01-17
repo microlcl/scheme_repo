@@ -106,4 +106,18 @@
 		from paper_answers pa  
 		where pa.business_id='C'||#{businessId}
 	</select>
+	
+	<update id="update" parameterType="Case">
+		update cases set
+		case_title=#{title}, 
+		assigned_department_id=#{department.id},
+		case_owner=#{owner.id},
+		business_type=#{businessType.id},
+		event_time=#{eventTime},
+		guest_num=#{guestNum},
+		description=#{description},
+		paper_id=#{paper.id},
+		status=#{status.id}		
+		where case_id=#{id}
+	</update>
 </mapper> 

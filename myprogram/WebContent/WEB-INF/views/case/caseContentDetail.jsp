@@ -67,7 +67,7 @@
 		<div class="control-group span5 pull-left">
 			<label class="control-label" for="case_owner">责任人：</label>
 			<div class="controls">
-				<input name="caseOwner" id="case_owner"
+				<input id="case_owner"
 				class="span4 easyui-combobox" name="owner.id"
 				data-options="method:'get',valueField:'id',textField:'name'" value=${mycase.owner.id}>
 			</div>
@@ -77,7 +77,7 @@
 	<div class="control-group">
 			<label class="control-label" for="description">描述：</label>
 			<div class="controls">
-				<textarea rows="10" class="input-block-level" id="description" name="description" maxlength="1024">${mycase.description}</textarea>
+				<textarea rows="6" class="input-block-level" id="description" name="description" maxlength="1024">${mycase.description}</textarea>
 			</div>
 		</div>
 </div>
