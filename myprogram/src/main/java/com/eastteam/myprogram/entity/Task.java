@@ -3,6 +3,8 @@ package com.eastteam.myprogram.entity;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * @author LB
  *
@@ -17,12 +19,20 @@ public class Task extends IdEntity{
 	private User owner; // task拥有者
 	private int progress; //task进行百分百值
 	private Category priority; //优先级，在category的系统参数节点配置
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
 	private Date dueDate; // 计划完成时间
+	
 	private int timeRemaining;  // 剩余多少时间
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
 	private Date createdTimestamp; // 创建时间
+	
 	private User createdBy;  // 创建人
 	private List<Comment> comments;
 	private List<Attachment> attachments;
+	private Case cases;
+	
 	public String getSummary() {
 		return summary;
 	}
@@ -115,6 +125,12 @@ public class Task extends IdEntity{
 	}
 	public void setAttachments(List<Attachment> attachments) {
 		this.attachments = attachments;
+	}
+	public Case getCases() {
+		return cases;
+	}
+	public void setCases(Case cases) {
+		this.cases = cases;
 	}
 	
 }

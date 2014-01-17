@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -83,7 +84,7 @@
 				<td>${cases.department.name}</td> 
 				<td>${cases.owner.name}</td> 
 				<td>${cases.businessType.name}</td>
-				<td>${cases.eventTime}</td>
+				<td><fmt:formatDate value="${cases.eventTime}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
 				<td>${cases.guestNum}</td>
 				<td>${cases.space.space_name}</td>
 				<td>${cases.status.name}</td>

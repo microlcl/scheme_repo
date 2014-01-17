@@ -44,6 +44,8 @@
 		</collection>
 		<collection property="comments" column="task_id" ofType="Comment" select="selectcomments">
 		</collection>
+		<collection property="cases" column="task_id" ofType="Case" select="selectCases">	
+		</collection>
 	</resultMap>
 	
 	<resultMap type="Comment" id="commentMap">
@@ -55,6 +57,18 @@
 			 <result property="name" column="u_name" />
 			 </association>
 	</resultMap>
+	
+	<resultMap type="Case" id="caseMap">
+			<id property="id" column="case_id" />
+			<result property="title" column="case_title" />
+	</resultMap>
+	
+	<select id="selectCases" resultMap="caseMap">
+	   select c.case_id as case_id,c.case_title as case_title 
+	   from cases c,case_task ct
+	   where  c.case_id = ct.case_id
+	   		and ct.task_id=#{task_id}
+	</select>
 	
 	<select id="selectcomments" resultMap="commentMap">
 	   select c.comment_id as id,c.comment as comment,c.created_timestamp as createdTimestamp,c.user_id as c_user_id,u.name as u_name

@@ -113,7 +113,9 @@ public class TaskController {
 		comment.setUser(user);
 		comment.setCreatedTimestamp(new Date());
 		comments.add(comment);
-		task.setComments(comments);
+		if(!comment.getComment().equals("")){		
+			task.setComments(comments);
+		}
 		this.taskService.save(task);
 			
 		redirectAttributes.addFlashAttribute("message", "增加成功！");

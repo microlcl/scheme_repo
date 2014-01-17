@@ -436,11 +436,11 @@ insert into paper_answers(business_id, paper_id, question_id, answer) values('C1
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C1',1,9,'2,3');
 
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3',now(),1,now(),'admin');
+		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3','2013-12-28',1,'2013-11-15 18:00:00','admin');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(2,1,'会场布置','年会会场布置','1-0-6-2','1-0-7-2','D1-2','userid9',40,'1-0-5-1',now(),1,now(),'userid9');
+		values(2,1,'会场布置','年会会场布置','1-0-6-2','1-0-7-2','D1-2','userid9',40,'1-0-5-1','2013-12-28',1,'2013-11-15 18:00:00','userid9');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(3,1,'人员安排','年会人员安排','1-0-6-3','1-0-7-3','D1-2','userid8',40,'1-0-5-2',now(),1,now(),'userid9');
+		values(3,1,'人员安排','年会人员安排','1-0-6-3','1-0-7-3','D1-2','userid8',40,'1-0-5-2','2013-12-28',1,'2013-11-15 18:00:00','userid9');
 		
 
 insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
@@ -477,6 +477,10 @@ insert into task_comments (comment_id,task_id) values (3,3);
 insert into task_comments (comment_id,task_id) values (4,1);
 insert into task_comments (comment_id,task_id) values (5,2);
 insert into task_comments (comment_id,task_id) values (6,3);
+
+insert into case_task (case_id,task_id) values (1,1);
+insert into case_task (case_id,task_id) values (2,2);
+insert into case_task (case_id,task_id) values (3,3);
 
 insert into comments (comment_id,user_id,comment,created_timestamp) values (1,'userid1','需要更多修改',now());
 insert into comments (comment_id,user_id,comment,created_timestamp) values (2,'userid1','需要更多修改',now());

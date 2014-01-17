@@ -75,7 +75,7 @@
 				<td>${task.owner.name}</td> 
 				<td><fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
 				<td>${task.priority.name}</td>
-				<td>${task.parent.summary}</td>
+				<td>${task.cases.title}</td>
 				<td>
 					<a href='${ctx}/task/update?id=${task.id}' id='editLink-${task.id}'><i class='icon-edit'></i> 修改</a>
 				</td>
