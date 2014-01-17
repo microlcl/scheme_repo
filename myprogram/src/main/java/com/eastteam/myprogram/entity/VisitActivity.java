@@ -5,6 +5,8 @@ package com.eastteam.myprogram.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /**
  * @author LSS
  *
@@ -13,7 +15,10 @@ public class VisitActivity extends IdEntity {
 	
 	private String customerId;
 	private Category visitType;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
 	private Date visitTime;
+	
 	private int visitNum;
 	private Department assignedDepartment;
 	private User recipient;

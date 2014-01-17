@@ -39,7 +39,7 @@ public class VisitFormBean extends BaseFormBean {
 	}
 	public void setVisitTime(String visitTime) {
 		if(visitTime != null && visitTime != ""){	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date date = new Date();
 			try {
 				date = sdf.parse(visitTime);
@@ -81,7 +81,7 @@ public class VisitFormBean extends BaseFormBean {
 	}
 	public void setEventTime(String eventTime) {
 		if(eventTime != null && eventTime != ""){	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date date = new Date();
 			try {
 				date = sdf.parse(eventTime);
