@@ -50,8 +50,6 @@
 				format: 'yyyy-mm-dd'
 		    });
 			
-			//聚焦第一个输入框
-			$("#formUsername").focus();
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
@@ -150,7 +148,7 @@
 			<div style="padding:20px;">
 				<div class="control-group">
 					<span class="formlabel span2 control-label">案例名称：</span>
-					<input type="text" class="required" id="caseTitle" name="caseTitle" style="width:186px" class="input-large " maxlength="64"/>
+					<input type="text" class="required" id="caseTitle" name="caseTitle" style="width:186px" class="input-large " maxlength="64" placeholder="请输入案例名称"/>
 				</div>		
 			
 				<div class="control-group">
@@ -159,8 +157,8 @@
 				</div>
 				
 	           	<div class="control-group">
-					<span class="formlabel span2 control-label">访问人数：</span>
-					<input type="text" class="required" id="visitNumber" name="visitNumber" style="width:186px" class="input-large " maxlength="20"/>
+					<span class="formlabel span2 control-label">到访人数：</span>
+					<input type="text" class="required" id="visitNumber" name="visitNumber" style="width:186px" class="input-large " maxlength="20" placeholder="请输入到访人数"/>
 				</div>
 				
 				<div class="control-group">	
@@ -191,12 +189,12 @@
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">客户名字：</span>
-					<input type="text" id="customerName" class="required" name="customerName" style="width:186px" class="input-large " maxlength="64"/>
+					<input type="text" id="customerName" class="required" name="customerName" style="width:186px" class="input-large " maxlength="64" placeholder="客户姓名，xx先生/xx女士亦可"/>
 				</div>		
 				
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">到访备注：</span>
-					<input type="text" id="comment" class="required" name="comment" style="width:186px" class="input-large " maxlength="256"/>
+					<textarea id="comment" name="comment" style="width:186px" maxlength="256" class="input-large"></textarea>
 				</div>
 				
 				<div class="control-group">	
@@ -210,12 +208,12 @@
 	            
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">客人人数：</span>
-					<input type="text" id="guestNumber" class="required" name="guestNumber" style="width:186px" class="input-large " maxlength="20"/>
+					<input type="text" id="guestNumber" class="required" name="guestNumber" style="width:186px" class="input-large " maxlength="20" placeholder="请输入客人人数"/>
 				</div>
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">会场简介：</span>
-					<input type="text" id="spaceTip" class="required" name="spaceTip" style="width:186px" class="input-large " maxlength="64"/>
+					<textarea id="spaceTip" name="spaceTip"  style="width:186px" maxlength="256" class="input-large"></textarea>
 				</div>
 	            
 			</div>
