@@ -64,21 +64,17 @@
 			<th>创建时间</th>
 			<th>优先度</th>
 			<th>所属任务</th>
-			<th>操作</th>
 		</tr>
 		</thead>
 		<tbody>
 		<c:forEach items="${tasks.content}" var="task">
 			<tr>
-				<td>${task.summary}&nbsp;</td>
+				<td><a href="${ctx}/task/update?id=${task.id}">${task.summary}</a></td>
 				<td>${task.status.name}&nbsp;</td>
 				<td>${task.owner.name}</td> 
 				<td><fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
 				<td>${task.priority.name}</td>
-				<td>${task.cases.title}</td>
-				<td>
-					<a href='${ctx}/task/update?id=${task.id}' id='editLink-${task.id}'><i class='icon-edit'></i> 修改</a>
-				</td>
+				<td><a href="${ctx}/case/detail/${task.cases.id}">${task.cases.title}</a></td>
 			</tr>
 		</c:forEach>
 		</tbody>		

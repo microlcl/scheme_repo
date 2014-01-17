@@ -23,104 +23,121 @@
 	type="text/javascript"></script>
 <!-- CKEditor (Rich Text Editor) -->
 <script type="text/javascript" src="${ctx}/static/ckeditor/ckeditor.js"></script>
-<div class="row" style="margin:0px;">
-<div class="span5" style="padding:10px;margin-left:0px;">
-		<fieldset>
-	<div class="control-group">
-		<label class="control-label formlabel">任务类型:</label>
-		<div class="controls">
-			<input id="taskType" name="taskType.id" class="easyui-combotree" style="width:225px;" data-options="url:'${ctx}/category/api/getAll/M1-9-1',method:'get',required:false">
+<style>
+.form-horizontal .control-label {
+    float: left;
+    padding-top: 5px;
+    text-align: left;
+    width: 100px;
+}
+
+.form-horizontal .controls {
+    margin-left: 100px;
+}
+</style>
+<div class="form-horizontal">
+	<div class="row">
+		<div class="control-group span pull-left">
+			<label class="control-label" for="business_type">任务类型:</label>
+			<div class="controls">
+				<input id="taskType" name="taskType.id"
+				class="span4 easyui-combotree"
+				data-options="url:'${ctx}/category/api/getAll/M1-9-1',method:'get',required:false">
+			</div>
+		</div>
+		<div class="control-group pull-right">
+			<label class="control-label" for="finish_time">计划完成时间：</label>
+			<div class="pull-right">
+				<!--input type="text" class="span4" id="event_time" placeholder=""-->
+				<div class="input-append date form_date" >
+                    <input size="16" type="text" id="finishTime" name="finishTime" style="width:302px">
+                    <span class="add-on"><i class="icon-remove"></i></span>
+					<span class="add-on"><i class="icon-th"></i></span>
+                </div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-group span pull-left">
+			<label class="control-label" for="department">所属部门:</label>
+			<div class="controls">
+				<input id="mydepartment_id" name="department.id"
+				class="span4 easyui-combotree"
+				data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+			</div>
+		</div>
+		<div class="control-group span5 pull-right">
+			<label class="control-label" for="task_create">创建人:</label>
+			<div class="controls">
+				<input type="text" class="span4" value="${user.name}" maxlength="64" readonly >
+				<input type="hidden" id="createdBy" name="createdBy.id" 
+					class="span4" value="${user.id}" maxlength="64" readonly />
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-group span pull-left">
+			<label class="control-label" for="task_owner">拥有者:</label>
+			<div class="controls">
+				<input id="myaccount_id" name="owner.id"
+				class="span4 easyui-combobox"
+				data-options="method:'get',valueField:'id',textField:'name'">		
+			</div>
+		</div>
+		<div class="control-group span5 pull-right">
+			<label class="control-label" for="task_progress">任务进度：</label>
+			<div class="controls">
+				<input type="text" class="span4" id="progress" name="progress" readonly value="0">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-group span pull-left">
+			<label class="control-label" for="task_priority">优先级：</label>
+			<div class="controls">
+				<input id="priority" name="priority.id"
+				class="span4 easyui-combotree"
+				data-options="url:'${ctx}/category/api/getAll/M1-9-2',method:'get',required:false">
+			</div>
+		</div>
+		<div class="control-group span pull-right">
+			<label class="control-label" for="time_remaining">剩余时间：</label>
+			<div class="controls">
+				<input type="text" class="span4" id="timeRemaining" name="timeRemaining" value="0">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="control-group span pull-left">
+			<label class="control-label" for="task_status">任务状态:</label>
+			<div class="controls">
+				<input name="status.id" id="status"
+				class="span4 easyui-combotree"
+				data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
+			</div>
+		</div>
+		<div class="control-group span pull-right">
+			<label class="control-label" for="create_time">创建时间:</label>
+			<div class="controls">
+				<input type="text" class="span4" id="createdTimestamp"  class="input-large" maxlength="64" readonly>
+			</div>
 		</div>
 	</div>
 	<div class="control-group">
-		<label class="control-label formlabel">任务状态:</label> 
-		<div class="controls">
-			<input id="status" name="status.id" class="easyui-combotree" style="width:225px;" data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label formlabel">所属部门:</label> 
-		<div class="controls">
-		<input id="department" name="department.id"
-			class="easyui-combotree" style="width:225px;"
-			data-options="url:'${ctx}/department/api/get',method:'get',required:false">
-		</div>
-	</div>
-	<div class="control-group">		
-		<label class="control-label formlabel">拥有者：</label>
-		<div class="controls">
-		 <input id="myaccount_id" name="owner.id"
-			class="easyui-combobox" style="width:225px;"
-			data-options="method:'get',valueField:'id',textField:'name'">
+			<label class="control-label" for="description">描述：</label>
+			<div class="controls">
+				<textarea rows="6" class="input-block-level" id="description" name="description" maxlength="1024"></textarea>
 			</div>
 	</div>
-	<div class="control-group">
-		<label class="control-label formlabel">优先级：</label>
-		<div class="controls">
-		<input type="text" id="priority" name="priority.id"
-			class="easyui-combotree" style="width:225px;"
-			data-options="url:'${ctx}/category/api/getAll/M1-9-2',method:'get',required:false">
-		</div>
-	</div>	
-	</fieldset>
-</div>
-<div class="span5" style="padding:10px;margin-left:0px;">	
-		<fieldset>
-
-	<div class="control-group">
-		<label class="control-label formlabel">计划完成时间：</label>
-		<div class="input-append date form_date controls" style="margin-left: 20px">
-					<input size="16" type="text" id="finishTime" name="finishTime"
-						style="width: 160px" readonly>
-						 <span class="add-on"><i class="icon-remove"></i></span> 
-						 <span class="add-on"><i class="icon-th"></i></span>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label formlabel">任务进度：</label>
-		<div class="controls">
-		<input type="text" id="progress" name="progress"
-					class="input-large" maxlength="64" readonly value="0"/>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label formlabel">剩余时间：</label>
-		<div class="controls">
-		<input type="text" id="timeRemaining" name="timeRemaining" value="0"
-					class="input-large" maxlength="64" onkeyup="clearNoNum(this)"/>
-		</div>
-	</div>
-	<div class="control-group">
-		<label class="control-label formlabel">创建人：</label>
-		<div class="controls">
-		<input type="text" 
-					class="input-large" value="${user.name}" maxlength="64" readonly />
-		<input type="hidden" id="createdBy" name="createdBy.id" 
-					class="input-large" value="${user.id}" maxlength="64" readonly />
-		</div>
-	</div>
-	 <div class="control-group">
-		<label class="control-label formlabel">创建时间:</label>
-		<div class="controls">
-		<input type="text" id="createdTimestamp" 
-					class="input-large" maxlength="64" readonly /> 
-		</div>
-	</div>
-		</fieldset>
-</div>
-
-</div>
-<label class=" offset1 formlabel">描述:</label>
-		<textarea id="description" name="description"
-					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
-					
+</div>				
 		<legend>
 			<small>讨论</small>
 			
 		</legend>
-<label class=" offset1 formlabel">评论:</label>
+<label>评论:</label>
 		<textarea id="comment" name="comment"
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+					
 					
 
 <div class="form-actions">
@@ -143,7 +160,7 @@
 		s=vYear+"-"+(vMon<10 ? "0" + vMon : vMon)+"-"+(vDay<10 ? "0"+ vDay : vDay)+" "+(h<10 ? "0"+ h : h)+":"+(m<10 ? "0" + m : m)+":"+(se<10 ? "0" +se : se);
 		$("#createdTimestamp").val(s);
 		// 必须在$(document).ready里面定义combotree的onChange事件
-		$('#department').combotree({
+		$('#mydepartment_id').combotree({
 			onChange : function(node) {
 				var url = '${ctx}/account/api/search?departmentId=' + node;
 				$('#myaccount_id').combobox('reload', url);
