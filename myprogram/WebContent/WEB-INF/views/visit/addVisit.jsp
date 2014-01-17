@@ -57,7 +57,8 @@
 						rangelength: [1,64]
 					},
 					visitNumber: {
-						rangelength: [1,5]
+						rangelength: [1,5],
+						digits:true
 					},
 					customerName: {
 						rangelength: [2,8]
@@ -66,7 +67,8 @@
 						rangelength: [2,256]
 					},
 					guestNumber: {
-						rangelength: [1,5]
+						rangelength: [1,5],
+						digits:true
 					},
 					spaceTip: {
 						rangelength: [2,256]
@@ -82,7 +84,8 @@
 						required: "请填写案例名称！"
 					},
 					visitNumber: {
-						required: "请正确填写到访人数！"
+						required: "请填写到访人数！",
+						digits: "请输入数字！"
 					},
 					customerName: {
 						required: "请正确填写客户姓名（xx先生或者xx女士亦可）！"
@@ -91,7 +94,8 @@
 						required: "请输入访问备注!"
 					},
 					guestNumber: {
-						required: "请正确填写案例人数！"
+						required: "请填写案例人数！",
+						digits: "请输入数字！"
 					},
 					spaceTip: {
 						required: "请输入会场简介!"
