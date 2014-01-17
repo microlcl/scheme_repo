@@ -68,5 +68,28 @@ public class TaskService extends PageableService{
 		}
 		task.getAttachments();
 	}
+	
+	public void update(Task task){
+		taskDao.update(task);
+		List comments=task.getComments();
+		if(comments!=null){
+			for (Iterator iterator = comments.iterator(); iterator.hasNext();) {
+				Comment comment = (Comment) iterator.next();
+				taskDao.saveComments(comment);
+				Map<String, Object> parameters=new HashMap<String, Object>();
+				parameters.put("comment_id", comment.getId());
+				parameters.put("task_id", task.getId());
+				taskDao.saveTaskComment(parameters);
+			}
+		}
+		List attachments=task.getAttachments();
+		if(attachments!=null){
+			for (Iterator iterator = attachments.iterator(); iterator.hasNext();) {
+				Attachment attachment = (Attachment) iterator.next();
+				taskDao.saveAttachment(attachment);
+			}
+		}
+		task.getAttachments();
+	}
 
 }
