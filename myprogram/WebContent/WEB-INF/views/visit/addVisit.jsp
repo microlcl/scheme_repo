@@ -47,7 +47,7 @@
 				startView: 2,
 				minView: 2,
 				forceParse: 0,
-				format: 'yyyy-mm-dd'
+				format: 'yyyy-mm-dd HH:mm'
 		    });
 			
 			//为inputForm注册validate函数
