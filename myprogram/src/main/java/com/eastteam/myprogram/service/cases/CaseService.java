@@ -56,8 +56,12 @@ public class CaseService extends PageableService {
 	
 	public Case getCaseWithAnswer(Long caseId) {
 		Case mycase = this.get(caseId);
-		List<Answer> answerList = this.getAnswers(caseId);		
-		return buildCaseWithAnswers(mycase, answerList);
+		if (mycase != null && mycase.getPaper() != null) {
+			List<Answer> answerList = this.getAnswers(caseId);		
+			return buildCaseWithAnswers(mycase, answerList);
+		}
+		
+		return mycase;
 	}
 
 	private Case buildCaseWithAnswers(Case mycase, List<Answer> answerList) {
@@ -129,17 +133,19 @@ public class CaseService extends PageableService {
 	public void update(Case mycase) {
 		this.caseDao.update(mycase);
 		this.caseDao.deleteAnswers(mycase);
-		for(Question question : mycase.getPaper().getQuestions()) {
-			Map parameters = new HashMap<String, Object>();
-			parameters.put("caseId", mycase.getId());
-			parameters.put("paperId", mycase.getPaper().getId());
-			parameters.put("question", question);
-			logger.info("--------------------");
-			logger.info("caseid=" + mycase.getId());
-			logger.info("paperId=" + mycase.getPaper().getId());
-			logger.info("questionid=" + question.getId());
-			logger.info("answer=" + question.getQuestionOptions());
-			this.caseDao.insertAnswers(parameters);
+		if (mycase.getPaper() != null && mycase.getPaper().getQuestions() != null) {
+			for(Question question : mycase.getPaper().getQuestions()) {
+				Map parameters = new HashMap<String, Object>();
+				parameters.put("caseId", mycase.getId());
+				parameters.put("paperId", mycase.getPaper().getId());
+				parameters.put("question", question);
+				logger.info("--------------------");
+				logger.info("caseid=" + mycase.getId());
+				logger.info("paperId=" + mycase.getPaper().getId());
+				logger.info("questionid=" + question.getId());
+				logger.info("answer=" + question.getQuestionOptions());
+				this.caseDao.insertAnswers(parameters);
+			}
 		}
 	}	
 
