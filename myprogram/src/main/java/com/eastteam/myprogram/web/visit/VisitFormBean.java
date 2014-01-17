@@ -26,6 +26,7 @@ public class VisitFormBean extends BaseFormBean {
 	private int guestNum;
 	private String spaceTip;
 	private String customerName;
+	private String caseTitle;
 	
 	public Category getVisitType() {
 		return visitType;
@@ -110,6 +111,12 @@ public class VisitFormBean extends BaseFormBean {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public String getCaseTitle() {
+		return caseTitle;
+	}
+	public void setCaseTitle(String caseTitle) {
+		this.caseTitle = caseTitle;
 	}
 	
 	

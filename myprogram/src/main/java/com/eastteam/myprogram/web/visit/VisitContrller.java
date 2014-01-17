@@ -116,6 +116,8 @@ public class VisitContrller {
 		visitFormBean.setVisitType(visitType);
 		logger.info("VisitFormBean: " + visitFormBean.toString());
 		
+		visitService.saveVisit(visitFormBean);
+		
 		return "redirect:/visit/list";
 	}
 }

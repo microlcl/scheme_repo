@@ -60,6 +60,11 @@
 			<h1>增加到访记录</h1>
 			<div id="inputForm" style="padding:20px;">
 				<div class="control-group">
+					<span class="formlabel span2 control-label">案例名称：</span>
+					<input type="text" id="caseTitle" name="caseTitle" style="width:186px" class="input-large " maxlength="64"/>
+				</div>		
+			
+				<div class="control-group">
 					<span class="formlabel span2 control-label">访问类别：</span>
 					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="visitTypeId"/>
 				</div>

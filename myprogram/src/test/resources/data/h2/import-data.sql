@@ -444,11 +444,11 @@ insert into task (task_id,parent_id,summary,description,task_type,status,departm
 		
 
 insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
-	values (1, '张三', '13000000000', '12345678', 'IT', 'zhangsan', '100000', '1983-12-28', '玩游戏看电视', '此人性格孤僻');
+	values (1, '张三', '13000000000', '男', 'IT', 'wx_zhangsan', 'wb_zhangsan',  '100000', '1983-12-28', '玩游戏看电视', '此人性格孤僻');
 insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
-	values (2, '李四', '13011111111', '11223344', '厨师', 'lisi', '200000', '1983-12-28', '睡觉', '此人倾向于吃喝玩乐');
+	values (2, '李四', '13011111111', '男', '厨师', 'wx_lisi', 'wb_lisi', '200000', '1983-12-28', '睡觉', '此人倾向于吃喝玩乐');
 insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)
-	values (3, '王五', '13022222222', '22114433', '财务', 'wangwu', '300000', '1983-12-28', '理财', '此人善于沟通');
+	values (3, '王五', '13022222222', '男', '财务', 'wx_wangwu', 'wb_wangwu',  '300000', '1983-12-28', '理财', '此人善于沟通');
 		
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
 	values (1, 1, '1-0-4-0', '2013-06-04 08:00:00', 3, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'F', '此人婚礼喜欢极尽奢华', 1);
