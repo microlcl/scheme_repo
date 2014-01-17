@@ -417,9 +417,9 @@ insert into paper_questions (paper_id, question_id, position) values (4, 5, 50);
 insert into paper_questions (paper_id, question_id, position) values (4, 6, 60);
 insert into paper_questions (paper_id, question_id, position) values (5, 1, 10);
 insert into paper_questions (paper_id, question_id, position) values (5, 3, 20);
-insert into paper_questions (paper_id, question_id, position) values (5, 5, 30);
-insert into paper_questions (paper_id, question_id, position) values (5, 6, 40);
-insert into paper_questions (paper_id, question_id, position) values (5, 9, 50);
+-- insert into paper_questions (paper_id, question_id, position) values (5, 5, 30);
+-- insert into paper_questions (paper_id, question_id, position) values (5, 6, 40);
+-- insert into paper_questions (paper_id, question_id, position) values (5, 9, 50);
 insert into paper_questions (paper_id, question_id, position) values (5, 2, 60);
 insert into paper_questions (paper_id, question_id, position) values (6, 1, 10);
 insert into paper_questions (paper_id, question_id, position) values (6, 2, 20);
@@ -434,6 +434,9 @@ insert into paper_answers(business_id, paper_id, question_id, answer) values('C1
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C1',1,7,'2');
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C1',1,8,'2');
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C1',1,9,'2,3');
+
+insert into paper_answers(business_id, paper_id, question_id, answer) values('C2',5,1,'2');
+insert into paper_answers(business_id, paper_id, question_id, answer) values('C2',5,3,'abcde');
 
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
 		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3','2013-12-28',1,'2013-11-15 18:00:00','admin');

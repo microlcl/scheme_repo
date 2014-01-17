@@ -67,10 +67,15 @@ public class CaseService extends PageableService {
 		}
 		for (Question question : questionList) {
 			Option[] options = question.getOptions();
+			//问答题
+			if (question.getQuestionType().equals(Question.OPEN_QUESTION)) {
+				setOpenAnswer(question, answerList);
+				continue;
+			}
 			if (options == null) {
 				continue;
 			}
-			
+			//选择题
 			for(int i = 0; i < options.length; i++) {
 				Long questionId = question.getId();
 				boolean checked = checkAnswerOptions(answerList, questionId, i + 1);
@@ -81,7 +86,25 @@ public class CaseService extends PageableService {
 	}
 
 	/**
-	 * 查找此选项是否在答案中。选择题的答案是用逗号隔开的数字，
+	 * 设置开放性问题答案
+	 * @param question
+	 * @param answerList
+	 */
+	private void setOpenAnswer(Question question, List<Answer> answerList) {
+		for(Answer answer : answerList) {
+			if (answer.getQuestionId() == question.getId()) {
+				String answerStr = answer.getAnswer();
+				if(!StringUtils.isBlank(answerStr)) {
+					question.setQuestionOptions(answerStr);
+				}
+			}
+		}
+		
+	}
+
+
+	/**
+	 * 处理选择题答案：查找此选项是否在答案中。选择题的答案是用逗号隔开的数字，
 	 * @param answerList
 	 * @param questionId
 	 * @param position 答案位置， 第一个option为1， 第二个为2...
