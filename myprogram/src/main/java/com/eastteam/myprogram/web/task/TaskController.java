@@ -95,7 +95,7 @@ public class TaskController {
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
 	public String save(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
-		logger.info("in holder save action");
+		logger.info("in Task save action");
 		if(finishTime!=null&&!finishTime.equals("")){
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dueDate = new Date();
@@ -155,5 +155,34 @@ public class TaskController {
 		Task task = this.taskService.getTask(id);
 		model.addAttribute("task", task);
 		return "task/updateTask";
+	}
+	
+	@RequestMapping(value = "doUpdate", method = RequestMethod.POST)
+	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		logger.info("in Task update action");
+		if(finishTime!=null&&!finishTime.equals("")){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			Date dueDate = new Date();
+			try {
+				dueDate = sdf.parse(finishTime);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			task.setDueDate(dueDate);
+		}
+		task.setCreatedTimestamp(new Date());
+		List comments=new ArrayList();
+		User user=(User) request.getSession().getAttribute("user");
+		comment.setUser(user);
+		comment.setCreatedTimestamp(new Date());
+		comments.add(comment);
+		if(!comment.getComment().equals("")){		
+			task.setComments(comments);
+		}
+		this.taskService.update(task);
+			
+		redirectAttributes.addFlashAttribute("message", "修改成功！");
+		return "redirect:/task/list/";
 	}
 }

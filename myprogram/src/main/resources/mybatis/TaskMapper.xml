@@ -179,4 +179,11 @@
 		left join departments d on t.department_id=d.department_id 
 		where t.task_id=#{id}
 	</select>
+	
+	<!-- 修改Task-->
+	<update id="update" parameterType="Task">
+		update task set summary=#{summary}, description=#{description}, task_type=#{taskType.id},status=#{status.id}, department_id=#{department.id}, owner=#{owner.id},
+						progress=#{progress}, priority=#{priority.id}, due_date=#{dueDate}, time_remaining=#{timeRemaining}, created_timestamp=#{createdTimestamp},created_by=#{createdBy.id}
+		 where task_id=#{id};
+	</update>
 </mapper> 

@@ -19,6 +19,7 @@ import com.eastteam.myprogram.entity.Task;
 public interface TaskMybatisDao {
 	void save(Task task);
 	void updateUser(Task task);
+	void update(Task task);
 	List<Task> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
 	Task getTask(String id);

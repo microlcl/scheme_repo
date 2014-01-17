@@ -49,8 +49,9 @@
 <body>
 <div class="form">
 		<h1>修改任务</h1>
-		<form id="taskForm" action="${ctx}/task/update" method="post" class="form-horizontal" >
+		<form id="taskForm" action="${ctx}/task/doUpdate" method="post" class="form-horizontal" >
 		<div>
+		<input type="hidden" id="id" name="id" value="${task.id}">
 		<p style="padding-left:130px;" class="formlabel" > 
 		摘要：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="summary" name="summary" value="${task.summary}"  maxlength="256" style="width: 60%" class="required"/>
 		</p>
@@ -110,7 +111,7 @@
 		<label class="control-label formlabel">任务进度：</label>
 		<div class="controls">
 		<input type="text" id="progress" name="progress" value="${task.progress}"
-					class="input-large" maxlength="64" readonly value="0"/>
+					class="input-large" maxlength="64" value="0"/>
 		</div>
 	</div>
 	<div class="control-group">
@@ -150,11 +151,17 @@
 		</legend>
 	
 	
+<!--  	<label class="formlabel offset1">评论:</label>
+	<c:forEach items="${task.comments}" var="comment">	    
+	     <label class=" offset1 formlabel">${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></label>
+		<textarea  name="commentold" 
+					class="input-large offset1" maxlength="64" style="width: 70%" readonly>${comment.comment}</textarea>
+	</c:forEach>
+-->	
 	<label class="formlabel offset1">评论:</label>
 	<c:forEach items="${task.comments}" var="comment">	    
 	     <label class=" offset1 formlabel">${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></label>
-		<textarea  name="comment" 
-					class="input-large offset1" maxlength="64" style="width: 70%" readonly>${comment.comment}</textarea>
+		 <div class=" offset1">${comment.comment}</div>
 	</c:forEach>
 	
 	<label class="formlabel offset1">添加评论:</label>
@@ -166,8 +173,9 @@
 	</div>
 	
 					
-  <div class="form-actions">
-			<input id="cancel_btn" class="btn" type="submit" value="保存" />
+  		<div class="form-actions">
+			<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
+			<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 		</div>
 	</div>
 </form>
