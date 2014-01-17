@@ -49,7 +49,7 @@ public class VisitContrller {
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
-			@RequestParam(value = "sortType", defaultValue = "visit_id") String sortType,
+			@RequestParam(value = "sortType", defaultValue = "visit_stime") String sortType,
 			Model model, ServletRequest request) {
 		logger.info("in vist controller: list");
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(
