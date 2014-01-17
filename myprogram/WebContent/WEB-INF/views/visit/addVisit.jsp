@@ -49,19 +49,108 @@
 				forceParse: 0,
 				format: 'yyyy-mm-dd'
 		    });
+			
+			//聚焦第一个输入框
+			$("#formUsername").focus();
+			//为inputForm注册validate函数
+			$("#inputForm").validate({
+				rules: {
+					caseTitle: {
+						rangelength: [1,64]
+					},
+					visitNumber: {
+						rangelength: [1,5]
+					},
+					customerName: {
+						rangelength: [2,8]
+					},
+					comment: {
+						rangelength: [2,256]
+					},
+					guestNumber: {
+						rangelength: [1,5]
+					},
+					spaceTip: {
+						rangelength: [2,256]
+					},
+					isVisited: {
+                        required: function (element) {
+                            return $("input:radio[name='isVisited']:checked").val() != "";
+                        }
+                    }
+				},
+				messages: {
+					caseTitle: {
+						required: "请填写案例名称！"
+					},
+					visitNumber: {
+						required: "请正确填写到访人数！"
+					},
+					customerName: {
+						required: "请正确填写客户姓名（xx先生或者xx女士亦可）！"
+					},
+					comment: {
+						required: "请输入访问备注!"
+					},
+					guestNumber: {
+						required: "请正确填写案例人数！"
+					},
+					spaceTip: {
+						required: "请输入会场简介!"
+					},
+					isVisited: {
+                        required: "请选择是否初次到访!"
+                    }
+				},
+				errorElement: "span",
+	//			success: function () {
+                    //正确时的样式
+    //                label.text(" ").removeClass("error");
+    //              label.text("ss ").addClass("success");
+    //        },
+				errorPlacement: function (error, element) {
+	                if(element.is(":radio")||element.is(":checkbox"))
+                 	   error.appendTo(element.parent().parent());   
+	                else
+	                	error.insertAfter(element); 
+               
+        	    }
+			});
 		});
+		
+		function submitForm(){
+			console.log("测试" + $("#customerVisitTime").val() + $("#customerEventTime").val() + $("input[name='visitTypeId']").val() + $("input[name='businessTypeId']").val());
+			if (($("#customerVisitTime").val() != "") && ($("#customerEventTime").val() != "") && ($("input[name='visitTypeId']").val() != "") && ($("input[name='businessTypeId']").val() != "")) {
+				console.log("In form submit");
+				$('#inputForm').submit();
+			}else if (($("#customerVisitTime").val() == "") || ($("#customerEventTime").val() == "")){
+				$("#warning-block1").show();
+				return;
+			}else if (($("input[name='visitTypeId']").val() == "") || ($("input[name='businessTypeId']").val() == "")){
+				$("#warning-block2").show();
+				return;
+			}else {
+				console.log("判断条件不正确");
+			}
+		}
 
 	</script>
 
 </head>
 <body>
 	<div class="form">
-		<form action="${ctx}/visit/save" method="post">
+		<form id="inputForm" action="${ctx}/visit/save" method="post">
 			<h1>增加到访记录</h1>
-			<div id="inputForm" style="padding:20px;">
+			<div class="alert hide" id="warning-block1">
+		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。
+			</div>
+			<div class="alert hide" id="warning-block2">
+		  	   <strong>注意! </strong>请确保您已选择<strong>访问类别</strong>和<strong>策划类别</strong>。
+			</div>
+			<div style="padding:20px;">
 				<div class="control-group">
 					<span class="formlabel span2 control-label">案例名称：</span>
-					<input type="text" id="caseTitle" name="caseTitle" style="width:186px" class="input-large " maxlength="64"/>
+					<input type="text" class="required" id="caseTitle" name="caseTitle" style="width:186px" class="input-large " maxlength="64"/>
 				</div>		
 			
 				<div class="control-group">
@@ -71,11 +160,11 @@
 				
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">访问人数：</span>
-					<input type="text" id="visitNumber" name="visitNumber" style="width:186px" class="input-large " maxlength="20"/>
+					<input type="text" class="required" id="visitNumber" name="visitNumber" style="width:186px" class="input-large " maxlength="20"/>
 				</div>
 				
 				<div class="control-group">	
-					<span class="formlabel span2 control-label">访问时间：</span>
+					<span class="formlabel span2 control-label">到访时间：</span>
 					<div class="input-append date form_date">
 	                	<input size="16" type="text" id=customerVisitTime name="customerVisitTime" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
@@ -102,12 +191,12 @@
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">客户名字：</span>
-					<input type="text" id="customerName" name="customerName" style="width:186px" class="input-large " maxlength="64"/>
+					<input type="text" id="customerName" class="required" name="customerName" style="width:186px" class="input-large " maxlength="64"/>
 				</div>		
 				
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">到访备注：</span>
-					<input type="text" id="comment" name="comment" style="width:186px" class="input-large " maxlength="64"/>
+					<input type="text" id="comment" class="required" name="comment" style="width:186px" class="input-large " maxlength="256"/>
 				</div>
 				
 				<div class="control-group">	
@@ -121,17 +210,17 @@
 	            
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">客人人数：</span>
-					<input type="text" id="guestNumber" name="guestNumber" style="width:186px" class="input-large " maxlength="20"/>
+					<input type="text" id="guestNumber" class="required" name="guestNumber" style="width:186px" class="input-large " maxlength="20"/>
 				</div>
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">会场简介：</span>
-					<input type="text" id="spaceTip" name="spaceTip" style="width:186px" class="input-large " maxlength="64"/>
+					<input type="text" id="spaceTip" class="required" name="spaceTip" style="width:186px" class="input-large " maxlength="64"/>
 				</div>
 	            
 			</div>
 			<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
-				<input id="submit_btn" class="btn btn-warning" type="submit" value="提交"/>&nbsp;	
+				<input id="submit_btn" class="btn btn-warning" type="button" value="提交" onclick="submitForm();"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
 		</form>
