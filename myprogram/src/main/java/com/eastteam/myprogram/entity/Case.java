@@ -18,7 +18,7 @@ public class Case extends IdEntity {
 	private User owner;
 	private Category businessType;
 	
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm") 
 	private Date eventTime;
 	
 	private int guestNum;

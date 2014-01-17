@@ -26,7 +26,7 @@
 			<div class="pull-right">
 				<!--input type="text" class="span4" id="event_time" placeholder=""-->
 				<div class="input-append date form_date" >
-                    <input size="16" type="text" name="eventTime" id="event_time" style="width:302px" value="<fmt:formatDate value='${mycase.eventTime}' pattern='yyyy-MM-dd hh:mm'/>" readonly>
+                    <input size="16" type="text" name="eventTime" id="event_time" style="width:302px" value="<fmt:formatDate value='${mycase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
