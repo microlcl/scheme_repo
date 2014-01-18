@@ -53,6 +53,12 @@
 			<id property="id" column="case_id" />
 			<result property="title" column="case_title" />
 		</association>
+		<association property="recipient" javaType="User">
+			<id property="id" column="recipient" />
+		</association>	
+		<association property="operator" javaType="User">
+			<id property="id" column="operator" />
+		</association>			
 	</resultMap>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
