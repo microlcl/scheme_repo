@@ -24,7 +24,9 @@
 			<if test="keyword != null">
 				and (c.title like '%${keyword}%')
 			</if>
-			
+			<if test="caseId != null">
+		        and v.case_id = #{caseId}
+			</if>			
 		</where>
 		<if test="sort != null">
 			order by ${sort} desc
@@ -74,6 +76,9 @@
 			</if>			
 			<if test="keyword != null">
 				and (c.title like '%${keyword}%')
+			</if>
+			<if test="caseId != null">
+		        and v.case_id = #{caseId}
 			</if>
 		</where>) t
 	</select>

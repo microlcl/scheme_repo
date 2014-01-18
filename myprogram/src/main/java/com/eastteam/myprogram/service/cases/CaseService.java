@@ -14,10 +14,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.CaseMybatisDao;
+import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Option;
 import com.eastteam.myprogram.entity.Question;
+import com.eastteam.myprogram.entity.VisitActivity;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -29,6 +31,9 @@ public class CaseService extends PageableService {
 	
 	@Autowired
 	private CaseMybatisDao caseDao;
+	
+	@Autowired
+	private VisitMybatisDao visitDao;
 	
 	
 	public List<Case> search(Map parameters, Pageable pageRequest) {
@@ -47,7 +52,14 @@ public class CaseService extends PageableService {
 	}
 	
 	public Case get(Long caseId) {
-		return this.caseDao.get(caseId);
+		Case myCase = this.caseDao.get(caseId);
+		// Build visitActivity List for this Case
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("caseId", caseId);
+		parameters.put("sort", "visit_stime");		
+		List<VisitActivity> visitActivities = this.visitDao.search(parameters);
+		myCase.setVisitActivities(visitActivities);
+		return myCase;
 	}
 	
 	public List<Answer> getAnswers(Long caseId) {
