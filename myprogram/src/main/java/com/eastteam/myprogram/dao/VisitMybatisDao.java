@@ -24,6 +24,7 @@ public interface VisitMybatisDao {
 	public void insertCase(Case thisCase);
 	public void insertVisit(Map<String, Object> parameters);
 	public List<Customer> selectCustomers();
+	public VisitActivity selectVisit(Long visitId);
 	
 
 }

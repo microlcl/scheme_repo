@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eastteam.myprogram.dao.VisitMybatisDao">
 	<select id="search" parameterType="map" resultMap="visitDetailMap">
-		select v.visit_id as visit_id, v.customer_id as customer_id, v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
+		select v.visit_id as visit_id, v.customer_id as customer_id, v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, c.event_time, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
 		from visit_activities v
 		left join cases c on v.case_id= c.case_id
 		left join category cg on v.visit_type=cg.id
@@ -52,6 +52,9 @@
 		<association property="thisCase" javaType="Case">
 			<id property="id" column="case_id" />
 			<result property="title" column="case_title" />
+			<result property="eventTime" column="event_time"/>
+			<result property="guestNum" column="guest_num"/>
+			<result property="spaceTip" column="space_tip"/>
 		</association>
 		<association property="recipient" javaType="User">
 			<id property="id" column="recipient" />
@@ -62,7 +65,7 @@
 	</resultMap>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
-		select count(0) from (select v.visit_id as visit_id, v.customer_id as customer_id, v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
+		select count(0) from (select v.visit_id as visit_id, v.customer_id as customer_id, v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, c.guest_num, cg.name as visit_type, c.space_tip, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
 		from visit_activities v
 		left join cases c on v.case_id= c.case_id
 		left join category cg on v.visit_type=cg.id
@@ -107,5 +110,12 @@
 		select customer_name as customerName, customer_id as id from customer
 	</select>
 	
-	
+	<select id="selectVisit" parameterType="Long" resultMap="visitDetailMap">
+		select v.visit_id as visit_id, v.customer_id as customer_id, v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, c.event_time, c.guest_num, c.space_tip, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
+		from visit_activities v
+		left join cases c on v.case_id= c.case_id
+		left join category cg on v.visit_type=cg.id
+		left join category cb on v.business_type=cb.id
+		where v.visit_id=#{visitId};
+	</select>
 </mapper>

@@ -102,7 +102,7 @@ public class VisitContrller {
 			@RequestParam(value="customerEventTime") String eventTime, @RequestParam(value="visitNumber") String visitNumber, 
 			@RequestParam(value="guestNumber") String guestNumber, @RequestParam(value="visitTypeId") String visitTypeId,
 			@RequestParam(value="businessTypeId") String businessTypeId) {
-		logger.info("in visit save");
+		logger.info("in visit control  save");
 		
 		visitFormBean.setVisitTime(visitTime);
 		visitFormBean.setEventTime(eventTime);
@@ -119,5 +119,14 @@ public class VisitContrller {
 		visitService.saveVisit(visitFormBean);
 		
 		return "redirect:/visit/list";
+	}
+	
+	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
+	public String showVisit(@PathVariable("id") String id, Model model, HttpSession session){
+		logger.info("in visit controller: show ");
+		VisitActivity visit = visitService.selectVisit(id);
+		model.addAttribute("visit", visit);
+		
+		return "visit/showVisit";
 	}
 }

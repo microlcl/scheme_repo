@@ -128,9 +128,8 @@
 							<c:if test="${visit.isVisited=='F'}"><span style="color:#FF0000">是</span></c:if>
 						</td>
 						<td>
-							<a href="${ctx}/paper/show/${visit.id}" id="showLink-${paper.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
-							<a href="${ctx}/paper/edit/${visit.id}" id="editLink-${paper.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
-							<a href="${ctx}/paper/delete/${visit.id}" id="deleteLink-${paper.id}"><i class="icon-remove"></i>删除</a>
+							<a href="${ctx}/visit/show/${visit.id}" id="showLink-${visit.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+							<a href="${ctx}/visit/edit/${visit.id}" id="editLink-${visit.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
 						</td>
 					</tr>
 				</c:forEach>

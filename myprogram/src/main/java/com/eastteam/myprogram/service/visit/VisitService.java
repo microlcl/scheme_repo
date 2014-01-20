@@ -79,5 +79,9 @@ public class VisitService extends PageableService {
 		map.put("comment", visitFormBean.getComment());
 		visitMybatisDao.insertVisit(map);
 	}
+	
+	public VisitActivity selectVisit(String visitId){
+		return this.visitMybatisDao.selectVisit(Long.parseLong(visitId));
+	}
 
 }
