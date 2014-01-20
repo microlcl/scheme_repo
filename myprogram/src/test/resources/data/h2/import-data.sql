@@ -198,11 +198,16 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-2-2','1-0-2','公司年会','2013-12-28 02:00:00','F','通用系统参数');
 
 -- 客户身份
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3','1-0','客户身份','2013-12-28 02:00:00','F','通用系统参数');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-0','1-0-3','新娘','2013-12-28 02:00:00','F','通用系统参数');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-1','1-0-3','新郎','2013-12-28 02:00:00','F','通用系统参数');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-2','1-0-3','宝宝','2013-12-28 02:00:00','F','通用系统参数');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-3','1-0-3','单位领导','2013-12-28 02:00:00','F','通用系统参数');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3','1-0','身份','2012-06-04 02:00:00','F','某一个case的stakeholder的身份');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-1','1-0-3','新娘','2012-06-04 02:00:00','F','新娘');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-2','1-0-3','新郎','2012-06-04 02:00:00','F','新郎');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-3','1-0-3','宝宝','2012-06-04 02:00:00','F','宝宝');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-4','1-0-3','亲戚','2012-06-04 02:00:00','F','亲戚');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-5','1-0-3','朋友','2012-06-04 02:00:00','F','朋友');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-6','1-0-3','同事','2012-06-04 02:00:00','F','同事');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-7','1-0-3','领导','2012-06-04 02:00:00','F','领导');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-8','1-0-3','同学','2012-06-04 02:00:00','F','领导');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-9','1-0-3','联系人','2012-06-04 02:00:00','F','联系人');
 
 -- 访问类别
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-4','1-0','到访类别','2014-01-10 00:00:00','F','到访类别');
