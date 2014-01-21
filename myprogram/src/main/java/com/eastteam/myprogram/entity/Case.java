@@ -30,6 +30,8 @@ public class Case extends IdEntity {
 	private List<Task> tasks;
 	private Date createdTimestamp;
 	private List<VisitActivity> visitActivities;
+	/**默认主角**/
+	private List<Category> defaultCharacters;
 	
 	public String getTitle() {
 		return title;
@@ -115,6 +117,12 @@ public class Case extends IdEntity {
 	}
 	public void setVisitActivities(List<VisitActivity> visitActivities) {
 		this.visitActivities = visitActivities;
+	}
+	public List<Category> getDefaultCharacters() {
+		return defaultCharacters;
+	}
+	public void setDefaultCharacters(List<Category> defaultCharacters) {
+		this.defaultCharacters = defaultCharacters;
 	}
 	
 }

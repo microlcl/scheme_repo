@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
+import com.eastteam.myprogram.entity.Category;
 
 public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 
@@ -62,5 +63,15 @@ public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 //		List<Question> questions = mycase.getPaper().getQuestions();
 //		logger.info(answers.toString());
 //		assertTrue(answers.size() == 0);
+	}
+	
+	@Test
+	public void getDefaultCharacters() {
+		Category businessType = new Category();
+		businessType.setId("1-0-2-0");
+		List<Category> characters = casesDao.getDefaultCharacters(businessType);
+		logger.info(characters.toString());
+		assertTrue(characters.size() > 0);
+
 	}
 }

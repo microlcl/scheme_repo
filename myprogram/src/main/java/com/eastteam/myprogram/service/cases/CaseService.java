@@ -17,6 +17,7 @@ import com.eastteam.myprogram.dao.CaseMybatisDao;
 import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
+import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Option;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.VisitActivity;
@@ -159,6 +160,10 @@ public class CaseService extends PageableService {
 				this.caseDao.insertAnswers(parameters);
 			}
 		}
-	}	
+	}
+	
+	public List<Category> getDefaultCharacters(Category businessType) {
+		return this.caseDao.getDefaultCharacters(businessType);
+	}
 
 }

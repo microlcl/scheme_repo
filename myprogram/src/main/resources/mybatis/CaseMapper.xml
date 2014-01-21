@@ -127,5 +127,11 @@
 	<insert id="insertAnswers" parameterType="map">
 	    insert into paper_answers(business_id, paper_id, question_id, answer) values
 	    ('C'||#{caseId},#{paperId},#{question.id},#{question.questionOptions});
-	</insert>	
+	</insert>
+	<select id="getDefaultCharacters" resultType="Category">
+		select cc.name, cc.id  
+		from business_type_character btc
+		left join category cc on btc.character_id=cc.id
+		 where btc.business_type=#{id} 
+	</select>		
 </mapper> 
