@@ -21,8 +21,12 @@
 		<table class="table table-striped table-bordered table-condensed">
 			<tbody>
 				<tr>
-					<td style="width:70px" class="formlabel">案例名称：</td>
+					<td style="" class="formlabel span2">案例名称：</td>
 					<td style="color:#A1A1A1">${visit.thisCase.title}</td>
+				</tr>
+				<tr>
+					<td class="formlabel" >客户称呼：</td>
+					<td style="color:#A1A1A1">${visit.customer.customerName}</td>
 				</tr>
 				<tr>
 					<td class="formlabel" >访问类别：</td>
@@ -42,7 +46,10 @@
 				</tr>
 				<tr>
 					<td class="formlabel">是否初次到访：</td>
-					<td style="color:#A1A1A1">${visit.isVisited}</td>
+					<td style="color:#A1A1A1">
+							<c:if test="${visit.isVisited=='T'}">否</c:if>
+							<c:if test="${visit.isVisited=='F'}"><span style="color:#FF0000">是</span></c:if>
+					</td>
 				</tr>
 				<tr>
 					<td class="formlabel">到访备注：</td>

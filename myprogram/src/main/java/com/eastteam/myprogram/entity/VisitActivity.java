@@ -13,7 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 public class VisitActivity extends IdEntity {
 	
-	private String customerId;
+	private Customer customer;
 	private Category visitType;
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
@@ -29,11 +29,12 @@ public class VisitActivity extends IdEntity {
 	private String comment;
 	private Paper paper;
 	
-	public String getCustomerId() {
-		return customerId;
+	
+	public Customer getCustomer() {
+		return customer;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	public Category getVisitType() {
 		return visitType;
