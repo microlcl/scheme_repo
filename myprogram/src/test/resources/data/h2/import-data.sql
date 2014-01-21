@@ -201,7 +201,7 @@ insert into category(id, pid, name, created_date, trashed, comment) values('1-0-
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3','1-0','身份','2012-06-04 02:00:00','F','某一个case的stakeholder的身份');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-1','1-0-3','新娘','2012-06-04 02:00:00','F','新娘');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-2','1-0-3','新郎','2012-06-04 02:00:00','F','新郎');
-insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-3','1-0-3','宝宝','2012-06-04 02:00:00','F','宝宝');
+insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-3','1-0-3','寿星','2012-06-04 02:00:00','F','宝宝');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-4','1-0-3','亲戚','2012-06-04 02:00:00','F','亲戚');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-5','1-0-3','朋友','2012-06-04 02:00:00','F','朋友');
 insert into category(id, pid, name, created_date, trashed, comment) values('1-0-3-6','1-0-3','同事','2012-06-04 02:00:00','F','同事');
@@ -478,6 +478,13 @@ insert into cases (case_id, case_title, created_time, assigned_department_id, ca
 	values (2, '李四的生日宴会', '2013-10-06 02:00:00', 'D1-2-1', 'userid6', '1-0-2-1', '2013-11-15 18:00:00', 10, 2, '场地很小', '场面简单', 5, '1-0-8-2', 'C');
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
 	values (3, '王五的公司年会', '2013-12-07 02:00:00', 'D1-2', 'userid9', '1-0-2-2', '2013-12-31 19:00:00', 500, 3, '场地足够大3', '人员很多', 6, '1-0-8-3', 'C');
+
+-- 不同类型case默认的主角
+-- 婚庆：新娘， 新郎	
+insert into business_type_character(business_type, character_id) values('1-0-2-0','1-0-3-1');
+insert into business_type_character(business_type, character_id) values('1-0-2-0','1-0-3-2');
+-- 生日宴
+insert into business_type_character(business_type, character_id) values('1-0-2-1','1-0-3-3');
 
 insert into task_comments (comment_id,task_id) values (1,1);
 insert into task_comments (comment_id,task_id) values (2,2);
