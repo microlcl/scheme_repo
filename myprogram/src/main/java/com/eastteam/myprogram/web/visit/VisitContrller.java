@@ -90,9 +90,10 @@ public class VisitContrller {
 		return "visit/list";
 	}
 
-	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add(Model model, ServletRequest request) {
+	@RequestMapping(value = "add/{id}", method = RequestMethod.GET)
+	public String add(@PathVariable("id") String id, Model model, ServletRequest request) {
 		logger.info("in visit controller: add");
+		model.addAttribute("caseId", id);
 		
 		return "visit/addVisit";
 	}

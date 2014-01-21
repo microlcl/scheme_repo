@@ -182,12 +182,22 @@
 				<div class="control-group">
 					<span class="formlabel span2 control-label">是否初次到访：</span>
 					<div class="controls">
-						<label class="radio inline">
-							<input type="radio" name="isVisited" id="sex" value="F" >是
-						</label>
-						<label class="radio inline">
-							<input type="radio" name="isVisited" id="sex" value="T" >否
-						</label>
+						<c:if test="${caseId == 'new'}">
+							<label class="radio inline">
+								<input type="radio" name="isVisited" id="sex" value="F" checked="checked">是
+							</label>
+							<label class="radio inline">
+								<input type="radio" name="isVisited" id="sex" value="T" >否
+							</label>
+						</c:if>
+						<c:if test="${caseId != 'new'}">
+							<label class="radio inline">
+								<input type="radio" name="isVisited" id="sex" value="F" >是
+							</label>
+							<label class="radio inline">
+								<input type="radio" name="isVisited" id="sex" value="T" checked="checked">否
+							</label>
+						</c:if>
 					</div>
 				</div>
 				
