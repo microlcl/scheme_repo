@@ -128,13 +128,65 @@
 						</div>
 					</div>
 					<div class="control-group pull-right">
+						<label class="control-label" for="customer_birthday">生日：</label>
+						<div class="pull-right">
+							<div class="input-append date form_date">
+								<input size="16" type="text" name="customer.birthday" id="customer_birthday"
+									style="width: 302px"
+									value="1988-08-08"
+									readonly> <span class="add-on"><i
+									class="icon-remove"></i></span> <span class="add-on"><i
+									class="icon-th"></i></span>
+							</div>
+						</div>
+					</div>					
+
+				</div>
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_weixin">微信：</label>
+						<div class="pull-right">
+							<input type="text" class="span4" id="customer_weixin" placeholder="微信">
+						</div>
+					</div>				
+					<div class="control-group pull-right">
 						<label class="control-label" for="customer_phone">电话：</label>
 						<div class="pull-right">
 							<input type="text" class="span4" id="customer_phone" placeholder="电话">
 						</div>
+					</div>					
+
+				</div>				
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_weibo">微博：</label>
+						<div class="controls">
+							<input name="customer.weibo" id="customer_weibo" type="text" placeholder="微博地址"
+								class="span4">
+						</div>
 					</div>
-				</div>
-	
+					<div class="control-group span pull-right">
+						<label class="control-label" for="customer_qq">QQ：</label>
+						<div class="controls">
+							<input name="customer.qq" id="customer_qq" type="text" placeholder="QQ"
+								class="span4">
+						</div>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_favorite">爱好：</label>
+						<div class="controls">
+								<textarea rows="3" class="span4" id="customer_favorite" name="customer.favorite" maxlength="128"></textarea>
+						</div>
+					</div>
+					<div class="control-group span pull-right">
+						<label class="control-label" for="customer_description">备注：</label>
+						<div class="controls">
+							<textarea rows="3" class="span4" id="customer_description" name="customer.description" maxlength="128"></textarea>								
+						</div>
+					</div>
+				</div>					
 			</div>
 		</div>
 	</div>
