@@ -80,4 +80,22 @@
 				<textarea rows="6" class="input-block-level" id="description" name="description" maxlength="1024">${mycase.description}</textarea>
 			</div>
 		</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse"
+				data-parent="#accordion2" href="#stakeholders">新娘： 张三2</a>
+		</div>
+		<div id="stakeholders" class="accordion-body collapse in">
+			<div class="accordion-inner">新娘详细信息</div>
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse"
+				data-parent="#accordion2" href="#stakeholder1s">新郎：张三</a>
+		</div>
+		<div id="stakeholder1s" class="accordion-body collapse in">
+			<div class="accordion-inner">新郎详细信息</div>
+		</div>
+	</div>	
 </div>
