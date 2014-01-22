@@ -129,7 +129,7 @@
 						</td>
 						<td>
 							<a href="${ctx}/visit/show/${visit.id}" id="showLink-${visit.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
-							<a href="${ctx}/visit/edit/${visit.id}" id="editLink-${visit.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
+							<a href="${ctx}/visit/update/${visit.id}" id="editLink-${visit.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
 						</td>
 					</tr>
 				</c:forEach>

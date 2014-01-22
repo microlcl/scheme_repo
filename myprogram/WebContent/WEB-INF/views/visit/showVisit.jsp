@@ -37,7 +37,7 @@
 					<td style="color:#A1A1A1">${visit.visitNum}</td>
 				</tr>
 				<tr>
-					<td class="formlabel">电话号码：</td>
+					<td class="formlabel">到访时间：</td>
 					<td style="color:#A1A1A1">${visit.visitTime}</td>
 				</tr>
 				<tr>

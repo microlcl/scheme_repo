@@ -130,4 +130,13 @@ public class VisitContrller {
 		
 		return "visit/showVisit";
 	}
+	
+	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
+	public String updateVisit(@PathVariable("id") String id, Model model, HttpSession session){
+		logger.info("in visit controller: update ");
+		VisitActivity visit = visitService.selectVisit(id);
+		model.addAttribute("visit", visit);
+		
+		return "visit/updateVisit";
+	}
 }
