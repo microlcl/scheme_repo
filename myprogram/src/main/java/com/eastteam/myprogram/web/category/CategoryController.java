@@ -74,4 +74,15 @@ public class CategoryController {
 		
 		return categoryService.getFuntionCategorys(functionId);
 	}
+	
+	/**
+	 * 得到一级子节点，用于生产下拉列表
+	 * @param functionId
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/api/getChildren/{functionId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<CategoryLiteBean> getChildren(@PathVariable("functionId")String functionId) {		
+		return categoryService.getFuntionCategorysForList(functionId);
+	}	
 }

@@ -18,7 +18,7 @@
 			<div class="controls">
 				<input name="businessType.id" id="business_type"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" value="${mycase.businessType.id}">
+				data-options="url:'${ctx}/category/api/getChildren/getBusinessType',method:'get',required:false" value="${mycase.businessType.id}">
 			</div>
 		</div>
 		<div class="control-group pull-right">
@@ -80,10 +80,26 @@
 				<textarea rows="6" class="input-block-level" id="description" name="description" maxlength="1024">${mycase.description}</textarea>
 			</div>
 		</div>
+	<div class="row">
+		<div class="span">
+			<div class="form-search" style="padding-left: 20px;">
+				<label>主角</label>
+			</div>
+		</div>
+		<div class="pull-right">
+			<a href="#">增加</a>
+		</div>
+	</div>
 	<div class="accordion-group">
 		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse"
-				data-parent="#accordion2" href="#stakeholders">新娘： 张三2</a>
+
+				<a class="accordion-toggle" data-toggle="collapse"
+				href="#stakeholders">				
+				<input id="characterList"
+				class="span2 easyui-combobox" name="owner.id"
+				data-options="method:'get',valueField:'id',textField:'name'" value=${mycase.owner.id}><input type="text" value="戴安娜"/>
+			</a> 
+
 		</div>
 		<div id="stakeholders" class="accordion-body collapse in">
 			<div class="accordion-inner">新娘详细信息</div>
@@ -92,7 +108,7 @@
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse"
-				data-parent="#accordion2" href="#stakeholder1s">新郎：张三</a>
+			 href="#stakeholder1s">新郎：张三</a>
 		</div>
 		<div id="stakeholder1s" class="accordion-body collapse in">
 			<div class="accordion-inner">新郎详细信息</div>

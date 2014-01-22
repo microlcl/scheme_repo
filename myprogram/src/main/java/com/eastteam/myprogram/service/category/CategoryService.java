@@ -71,4 +71,20 @@ public class CategoryService {
 		}
 		return categoryList;
 	}
+	
+	/**
+	 * 提供给combobox（下拉列表）使用，根据functionId动态产生下拉菜单
+	 * @param moduleId
+	 * @return
+	 */
+	public List<CategoryLiteBean> getFuntionCategorysForList(String functionId) {
+		
+		List<CategoryLiteBean> functionCategorys = categoryDao.getFunctionCategorys(functionId);
+		List<CategoryLiteBean> categoryList = Lists.newArrayList();
+		for(CategoryLiteBean functionCategory : functionCategorys) {
+			List<CategoryLiteBean> firstLevelChildren = categoryDao.getFirstLevelChildren(functionCategory.getId());
+			categoryList.addAll(firstLevelChildren);
+		}
+		return categoryList;
+	}
 }

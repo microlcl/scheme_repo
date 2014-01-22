@@ -25,7 +25,7 @@ insert into modules(module_id, pid, name, description, path) values('M1-10','M1'
 insert into modules(module_id, pid, name, description, path) values('M1-11','M1','案例类型','案例类型','');
 
 insert into functions(function_id, module_id, name, description, path) values('F0','M1','主界面','查看主界面','/index.jsp');
-insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll');
+insert into functions(function_id, module_id, name, description, path) values('F1-1','M1-1','类别：查看','有权限查看','/category/list,/category/api/search,/category/api/getAll,/category/api/getChildren');
 insert into functions(function_id, module_id, name, description, path) values('F1-2','M1-1','类别：增加','有权限增加','/category/api/save,/category/api/subId');
 insert into functions(function_id, module_id, name, description, path) values('F1-3','M1-1','类别：修改','有权限修改','/category/api/save');
 insert into functions(function_id, module_id, name, description, path) values('F1-4','M1-1','类别：删除','有权限删除','/category/api/delete');

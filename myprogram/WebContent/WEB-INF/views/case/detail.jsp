@@ -75,7 +75,7 @@
 								<div class="pull-right">
 										<input id="case_status"
 				class="span2 easyui-combotree" name="status.id"
-				data-options="url:'${ctx}/category/api/getAll/getCaseStatus',method:'get',required:false" value="${mycase.status.id}">
+				data-options="url:'${ctx}/category/api/getChildren/getCaseStatus',method:'get',required:false" value="${mycase.status.id}">
 					</div>
 		</div>
 
