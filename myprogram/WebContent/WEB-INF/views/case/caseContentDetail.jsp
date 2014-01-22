@@ -80,7 +80,7 @@
 				<textarea rows="6" class="input-block-level" id="description" name="description" maxlength="1024">${mycase.description}</textarea>
 			</div>
 		</div>
-	<div class="row">
+	<div class="row" style="background: #EBEBEB">
 		<div class="span">
 			<div class="form-search" style="padding-left: 20px;">
 				<label>主角</label>
@@ -95,14 +95,47 @@
 
 				<a class="accordion-toggle" data-toggle="collapse"
 				href="#stakeholders">				
-				<input id="characterList"
-				class="span2 easyui-combobox" name="owner.id"
-				data-options="method:'get',valueField:'id',textField:'name'" value=${mycase.owner.id}><input type="text" value="戴安娜"/>
+					新娘： 戴安娜
 			</a> 
 
 		</div>
-		<div id="stakeholders" class="accordion-body collapse in">
-			<div class="accordion-inner">新娘详细信息</div>
+		<div id="stakeholders" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_character">身份：</label>
+						<div class="controls">
+							<input name="customer.character" id="customer_character"
+								class="span4 easyui-combotree"
+								data-options="url:'${ctx}/category/api/getChildren/getCharacterType',method:'get',required:false"
+								value="1-0-3-1">
+						</div>
+					</div>
+					<div class="control-group pull-right">
+						<label class="control-label" for="customer_name">姓名：</label>
+						<div class="pull-right">
+							<input type="text" class="span4" id="customer_name" value="戴安娜" placeholder="姓名">
+						</div>
+					</div>
+				</div>			
+					
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_job">工作：</label>
+						<div class="controls">
+							<input name="customer.job" id="customer_job" type="text"
+								class="span4">
+						</div>
+					</div>
+					<div class="control-group pull-right">
+						<label class="control-label" for="customer_phone">电话：</label>
+						<div class="pull-right">
+							<input type="text" class="span4" id="customer_phone" placeholder="电话">
+						</div>
+					</div>
+				</div>
+	
+			</div>
 		</div>
 	</div>
 	<div class="accordion-group">
@@ -110,7 +143,7 @@
 			<a class="accordion-toggle" data-toggle="collapse"
 			 href="#stakeholder1s">新郎：张三</a>
 		</div>
-		<div id="stakeholder1s" class="accordion-body collapse in">
+		<div id="stakeholder1s" class="accordion-body collapse">
 			<div class="accordion-inner">新郎详细信息</div>
 		</div>
 	</div>	

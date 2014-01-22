@@ -270,6 +270,8 @@ insert into function_category(function_id,category_id) values('M1-9','1-0-7');
 insert into function_category(function_id,category_id) values('M1-9-1','1-0-6');
 insert into function_category(function_id,category_id) values('M1-9-2','1-0-5');
 insert into function_category(function_id,category_id) values('M1-10','1-0-4');
+insert into function_category(function_id,category_id) values('getCharacterType', '1-0-3');
+
 
 
 
