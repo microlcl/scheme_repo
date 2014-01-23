@@ -69,7 +69,8 @@ public class CaseService extends PageableService {
 	
 	public Case getCaseWithAnswer(Long caseId) {
 		Case mycase = this.get(caseId);
-		if (mycase != null && mycase.getPaper() != null) {
+		mycase.setStatkeholders(this.caseDao.getStakeholders(caseId));
+		if (mycase.getPaper() != null) {
 			List<Answer> answerList = this.getAnswers(caseId);		
 			return buildCaseWithAnswers(mycase, answerList);
 		}

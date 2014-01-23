@@ -90,50 +90,51 @@
 			<a href="#">增加</a>
 		</div>
 	</div>
+	<c:forEach items="${mycase.statkeholders}" var="statkeholders" varStatus="status">
 	<div class="accordion-group">
 		<div class="accordion-heading">
 
 				<a class="accordion-toggle" data-toggle="collapse"
-				href="#stakeholders">				
-					新娘： 戴安娜
+				href="#stakeholders_${status.index}">				
+					${statkeholders.character.name}： ${statkeholders.customer.customerName}
 			</a> 
 
 		</div>
-		<div id="stakeholders" class="accordion-body collapse">
+		<div id="stakeholders_${status.index}" class="accordion-body collapse">
 			<div class="accordion-inner">
 				<div class="row">
 					<div class="control-group span pull-left">
-						<label class="control-label" for="customer_character">身份：</label>
+						<label class="control-label" for="customer_character_${status.index}">身份：</label>
 						<div class="controls">
-							<input name="customer.character" id="customer_character"
+							<input name="customer.character" id="customer_character_${status.index}"
 								class="span4 easyui-combotree"
 								data-options="url:'${ctx}/category/api/getChildren/getCharacterType',method:'get',required:false"
-								value="1-0-3-1">
+								value="${statkeholders.character.id}">
 						</div>
 					</div>
 					<div class="control-group pull-right">
-						<label class="control-label" for="customer_name">姓名：</label>
+						<label class="control-label" for="customer_name_${status.index}">姓名：</label>
 						<div class="pull-right">
-							<input type="text" class="span4" id="customer_name" value="戴安娜" placeholder="姓名">
+							<input type="text" class="span4" id="customer_name_${status.index}" value="${statkeholders.customer.customerName}" placeholder="姓名">
 						</div>
 					</div>
 				</div>			
 					
 				<div class="row">
 					<div class="control-group span pull-left">
-						<label class="control-label" for="customer_job">工作：</label>
+						<label class="control-label" for="customer_job_${status.index}">工作：</label>
 						<div class="controls">
-							<input name="customer.job" id="customer_job" type="text"
-								class="span4">
+							<input name="customer.job" id="customer_job_${status.index}" type="text"
+								class="span4" value="${statkeholders.customer.job}">
 						</div>
 					</div>
 					<div class="control-group pull-right">
-						<label class="control-label" for="customer_birthday">生日：</label>
+						<label class="control-label" for="customer_birthday_${status.index}">生日：</label>
 						<div class="pull-right">
 							<div class="input-append date form_date">
-								<input size="16" type="text" name="customer.birthday" id="customer_birthday"
+								<input size="16" type="text" name="customer.birthday" id="customer_birthday_${status.index}"
 									style="width: 302px"
-									value="1988-08-08"
+									value="<fmt:formatDate value='${statkeholders.customer.birthday}' pattern='yyyy-MM-dd'/>"
 									readonly> <span class="add-on"><i
 									class="icon-remove"></i></span> <span class="add-on"><i
 									class="icon-th"></i></span>
@@ -144,59 +145,52 @@
 				</div>
 				<div class="row">
 					<div class="control-group span pull-left">
-						<label class="control-label" for="customer_weixin">微信：</label>
+						<label class="control-label" for="customer_weixin_${status.index}">微信：</label>
 						<div class="pull-right">
-							<input type="text" class="span4" id="customer_weixin" placeholder="微信">
+							<input type="text" class="span4" id="customer_weixin_${status.index}" placeholder="微信" value="${statkeholders.customer.weixin}">
 						</div>
 					</div>				
 					<div class="control-group pull-right">
-						<label class="control-label" for="customer_phone">电话：</label>
+						<label class="control-label" for="customer_phone_${status.index}">电话：</label>
 						<div class="pull-right">
-							<input type="text" class="span4" id="customer_phone" placeholder="电话">
+							<input type="text" class="span4" id="customer_phone_${status.index}" placeholder="电话" value="${statkeholders.customer.customerPhone}">
 						</div>
 					</div>					
 
 				</div>				
 				<div class="row">
 					<div class="control-group span pull-left">
-						<label class="control-label" for="customer_weibo">微博：</label>
+						<label class="control-label" for="customer_weibo_${status.index}">微博：</label>
 						<div class="controls">
-							<input name="customer.weibo" id="customer_weibo" type="text" placeholder="微博地址"
-								class="span4">
+							<input name="customer.weibo" id="customer_weibo_${status.index}" type="text" placeholder="微博地址"
+								class="span4" value="${statkeholders.customer.weibo}">
 						</div>
 					</div>
 					<div class="control-group span pull-right">
-						<label class="control-label" for="customer_qq">QQ：</label>
+						<label class="control-label" for="customer_qq_${status.index}">QQ：</label>
 						<div class="controls">
-							<input name="customer.qq" id="customer_qq" type="text" placeholder="QQ"
-								class="span4">
+							<input name="customer.qq" id="customer_qq_${status.index}" type="text" placeholder="QQ"
+								class="span4" value="${statkeholders.customer.qq}">
 						</div>
 					</div>
 				</div>	
 				<div class="row">
 					<div class="control-group span pull-left">
-						<label class="control-label" for="customer_favorite">爱好：</label>
+						<label class="control-label" for="customer_favorite_${status.index}">爱好：</label>
 						<div class="controls">
-								<textarea rows="3" class="span4" id="customer_favorite" name="customer.favorite" maxlength="128"></textarea>
+								<textarea rows="3" class="span4" id="customer_favorite_${status.index}" name="customer.favorite" maxlength="128">${statkeholders.customer.favorate}</textarea>
 						</div>
 					</div>
 					<div class="control-group span pull-right">
-						<label class="control-label" for="customer_description">备注：</label>
+						<label class="control-label" for="customer_description_${status.index}">备注：</label>
 						<div class="controls">
-							<textarea rows="3" class="span4" id="customer_description" name="customer.description" maxlength="128"></textarea>								
+							<textarea rows="3" class="span4" id="customer_description_${status.index}" name="customer.description" maxlength="128">${statkeholders.description}</textarea>								
 						</div>
 					</div>
 				</div>					
 			</div>
 		</div>
 	</div>
-	<div class="accordion-group">
-		<div class="accordion-heading">
-			<a class="accordion-toggle" data-toggle="collapse"
-			 href="#stakeholder1s">新郎：张三</a>
-		</div>
-		<div id="stakeholder1s" class="accordion-body collapse">
-			<div class="accordion-inner">新郎详细信息</div>
-		</div>
-	</div>	
+	</c:forEach>
+	
 </div>
