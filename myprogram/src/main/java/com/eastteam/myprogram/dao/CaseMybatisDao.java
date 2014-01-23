@@ -6,6 +6,7 @@ import java.util.Map;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.Stakeholder;
 
 
 @MyBatisRepository
@@ -18,4 +19,5 @@ public interface CaseMybatisDao {
 	public void deleteAnswers(Case mycase);
 	public void insertAnswers(Map<String, Object> parameters);
 	public List<Category> getDefaultCharacters(Category businessType);
+	public List<Stakeholder> getStakeholders(Long caseId);
 }

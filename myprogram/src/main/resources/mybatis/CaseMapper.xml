@@ -133,5 +133,33 @@
 		from business_type_character btc
 		left join category cc on btc.character_id=cc.id
 		 where btc.business_type=#{id} 
-	</select>		
+	</select>	
+	<select id="getStakeholders" resultMap="StakeholderMap">
+		select c.name as characterType, c.id as characterId,
+		cu.customer_id,cu.customer_name, cu.customer_phone,cu.customer_sex,cu.job,cu.weixin, 
+		cu.weibo, cu.qq,cu.birthday, cu.favorite, cu.description
+		from case_customers cc
+		left join category c on cc.character_id=c.id
+		left join customer cu on cc.customer_id=cu.customer_id
+		 where cc.case_id=#{id} 
+	</select>
+	<resultMap id="StakeholderMap" type="Stakeholder">
+		<association property="character" column="characterId" javaType="Category">
+			<id property="id" column="characterId" />
+			<result property="name" column="characterType" />
+		</association>
+		<association property="customer" column="customer_id" javaType="Customer">
+			<id property="id" column="customer_id" />
+			<result property="customerName" column="customer_name" />
+			<result property="customerPhone" column="customer_phone" />
+			<result property="customerSex" column="customer_sex" />			
+			<result property="job" column="job" />
+			<result property="weixin" column="weixin" />
+			<result property="weibo" column="weibo" />
+			<result property="qq" column="qq" />
+			<result property="birthday" column="birthday" />
+			<result property="favorate" column="favorate" />
+			<result property="description" column="description" />
+		</association>
+	</resultMap>			
 </mapper> 

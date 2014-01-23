@@ -33,6 +33,8 @@ public class Case extends IdEntity {
 	/**默认主角**/
 	private List<Category> defaultCharacters;
 	
+	private List<Stakeholder> statkeholders;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -123,6 +125,12 @@ public class Case extends IdEntity {
 	}
 	public void setDefaultCharacters(List<Category> defaultCharacters) {
 		this.defaultCharacters = defaultCharacters;
+	}
+	public List<Stakeholder> getStatkeholders() {
+		return statkeholders;
+	}
+	public void setStatkeholders(List<Stakeholder> statkeholders) {
+		this.statkeholders = statkeholders;
 	}
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.Stakeholder;
 
 public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 
@@ -73,5 +74,11 @@ public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 		logger.info(characters.toString());
 		assertTrue(characters.size() > 0);
 
+	}
+	
+	@Test
+	public void getStakeholders() {
+		List<Stakeholder> stakeholders = this.casesDao.getStakeholders(1L);
+		logger.info(stakeholders.toString());
 	}
 }
