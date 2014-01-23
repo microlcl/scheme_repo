@@ -52,7 +52,6 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true" onclick="addsub()">添加</button>
-
 	</div>
 </div>
 

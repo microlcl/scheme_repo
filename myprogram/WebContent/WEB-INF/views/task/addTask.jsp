@@ -22,7 +22,22 @@
             	error.appendTo(element.parent());    //将错误信息添加当前元素的父结点后面 
     		}
 		});
+		
+		$('#mydepartment_id1').combotree({
+			onChange : function(node) {
+				var url = '${ctx}/account/api/search?departmentId=' + node;
+				$('#myaccount_id1').combobox('reload', url);
+			}
+		});
 	});
+	
+	function addsub(){
+		var userID = $('#myaccount_id1').combobox('getValue');  
+		var userName = $('#myaccount_id1').combobox('getText');
+		$('#myModal').modal('hide');
+		var tableHolder = $('#subtable');
+		tableHolder.append('<tr class="success"><td>'+userName+'</td></tr>');
+	}
 	</script>
 </head>
 
