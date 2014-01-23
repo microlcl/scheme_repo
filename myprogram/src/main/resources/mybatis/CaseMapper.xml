@@ -135,7 +135,7 @@
 		 where btc.business_type=#{id} 
 	</select>	
 	<select id="getStakeholders" resultMap="StakeholderMap">
-		select c.name as characterType, c.id as characterId,
+		select cc.description as stakeholder_description, c.name as characterType, c.id as characterId,
 		cu.customer_id,cu.customer_name, cu.customer_phone,cu.customer_sex,cu.job,cu.weixin, 
 		cu.weibo, cu.qq,cu.birthday, cu.favorite, cu.description
 		from case_customers cc
@@ -144,6 +144,7 @@
 		 where cc.case_id=#{id} 
 	</select>
 	<resultMap id="StakeholderMap" type="Stakeholder">
+	    <result property="description" column="stakeholder_description"/>
 		<association property="character" column="characterId" javaType="Category">
 			<id property="id" column="characterId" />
 			<result property="name" column="characterType" />

@@ -4,6 +4,7 @@ public class Stakeholder extends BaseEntity {
 	/**角色**/
 	private Category character;
 	private Customer customer;
+	private String description;
 	public Category getCharacter() {
 		return character;
 	}
@@ -15,6 +16,12 @@ public class Stakeholder extends BaseEntity {
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 
