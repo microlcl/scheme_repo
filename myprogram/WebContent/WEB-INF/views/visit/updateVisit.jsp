@@ -129,8 +129,8 @@
 		});
 		
 		function submitForm(){
-			alert("还没有实现写库");
-			return;
+			//alert("还没有实现写库");
+			//return;
 			if (($("#customerVisitTime").val() != "") && ($("#customerEventTime").val() != "") && ($("input[name='visitTypeId']").val() != "") && ($("input[name='businessTypeId']").val() != "")) {
 				console.log("In form submit");
 				$('#inputForm').submit();
@@ -151,6 +151,9 @@
 <body>
 	<div class="form">
 		<form id="inputForm" action="${ctx}/visit/save" method="post">
+			<input type="hidden" value="${visit.id}" name="visitId">
+			<input type="hidden" value="${visit.customer.id}" name="customerId">
+			<input type="hidden" value="${visit.thisCase.id}" name="caseId">
 			<h1>修改到访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。

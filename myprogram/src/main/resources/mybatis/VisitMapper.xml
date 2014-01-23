@@ -109,8 +109,8 @@
 	</insert>
 	
 	<insert id="insertVisit" parameterType="map" useGeneratedKeys="true" keyProperty="id">
-		insert into visit_activities (customer_id, visit_type, visit_stime, business_type, case_id, is_visited, comment) 
-		values (#{customerId}, #{visitType}, #{visitTime}, #{businessType}, #{caseId}, #{isVisited}, #{comment});
+		insert into visit_activities (customer_id, visit_type, visitor_num,  visit_stime, business_type, case_id, is_visited, comment) 
+		values (#{customerId}, #{visitType}, #{visitNum}, #{visitTime}, #{businessType}, #{caseId}, #{isVisited}, #{comment});
 	</insert>
 	
 	<select id="selectCustomers" resultType="Customer" >
@@ -126,4 +126,20 @@
 		left join customer ct on v.customer_id=ct.customer_id
 		where v.visit_id=#{visitId};
 	</select>
+	
+	<update id="updateCustomer" parameterType="Customer">
+		update customer set customer_name = #{customerName}
+		where customer_id=#{id}
+	</update>
+	
+	<update id="updateCase" parameterType="Case">
+		update cases set business_type = #{businessType.id}, case_title = #{title}, event_time = #{eventTime}, guest_num = #{guestNum}, space_tip = #{spaceTip}
+		where case_id=#{id}
+	</update>
+	
+	<update id="updateVisit" parameterType="map">
+		update visit_activities set visit_type = #{visitType}, visitor_num = #{visitNum}, visit_stime = #{visitTime}, business_type = #{businessType}, is_visited = #{isVisited}, comment = #{comment}
+		where visit_id=#{visitId}
+	</update>
+	
 </mapper>

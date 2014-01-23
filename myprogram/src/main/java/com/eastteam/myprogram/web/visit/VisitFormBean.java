@@ -16,6 +16,9 @@ import com.eastteam.myprogram.web.BaseFormBean;
  */
 public class VisitFormBean extends BaseFormBean {
 	
+	private Long visitId;
+	private Long customerId;
+	private Long caseId;
 	private Category visitType;
 	private Date visitTime;
 	private int visitNum;
@@ -28,6 +31,25 @@ public class VisitFormBean extends BaseFormBean {
 	private String customerName;
 	private String caseTitle;
 	
+	
+	public Long getVisitId() {
+		return visitId;
+	}
+	public void setVisitId(Long visitId) {
+		this.visitId = visitId;
+	}
+	public Long getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
+	public Long getCaseId() {
+		return caseId;
+	}
+	public void setCaseId(Long caseId) {
+		this.caseId = caseId;
+	}
 	public Category getVisitType() {
 		return visitType;
 	}

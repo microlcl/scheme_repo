@@ -57,27 +57,57 @@ public class VisitService extends PageableService {
 	
 	public void saveVisit(VisitFormBean visitFormBean) {
 		logger.info("in visit activity service : save visit");
-		Customer customer = new Customer();
-		customer.setCustomerName(visitFormBean.getCustomerName());
-		Case thisCase = new Case();
-		thisCase.setBusinessType(visitFormBean.getBusinessType());
-		thisCase.setEventTime(visitFormBean.getEventTime());
-		thisCase.setGuestNum(visitFormBean.getGuestNum());
-		thisCase.setSpaceTip(visitFormBean.getSpaceTip());
-		thisCase.setTitle(visitFormBean.getCaseTitle());
-		visitMybatisDao.insertCustomer(customer);
-		visitMybatisDao.insertCase(thisCase);
-		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());
-		map.put("customerId", customer.getId());
-		map.put("visitType", visitFormBean.getVisitType().getId());
-		map.put("visitTime", visitFormBean.getVisitTime());
-		map.put("businessType", visitFormBean.getBusinessType().getId());
-		map.put("caseId", thisCase.getId());
-		map.put("isVisited", visitFormBean.getIsVisited());
-		map.put("comment", visitFormBean.getComment());
-		visitMybatisDao.insertVisit(map);
+		if (visitFormBean.getVisitId() != null){
+			logger.info("修改现有访问记录");
+			Customer customer = new Customer();
+			customer.setCustomerName(visitFormBean.getCustomerName());
+			customer.setId(visitFormBean.getCustomerId());
+			visitMybatisDao.updateCustomer(customer);
+			
+			Case thisCase = new Case();
+			thisCase.setBusinessType(visitFormBean.getBusinessType());
+			thisCase.setEventTime(visitFormBean.getEventTime());
+			thisCase.setGuestNum(visitFormBean.getGuestNum());
+			thisCase.setSpaceTip(visitFormBean.getSpaceTip());
+			thisCase.setTitle(visitFormBean.getCaseTitle());
+			thisCase.setId(visitFormBean.getCaseId());
+			visitMybatisDao.updateCase(thisCase);
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());
+			map.put("visitType", visitFormBean.getVisitType().getId());
+			map.put("visitNum", visitFormBean.getVisitNum());
+			map.put("visitTime", visitFormBean.getVisitTime());
+			map.put("businessType", visitFormBean.getBusinessType().getId());
+			map.put("isVisited", visitFormBean.getIsVisited());
+			map.put("comment", visitFormBean.getComment());
+			map.put("visitId", visitFormBean.getVisitId());
+			visitMybatisDao.updateVisit(map);
+		}else {
+			
+			Customer customer = new Customer();
+			customer.setCustomerName(visitFormBean.getCustomerName());
+			Case thisCase = new Case();
+			thisCase.setBusinessType(visitFormBean.getBusinessType());
+			thisCase.setEventTime(visitFormBean.getEventTime());
+			thisCase.setGuestNum(visitFormBean.getGuestNum());
+			thisCase.setSpaceTip(visitFormBean.getSpaceTip());
+			thisCase.setTitle(visitFormBean.getCaseTitle());
+			visitMybatisDao.insertCustomer(customer);
+			visitMybatisDao.insertCase(thisCase);
+			
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());
+			map.put("customerId", customer.getId());
+			map.put("visitType", visitFormBean.getVisitType().getId());
+			map.put("visitNum", visitFormBean.getVisitNum());
+			map.put("visitTime", visitFormBean.getVisitTime());
+			map.put("businessType", visitFormBean.getBusinessType().getId());
+			map.put("caseId", thisCase.getId());
+			map.put("isVisited", visitFormBean.getIsVisited());
+			map.put("comment", visitFormBean.getComment());
+			visitMybatisDao.insertVisit(map);
+		}
 	}
 	
 	public VisitActivity selectVisit(String visitId){
