@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://com.eastteam.myprogram/mytaglib" prefix="mytag" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
@@ -18,7 +19,11 @@
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
 			
+			var visitTypeId = ['${visitType}'];
 			$("#cc1").combotree({ 
+				onLoadSuccess:function(node){//数据加载成功触发 
+					$("#cc1").combotree('setValues', visitTypeId);
+				},
 				onBeforeSelect:function(node){ 
 					var tree = $(this).tree;
 					var isLeaf = tree('isLeaf', node.target);
@@ -142,6 +147,7 @@
 <body>
 	<div class="form">
 		<form id="inputForm" action="${ctx}/visit/save" method="post">
+			<input type="hidden" value="${thisCase.id}" name="caseId">
 			<h1>增加到访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。
@@ -152,7 +158,7 @@
 			<div style="padding:20px;">
 				<div class="control-group">
 					<span class="formlabel span2 control-label">案例名称：</span>
-					<input type="text" class="required" id="caseTitle" name="caseTitle" style="width:186px" class="input-large " maxlength="64" placeholder="请输入案例名称"/>
+					<input type="text" class="required" id="caseTitle" name="caseTitle" value="${thisCase.title}" style="width:186px" class="input-large " maxlength="64" placeholder="请输入案例名称"/>
 				</div>		
 			
 				<div class="control-group">
@@ -182,7 +188,7 @@
 				<div class="control-group">
 					<span class="formlabel span2 control-label">是否初次到访：</span>
 					<div class="controls">
-						<c:if test="${caseId == 'new'}">
+						<c:if test="${thisCase.id == null}">
 							<label class="radio inline">
 								<input type="radio" name="isVisited" id="sex" value="F" checked="checked">是
 							</label>
@@ -190,7 +196,7 @@
 								<input type="radio" name="isVisited" id="sex" value="T" >否
 							</label>
 						</c:if>
-						<c:if test="${caseId != 'new'}">
+						<c:if test="${thisCase.id != null}">
 							<label class="radio inline">
 								<input type="radio" name="isVisited" id="sex" value="F" >是
 							</label>
@@ -214,7 +220,7 @@
 				<div class="control-group">	
 					<span class="formlabel span2 control-label">案例时间：</span>
 					<div class="input-append date form_date">
-	                	<input size="16" type="text" id="customerEventTime" name="customerEventTime" style="width:132px" readonly>
+	                	<input size="16" type="text" id="customerEventTime" name="customerEventTime" value="<fmt:formatDate value='${thisCase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
 						<span class="add-on"><i class="icon-th"></i></span>
 	               </div>
@@ -222,12 +228,12 @@
 	            
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">客人人数：</span>
-					<input type="text" id="guestNumber" class="required" name="guestNumber" style="width:186px" class="input-large " maxlength="20" placeholder="请输入客人人数"/>
+					<input type="text" id="guestNumber" class="required" name="guestNumber" value="${thisCase.guestNum}" style="width:186px" class="input-large " maxlength="20" placeholder="请输入客人人数"/>
 				</div>
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">会场简介：</span>
-					<textarea id="spaceTip" name="spaceTip"  style="width:186px" maxlength="256" class="input-large"></textarea>
+					<textarea id="spaceTip" name="spaceTip"  style="width:186px" maxlength="256" class="input-large">${thisCase.spaceTip}</textarea>
 				</div>
 	            
 			</div>

@@ -101,8 +101,8 @@
 			</form>
 		</div>
 		<div  style="padding-left:20px;padding-right:20px; text-align: center;">
-			<button id="first_visit" style="height: 40px !important;width: 180px !important; margin-top: 10px;margin-right: 50px;" type="button" class="btn btn-warning" onclick="location.href='${ctx}/visit/add/new'">初次到访</button>
-			<button id="not_first_visit" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" onclick="location.href='${ctx}/case/list/'">非初次到访</button>
+			<button id="first_visit" style="height: 40px !important;width: 180px !important; margin-top: 10px;margin-right: 50px;" type="button" class="btn btn-warning" onclick="location.href='${ctx}/visit/add'">初次到访</button>
+			<button id="not_first_visit" style="height: 40px !important;width: 180px !important; margin-top: 10px;" type="button" class="btn btn-warning" onclick="location.href='${ctx}/case/list'">非初次到访</button>
 		</div>
 		<div  style="padding:20px;">
 			<table id="contentTable" class="table table-striped table-bordered table-condensed">

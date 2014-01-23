@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.VisitActivity;
@@ -41,6 +42,9 @@ public class VisitContrller {
 	@Autowired
   	@Qualifier("configProperties")
   	private Properties configProperties;
+	
+	@Autowired
+	private VisitMybatisDao visitMybatisDao;
 	
 	@Autowired
 	private VisitService visitService;
@@ -90,10 +94,15 @@ public class VisitContrller {
 		return "visit/list";
 	}
 
-	@RequestMapping(value = "add/{id}", method = RequestMethod.GET)
-	public String add(@PathVariable("id") String id, Model model, ServletRequest request) {
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add( Model model, ServletRequest request) {
 		logger.info("in visit controller: add");
-		model.addAttribute("caseId", id);
+		logger.info("case Id的值是：" + request.getParameter("caseId"));
+		//model.addAttribute("caseId", request.getParameter("caseId"));
+		if (request.getParameter("caseId") != null){
+			model.addAttribute("thisCase", visitMybatisDao.selectCase(Long.parseLong(request.getParameter("caseId"))));
+		}
+		model.addAttribute("visitType", request.getParameter("visitType"));
 		
 		return "visit/addVisit";
 	}

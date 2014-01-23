@@ -117,6 +117,12 @@
 		select customer_name as customerName, customer_id as id from customer
 	</select>
 	
+	<select id="selectCase" parameterType="Long" resultType="Case">
+		select case_id as id, case_title as title, guest_num as guestNum, event_time as eventTime, space_tip as spaceTip
+		from cases
+		where case_id = #{caseId}
+	</select>
+	
 	<select id="selectVisit" parameterType="Long" resultMap="visitDetailMap">
 		select v.visit_id as visit_id, v.customer_id as customer_id, ct.customer_name as customer_name,v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, c.event_time, c.guest_num, c.space_tip, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
 		from visit_activities v

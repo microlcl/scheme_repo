@@ -28,6 +28,7 @@ public interface VisitMybatisDao {
 	public void updateCustomer(Customer customer);
 	public void updateCase(Case thisCase);
 	public void updateVisit(Map<String, Object> parameters);
+	public Case selectCase(Long caseId);
 	
 
 }

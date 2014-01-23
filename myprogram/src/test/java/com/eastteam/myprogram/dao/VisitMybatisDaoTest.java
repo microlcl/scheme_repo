@@ -54,4 +54,12 @@ public class VisitMybatisDaoTest extends SpringTransactionalTestCase {
 		String visitId = "1";
 		logger.info("到访细节：" + visitMybatisDao.selectVisit(Long.parseLong(visitId)));
 	}
+	
+	@Test
+	public void selectCaseTest() {
+		logger.info("in visit activity select case test");
+		String caseId = "1";
+		logger.info("案例细节：" +  visitMybatisDao.selectCase(Long.parseLong(caseId)));
+		
+	}
 }
