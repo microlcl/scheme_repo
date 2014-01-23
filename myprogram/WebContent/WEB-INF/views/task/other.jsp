@@ -27,27 +27,35 @@
 				</div>
 			</div>
 			<div class="span2">
-				<table class="table table-condensed">
+				<table id="subtable" class="table table-condensed">
 					<tr class="success">
-						<td>subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add...</td>
+						<td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myModal" data-toggle="modal">Add...</a></td>
 					</tr>
 					<tr class="success">
 						<td>yangbin</td>
-					</tr>
-					<tr class="success">
-						<td>libo</td>
-					</tr>
-					<tr class="success">
-						<td>zhangyang</td>
-					</tr>
-					<tr class="success">
-						<td>yidequan</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="myModalLabel">选择用户</h3>
+	</div>
+	<div class="modal-body">
+		<label>部&nbsp;&nbsp;&nbsp;门：</label> <input name="search_department_id" id="mydepartment_id1" class="easyui-combotree"  data-options="url:'${ctx}/department/api/get',method:'get',required:false">
+		<label>拥有者：</label> <input name="sub_id" id="myaccount_id1"  class="easyui-combobox" data-options="method:'get',valueField:'id',textField:'name'"> 
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true" onclick="addsub()">添加</button>
+
+	</div>
+</div>
+
 <div class="row" style="margin:0px;">
 		
 </div>
@@ -114,9 +122,13 @@
 				silverlight_xap_url : '${ctx}/static/plupload/js/Moxie.xap'
 			});
 			
+			$('#myModal').modal(options);
+			
+			
 			$('#uploader').on('complete', function() {
 						$('#form')[0].submit();
 					});
 
 		});
+		
 	</script>
