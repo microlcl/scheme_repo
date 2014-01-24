@@ -1,277 +1,130 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 
 <!-- combotreee -->
+<!-- link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css"-->
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/static/easyui/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
-
-<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/jquery/jquery.lazyload.min.js" type="text/javascript"></script>
-<script src="${ctx}/static/jquery/audioplayer.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
-<link rel="stylesheet" type="text/css" href="${ctx}/static/jquery/audioplayer.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/mystyle.css">
+<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
+<script src="${ctx}/static/nano/nano.js" type="text/javascript"></script>
 
 <style>
-.affix {
-  top: 50px;
-}
-.affix-top {
-  top: 240px;
-  position:absolute;
-}
-.affix-bottom {
-  bottom: 40px;
-  position:absolute;
-}
-
-#affix_test {
-	background-color:#FAFAFA;
-	border: 1px solid #D4D4D4;
-	border-radius: 6px 6px 6px 6px;
-	margin: 30px 0 0;
-	list-style: none outside none;
-}
-.thumbnail:hover {
-  border: 1px solid #7EC0EE;
-  cursor: pointer;
-}
-
-.mynav {
-	border: 1px solid #E5E5E5;
-    display: block;
-    margin: 0 0 -1px;
-    padding: 8px 14px;
-    line-height: 30px !important;
-    width:100%;
-}
-
-.search-panel {
-    border: 1px solid #E3E3E3;
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
-    margin-bottom: 10px;
-    padding: 19px 19px 0px 19px;
-}
-
 </style>
-<div id="resourceModalWindow" class="modal hide fade">
-   <div class="modal-header">
-	   <button type="button" onclick="stopAudio()" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	   <h4>人员选择</h4>
+<div id="userModalWindow" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-hidden="true">&times;</button>
+		<h4>人员选择</h4>
 	</div>
 	<div class="modal-body">
-<!-- 模态对话框begin -->
-	<div class="search-panel">
-	<form class="form-search form-inline" action="#">
-	<div>
-		   	<label class="checkbox inline">									
- 		我的资源<div style="float:left;padding-right:4px"><input id="resourceUserId" value="${user.id}" type="checkbox" name="search_userId"/></div>
- 	</label>
-	<input type="text" id='searchKeyword' name="search_keyword"  style="width:60%"  value="${param.search_keyword}">			   
-	   <button type="button" class="btn" id="search_btn" onclick="search()">Search</button>
-	</div>
-	<div style="padding-top:15px">
-	<label class="inline">类别
-		<input id="categorySelector"  class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-4',method:'get',required:false" multiple name="search_categoryId" value="${param.search_categoryId}"/>
-	</label> 
-	<label class="radio inline"><div style="float:left;padding-right:2px"> <input type="radio"  id="radio_picture" name="search_mediaType" value="picture" checked></div>图片</label> 
-	<label class="radio inline"><div style="float:left;padding-right:2px"> <input type="radio"  id="radio_video" name="search_mediaType" value="video"></div>视频</label> 
-	<label class="radio inline"><div style="float:left;padding-right:2px"> <input type="radio"  id="radio_audio" name="search_mediaType" value="audio"></div>音频</label> 
+		<!-- 模态对话框begin -->
+		<div class="search-panel">
+			<form class="form-search form-inline" action="#">
+					<label>部门：</label> 
+					<input id="departmentId" name="search_departmentId" class="easyui-combotree" multiple  data-options="url:'${ctx}/department/api/get',method:'get',required:false" style="width:200px;">	
+						
+			</form>
+		</div>
+		
+		<div class="accordion" style="border-color: transparent" id="myaccordion"></div>
 
-	</div>
-    </form>
-	</div>
-	<div id="pictureDiv" class="well" style="display:none">
-			<ul id="thumbnailContainer" class="thumbnails" style="margin-left: 20px">
-			</ul>
-	</div>
-		<!-- audio begin-->
-	<table id="audioTable" style="display:none" class="table table-striped table-bordered table-condensed">
-	</table>
-	<!-- audio end -->
-
-	<div id="loadMore" class="pagination pagination-centered">
-	    <button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
-    </div>
- <!-- 模态对话框end --> 
+		<div id="loadMore" class="pagination pagination-centered">
+			<button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
+		</div>
+		<!-- 模态对话框end -->
 	</div>
 	<div class="modal-footer">
-		<div id="audioPlayerDiv" class="span1" style="display:none">
-			<audio id="audioplayer" preload="auto" controls autoplay></audio>
-		</div>
-	   <a href="#" class="btn" data-dismiss="modal" aria-hidden="true" onclick="stopAudio()">关闭</a>
-	   <a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
-   </div>
+		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"">关闭</a> 
+		<a href="#" class="btn btn-primary"	data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
+	</div>
 </div>
-  
-    
-	<script>
-		var currentPage = 0;		
-		//var targetMedia;
-		var mediaMap = {};
-		//调用者输入参数
-		var parameters = {};
-		
-		var callback;
-		//var currentMediaType="audio";
-		var currentMediaType="picture";
-		
-		var img;
-		
-		$(function() {          
-		    $("img.lazy").lazyload({
-		        event : "scroll",
-				effect : "fadeIn",
-				threshold : 0,
-				effectspeed: 2000
-		    });
-		});
-		
-		function search() {
-			console.log('in search');
-			currentPage = 0;
-			$('#thumbnailContainer').empty();
-			$('#audioTable').empty();
-			if (currentMediaType == 'picture') {
-				$('#pictureDiv').show();
-				$('#audioTable').hide();
-				//$('#audioPlayerDiv').hide();
-			} else if (currentMediaType == 'audio') {
-				$('#pictureDiv').hide();
-				$('#audioTable').show();
-				//$('#audioPlayerDiv').show();
-			} else {
-				console.log("Don't support this media type: " + currentMediaType);
-			}
-			loadMore();
-			return false;
-		}
-		
-		//{targetMedia: this,mediaType:picture, callback: setMedia}
-		//function resourcePopupWindow(media, mediaType) {
-		function resourcePopupWindow(obj) {
-			mediaMap = {};
-			parameters = obj;
-			if (obj.mediaType) {
-				currentMediaType = obj.mediaType;
-			}
-			$("#radio_" + currentMediaType).attr("checked","checked");
-			console.log("currentMediatype = " + currentMediaType);
-		    $('#resourceModalWindow').modal({
-		    	backdrop:false,
-		    });
-		    
-			search();
-			//console.log("targetMedia=" + obj.targetMedia);
-			//targetMedia = $('#' + obj.targetMedia);
-			callback = obj.callback;
-			img = obj.image;
-			console.log("current image id = "+ $(img).attr('id'));
-		}
-		
-		function getSelectedValue() {
-			stopAudio();
-			var selectedMedia = $('input:radio[name="myMedia"]:checked').val();
-			console.log(mediaMap[selectedMedia]);
-			//$(targetMedia).data(mediaMap[selectedMedia]);
-			var result = {};
-			result.parameter = parameters;
-			result.media = mediaMap[selectedMedia];
-			callback(result, img);			
-		}
 
-		function loadMore() {
-			var nextPage = currentPage + 1;
-			console.log("next pageNum:" + nextPage);
-			currentMediaType = $('input:radio[name="search_mediaType"]:checked').val();
-			$.ajax({
-				url : '${ctx}/media/api/search?search_mediaType=' + currentMediaType,
-				type: 'get',
-				data:{
-					page:nextPage,
-					search_categoryId:$('#categorySelector').combotree('getValues'),
-					search_keyword:$('#searchKeyword').val(),
-					search_userId: $('#resourceUserId').is(':checked') ? $('#resourceUserId').val() : ''
-				},
-				success : function(resp) {
-					currentPage++;
-					console.log('in success function, currentPage = ' + currentPage);
-					console.log(resp);
-					if (resp.lastPage) {
-						console.log("it's the last page");
-						$('#loadMore').hide();
-					} else {
-						$('#loadMore').show();
-					}
-					$.each(resp.content, function(i, media){
-						mediaMap[media.id] = media;
-						if (currentMediaType == 'picture') {
-							handlePic(i, media);
-						} else if (currentMediaType == 'audio') {
-							handleAudio(i, media);
-						} else {
-							console.log("can't support the mediaType=" + currentMediaType);
-						}
-						
-						
-					});
-				}
+<!-- 生成选项的JS模板 -->
+<div style="display:none" id="mytemplate">
+<div class="accordion-group">
+	<div class="accordion-heading">
+	<ul class="inline">
+			<li><input id="myq_{id}" value="{id}" type="checkbox" name="selectedQuestions"/> </li>
+			<li>{id}: {name}</li>
+</ul>
+	</div>
+</div>
+</div>
+
+
+
+
+<script>
+	var currentPage = 0;
+
+	//调用者输入参数
+	var parameters = {};
+
+	function search() {
+		currentPage = 0;
+		$('#myaccordion').empty();
+		loadMore();
+		return false;
+	}
+
+	function userPopupWindow(obj) {
+		parameters = obj;
+		$('#userModalWindow').modal({
+			backdrop : false,
 		});
-		
+		loadMore();
+
 	}
-	
-	function setCurrentMediaType() {
-		currentMediaType = $('input:radio[name="search_mediaType"]:checked').val();
-		console.log("in setCurrentMediaType: " + currentMediaType);
+
+	function loadMore() {
+		var nextPage = currentPage + 1;
+		console.log("next pageNum:" + nextPage);
+		$.ajax({
+			url : '${ctx}/account/api/searchUser',
+			type : 'get',
+			data : {
+				page : nextPage,
+				search_departmentId:$('#departmentId').combotree('getValues')
+			},
+
+			success : function(resp) {
+				currentPage++;
+				if (resp.lastPage) {
+					$('#loadMore').hide();
+				} else {
+					$('#loadMore').show();
+				}
+				$.each(resp.content, function(i, user) {
+					var mytemp = $('#mytemplate').html();
+					var myvalue = nano(mytemp,user);
+
+					$('#myaccordion').append(myvalue);
+					$('#myq_' + user.id).data('user', user);
+				});
+			}
+		});
+
 	}
-	
-	function handleAudio(i, media) {
-		console.log("in handleAudio");
-		var mytable = $('#audioTable');
-		var tr = $('<tr></tr>');
-		var td = $('<td></td>');
-		var audioFile = "'"+ media.path +"'";
-		var myhtml = '<input class="audioCheck" value="'+ media.id+'" type="radio" name="myMedia" style="margin-left: 10px;"/>&nbsp;&nbsp;'+ media.title +'&nbsp;-&nbsp;myauthor<a onclick="testaudio('+ audioFile +');" style="float:right; padding-right:5px;cursor: pointer;"><i class="icon-play"></i></a>';
-		td.append($(myhtml));
-		tr.append(td);
-		mytable.append(tr);
+	function buildOptions(obj){
+		$('#myaccordion').append(obj.id);
+		$('#myaccordion').append(obj.name);
 	}
-	
-	function handlePic(i, media) {
-		console.log(i + "===" + media.path);
-		var fname = "selectPic('radio_" + media.id +  "')";
-		var img = '<li class="span2"><div class="thumbnail photoBox" style="z-index:1;position:relative;"><img onclick='+ fname +' class="lazy1" data-original="${ctx}/plupload/files/small/'+media.path+'" src="${ctx}/plupload/files/small/'+media.path+'" alt="'+ media.title+'" style="width:300px;height:200px; " id="'+media.id+'"><p>' + media.description+'</p><div class="check" style="z-index:2000; position: absolute;left:0; top:0;"><input type="radio" id="radio_'+ media.id +'" value="'+media.id+'" name="myMedia" style="margin-left: 10px;margin-top:10px;"/></div></div></a></li>';
-		$('#thumbnailContainer').append(img);
-	    $("#"+media.id).lazyload({
-	        event : "scroll",
-			effect : "fadeIn",
-			threshold : 0,
-			effectspeed: 2000
-	    });
+	function getSelectedValue() {
+		var result = {};
+		result.parameters = parameters;
+		result.questions = [];
+		var selectedQuestions = $('input:checkbox[name="selectedQuestions"]:checked');
+		$.each(selectedQuestions, function(i, question) {
+			var mydata = $('#' + question.id).data('question');
+			result.questions.push(mydata);
+		});
+		parameters.callback(result);
+			
 	}
-	
-	function testaudio(path){
-		$('#audioPlayerDiv').show();
-		var audiopath= "${ctx}/plupload/audio/" + path;
-		$("#audioplayer").attr("src", audiopath);
-	}
-	
-	function stopAudio() {
-		if($("#audioplayer")) {
-			console.log("stop the audio");
-			//$("#audioplayer").stop();
-			$("#audioPlayerDiv").hide();
-			$("#audioplayer").attr("src", "");
-		}
-	}
-	
-		function selectPic(radioId) {
-			console.log("in selectPic: id=" + radioId);
-			//$('input:radio[name="mypicture"]:checked').attr('checked',false);
-			//$('#' + radioId).attr('checked', 'checked');
-			$('#' + radioId).click();
-		}
-	</script>
+</script>

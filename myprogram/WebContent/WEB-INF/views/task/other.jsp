@@ -29,7 +29,8 @@
 			<div class="span2">
 				<table id="subtable" class="table table-condensed">
 					<tr class="success">
-						<td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myModal" data-toggle="modal">Add...</a></td>
+				<!-- 		<td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#myModal" data-toggle="modal" >Add...</a></td> -->
+				<td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" onclick="userPopupWindow({callback:addUser})">Add...</a></td>
 					</tr>
 					<tr class="success">
 						<td>yangbin</td>
@@ -58,9 +59,13 @@
 <div class="row" style="margin:0px;">
 		
 </div>
-
+<!--user 选择模态对话框 -->
+	<%@ include file="../components/userPopupWindow.jsp"%>
 <script type="text/javascript">
 		// Initialize the widget when the DOM is ready
+		function addUser(){
+			
+		}
 		$(function() {
 			$("#uploader").plupload({
 				// General settings

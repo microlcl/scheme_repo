@@ -1,5 +1,6 @@
 package com.eastteam.myprogram.web.account;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -7,6 +8,7 @@ import java.util.Properties;
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +107,20 @@ public class AccountController {
 	@ResponseBody
 	public List<User> search(@RequestParam(value = "departmentId")String departmentId) {
 		return this.accountService.search(departmentId);
+	}
+	
+	/**
+	 * 得到某一种businessType下的的papers
+	 * @param departmentId
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/api/searchUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Page<User> searchUser(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
+			@RequestParam(value = "sortType", defaultValue = "id") String sortType,
+			Model model, ServletRequest request) {
+		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
+		return accountService.getCurrentPageContent(searchParams, pageNumber, Integer.parseInt(configProperties.getProperty("list.pagesize")), sortType);
 	}
 	
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
