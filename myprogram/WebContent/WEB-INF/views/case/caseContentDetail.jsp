@@ -25,7 +25,7 @@
 			<label class="control-label" for="event_time">举行时间：</label>
 			<div class="pull-right">
 				<!--input type="text" class="span4" id="event_time" placeholder=""-->
-				<div class="input-append date form_date" >
+				<div id="eventTime_div" class="input-append date form_date" >
                     <input size="16" type="text" name="eventTime" id="event_time" style="width:302px" value="<fmt:formatDate value='${mycase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" readonly>
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
@@ -106,7 +106,7 @@
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_character_${status.index}">身份：</label>
 						<div class="controls">
-							<input name="customer.character" id="customer_character_${status.index}"
+							<input name="statkeholders[${status.index}].character.id" id="customer_character_${status.index}"
 								class="span4 easyui-combotree"
 								data-options="url:'${ctx}/category/api/getChildren/getCharacterType',method:'get',required:false"
 								value="${statkeholders.character.id}">
@@ -115,7 +115,7 @@
 					<div class="control-group pull-right">
 						<label class="control-label" for="customer_name_${status.index}">姓名：</label>
 						<div class="pull-right">
-							<input type="text" class="span4" id="customer_name_${status.index}" value="${statkeholders.customer.customerName}" placeholder="姓名">
+							<input type="text" class="span4" name="statkeholders[${status.index}].customer.customerName" id="customer_name_${status.index}" value="${statkeholders.customer.customerName}" placeholder="姓名">
 						</div>
 					</div>
 				</div>			
@@ -124,15 +124,15 @@
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_job_${status.index}">工作：</label>
 						<div class="controls">
-							<input name="customer.job" id="customer_job_${status.index}" type="text"
+							<input name="statkeholders[${status.index}].customer.job" id="customer_job_${status.index}" type="text"
 								class="span4" value="${statkeholders.customer.job}">
 						</div>
 					</div>
 					<div class="control-group pull-right">
 						<label class="control-label" for="customer_birthday_${status.index}">生日：</label>
 						<div class="pull-right">
-							<div class="input-append date form_date">
-								<input size="16" type="text" name="customer.birthday" id="customer_birthday_${status.index}"
+							<div id="customer_birthday_div_${status.index}" class="input-append date form_date">
+								<input size="16" type="text" name="statkeholders[${status.index}].customer.birthday" id="customer_birthday_${status.index}"
 									style="width: 302px"
 									value="<fmt:formatDate value='${statkeholders.customer.birthday}' pattern='yyyy-MM-dd'/>"
 									readonly> <span class="add-on"><i
@@ -147,13 +147,13 @@
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_weixin_${status.index}">微信：</label>
 						<div class="pull-right">
-							<input type="text" class="span4" id="customer_weixin_${status.index}" placeholder="微信" value="${statkeholders.customer.weixin}">
+							<input type="text" class="span4" name="statkeholders[${status.index}].customer.weixin" id="customer_weixin_${status.index}" placeholder="微信" value="${statkeholders.customer.weixin}">
 						</div>
 					</div>				
 					<div class="control-group pull-right">
 						<label class="control-label" for="customer_phone_${status.index}">电话：</label>
 						<div class="pull-right">
-							<input type="text" class="span4" id="customer_phone_${status.index}" placeholder="电话" value="${statkeholders.customer.customerPhone}">
+							<input type="text" class="span4" name="statkeholders[${status.index}].customer.customerPhone" id="customer_phone_${status.index}" placeholder="电话" value="${statkeholders.customer.customerPhone}">
 						</div>
 					</div>					
 
@@ -162,14 +162,14 @@
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_weibo_${status.index}">微博：</label>
 						<div class="controls">
-							<input name="customer.weibo" id="customer_weibo_${status.index}" type="text" placeholder="微博地址"
+							<input name="statkeholders[${status.index}].customer.weibo" id="customer_weibo_${status.index}" type="text" placeholder="微博地址"
 								class="span4" value="${statkeholders.customer.weibo}">
 						</div>
 					</div>
 					<div class="control-group span pull-right">
 						<label class="control-label" for="customer_qq_${status.index}">QQ：</label>
 						<div class="controls">
-							<input name="customer.qq" id="customer_qq_${status.index}" type="text" placeholder="QQ"
+							<input name="statkeholders[${status.index}].customer.qq" id="customer_qq_${status.index}" type="text" placeholder="QQ"
 								class="span4" value="${statkeholders.customer.qq}">
 						</div>
 					</div>
@@ -178,13 +178,13 @@
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_favorite_${status.index}">爱好：</label>
 						<div class="controls">
-								<textarea rows="3" class="span4" id="customer_favorite_${status.index}" name="customer.favorite" maxlength="128">${statkeholders.customer.favorate}</textarea>
+								<textarea rows="3" class="span4" id="customer_favorite_${status.index}" name="statkeholders[${status.index}].customer.favorate" maxlength="128">${statkeholders.customer.favorate}</textarea>
 						</div>
 					</div>
 					<div class="control-group span pull-right">
 						<label class="control-label" for="customer_description_${status.index}">备注：</label>
 						<div class="controls">
-							<textarea rows="3" class="span4" id="customer_description_${status.index}" name="customer.description" maxlength="128">${statkeholders.description}</textarea>								
+							<textarea rows="3" class="span4" id="customer_description_${status.index}" name="statkeholders[${status.index}].description" maxlength="128">${statkeholders.description}</textarea>								
 						</div>
 					</div>
 				</div>					

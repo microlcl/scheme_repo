@@ -28,7 +28,7 @@
 			}
 		});
 		//时间控件
-		$('.form_date').datetimepicker({
+		$('#eventTime_div').datetimepicker({
 	        language:  'zh-CN',
 	        //weekStart: 1,
 	        todayBtn:  true,
@@ -40,6 +40,20 @@
 			forceParse: 0,
 			format: 'yyyy-mm-dd hh:ii'
     	});
+		$("div[id^='customer_birthday_div_']").datetimepicker({
+	        language:  'zh-CN',
+	        //weekStart: 1,
+	        todayBtn:  true,
+	        pickerPosition: "bottom-left",
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0,
+			format: 'yyyy-mm-dd'
+    	});    	
+    	
+    	
     	// 如果department有初始值，初始化人员选择列表
     	var defaultDept = $('#assigned_department').combotree('getValue');
     	if (defaultDept) {

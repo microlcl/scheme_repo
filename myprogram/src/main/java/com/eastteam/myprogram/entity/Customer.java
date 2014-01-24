@@ -21,7 +21,7 @@ public class Customer extends IdEntity {
 	private String weibo;
 	private String qq;
 	
-	@DateTimeFormat(pattern="yyyy-MM-dd hh:mm") 
+	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date birthday;
 	
 	private String favorate;
