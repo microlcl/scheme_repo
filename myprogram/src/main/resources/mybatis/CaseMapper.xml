@@ -80,6 +80,12 @@
 				and c.case_title||c.description like '%${keyword}%'
 			</if>
 		</where>
+		<if test="sort != null">
+			order by ${sort} 
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
 	</select>
 	
 	<select id="getCount" parameterType="map" resultType="Long">

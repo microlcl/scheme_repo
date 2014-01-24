@@ -140,7 +140,13 @@
 				console.log("判断条件不正确");
 			}
 		}
-
+      
+        function addCase(result){
+           var temp = result[0].value;
+           var id=temp.substring(0,temp.indexOf(":"));
+		   var name=temp.substring(temp.indexOf(":")+1);
+		   alert(id+":"+name);
+        }
 	</script>
 
 </head>
@@ -159,6 +165,7 @@
 				<div class="control-group">
 					<span class="formlabel span2 control-label">案例名称：</span>
 					<input type="text" class="required" id="caseTitle" name="caseTitle" value="${thisCase.title}" style="width:186px" class="input-large " maxlength="64" placeholder="请输入案例名称"/>
+					<button id="select_case_button" style="height: 35px ;width: 180px; margin-left: 200px; " type="button" class="btn btn-warning" id="search_btn" onclick="casePopupWindow({callback:addCase})">请点击此处选择案例</button>
 				</div>		
 			
 				<div class="control-group">
@@ -237,10 +244,12 @@
 				</div>
 	            
 			</div>
+			<%@ include file="../components/casePopupWindow.jsp"%>
 			<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
 				<input id="submit_btn" class="btn btn-warning" type="button" value="提交" onclick="submitForm();"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
+			
 		</form>
 	</div>
 </body>
