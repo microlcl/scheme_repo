@@ -50,7 +50,7 @@
 <div class="accordion-group">
 	<div class="accordion-heading">
 	<ul class="inline">
-			<li><input id="myq_{id}" value="{id}" type="checkbox" name="selectedQuestions"/> </li>
+			<li><input id="myq_{id}" value="{id}:{name}" type="checkbox" name="selectedQuestions"/> </li>
 			<li>{id}: {name}</li>
 </ul>
 	</div>
@@ -116,15 +116,6 @@
 		$('#myaccordion').append(obj.name);
 	}
 	function getSelectedValue() {
-		var result = {};
-		result.parameters = parameters;
-		result.questions = [];
-		var selectedQuestions = $('input:checkbox[name="selectedQuestions"]:checked');
-		$.each(selectedQuestions, function(i, question) {
-			var mydata = $('#' + question.id).data('question');
-			result.questions.push(mydata);
-		});
-		parameters.callback(result);
-			
+		parameters.callback($('input:checkbox[name="selectedQuestions"]:checked'));
 	}
 </script>

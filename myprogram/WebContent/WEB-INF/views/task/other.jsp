@@ -33,7 +33,6 @@
 				<td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" onclick="userPopupWindow({callback:addUser})">Add...</a></td>
 					</tr>
 					<tr class="success">
-						<td>yangbin</td>
 					</tr>
 				</table>
 			</div>
@@ -63,8 +62,14 @@
 	<%@ include file="../components/userPopupWindow.jsp"%>
 <script type="text/javascript">
 		// Initialize the widget when the DOM is ready
-		function addUser(){
-			
+		function addUser(result){
+			for(var i=0;i<result.length;i++){
+				var temp = result[i].value;
+				var id=temp.substring(0,temp.indexOf(":"));
+				var name=temp.substring(temp.indexOf(":")+1);
+				var tableHolder = $('#subtable');
+				tableHolder.append('<tr class="success"><td>'+name+'</td></tr><input type="hidden" name="subUsers['+count+']" value="'+id+'">');
+			}
 		}
 		$(function() {
 			$("#uploader").plupload({
