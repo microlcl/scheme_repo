@@ -32,6 +32,7 @@ public class Task extends IdEntity{
 	private List<Comment> comments;
 	private List<Attachment> attachments;
 	private Case cases;
+	private List<User> subUsers;
 	
 	public String getSummary() {
 		return summary;
@@ -131,6 +132,12 @@ public class Task extends IdEntity{
 	}
 	public void setCases(Case cases) {
 		this.cases = cases;
+	}
+	public List<User> getSubUsers() {
+		return subUsers;
+	}
+	public void setSubUsers(List<User> subUsers) {
+		this.subUsers = subUsers;
 	}
 	
 }

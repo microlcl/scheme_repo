@@ -24,7 +24,7 @@ public interface TaskMybatisDao {
 	Long getCount(Map<String, Object> parameters);
 	Task getTask(String id);
 	void saveAttachment(Attachment attachment);
-	void saveTaskSubscriber(Attachment attachment);
+	void saveTaskSubscriber(Map<String, Object> parameters);
 	void saveComments(Comment comment);
 	void saveTaskComment(Map<String, Object> parameters);
 }

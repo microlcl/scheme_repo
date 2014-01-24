@@ -31,12 +31,15 @@
 		});
 	});
 	
+	var count = 0;
+	
 	function addsub(){
 		var userID = $('#myaccount_id1').combobox('getValue');  
 		var userName = $('#myaccount_id1').combobox('getText');
 		$('#myModal').modal('hide');
 		var tableHolder = $('#subtable');
-		tableHolder.append('<tr class="success"><td>'+userName+'</td></tr>');
+		tableHolder.append('<tr class="success"><td>'+userName+'</td></tr><input type="hidden" name="subUsers['+count+']" value="'+userID+'">');
+		count++;
 	}
 	</script>
 </head>

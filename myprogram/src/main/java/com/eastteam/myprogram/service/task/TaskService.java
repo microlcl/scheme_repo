@@ -15,6 +15,7 @@ import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.Task;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -59,6 +60,16 @@ public class TaskService extends PageableService{
 				taskDao.saveTaskComment(parameters);
 			}
 		}
+		List subUsers=task.getSubUsers();
+		if(subUsers!=null){
+			for(Iterator iterator = subUsers.iterator(); iterator.hasNext();){
+			   User user = (User) iterator.next();
+			   Map<String, Object> parameters=new HashMap<String, Object>();
+			   parameters.put("user_id", user.getId());
+				parameters.put("task_id", task.getId());
+				taskDao.saveTaskSubscriber(parameters);
+			}
+		}
 		List attachments=task.getAttachments();
 		if(attachments!=null){
 			for (Iterator iterator = attachments.iterator(); iterator.hasNext();) {
@@ -67,6 +78,7 @@ public class TaskService extends PageableService{
 			}
 		}
 		task.getAttachments();
+		
 	}
 	
 	public void update(Task task){

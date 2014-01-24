@@ -46,6 +46,8 @@
 		</collection>
 		<collection property="cases" column="task_id" ofType="Case" select="selectCases">	
 		</collection>
+		<collection property="subUsers" column="task_id" ofType="User" select="selectUser">	
+		</collection>
 	</resultMap>
 	
 	<resultMap type="Comment" id="commentMap">
@@ -62,6 +64,18 @@
 			<id property="id" column="case_id" />
 			<result property="title" column="case_title" />
 	</resultMap>
+	
+	<resultMap type="User" id="userMap">
+			<id property="id" column="id" />
+			<result property="name" column="name" />
+	</resultMap>
+	
+	<select id="selectUser" resultMap="userMap">
+	   select u.id as id,u.name as name
+	   from users u,task_subscribers ts
+	   where  u.id = ts.user_id
+	   		and ts.task_id=#{task_id}
+	</select>
 	
 	<select id="selectCases" resultMap="caseMap">
 	   select c.case_id as case_id,c.case_title as case_title 
