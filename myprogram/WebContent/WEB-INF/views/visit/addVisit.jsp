@@ -145,7 +145,8 @@
            var temp = result[0].value;
            var id=temp.substring(0,temp.indexOf(":"));
 		   var name=temp.substring(temp.indexOf(":")+1);
-		   alert(id+":"+name);
+		   $("#caseTitle").val(name);
+		   $("#caseid").val(id);
         }
 	</script>
 
@@ -162,10 +163,13 @@
 		  	   <strong>注意! </strong>请确保您已选择<strong>访问类别</strong>和<strong>策划类别</strong>。
 			</div>
 			<div style="padding:20px;">
-				<div class="control-group">
+				<div class="control-group">	
 					<span class="formlabel span2 control-label">案例名称：</span>
-					<input type="text" class="required" id="caseTitle" name="caseTitle" value="${thisCase.title}" style="width:186px" class="input-large " maxlength="64" placeholder="请输入案例名称"/>
-					<button id="select_case_button" style="height: 35px ;width: 180px; margin-left: 200px; " type="button" class="btn btn-warning" id="search_btn" onclick="casePopupWindow({callback:addCase})">请点击此处选择案例</button>
+					<div class="input-append">
+					<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:186px" class="input-large " maxlength="64" placeholder="案例名称" onlyread/>
+					<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
+					<input type="hidden" name="caseid" id="caseid" >
+					</div>
 				</div>		
 			
 				<div class="control-group">
