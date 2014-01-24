@@ -118,7 +118,16 @@
 	
 	function getSelectedValue() {
 
-		parameters.callback($('input:radio[name="selectedCases"]:checked'));
+//		parameters.callback($('input:radio[name="selectedCases"]:checked'));
+		var result = {};
+
+		result.cases = [];
+		var selectedQuestions = $('input:radio[name="selectedCases"]:checked');
+		$.each(selectedQuestions, function(i, cases) {
+			var mydata = $('#' + cases.id).data('cases');
+			result.cases.push(mydata);
+		});
+		parameters.callback(result);
 				
 	}
 </script>

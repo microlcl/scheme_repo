@@ -142,11 +142,9 @@
 		}
       
         function addCase(result){
-           var temp = result[0].value;
-           var id=temp.substring(0,temp.indexOf(":"));
-		   var name=temp.substring(temp.indexOf(":")+1);
-		   $("#caseTitle").val(name);
-		   $("#caseid").val(id);
+           var temp = result.cases[0].title;           
+		   $("#caseTitle").val(temp);
+
         }
 	</script>
 
