@@ -62,15 +62,51 @@
 	<%@ include file="../components/userPopupWindow.jsp"%>
 <script type="text/javascript">
 		// Initialize the widget when the DOM is ready
+			var count = 0;
 		function addUser(result){
+			//获取原来的id
+			var oldIDs=new Array();//去掉重复前的所有id
+			var j=0;
+			//获取原来的id
+			if(jQuery("input[name^='subUsers']").length!=0){
+				jQuery("input[name^='subUsers']").each(function(){
+					oldIDs[j]=jQuery(this).val();
+					j++;
+				});
+			}
+			//获取新加的用户id
 			for(var i=0;i<result.length;i++){
 				var temp = result[i].value;
 				var id=temp.substring(0,temp.indexOf(":"));
-				var name=temp.substring(temp.indexOf(":")+1);
-				var tableHolder = $('#subtable');
-				tableHolder.append('<tr class="success"><td>'+name+'</td></tr><input type="hidden" name="subUsers['+count+']" value="'+id+'">');
+				//var name=temp.substring(temp.indexOf(":")+1);
+				oldIDs[j]=id;
+				j++;
 			}
+			var IDs = unique(oldIDs);//去掉重复后的所有id
+			var htmlcontent='<tr class="success"><td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" onclick="userPopupWindow({callback:addUser})">Add...</a></td></tr>';
+			for(var m=0;m<IDs.length;m++){
+				htmlcontent+='<tr class="success"><td>'+IDs[m]+'</td></tr><input type="hidden" name="subUsers['+m+']" value="'+IDs[m]+'"><input type="hidden" name="username['+m+']" value="'+IDs[m]+'">';
+			}
+			var tableHolder = $('#subtable');
+			//tableHolder.append('<tr class="success"><td>'+name+'</td></tr><input type="hidden" name="subUsers['+count+']" value="'+id+'">');
+			tableHolder.html(htmlcontent);
 		}
+		//去掉重复的数组元素
+		function unique(data){
+			data = data || [];
+			var a = {};
+			for (var i=0; i<data.length; i++) {
+			var v = data[i];
+			if (typeof(a[v]) == 'undefined'){
+			a[v] = 1;
+			}
+			};
+			data.length=0;
+			for (var i in a){
+			data[data.length] = i;
+			}
+			return data;
+		} 
 		$(function() {
 			$("#uploader").plupload({
 				// General settings

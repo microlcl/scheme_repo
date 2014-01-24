@@ -26,9 +26,9 @@
 		<!-- 模态对话框begin -->
 		<div class="search-panel">
 			<form class="form-search form-inline" action="#">
-					<label>部门：</label> 
-					<input id="departmentId" name="search_departmentId" class="easyui-combotree" multiple  data-options="url:'${ctx}/department/api/get',method:'get',required:false" style="width:200px;">	
-						
+					部门：<input id="departmentId" name="search_departmentId" class="easyui-combotree"  data-options="url:'${ctx}/department/api/get',method:'get',required:false" style="width:200px;">	
+					    id：<input type="text" id="search_id" name="search_id"   class="input-small"  value="${param.search_id}"> 
+					    <button class="btn" style="border-radius:0px 4px 4px 0" type="button" onclick="search()" id="search_btn">Go!</button>
 			</form>
 		</div>
 		
@@ -90,7 +90,8 @@
 			type : 'get',
 			data : {
 				page : nextPage,
-				search_departmentId:$('#departmentId').combotree('getValues')
+				search_department_id:$('#departmentId').combotree('getValue'),
+				search_id:$('#search_id').val()
 			},
 
 			success : function(resp) {
