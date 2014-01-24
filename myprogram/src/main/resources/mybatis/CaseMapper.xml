@@ -159,7 +159,7 @@
 			<result property="weibo" column="weibo" />
 			<result property="qq" column="qq" />
 			<result property="birthday" column="birthday" />
-			<result property="favorate" column="favorate" />
+			<result property="favorite" column="favorite" />
 			<result property="description" column="description" />
 		</association>
 	</resultMap>			

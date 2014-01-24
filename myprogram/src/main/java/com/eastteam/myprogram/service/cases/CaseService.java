@@ -14,12 +14,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.CaseMybatisDao;
+import com.eastteam.myprogram.dao.CustomerMybatisDao;
 import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Option;
 import com.eastteam.myprogram.entity.Question;
+import com.eastteam.myprogram.entity.Stakeholder;
 import com.eastteam.myprogram.entity.VisitActivity;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -32,6 +34,9 @@ public class CaseService extends PageableService {
 	
 	@Autowired
 	private CaseMybatisDao caseDao;
+	
+	@Autowired
+	private CustomerMybatisDao customerDao;
 	
 	@Autowired
 	private VisitMybatisDao visitDao;
@@ -146,23 +151,39 @@ public class CaseService extends PageableService {
 	
 	public void update(Case mycase) {
 		this.caseDao.update(mycase);
-		this.caseDao.deleteAnswers(mycase);
+		//update调查问卷答案
 		if (mycase.getPaper() != null && mycase.getPaper().getQuestions() != null) {
+			this.caseDao.deleteAnswers(mycase);
 			for(Question question : mycase.getPaper().getQuestions()) {
 				Map parameters = new HashMap<String, Object>();
 				parameters.put("caseId", mycase.getId());
 				parameters.put("paperId", mycase.getPaper().getId());
 				parameters.put("question", question);
-				logger.info("--------------------");
-				logger.info("caseid=" + mycase.getId());
-				logger.info("paperId=" + mycase.getPaper().getId());
-				logger.info("questionid=" + question.getId());
-				logger.info("answer=" + question.getQuestionOptions());
 				this.caseDao.insertAnswers(parameters);
 			}
 		}
+		//更新stakeholder
+		updateStakeholder(mycase);
+		
 	}
 	
+	private void updateStakeholder(Case mycase) {
+		List<Stakeholder> stakeholders = mycase.getStatkeholders();
+		if (stakeholders == null) 
+			return;
+		for(Stakeholder stakeholder : stakeholders) {
+			if (stakeholder.getCustomer() != null) {
+				if (stakeholder.getCustomer().getId() != null)
+					this.customerDao.update(stakeholder.getCustomer());
+				} else {
+					this.customerDao.insert(stakeholder.getCustomer());
+			
+			}
+		}
+		
+	}
+
+
 	public List<Category> getDefaultCharacters(Category businessType) {
 		return this.caseDao.getDefaultCharacters(businessType);
 	}

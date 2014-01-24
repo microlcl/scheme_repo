@@ -24,7 +24,7 @@ public class Customer extends IdEntity {
 	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date birthday;
 	
-	private String favorate;
+	private String favorite;
 	private String description;
 	public String getCustomerName() {
 		return customerName;
@@ -74,17 +74,17 @@ public class Customer extends IdEntity {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	public String getFavorate() {
-		return favorate;
-	}
-	public void setFavorate(String favorate) {
-		this.favorate = favorate;
-	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getFavorite() {
+		return favorite;
+	}
+	public void setFavorite(String favorite) {
+		this.favorite = favorite;
 	}
 	
 	

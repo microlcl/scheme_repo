@@ -116,6 +116,7 @@
 						<label class="control-label" for="customer_name_${status.index}">姓名：</label>
 						<div class="pull-right">
 							<input type="text" class="span4" name="statkeholders[${status.index}].customer.customerName" id="customer_name_${status.index}" value="${statkeholders.customer.customerName}" placeholder="姓名">
+							<input type="hidden" name="statkeholders[${status.index}].customer.id"  value="${statkeholders.customer.id}">
 						</div>
 					</div>
 				</div>			
@@ -178,7 +179,7 @@
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_favorite_${status.index}">爱好：</label>
 						<div class="controls">
-								<textarea rows="3" class="span4" id="customer_favorite_${status.index}" name="statkeholders[${status.index}].customer.favorate" maxlength="128">${statkeholders.customer.favorate}</textarea>
+								<textarea rows="3" class="span4" id="customer_favorite_${status.index}" name="statkeholders[${status.index}].customer.favorite" maxlength="128">${statkeholders.customer.favorite}</textarea>
 						</div>
 					</div>
 					<div class="control-group span pull-right">
