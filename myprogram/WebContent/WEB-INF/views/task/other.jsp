@@ -85,7 +85,7 @@
 			var IDs = unique(oldIDs);//去掉重复后的所有id
 			var htmlcontent='<tr class="success"><td >subscribers &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" data-toggle="modal" onclick="userPopupWindow({callback:addUser})">Add...</a></td></tr>';
 			for(var m=0;m<IDs.length;m++){
-				htmlcontent+='<tr class="success"><td>'+IDs[m]+'</td></tr><input type="hidden" name="subUsers['+m+']" value="'+IDs[m]+'"><input type="hidden" name="username['+m+']" value="'+IDs[m]+'">';
+				htmlcontent+='<tr class="success"><td>'+IDs[m]+'<input type="hidden" name="subUsers['+m+']" value="'+IDs[m]+'"><a href="javascript:void(0);" onclick="deleteOption(this)" title="删除"><i class="icon-remove"></i></a></td></tr>';
 			}
 			var tableHolder = $('#subtable');
 			//tableHolder.append('<tr class="success"><td>'+name+'</td></tr><input type="hidden" name="subUsers['+count+']" value="'+id+'">');
@@ -107,6 +107,12 @@
 			}
 			return data;
 		} 
+		//
+		function deleteOption(obj){
+			var _this = $(obj);
+			$(_this).parent().parent().remove();
+			checkOptions();
+		}
 		$(function() {
 			$("#uploader").plupload({
 				// General settings
