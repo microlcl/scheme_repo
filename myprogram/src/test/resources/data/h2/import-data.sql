@@ -370,7 +370,7 @@ insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
 		values(10,5,'舞厅',3,100,5,300,300,5,'5');
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
-		values(11,5,'剧场'，4,200,5,400,400,5,'5');
+		values(11,5,'剧场',4,200,5,400,400,5,'5');
 insert into Spaces (space_id,holder_id,space_name,floor,volume,hall_height,stage_length,stage_width,stage_height,description)
 		values(12,5,'后院',1,1000,0,1500,100,0,'5');
 
