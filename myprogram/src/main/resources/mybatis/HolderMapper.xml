@@ -84,7 +84,7 @@
 			</if>
 		</where>
 		<if test="sort != null">
-			order by ${sort} desc
+			order by ${sort} asc
 		</if>
 		<if test="offset != null">
 			limit #{offset}, #{pageSize}
