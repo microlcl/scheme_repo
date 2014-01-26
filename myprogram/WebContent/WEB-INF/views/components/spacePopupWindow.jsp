@@ -143,7 +143,7 @@
 					var myvalue = nano(mytemp,space);
 
 					$('#myaccordion').append(myvalue);
-					$('#myq_' + space.id).data('space', space);
+					$('#space_' + space.id).data('space', space);
 				});
 			}
 		});
@@ -154,12 +154,10 @@
 	function getSelectedValue() {
 		var result = {};
 		result.parameters = parameters;
-		result.questions = [];
-		var selectedQuestions = $('input:checkbox[name="selectedQuestions"]:checked');
-		$.each(selectedQuestions, function(i, question) {
-			var mydata = $('#' + question.id).data('question');
-			result.questions.push(mydata);
-		});
+		result.space = [];
+		var selectedSpace = $('input:radio[name="selectedSpace"]:checked').val();		
+		var mydata = $('#space_' + selectedSpace).data('space');
+		result.space.push(mydata);
 		parameters.callback(result);
 			
 	}
