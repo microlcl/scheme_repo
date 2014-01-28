@@ -198,27 +198,28 @@ public class CaseService extends PageableService {
 	
 	private void saveStakeholder(Case mycase) {
 		List<Stakeholder> stakeholders = mycase.getStatkeholders();
-		if (stakeholders == null) 
+		if (stakeholders == null)
 			return;
-		for(Stakeholder stakeholder : stakeholders) {
+		for (Stakeholder stakeholder : stakeholders) {
 			if (stakeholder.getCustomer() != null) {
-				if (stakeholder.getCustomer().getId() != null)
+				if (stakeholder.getCustomer().getId() != null) {
 					this.customerDao.update(stakeholder.getCustomer());
 				} else {
 					Customer mycustomer = stakeholder.getCustomer();
 					this.customerDao.insert(mycustomer);
-					//values(#{caseId}, #{characterId},#{customerId},#{description})
+					// values(#{caseId},
+					// #{characterId},#{customerId},#{description})
 					Map<String, Object> parameters = new HashMap<String, Object>();
 					logger.info("after insert customer and getId=" + mycustomer.getId());
 					parameters.put("caseId", mycase.getId());
 					parameters.put("characterId", stakeholder.getCharacter().getId());
 					parameters.put("customerId", mycustomer.getId());
-					parameters.put("description", stakeholder.getDescription());					
+					parameters.put("description", stakeholder.getDescription());
 					this.caseDao.insertCaseCustomers(parameters);
-			
+				}
 			}
 		}
-		
+
 	}
 
 
