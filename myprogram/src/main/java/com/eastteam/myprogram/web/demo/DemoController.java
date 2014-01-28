@@ -38,5 +38,9 @@ public class DemoController {
 		return "demo/accountSelector";
 	}
 	
-	
+	@RequestMapping(value="caseSelector",method = RequestMethod.GET)
+	public String showCaseSelector() {
+		logger.info("showCaseSelector");
+		return "demo/caseSelector";
+	}
 }

@@ -28,7 +28,7 @@
 			<form class="form-search form-inline" action="#">
 						<div class="input-append">
 						<label>关键字：</label> 
-					    <input class="span3" id="searchKeyword" type="text">
+					    <input class="span3" id="searchKeyword" type="text" placeholder="案例名称/客户姓名/描述/场地名称亦可">
 					    <button class="btn" style="border-radius:0px 4px 4px 0" type="button" onclick="search()" id="search_btn">Go!</button>
 						</div>
 			</form>
