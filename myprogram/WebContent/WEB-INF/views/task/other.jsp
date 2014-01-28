@@ -173,7 +173,6 @@
 				silverlight_xap_url : '${ctx}/static/plupload/js/Moxie.xap'
 			});
 			
-			$('#myModal').modal(options);
 			
 			
 			$('#uploader').on('complete', function() {

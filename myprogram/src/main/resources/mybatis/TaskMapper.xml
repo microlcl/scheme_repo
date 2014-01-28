@@ -172,6 +172,12 @@
 		values(#{comment_id},#{task_id});
 	</insert>
 	
+	<!-- 插入case_task-->
+	<insert id="saveCaseTask" parameterType="map">
+		insert into case_task  (case_id,task_id)
+		values(#{case_id},#{task_id});
+	</insert>
+	
 	<!-- 插入comments-->
 	<insert id="saveComments" parameterType="Comment" useGeneratedKeys="true" keyProperty="id" >
 		insert into comments(user_id,comment,created_timestamp)

@@ -31,6 +31,13 @@
 		});
 	});
 	
+        function addCase(result){
+           var title = result.cases[0].title; 
+           var id =  result.cases[0].id;        
+		   $("#caseTitle").val(title);
+		   $("#caseid").val(id);
+
+        }
 	//var count = 0;
 	
 //	function addsub(){
@@ -73,5 +80,6 @@
 		
 	</form>
 	</div>
+	<%@ include file="../components/casePopupWindow.jsp"%>
 </body>
 </html>

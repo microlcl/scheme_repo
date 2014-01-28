@@ -123,6 +123,16 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="control-group span pull-left">
+			<label class="control-label" for="task_status">所属案例:</label>
+			<div class="input-append">
+			<input type="text" class="required" id="caseTitle" name="cases.title"  style="width:267px" class="input-large " />
+			<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
+			<input type="hidden" name="cases.id" id="caseid" >
+			</div>
+		</div>
+	</div>
 	<div class="control-group">
 			<label class="control-label" for="description">描述：</label>
 			<div class="controls">
@@ -139,13 +149,12 @@
 					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
 					
 					
-
+<%@ include file="../components/casePopupWindow.jsp"%>
 <div class="form-actions">
 			<input id="cancel_btn" class="btn" type="submit" value="保存" />
 		</div>
 
 
-  
 
 <script type="text/javascript">
 //显示创建时间

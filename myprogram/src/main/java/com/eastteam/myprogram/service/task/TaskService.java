@@ -14,6 +14,7 @@ import com.eastteam.myprogram.entity.Attachment;
 import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Spaces;
+import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.service.PageableService;
@@ -78,7 +79,13 @@ public class TaskService extends PageableService{
 			}
 		}
 		task.getAttachments();
-		
+		Case cases=task.getCases();
+		if(cases!=null){
+			Map<String, Object> parameters=new HashMap<String, Object>();
+			parameters.put("case_id", cases.getId());
+			parameters.put("task_id", task.getId());
+			taskDao.saveCaseTask(parameters);
+		}
 	}
 	
 	public void update(Task task){
