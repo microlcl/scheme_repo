@@ -482,16 +482,20 @@ insert into cases (case_id, case_title, created_time, assigned_department_id, ca
 	values (3, '王五的公司年会', '2013-12-07 02:00:00', 'D1-2', 'userid9', '1-0-2-2', '2013-12-31 19:00:00', 500, 3, '1号后院', '人员很多', 6, '1-0-8-3', 'C');
 
 -- 不同类型case默认的主角
--- 婚庆：新娘， 新郎	
+-- 婚庆：新娘， 新郎	,联系人
 insert into business_type_character(business_type, character_id) values('1-0-2-0','1-0-3-1');
 insert into business_type_character(business_type, character_id) values('1-0-2-0','1-0-3-2');
--- 生日宴
+insert into business_type_character(business_type, character_id) values('1-0-2-0','1-0-3-9');
+-- 生日宴：寿星，联系人
 insert into business_type_character(business_type, character_id) values('1-0-2-1','1-0-3-3');
+insert into business_type_character(business_type, character_id) values('1-0-2-1','1-0-3-9');
+-- 公司年会：联系人
+insert into business_type_character(business_type, character_id) values('1-0-2-2','1-0-3-9');
 
 insert into case_customers(case_id, character_id, customer_id, description) values(1, '1-0-3-1',1,'新郎测试1');
 insert into case_customers(case_id, character_id, customer_id, description) values(1, '1-0-3-2',2,'新娘测试1');
-insert into case_customers(case_id, character_id, customer_id, description) values(2, '1-0-3-1',1,'新郎测试2');
-insert into case_customers(case_id, character_id, customer_id, description) values(3, '1-0-3-2',2,'新娘测试3');
+--insert into case_customers(case_id, character_id, customer_id, description) values(2, '1-0-3-1',1,'新郎测试2');
+--insert into case_customers(case_id, character_id, customer_id, description) values(3, '1-0-3-2',2,'新娘测试3');
 
 insert into task_comments (comment_id,task_id) values (1,1);
 insert into task_comments (comment_id,task_id) values (2,2);

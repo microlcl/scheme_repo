@@ -168,5 +168,10 @@
 			<result property="favorite" column="favorite" />
 			<result property="description" column="description" />
 		</association>
-	</resultMap>			
+	</resultMap>	
+
+	<insert id="insertCaseCustomers" parameterType="map">
+		insert into case_customers(case_id, character_id, customer_id, description) 
+		values(#{caseId}, #{characterId},#{customerId},#{description})
+	</insert>			
 </mapper> 

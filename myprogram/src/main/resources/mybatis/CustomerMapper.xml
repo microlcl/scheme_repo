@@ -4,7 +4,8 @@
 <!-- namespace必须指向Dao接口 -->
 <mapper namespace="com.eastteam.myprogram.dao.CustomerMybatisDao">	
 	<insert id="insert" parameterType="Customer" useGeneratedKeys="true" keyProperty="id">
-		insert into customer (customer_name) values (#{customerName});
+		insert into customer (customer_name,customer_phone,customer_sex,job,weixin,	weibo,qq,birthday,favorite,description)
+		values(#{customerName},#{customerPhone},#{customerSex},#{job},#{weixin},#{weibo},#{qq},#{birthday},#{favorite},#{description})
 	</insert>
 	<update id="update" parameterType="Customer">
 		update customer set 

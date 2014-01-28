@@ -19,6 +19,7 @@ import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.Customer;
 import com.eastteam.myprogram.entity.Option;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.Stakeholder;
@@ -75,12 +76,40 @@ public class CaseService extends PageableService {
 	public Case getCaseWithAnswer(Long caseId) {
 		Case mycase = this.get(caseId);
 		mycase.setStatkeholders(this.caseDao.getStakeholders(caseId));
+		this.addDefaultCharacters(mycase);
 		if (mycase.getPaper() != null) {
 			List<Answer> answerList = this.getAnswers(caseId);		
 			return buildCaseWithAnswers(mycase, answerList);
 		}
 		
 		return mycase;
+	}
+	
+	private void addDefaultCharacters(Case mycase) {
+		
+		List<Category> defaultCharacters = this.caseDao.getDefaultCharacters(mycase.getBusinessType());
+		for (Category character : defaultCharacters) {
+			//如果当前的stakeholder里面没有默认必须有的角色，则创建一个此角色的stakeholder
+			if (!contains(mycase.getStatkeholders(), character)) {
+				Stakeholder defaultStakeholder = new Stakeholder();
+				defaultStakeholder.setCharacter(character);
+				defaultStakeholder.setRequired(true);
+				mycase.getStatkeholders().add(defaultStakeholder);
+			}
+		}
+	}
+	
+	private boolean contains(List<Stakeholder> stakeholders, Category character) {
+		if (stakeholders == null) {
+			return false;
+		}
+		
+		for (Stakeholder stakeholder : stakeholders) {
+			if (stakeholder.getCharacter() != null && stakeholder.getCharacter().equals(character))
+				return true;
+		}
+		
+		return false;
 	}
 
 	private Case buildCaseWithAnswers(Case mycase, List<Answer> answerList) {
@@ -163,11 +192,11 @@ public class CaseService extends PageableService {
 			}
 		}
 		//更新stakeholder
-		updateStakeholder(mycase);
+		saveStakeholder(mycase);
 		
 	}
 	
-	private void updateStakeholder(Case mycase) {
+	private void saveStakeholder(Case mycase) {
 		List<Stakeholder> stakeholders = mycase.getStatkeholders();
 		if (stakeholders == null) 
 			return;
@@ -176,7 +205,16 @@ public class CaseService extends PageableService {
 				if (stakeholder.getCustomer().getId() != null)
 					this.customerDao.update(stakeholder.getCustomer());
 				} else {
-					this.customerDao.insert(stakeholder.getCustomer());
+					Customer mycustomer = stakeholder.getCustomer();
+					this.customerDao.insert(mycustomer);
+					//values(#{caseId}, #{characterId},#{customerId},#{description})
+					Map<String, Object> parameters = new HashMap<String, Object>();
+					logger.info("after insert customer and getId=" + mycustomer.getId());
+					parameters.put("caseId", mycase.getId());
+					parameters.put("characterId", stakeholder.getCharacter().getId());
+					parameters.put("customerId", mycustomer.getId());
+					parameters.put("description", stakeholder.getDescription());					
+					this.caseDao.insertCaseCustomers(parameters);
 			
 			}
 		}

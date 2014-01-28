@@ -5,6 +5,8 @@ public class Stakeholder extends BaseEntity {
 	private Category character;
 	private Customer customer;
 	private String description;
+	/**是否是默认角色**/
+	private boolean required;
 	public Category getCharacter() {
 		return character;
 	}
@@ -22,6 +24,12 @@ public class Stakeholder extends BaseEntity {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public boolean isRequired() {
+		return required;
+	}
+	public void setRequired(boolean required) {
+		this.required = required;
 	}
 	
 

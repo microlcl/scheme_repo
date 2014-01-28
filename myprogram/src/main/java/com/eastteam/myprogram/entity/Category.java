@@ -1,7 +1,6 @@
 package com.eastteam.myprogram.entity;
 
 import java.util.Date;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -60,6 +59,14 @@ public class Category extends BaseEntity {
 	}
 	public void setMedia(Media media) {
 		this.media = media;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Category)) {
+			return false;
+		}
+		Category myObj = (Category)obj;
+		return this.id.equals(myObj.id);
 	}
 	
 	
