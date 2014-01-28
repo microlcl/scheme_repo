@@ -102,7 +102,7 @@
 				and c.business_type like '${business_type}%'
 			</if>
 			<if test="keyword != null">
-				and  c.case_title||c.description||uo.name||sp.space_name like '%${keyword}%'
+				and  c.case_title||c.description like '%${keyword}%'
 			</if>
 		</where>
 	</select>
