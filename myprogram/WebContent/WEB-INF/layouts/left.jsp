@@ -30,6 +30,7 @@
 			<a id="popupwindow-tab" href="${ctx}/demo/popupwindow">问题选择模态框</a>
 			<a id="accountSelector-tab" href="${ctx}/demo/accountSelector">员工选择器</a>
 			<a id="caseSelector-tab" href="${ctx}/demo/caseSelector">案例选择器</a>
+			<a id="spaceSelector-tab" href="${ctx}/demo/spaceSelector">场地选择器</a>
 		</div>
 	</div>
 </c:if>

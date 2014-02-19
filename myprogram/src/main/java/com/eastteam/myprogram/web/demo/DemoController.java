@@ -43,4 +43,10 @@ public class DemoController {
 		logger.info("showCaseSelector");
 		return "demo/caseSelector";
 	}
+	
+	@RequestMapping(value="spaceSelector",method = RequestMethod.GET)
+	public String showSpaceSelector() {
+		logger.info("showSpaceSelector");
+		return "demo/spaceSelector";
+	}
 }
