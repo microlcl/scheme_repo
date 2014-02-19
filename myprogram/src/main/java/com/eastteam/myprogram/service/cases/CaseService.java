@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.CaseMybatisDao;
 import com.eastteam.myprogram.dao.CustomerMybatisDao;
+import com.eastteam.myprogram.dao.HolderMybatisDao;
 import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
@@ -22,6 +23,7 @@ import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Customer;
 import com.eastteam.myprogram.entity.Option;
 import com.eastteam.myprogram.entity.Question;
+import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.Stakeholder;
 import com.eastteam.myprogram.entity.VisitActivity;
 import com.eastteam.myprogram.service.PageableService;
@@ -41,6 +43,9 @@ public class CaseService extends PageableService {
 	
 	@Autowired
 	private VisitMybatisDao visitDao;
+	
+	@Autowired
+	private HolderMybatisDao holderDao;
 	
 	
 	public List<Case> search(Map parameters, Pageable pageRequest) {
@@ -77,6 +82,11 @@ public class CaseService extends PageableService {
 		Case mycase = this.get(caseId);
 		mycase.setStatkeholders(this.caseDao.getStakeholders(caseId));
 		this.addDefaultCharacters(mycase);
+		//build space:
+		if(mycase.getSpace() != null & mycase.getSpace().getId() != null) {
+			Spaces myspaces = this.holderDao.getSpaces(mycase.getSpace().getId());
+			mycase.setSpace(myspaces);
+		}
 		if (mycase.getPaper() != null) {
 			List<Answer> answerList = this.getAnswers(caseId);		
 			return buildCaseWithAnswers(mycase, answerList);

@@ -84,6 +84,7 @@ public class CaseController {
 	public String save(Case mycase) {
 		logger.info("in case save action!" + mycase.toString());
 		logger.info("in case save action, stakeholder:!" + mycase.getStatkeholders());
+		logger.info("in case save action, space:!" + mycase.getSpace().getId());
 		this.caseService.update(mycase);
 		return "redirect:list";		
 	}

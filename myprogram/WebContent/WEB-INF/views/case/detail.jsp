@@ -68,6 +68,15 @@
 		console.log('in mySubmit');
 		$('#caseForm').submit();
 	}
+	
+	function addSpaces(result) {
+		console.log("in callback function");
+		console.log(result);
+		console.log(result.space[0].holders.holder_name);
+		$('#' + result.parameters.showid).val(result.space[0].holders.holder_name + ' - ' + result.space[0].space_name);
+		$('#' + result.parameters.target).val(result.space[0].id);
+			
+	}
 </script>
 
 
@@ -125,6 +134,6 @@
 			<input id="save_btn" class="btn" type="submit" value="保存"/>
 		</div>
 	</form>
-
+<%@ include file="../components/spacePopupWindow.jsp"%>
 </body>
 </html>

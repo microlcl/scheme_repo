@@ -121,6 +121,7 @@
 		business_type=#{businessType.id},
 		event_time=#{eventTime},
 		guest_num=#{guestNum},
+		space_id=#{space.id},
 		description=#{description},
 		paper_id=#{paper.id},
 		status=#{status.id}		

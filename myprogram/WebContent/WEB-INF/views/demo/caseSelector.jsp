@@ -26,7 +26,7 @@
 	<div class="control-group">	
 			<span class="formlabel span2 control-label">案例名称：</span>
 			<div class="input-append">
-			<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:186px" class="input-large " maxlength="64" placeholder="案例名称" onlyread/>
+			<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:186px" class="input-large " maxlength="64" placeholder="案例名称" readonly/>
 			<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
 			<input type="hidden" name="caseid" id="caseid" >
 			</div>

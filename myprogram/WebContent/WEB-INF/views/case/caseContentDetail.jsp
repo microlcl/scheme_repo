@@ -41,9 +41,10 @@
 			</div>
 		</div>
 		<div class="control-group span pull-right">
-			<label class="control-label" for="space_id">地点：</label>
+			<label class="control-label" for="space_value">地点：</label>
 			<div class="pull-right">
-				<input type="text" class="span4" id="space_id" placeholder="">
+				<input onclick="spacePopupWindow({callback:addSpaces,target:'space_id',showid:'space_value'})" type="text" class="span4" id="space_value" value="${mycase.space.holders.holder_name} - ${mycase.space.space_name}" placeholder="" readonly>
+				<input type="hidden" id="space_id" name="space.id"  value="${mycase.space.id}">
 			</div>
 		</div>
 	</div>
