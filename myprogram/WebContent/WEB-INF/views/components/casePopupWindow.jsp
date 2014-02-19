@@ -65,13 +65,13 @@
 
 
 <script>
-	var currentPage = 0;
+	var currentpage = 0;
 
 	//调用者输入参数
 	var parameters = {};
 
 	function search() {
-		currentPage = 0;
+		currentpage = 0;
 		$('#myaccordion').empty();
 		loadMore();
 		return false;
@@ -87,7 +87,7 @@
 	}
 
 	function loadMore() {
-		var nextPage = currentPage + 1;
+		var nextPage = currentpage + 1;
 		console.log("next pageNum:" + nextPage);
 		$.ajax({
 			url : '${ctx}/case/api/search',
@@ -98,7 +98,7 @@
 			},
 
 			success : function(resp) {
-				currentPage++;
+				currentpage++;
 				if (resp.lastPage) {
 					$('#loadMore').hide();
 				} else {
