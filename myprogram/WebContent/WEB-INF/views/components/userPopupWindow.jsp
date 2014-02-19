@@ -28,29 +28,29 @@
 			<form class="form-search form-inline" action="#">
 					部门：<input id="departmentId" name="search_departmentId" class="easyui-combotree"  data-options="url:'${ctx}/department/api/get',method:'get',required:false" style="width:200px;">	
 					    id：<input type="text" id="search_id" name="search_id"   class="input-small"  value="${param.search_id}"> 
-					    <button class="btn" style="border-radius:0px 4px 4px 0" type="button" onclick="search()" id="search_btn">Go!</button>
+					    <button class="btn" style="border-radius:0px 4px 4px 0" type="button" onclick="searchUser()" id="search_user_btn">Go!</button>
 			</form>
 		</div>
 		
-		<div class="accordion" style="border-color: transparent" id="myaccordion"></div>
+		<div class="accordion" style="border-color: transparent" id="myuser"></div>
 
-		<div id="loadMore" class="pagination pagination-centered">
-			<button class="btn btn-link" type="button" onclick="loadMore()">加载更多...</button>
+		<div id="loadMoreUser" class="pagination pagination-centered">
+			<button class="btn btn-link" type="button" onclick="loadMoreUser()">加载更多...</button>
 		</div>
 		<!-- 模态对话框end -->
 	</div>
 	<div class="modal-footer">
-		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true"">关闭</a> 
-		<a href="#" class="btn btn-primary"	data-dismiss="modal" aria-hidden="true" onclick="getSelectedValue()">确定</a>
+		<a href="#" class="btn" data-dismiss="modal" aria-hidden="true">关闭</a> 
+		<a href="#" class="btn btn-primary"	data-dismiss="modal" aria-hidden="true" onclick="getSelectedUser()">确定</a>
 	</div>
 </div>
 
 <!-- 生成选项的JS模板 -->
-<div style="display:none" id="mytemplate">
+<div style="display:none" id="myUserTemplate">
 <div class="accordion-group">
 	<div class="accordion-heading">
 	<ul class="inline">
-			<li><input id="myq_{id}" value="{id}:{name}" type="checkbox" name="selectedQuestions"/> </li>
+			<li><input id="myq_{id}" value="{id}:{name}" type="checkbox" name="selectedUser"/> </li>
 			<li>{id}: {name}</li>
 </ul>
 	</div>
@@ -66,10 +66,10 @@
 	//调用者输入参数
 	var parameters = {};
 
-	function search() {
+	function searchUser() {
 		currentPage = 0;
-		$('#myaccordion').empty();
-		loadMore();
+		$('#myuser').empty();
+		loadMoreUser();
 		return false;
 	}
 
@@ -78,11 +78,11 @@
 		$('#userModalWindow').modal({
 			backdrop : false,
 		});
-		loadMore();
+		loadMoreUser();
 
 	}
 
-	function loadMore() {
+	function loadMoreUser() {
 		var nextPage = currentPage + 1;
 		console.log("next pageNum:" + nextPage);
 		$.ajax({
@@ -97,15 +97,15 @@
 			success : function(resp) {
 				currentPage++;
 				if (resp.lastPage) {
-					$('#loadMore').hide();
+					$('#loadMoreUser').hide();
 				} else {
-					$('#loadMore').show();
+					$('#loadMoreUser').show();
 				}
 				$.each(resp.content, function(i, user) {
-					var mytemp = $('#mytemplate').html();
+					var mytemp = $('#myUserTemplate').html();
 					var myvalue = nano(mytemp,user);
 
-					$('#myaccordion').append(myvalue);
+					$('#myuser').append(myvalue);
 					$('#myq_' + user.id).data('user', user);
 				});
 			}
@@ -113,10 +113,10 @@
 
 	}
 	function buildOptions(obj){
-		$('#myaccordion').append(obj.id);
-		$('#myaccordion').append(obj.name);
+		$('#myuser').append(obj.id);
+		$('#myuser').append(obj.name);
 	}
-	function getSelectedValue() {
-		parameters.callback($('input:checkbox[name="selectedQuestions"]:checked'));
+	function getSelectedUser() {
+		parameters.callback($('input:checkbox[name="selectedUser"]:checked'));
 	}
 </script>
