@@ -109,9 +109,25 @@
 	
 	<div class="control-group">
 	<label>评论:</label>
-	<c:forEach items="${task.comments}" var="comment">	    
-	     <label style="margin:20px;">${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></label>
-		 <div class="controls">${comment.comment}</div>
+	<c:forEach items="${task.comments}" var="comment">
+	<div class="controls">
+		<table class="table table-bordered">
+			<thead>	    
+	     		<tr>
+	     		<th>
+	     			<p>${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></p>
+		 	    </th>
+		 	    </tr>
+		 	</thead>
+		 	<tbody>
+		 		<tr class="success">
+		 		<td>
+		 		${comment.comment}
+			    </td>
+			    </tr>
+			</tbody>	
+		</table>
+		</div>
 	</c:forEach>
 	</div>
 	
