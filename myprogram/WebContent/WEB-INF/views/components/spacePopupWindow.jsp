@@ -56,7 +56,7 @@
 	<div class="accordion-heading">
 		<ul class="inline" style="margin-bottom:0px">
 			<li><input id="space_{id}" value="{id}" type="radio" name="selectedSpace"/> </li>
-			<li><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">{id}: {space_name}</a></li>
+			<li><a class="accordion-toggle" data-toggle="collapse" data-parent="#myaccordion" href="#collapse_{id}">{id}: {holders.holder_name} - {space_name}</a></li>
 		</ul>
 	</div>
 	<div id="collapse_{id}" class="accordion-body collapse">

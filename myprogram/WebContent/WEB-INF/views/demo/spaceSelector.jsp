@@ -21,7 +21,7 @@
 </head>
 
 <body>
-	<h1>Case Popupwindow Test</h1>
+	<h1>场地选择测试</h1>
 	<button type="button" class="btn" id="sssearch_btn" onclick="spacePopupWindow({callback:addSpaces})">show space popupwindow</button>
 	<!-- resource 选择模态对话框 -->
  <%@ include file="../components/spacePopupWindow.jsp"%>
