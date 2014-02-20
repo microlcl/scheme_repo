@@ -42,7 +42,6 @@
 <div class="form">
 		<h1>修改任务</h1>
 		<form id="taskForm" class="form" style="padding:20px;" action="${ctx}/task/doUpdate" method="post">
-		<h1>修改任务</h1>
 		<div class="row">
 			<div class="span">
 				<div class="form-search" style="padding-left:20px;">
