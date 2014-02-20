@@ -11,7 +11,7 @@
     margin-left: 100px;
 }
 </style>
-<div class="form-horizontal">
+<div class="form-horizontal" id="caseContentDetailDiv">
 	<div class="row">
 		<div class="control-group span pull-left">
 			<label class="control-label" for="business_type">策划类别：</label>
@@ -88,7 +88,7 @@
 			</div>
 		</div>
 		<div class="pull-right">
-			<a href="#">增加</a>
+			<a href="#" onclick="addCharacter()">增加</a>
 		</div>
 	</div>
 	<c:forEach items="${mycase.statkeholders}" var="statkeholders" varStatus="status">

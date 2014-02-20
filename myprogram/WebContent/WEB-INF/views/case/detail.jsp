@@ -77,6 +77,28 @@
 		$('#' + result.parameters.target).val(result.space[0].id);
 			
 	}
+	
+	function addCharacter() {
+		var mytemp = $('#myCharacterTemplate').html();
+		var parameter = {};
+		var myindex = 4;
+		parameter.index=myindex;
+		var myvalue = nano(mytemp,parameter);
+		$('#caseContentDetailDiv').append(myvalue);
+		$("#customer_birthday_div_" + myindex).datetimepicker({
+	        language:  'zh-CN',
+	        //weekStart: 1,
+	        todayBtn:  true,
+	        pickerPosition: "bottom-left",
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0,
+			format: 'yyyy-mm-dd'
+    	}); 		
+		return false;
+	}
 </script>
 
 
@@ -134,6 +156,110 @@
 			<input id="save_btn" class="btn" type="submit" value="保存"/>
 		</div>
 	</form>
+	
+	<!-- character 模板 开始 -->
+<div style="display:none" id="myCharacterTemplate">	
+<div class="accordion-group">
+		<div class="accordion-heading">
+
+				<a class="accordion-toggle" data-toggle="collapse"
+				href="#stakeholders_{index}">新增
+			</a> 
+
+		</div>
+		<div id="stakeholders_{index}" class="accordion-body collapse">
+			<div class="accordion-inner">
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_character_{index}">身份：</label>
+						<div class="controls">
+							<input name="statkeholders[{index}].character.id" id="customer_character_{index}"
+								class="span4 easyui-combotree"
+								data-options="url:'${ctx}/category/api/getChildren/getCharacterType',method:'get',required:false"
+								value="">
+						</div>
+					</div>
+					<div class="control-group pull-right">
+						<label class="control-label" for="customer_name_{index}">姓名：</label>
+						<div class="pull-right">
+							<input type="text" class="span4" name="statkeholders[{index}].customer.customerName" id="customer_name_{index}" value="" placeholder="姓名">
+							<input type="hidden" name="statkeholders[{index}].customer.id"  value="">
+						</div>
+					</div>
+				</div>			
+					
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_job_{index}">工作：</label>
+						<div class="controls">
+							<input name="statkeholders[{index}].customer.job" id="customer_job_{index}" type="text"
+								class="span4" value="">
+						</div>
+					</div>
+					<div class="control-group pull-right">
+						<label class="control-label" for="customer_birthday_{index}">生日：</label>
+						<div class="pull-right">
+							<div id="customer_birthday_div_{index}" class="input-append date form_date">
+								<input size="16" type="text" name="statkeholders[{index}].customer.birthday" id="customer_birthday_{index}"
+									style="width: 302px"
+									value="" readonly> <span class="add-on">
+									<i class="icon-remove"></i></span> <span class="add-on"><i
+									class="icon-th"></i></span>
+							</div>
+						</div>
+					</div>					
+
+				</div>
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_weixin_{index}">微信：</label>
+						<div class="pull-right">
+							<input type="text" class="span4" name="statkeholders[{index}].customer.weixin" id="customer_weixin_{index}" placeholder="微信" value="">
+						</div>
+					</div>				
+					<div class="control-group pull-right">
+						<label class="control-label" for="customer_phone_{index}">电话：</label>
+						<div class="pull-right">
+							<input type="text" class="span4" name="statkeholders[{index}].customer.customerPhone" id="customer_phone_{index}" placeholder="电话" value="">
+						</div>
+					</div>					
+
+				</div>				
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_weibo_{index}">微博：</label>
+						<div class="controls">
+							<input name="statkeholders[{index}].customer.weibo" id="customer_weibo_{index}" type="text" placeholder="微博地址"
+								class="span4" value="">
+						</div>
+					</div>
+					<div class="control-group span pull-right">
+						<label class="control-label" for="customer_qq_{index}">QQ：</label>
+						<div class="controls">
+							<input name="statkeholders[{index}].customer.qq" id="customer_qq_{index}" type="text" placeholder="QQ"
+								class="span4" value="">
+						</div>
+					</div>
+				</div>	
+				<div class="row">
+					<div class="control-group span pull-left">
+						<label class="control-label" for="customer_favorite_{index}">爱好：</label>
+						<div class="controls">
+								<textarea rows="3" class="span4" id="customer_favorite_{index}" name="statkeholders[{index}].customer.favorite" maxlength="128"></textarea>
+						</div>
+					</div>
+					<div class="control-group span pull-right">
+						<label class="control-label" for="customer_description_{index}">备注：</label>
+						<div class="controls">
+							<textarea rows="3" class="span4" id="customer_description_{index}" name="statkeholders[{index}].description" maxlength="128"></textarea>								
+						</div>
+					</div>
+				</div>					
+			</div>
+		</div>
+	</div>
+</div>		
+<!-- character 模板 结束-->
 <%@ include file="../components/spacePopupWindow.jsp"%>
 </body>
 </html>
