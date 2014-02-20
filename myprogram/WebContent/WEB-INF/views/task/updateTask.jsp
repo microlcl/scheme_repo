@@ -64,16 +64,13 @@
 						 <%@ include file="modifDetail.jsp"%>
 					</div>
 					<div class="tab-pane" id="other">
+						<%@ include file="modifOther.jsp"%>
 					</div>
 								
 				</div>
 			</div>
 
 		</div>
-			<div class="form-actions">
-			<input id="cancel_btn" class="btn" type="submit" value="保存" />
-			<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
-			</div>
 	</form>
 	</div>
 </body>

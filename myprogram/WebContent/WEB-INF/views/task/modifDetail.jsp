@@ -139,7 +139,10 @@
 					
 	</div>
 </div>	
-
+<div class="form-actions">
+			<input id="cancel_btn" class="btn" type="submit" value="保存" />
+			<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
+			</div>
 
 <script type="text/javascript">
 $('.form_date').datetimepicker({

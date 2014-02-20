@@ -206,4 +206,9 @@
 						progress=#{progress}, priority=#{priority.id}, due_date=#{dueDate}, time_remaining=#{timeRemaining}, created_timestamp=#{createdTimestamp},created_by=#{createdBy.id}
 		 where task_id=#{id};
 	</update>
+	
+	<!-- 删除subscriber-->
+	<delete id="deleteSubscriber" parameterType="Task">
+		delete from task_subscribers where task_id=#{taskId};
+	</delete>
 </mapper> 
