@@ -164,8 +164,10 @@
 				<div class="control-group">	
 					<span class="formlabel span2 control-label">案例名称：</span>
 					<div class="input-append">
-					<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:186px" class="input-large " maxlength="64" placeholder="案例名称" onlyread/>
-					<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
+					<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:186px" class="input-large " maxlength="64" placeholder="案例名称" value="${thisCase.title}">
+					<c:if test="${thisCase.id != null}">
+						<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
+					</c:if>
 					<input type="hidden" name="caseid" id="caseid" >
 					</div>
 				</div>		
