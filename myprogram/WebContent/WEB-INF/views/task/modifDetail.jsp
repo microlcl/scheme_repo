@@ -118,6 +118,7 @@
 	</div>
 	
 	<div class="control-group">
+	<label>评论:</label>
 	<%int rownum = 1;%>
 	<c:forEach items="${task.comments}" var="comment">
 	<div class="controls">
