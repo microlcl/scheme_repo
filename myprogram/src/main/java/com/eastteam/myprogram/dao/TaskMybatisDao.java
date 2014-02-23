@@ -28,5 +28,6 @@ public interface TaskMybatisDao {
 	void saveComments(Comment comment);
 	void saveTaskComment(Map<String, Object> parameters);
 	void saveCaseTask(Map<String, Object> parameters);
+	void updateCaseTask(Map<String, Object> parameters);	
 	void deleteSubscriber(Long taskId);
 }

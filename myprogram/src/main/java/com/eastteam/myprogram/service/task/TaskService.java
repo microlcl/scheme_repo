@@ -122,6 +122,13 @@ public class TaskService extends PageableService{
 			}
 		}
 		task.getAttachments();
+		Case cases=task.getCases();
+		if(cases.getId()!=null){
+			Map<String, Object> parameters=new HashMap<String, Object>();
+			parameters.put("case_id", cases.getId());
+			parameters.put("task_id", task.getId());
+			taskDao.updateCaseTask(parameters);
+		}
 	}
 
 }

@@ -186,4 +186,11 @@
 
 		});
 		
+		 function addCase(result){
+           var title = result.cases[0].title; 
+           var id =  result.cases[0].id;        
+		   $("#caseTitle").val(title);
+		   $("#caseid").val(id);
+
+        }
 	</script>

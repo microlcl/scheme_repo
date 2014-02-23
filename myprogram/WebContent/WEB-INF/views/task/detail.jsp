@@ -127,7 +127,7 @@
 		<div class="control-group span pull-left">
 			<label class="control-label" for="task_status">所属案例:</label>
 			<div class="input-append">
-			<input type="text" class="required" id="caseTitle" name="cases.title"  style="width:267px" class="input-large " />
+			<input type="text" class="required" id="caseTitle" name="cases.title"  style="width:267px" class="input-large " readonly />
 			<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
 			<input type="hidden" name="cases.id" id="caseid" >
 			</div>

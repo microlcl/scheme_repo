@@ -178,6 +178,11 @@
 		values(#{case_id},#{task_id});
 	</insert>
 	
+	<insert id="updateCaseTask" parameterType="map">
+		update case_task  set case_id=#{case_id}
+		where task_id=#{task_id};
+	</insert>
+	
 	<!-- 插入comments-->
 	<insert id="saveComments" parameterType="Comment" useGeneratedKeys="true" keyProperty="id" >
 		insert into comments(user_id,comment,created_timestamp)
