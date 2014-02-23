@@ -118,14 +118,14 @@
 	</div>
 	
 	<div class="control-group">
-	<label>评论:</label>
+	<%int rownum = 1;%>
 	<c:forEach items="${task.comments}" var="comment">
 	<div class="controls">
 		<table class="table table-bordered">
 			<thead>	    
 	     		<tr>
 	     		<th>
-	     			<p>${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></p>
+	     			<p><%=rownum++%>#&nbsp;&nbsp;${comment.user.name}&nbsp;&nbsp;<fmt:formatDate value='${comment.createdTimestamp}' type='both' pattern='yyyy-MM-dd HH:mm'/></p>
 		 	    </th>
 		 	    </tr>
 		 	</thead>
@@ -145,7 +145,7 @@
 	
 	<div style="margin:10px 100px 15px;">	
 	<textarea id="comment" name="comment"
-					class="input-large offset1" maxlength="64" style="width: 70%" ></textarea>
+					class="input-large offset1" maxlength="64" style="width: 80%" ></textarea>
 					
 	</div>
 </div>	
