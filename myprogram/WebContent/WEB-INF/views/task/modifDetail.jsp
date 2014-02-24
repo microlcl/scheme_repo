@@ -82,9 +82,9 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="time_remaining">剩余时间：</label>
 			<div class="controls">
-				<input type="text" style="width:120px;" id="timeRemainingDay" name="timeRemainingDay" value="${task.timeRemaining}">
+				<input type="text" style="width:125px;" id="timeRemainingDay" name="timeRemainingDay" value="${day}" >
 				<button type="button" class="btn" disabled>天</button>
-				<input type="text" style="width:110px;" id="timeRemaining" name="timeRemaining" value="${task.timeRemaining}">
+				<input type="text" style="width:110px;" id="timeRemainingHour" name="timeRemainingHour" value="${hour}">
 				<button type="button" class="btn" disabled>小时</button>
 			</div>
 		</div>

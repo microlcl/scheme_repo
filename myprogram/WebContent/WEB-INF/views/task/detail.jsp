@@ -103,7 +103,7 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="time_remaining">剩余时间：</label>
 			<div class="controls">
-				<input type="text" class="span4" id="timeRemaining" name="timeRemaining" value="0">
+				<input type="text" class="span4" id="timeRemaining" name="timeRemaining" value="0" readonly>
 			</div>
 		</div>
 	</div>

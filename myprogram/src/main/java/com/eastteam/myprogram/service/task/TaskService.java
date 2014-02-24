@@ -52,6 +52,8 @@ public class TaskService extends PageableService{
 	}
 	
 	public void save(Task task){
+		int hours=(int)(task.getDueDate().getTime()/1000/60/60-task.getCreatedTimestamp().getTime()/1000/60/60);
+		task.setTimeRemaining(hours);
 		taskDao.save(task);
 		List comments=task.getComments();
 		if(comments!=null){

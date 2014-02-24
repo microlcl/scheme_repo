@@ -97,7 +97,7 @@ public class TaskController {
 	public String save(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task save action");
 		if(finishTime!=null&&!finishTime.equals("")){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date dueDate = new Date();
 			try {
 				dueDate = sdf.parse(finishTime);
@@ -153,12 +153,16 @@ public class TaskController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(@RequestParam(value="id") String id,Model model, HttpServletRequest request) {
 		Task task = this.taskService.getTask(id);
+		int day=task.getTimeRemaining()/24;
+		int hour=task.getTimeRemaining()%24;
 		model.addAttribute("task", task);
+		model.addAttribute("day", day);
+		model.addAttribute("hour", hour);
 		return "task/updateTask";
 	}
 	
 	@RequestMapping(value = "doUpdate", method = RequestMethod.POST)
-	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,@RequestParam(value="timeRemainingDay") int day,@RequestParam(value="timeRemainingHour") int hour,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task update action");
 		if(finishTime!=null&&!finishTime.equals("")){
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -181,6 +185,7 @@ public class TaskController {
 			e.printStackTrace();
 		}
 		task.setCreatedTimestamp(creDate);
+		task.setTimeRemaining(day*24+hour);
 		
 		List comments=new ArrayList();
 		User user=(User) request.getSession().getAttribute("user");
