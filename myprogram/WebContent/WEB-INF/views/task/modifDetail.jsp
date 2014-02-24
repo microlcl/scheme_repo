@@ -63,7 +63,10 @@
 		<div class="control-group span5 pull-right">
 			<label class="control-label" for="task_progress">任务进度：</label>
 			<div class="controls">
-				<input type="text" class="span4" id="progress" name="progress" value="${task.progress}">
+			<div class="progress"  style="margin: 5px 0px 0px 0px;">
+				<!--  <input type="text" class="span4" id="progress" name="progress" value="${task.progress}"> -->
+				<div class="bar" style="width: ${task.progress}%;"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -79,7 +82,10 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="time_remaining">剩余时间：</label>
 			<div class="controls">
-				<input type="text" class="span4" id="timeRemaining" name="timeRemaining" value="${task.timeRemaining}">
+				<input type="text" style="width:120px;" id="timeRemainingDay" name="timeRemainingDay" value="${task.timeRemaining}">
+				<button type="button" class="btn" disabled>天</button>
+				<input type="text" style="width:110px;" id="timeRemaining" name="timeRemaining" value="${task.timeRemaining}">
+				<button type="button" class="btn" disabled>小时</button>
 			</div>
 		</div>
 	</div>
@@ -97,6 +103,7 @@
 			<div class="controls">
 				<input type="text" class="span4" id="createdTimestamp"  value="<fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/>"
 					 maxlength="64" readonly>
+			   <input type="hidden" name="createdTime" value="${task.createdTimestamp}">
 			</div>
 		</div>
 	</div>

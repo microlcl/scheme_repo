@@ -446,11 +446,11 @@ insert into paper_answers(business_id, paper_id, question_id, answer) values('C2
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C2',5,3,'abcde');
 
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3','2013-12-28',1,'2013-11-15 18:00:00','admin');
+		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3','2013-11-18',1,'2013-11-15 18:00:00','admin');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(2,1,'会场布置','年会会场布置','1-0-6-2','1-0-7-2','D1-2','userid9',40,'1-0-5-1','2013-12-28',1,'2013-11-15 18:00:00','userid9');
+		values(2,1,'会场布置','年会会场布置','1-0-6-2','1-0-7-2','D1-2','userid9',40,'1-0-5-1','2013-11-18',1,'2013-11-15 18:00:00','userid9');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
-		values(3,1,'人员安排','年会人员安排','1-0-6-3','1-0-7-3','D1-2','userid8',40,'1-0-5-2','2013-12-28',1,'2013-11-15 18:00:00','userid9');
+		values(3,1,'人员安排','年会人员安排','1-0-6-3','1-0-7-3','D1-2','userid8',40,'1-0-5-2','2013-11-18',1,'2013-11-15 18:00:00','userid9');
 		
 
 insert into customer (customer_id, customer_name, customer_phone, customer_sex, job, weixin, weibo, qq, birthday, favorite, description)

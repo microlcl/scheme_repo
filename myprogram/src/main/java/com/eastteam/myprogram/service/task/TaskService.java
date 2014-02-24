@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParsePosition;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -89,6 +92,10 @@ public class TaskService extends PageableService{
 	}
 	
 	public void update(Task task){
+		long day=(task.getDueDate().getTime()-task.getCreatedTimestamp().getTime())/1000/60/60/24;
+		double hour=task.getDueDate().getTime()/1000/60/60-task.getCreatedTimestamp().getTime()/1000/60/60;
+		double percent=(hour-task.getTimeRemaining())/hour*100;       
+		task.setProgress((int)percent);
 		taskDao.update(task);
 		List comments=task.getComments();
 		if(comments!=null){

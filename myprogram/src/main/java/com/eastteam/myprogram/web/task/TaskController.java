@@ -158,10 +158,10 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "doUpdate", method = RequestMethod.POST)
-	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task update action");
 		if(finishTime!=null&&!finishTime.equals("")){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date dueDate = new Date();
 			try {
 				dueDate = sdf.parse(finishTime);
@@ -171,7 +171,17 @@ public class TaskController {
 			}
 			task.setDueDate(dueDate);
 		}
-		task.setCreatedTimestamp(new Date());
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+		Date creDate = new Date();
+		try {
+			creDate = sdf.parse(createdTime);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		task.setCreatedTimestamp(creDate);
+		
 		List comments=new ArrayList();
 		User user=(User) request.getSession().getAttribute("user");
 		comment.setUser(user);
