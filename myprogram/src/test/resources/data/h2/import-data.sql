@@ -515,3 +515,10 @@ insert into comments (comment_id,user_id,comment,created_timestamp) values (4,'u
 insert into comments (comment_id,user_id,comment,created_timestamp) values (5,'userid2','<p>添加页面</p>',now());
 insert into comments (comment_id,user_id,comment,created_timestamp) values (6,'userid2','<p>添加页面</p>',now());
 
+insert into task_attachments(attachment_id,task_id) values (1,1);
+insert into task_attachments(attachment_id,task_id) values (2,2);
+insert into task_attachments(attachment_id,task_id) values (3,3);
+
+insert into attachments(attachment_id,user_id,uploaded_timestamp,path,file_size) values (1,'userid1','2014-02-24 18:00:00','C:\Users\IBM_ADMIN\Desktop\KT\ECM extract',1024);
+insert into attachments(attachment_id,user_id,uploaded_timestamp,path,file_size) values (2,'userid2','2014-02-24 18:00:00','C:\Users\IBM_ADMIN\Desktop\KT\ECM extract',1024);
+insert into attachments(attachment_id,user_id,uploaded_timestamp,path,file_size) values (3,'userid3','2014-02-24 18:00:00','C:\Users\IBM_ADMIN\Desktop\KT\ECM extract',1024);

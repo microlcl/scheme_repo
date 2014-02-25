@@ -48,6 +48,8 @@
 		</collection>
 		<collection property="subUsers" column="task_id" ofType="User" select="selectUser">	
 		</collection>
+		<collection property="attachments" column="task_id" ofType="Attachment" select="selectatTachments">	
+		</collection>
 	</resultMap>
 	
 	<resultMap type="Comment" id="commentMap">
@@ -56,6 +58,17 @@
 			<result property="createdTimestamp"  column="createdTimestamp" />
 			<association property="user" column="c_user_id" javaType="User">
 			 <id property="id" column="c_user_id" />
+			 <result property="name" column="u_name" />
+			 </association>
+	</resultMap>
+	
+	<resultMap type="Attachment" id="tachmentsMap">
+			<id property="id" column="attachment_id" />
+			<result property="path" column="path" />
+			<result property="fileSize" column="file_size" />
+			<result property="uploadedTimestamp"  column="uploaded_timestamp" />
+			<association property="user" column="a_user_id" javaType="User">
+			 <id property="id" column="a_user_id" />
 			 <result property="name" column="u_name" />
 			 </association>
 	</resultMap>
@@ -85,12 +98,21 @@
 	</select>
 	
 	<select id="selectcomments" resultMap="commentMap">
-	   select c.comment_id as id,c.comment as comment,c.created_timestamp as createdTimestamp,c.user_id as c_user_id,u.name as u_name
+	   select c.comment_id as attachment_id,c.comment as comment,c.created_timestamp as createdTimestamp,c.user_id as c_user_id,u.name as u_name
 	   from comments c,task_comments tc,users u 	   
 	   where c.comment_id = tc.comment_id
 	        and tc.task_id=#{task_id}
 	        and c.user_id = u.id 	       
 	</select>
+	
+	<select id="selectatTachments" resultMap="tachmentsMap">
+	   select a.attachment_id as attachment_id,a.uploaded_timestamp as uploaded_timestamp,a.path as path,
+	   		  a.file_size as file_size,a.user_id as a_user_id,u.name as u_name
+	   from attachments a,task_attachments ta,users u 	   
+	   where a.attachment_id = ta.attachment_id
+	        and ta.task_id=#{task_id}
+	        and a.user_id = u.id 	       
+	</select>	
 	
 	<select id="getCount" parameterType="map" resultType="Long">
 		select count(0)
