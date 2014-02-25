@@ -45,7 +45,8 @@
 	</div>
 	<link href="${ctx}/static/bootstrap/2.3.2/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
 	<!-- plupload和bootstrap.min.js有冲突，所以加载上传组件时，把这个js排除掉 -->
-	<% if(request.getRequestURI().indexOf("media/upload") < 0){%>
+	<% if(request.getRequestURI().indexOf("media/upload") > 0||request.getRequestURI().indexOf("task/add") > 0||request.getRequestURI().indexOf("task/update") > 0){%>
+	<%}else{ %>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
 	<%} %>
 </body>

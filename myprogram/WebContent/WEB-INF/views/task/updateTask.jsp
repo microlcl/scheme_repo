@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/themes/icon.css">
 	<link rel="stylesheet" type="text/css"	href="${ctx}/static/easyui/mytree.css">
 	<link rel="stylesheet" type="text/css"	href="${ctx}/static/styles/form.css">
-
+<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/easyui/jquery.easyui.min.js"	type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 	<script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
