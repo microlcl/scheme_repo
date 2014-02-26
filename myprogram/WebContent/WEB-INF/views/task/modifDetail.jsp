@@ -26,7 +26,7 @@
 			<div class="pull-right">
 				<!--input type="text" class="span4" id="event_time" placeholder=""-->
 				<div class="input-append date form_date" >
-                    <input size="16" type="text" id="finishTime" name="finishTime" style="width:302px" value="<fmt:formatDate value='${task.dueDate}' pattern='yyyy-MM-dd hh:mm'/>" >
+                    <input size="16" type="text" id="finishTime" name="finishTime" style="width:302px" value="<fmt:formatDate value='${task.dueDate}' pattern='yyyy-MM-dd'/>" >
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
@@ -82,7 +82,7 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="time_remaining">剩余时间：</label>
 			<div class="controls">
-				<input type="text" style="width:125px;" id="timeRemainingDay" name="timeRemainingDay" value="${day}" >
+				<input type="text" style="width:125px;" id="timeRemainingDay" name="timeRemainingDay" value="${day}">
 				<button type="button" class="btn" disabled>天</button>
 				<input type="text" style="width:110px;" id="timeRemainingHour" name="timeRemainingHour" value="${hour}">
 				<button type="button" class="btn" disabled>小时</button>
@@ -101,7 +101,7 @@
 		<div class="control-group span pull-right">
 			<label class="control-label" for="create_time">创建时间:</label>
 			<div class="controls">
-				<input type="text" class="span4" id="createdTimestamp"  value="<fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/>"
+				<input type="text" class="span4" id="createdTimestamp"  value="<fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd"/>"
 					 maxlength="64" readonly>
 			   <input type="hidden" name="createdTime" value="${task.createdTimestamp}">
 			</div>
@@ -178,4 +178,5 @@ $('.form_date').datetimepicker({
 	});
 	
 CKEDITOR.replace('comment');
+
 </script>

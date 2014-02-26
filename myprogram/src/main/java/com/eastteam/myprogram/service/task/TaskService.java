@@ -53,7 +53,7 @@ public class TaskService extends PageableService{
 	
 	public void save(Task task){
 		int hours=(int)(task.getDueDate().getTime()/1000/60/60-task.getCreatedTimestamp().getTime()/1000/60/60);
-		task.setTimeRemaining(hours);
+		task.setTimeRemaining(hours/3);
 		taskDao.save(task);
 		List comments=task.getComments();
 		if(comments!=null){
@@ -95,7 +95,7 @@ public class TaskService extends PageableService{
 	
 	public void update(Task task){
 		long day=(task.getDueDate().getTime()-task.getCreatedTimestamp().getTime())/1000/60/60/24;
-		double hour=task.getDueDate().getTime()/1000/60/60-task.getCreatedTimestamp().getTime()/1000/60/60;
+		double hour=(task.getDueDate().getTime()/1000/60/60-task.getCreatedTimestamp().getTime()/1000/60/60)/3;
 		double percent=(hour-task.getTimeRemaining())/hour*100;       
 		task.setProgress((int)percent);
 		taskDao.update(task);

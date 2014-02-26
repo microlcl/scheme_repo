@@ -97,7 +97,7 @@ public class TaskController {
 	public String save(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task save action");
 		if(finishTime!=null&&!finishTime.equals("")){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dueDate = new Date();
 			try {
 				dueDate = sdf.parse(finishTime);
@@ -107,7 +107,23 @@ public class TaskController {
 			}
 			task.setDueDate(dueDate);
 		}
-		task.setCreatedTimestamp(new Date());
+		
+		Date nowTime = new Date();
+		String createdTime=nowTime.toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+		Date creDate = new Date();
+		try {
+			String timebegin=createdTime.substring(0, 11);
+			String timeend=createdTime.substring(19);
+			String time=timebegin+"00:00:00"+timeend;			
+			creDate = sdf.parse(time);
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		task.setCreatedTimestamp(creDate);
 		List comments=new ArrayList();
 		User user=(User) request.getSession().getAttribute("user");
 		comment.setUser(user);
@@ -153,8 +169,8 @@ public class TaskController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(@RequestParam(value="id") String id,Model model, HttpServletRequest request) {
 		Task task = this.taskService.getTask(id);
-		int day=task.getTimeRemaining()/24;
-		int hour=task.getTimeRemaining()%24;
+		int day=task.getTimeRemaining()/8;
+		int hour=task.getTimeRemaining()%8;
 		model.addAttribute("task", task);
 		model.addAttribute("day", day);
 		model.addAttribute("hour", hour);
@@ -165,7 +181,7 @@ public class TaskController {
 	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,@RequestParam(value="timeRemainingDay") int day,@RequestParam(value="timeRemainingHour") int hour,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task update action");
 		if(finishTime!=null&&!finishTime.equals("")){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date dueDate = new Date();
 			try {
 				dueDate = sdf.parse(finishTime);
@@ -179,13 +195,17 @@ public class TaskController {
 		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 		Date creDate = new Date();
 		try {
-			creDate = sdf.parse(createdTime);
+			String timebegin=createdTime.substring(0, 11);
+			String timeend=createdTime.substring(19);
+			String time=timebegin+"00:00:00"+timeend;			
+			creDate = sdf.parse(time);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		task.setCreatedTimestamp(creDate);
-		task.setTimeRemaining(day*24+hour);
+		task.setTimeRemaining(day*8+hour);
 		
 		List comments=new ArrayList();
 		User user=(User) request.getSession().getAttribute("user");
