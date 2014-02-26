@@ -78,11 +78,19 @@
 			
 	}
 	
+	function generateCharacterListHtmlCode(myindex) {
+		var mytemp = '<input name="statkeholders[{index}].character.id" id="customer_character_{index}" class="span4 easyui-combotree"/>';
+		var parameter = {};
+		parameter.index=myindex;
+		return nano(mytemp,parameter);
+	}
+	
 	function addCharacter() {
 		var mytemp = $('#myCharacterTemplate').html();
 		var parameter = {};
-		var myindex = 4;
+		var myindex = 3;
 		parameter.index=myindex;
+		parameter.characterList=generateCharacterListHtmlCode(myindex);
 		var myvalue = nano(mytemp,parameter);
 		$('#caseContentDetailDiv').append(myvalue);
 		$("#customer_birthday_div_" + myindex).datetimepicker({
@@ -96,8 +104,19 @@
 			minView: 2,
 			forceParse: 0,
 			format: 'yyyy-mm-dd'
-    	}); 		
-		return false;
+    	}); 
+    	//var url = '${ctx}/category/api/getChildren/getCharacterType';
+    	//console.log('-------------');
+    	//console.log($('#customer_character_' + myindex));
+		//$('#customer_character_' + myindex).combobox('reload', url);
+    	
+		$('#customer_character_' + myindex).combotree({		
+			url:'${ctx}/category/api/getChildren/getCharacterType',
+			required: false,
+			valueField: 'id',
+			textField: 'text',
+			method:'get'
+		});
 	}
 </script>
 
@@ -172,12 +191,7 @@
 				<div class="row">
 					<div class="control-group span pull-left">
 						<label class="control-label" for="customer_character_{index}">身份：</label>
-						<div class="controls">
-							<input name="statkeholders[{index}].character.id" id="customer_character_{index}"
-								class="span4 easyui-combotree"
-								data-options="url:'${ctx}/category/api/getChildren/getCharacterType',method:'get',required:false"
-								value="">
-						</div>
+						<div class="controls" id="characterListDiv">{characterList}</div>
 					</div>
 					<div class="control-group pull-right">
 						<label class="control-label" for="customer_name_{index}">姓名：</label>
