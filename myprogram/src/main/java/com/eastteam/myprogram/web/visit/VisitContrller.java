@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.dao.VisitMybatisDao;
+import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.VisitActivity;
@@ -105,6 +106,21 @@ public class VisitContrller {
 		model.addAttribute("visitType", request.getParameter("visitType"));
 		
 		return "visit/addVisit";
+	}
+	
+	@RequestMapping(value = "returnVisit", method = RequestMethod.GET)
+	public String returnVisit(String businessType, Model model, ServletRequest request) {
+		logger.info("in visit controller: return visit");
+		logger.info("case Id的值是：" + request.getParameter("caseId"));
+		//model.addAttribute("caseId", request.getParameter("caseId"));
+		if (request.getParameter("caseId") != null){
+			Case c = visitMybatisDao.selectCase(Long.parseLong(request.getParameter("caseId")));
+			model.addAttribute("thisCase", visitMybatisDao.selectCase(Long.parseLong(request.getParameter("caseId"))));
+		}
+		model.addAttribute("visitType", request.getParameter("visitType"));
+		model.addAttribute("businessTypeId", request.getParameter("businessTypeId"));
+		
+		return "visit/returnVisit";
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
