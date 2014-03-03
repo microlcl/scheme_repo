@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.eastteam.myprogram.entity.Category;
+import com.eastteam.myprogram.entity.Customer;
 import com.eastteam.myprogram.web.BaseFormBean;
 
 /**
@@ -28,8 +29,8 @@ public class VisitFormBean extends BaseFormBean {
 	private Date eventTime;
 	private int guestNum;
 	private String spaceTip;
-	private String customerName;
 	private String caseTitle;
+	private Customer customer;
 	
 	
 	public Long getVisitId() {
@@ -128,17 +129,17 @@ public class VisitFormBean extends BaseFormBean {
 	public void setSpaceTip(String spaceTip) {
 		this.spaceTip = spaceTip;
 	}
-	public String getCustomerName() {
-		return customerName;
-	}
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
-	}
 	public String getCaseTitle() {
 		return caseTitle;
 	}
 	public void setCaseTitle(String caseTitle) {
 		this.caseTitle = caseTitle;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	

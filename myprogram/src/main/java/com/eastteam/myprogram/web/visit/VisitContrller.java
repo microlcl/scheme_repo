@@ -103,7 +103,7 @@ public class VisitContrller {
 		if (request.getParameter("caseId") != null){
 			model.addAttribute("thisCase", visitMybatisDao.selectCase(Long.parseLong(request.getParameter("caseId"))));
 		}
-		model.addAttribute("visitType", request.getParameter("visitType"));
+		model.addAttribute("isVisited", request.getParameter("isVisited"));
 		
 		return "visit/addVisit";
 	}

@@ -59,8 +59,7 @@ public class VisitService extends PageableService {
 		logger.info("in visit activity service : save visit");
 		if (visitFormBean.getVisitId() != null){
 			logger.info("修改现有访问记录");
-			Customer customer = new Customer();
-			customer.setCustomerName(visitFormBean.getCustomerName());
+			Customer customer = visitFormBean.getCustomer();
 			customer.setId(visitFormBean.getCustomerId());
 			visitMybatisDao.updateCustomer(customer);
 			
@@ -84,8 +83,7 @@ public class VisitService extends PageableService {
 			map.put("visitId", visitFormBean.getVisitId());
 			visitMybatisDao.updateVisit(map);
 		}else if(visitFormBean.getCaseId() != null) {
-			Customer customer = new Customer();
-			customer.setCustomerName(visitFormBean.getCustomerName());
+			Customer customer = visitFormBean.getCustomer();
 			visitMybatisDao.insertCustomer(customer);
 			
 			Case thisCase = new Case();
@@ -111,15 +109,16 @@ public class VisitService extends PageableService {
 		}
 		else{
 			
-			Customer customer = new Customer();
-			customer.setCustomerName(visitFormBean.getCustomerName());
+			Customer customer = visitFormBean.getCustomer();
+			logger.info("***********In Visit Service: customer = " + customer);
+			visitMybatisDao.insertCustomer(customer);
+			
 			Case thisCase = new Case();
 			thisCase.setBusinessType(visitFormBean.getBusinessType());
 			thisCase.setEventTime(visitFormBean.getEventTime());
 			thisCase.setGuestNum(visitFormBean.getGuestNum());
 			thisCase.setSpaceTip(visitFormBean.getSpaceTip());
 			thisCase.setTitle(visitFormBean.getCaseTitle());
-			visitMybatisDao.insertCustomer(customer);
 			visitMybatisDao.insertCase(thisCase);
 			
 			HashMap<String, Object> map = new HashMap<String, Object>();

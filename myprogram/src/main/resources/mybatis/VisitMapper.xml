@@ -100,7 +100,7 @@
 	</select>
 	
 	<insert id="insertCustomer" parameterType="Customer" useGeneratedKeys="true" keyProperty="id">
-		insert into customer (customer_name) values (#{customerName});
+		insert into customer (customer_name, job, weixin, customer_phone, weibo, qq, favorite, description) values (#{customerName}, #{job}, #{weixin}, #{customerPhone}, #{weibo}, #{qq}, #{favorite}, #{description});
 	</insert>
 	
 	<insert id="insertCase" parameterType="Case" useGeneratedKeys="true" keyProperty="id">
