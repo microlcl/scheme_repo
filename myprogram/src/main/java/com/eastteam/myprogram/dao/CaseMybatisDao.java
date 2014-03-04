@@ -21,4 +21,5 @@ public interface CaseMybatisDao {
 	public List<Category> getDefaultCharacters(Category businessType);
 	public List<Stakeholder> getStakeholders(Long caseId);
 	public void insertCaseCustomers(Map<String, Object> parameters);
+	public void updateCaseCustomers(Map<String, Object> parameters);
 }

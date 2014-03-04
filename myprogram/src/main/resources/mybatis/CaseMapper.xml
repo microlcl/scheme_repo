@@ -133,7 +133,7 @@
 	</delete>
 	<insert id="insertAnswers" parameterType="map">
 	    insert into paper_answers(business_id, paper_id, question_id, answer) values
-	    ('C'||#{caseId},#{paperId},#{question.id},#{question.questionOptions});
+	    (concat('C',#{caseId}),#{paperId},#{question.id},#{question.questionOptions});
 	</insert>
 	<select id="getDefaultCharacters" resultType="Category">
 		select cc.name, cc.id  
@@ -174,5 +174,9 @@
 	<insert id="insertCaseCustomers" parameterType="map">
 		insert into case_customers(case_id, character_id, customer_id, description) 
 		values(#{caseId}, #{characterId},#{customerId},#{description})
-	</insert>			
+	</insert>	
+	<update id="updateCaseCustomers" parameterType="map">
+		update case_customers set description=#{description}
+		where case_id=#{caseId} and character_id=#{characterId} and customer_id=#{customerId}
+	</update>		
 </mapper> 

@@ -494,6 +494,7 @@ insert into business_type_character(business_type, character_id) values('1-0-2-2
 
 insert into case_customers(case_id, character_id, customer_id, description) values(1, '1-0-3-1',1,'新郎测试1');
 insert into case_customers(case_id, character_id, customer_id, description) values(1, '1-0-3-2',2,'新娘测试1');
+--insert into case_customers(case_id, character_id, customer_id, description) values(1, '1-0-3-7',4,'新娘测试1');
 --insert into case_customers(case_id, character_id, customer_id, description) values(2, '1-0-3-1',1,'新郎测试2');
 --insert into case_customers(case_id, character_id, customer_id, description) values(3, '1-0-3-2',2,'新娘测试3');
 

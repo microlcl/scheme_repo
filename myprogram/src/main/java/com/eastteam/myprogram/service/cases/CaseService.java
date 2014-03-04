@@ -214,6 +214,12 @@ public class CaseService extends PageableService {
 			if (stakeholder.getCustomer() != null) {
 				if (stakeholder.getCustomer().getId() != null) {
 					this.customerDao.update(stakeholder.getCustomer());
+					Map<String, Object> parameter1 = new HashMap<String, Object>();
+					parameter1.put("caseId", mycase.getId());
+					parameter1.put("characterId", stakeholder.getCharacter().getId());
+					parameter1.put("customerId", stakeholder.getCustomer().getId());
+					parameter1.put("description", stakeholder.getDescription());
+					this.caseDao.updateCaseCustomers(parameter1);
 				} else {
 					Customer mycustomer = stakeholder.getCustomer();
 					this.customerDao.insert(mycustomer);

@@ -15,6 +15,8 @@
 <script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <script src="${ctx}/static/bootstrap/2.3.2/js/bootstrap-datetimepicker.zh-CN.js" type="text/javascript"></script>
 <script>
+	//用于保存点击增加stakeholder button之前的最大index
+	var myCharacterIndex = 0;
 	$(document).ready(function() {
 		$("#case-tab").addClass("active");
 		// 必须在$(document).ready里面定义combotree的onChange事件
@@ -88,12 +90,12 @@
 	function addCharacter() {
 		var mytemp = $('#myCharacterTemplate').html();
 		var parameter = {};
-		var myindex = 3;
-		parameter.index=myindex;
-		parameter.characterList=generateCharacterListHtmlCode(myindex);
+		myCharacterIndex++;
+		parameter.index=myCharacterIndex;
+		parameter.characterList=generateCharacterListHtmlCode(myCharacterIndex);
 		var myvalue = nano(mytemp,parameter);
 		$('#caseContentDetailDiv').append(myvalue);
-		$("#customer_birthday_div_" + myindex).datetimepicker({
+		$("#customer_birthday_div_" + myCharacterIndex).datetimepicker({
 	        language:  'zh-CN',
 	        //weekStart: 1,
 	        todayBtn:  true,
@@ -110,7 +112,7 @@
     	//console.log($('#customer_character_' + myindex));
 		//$('#customer_character_' + myindex).combobox('reload', url);
     	
-		$('#customer_character_' + myindex).combotree({		
+		$('#customer_character_' + myCharacterIndex).combotree({		
 			url:'${ctx}/category/api/getChildren/getCharacterType',
 			required: false,
 			valueField: 'id',

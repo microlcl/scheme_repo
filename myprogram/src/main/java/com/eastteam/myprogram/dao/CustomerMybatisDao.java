@@ -8,4 +8,5 @@ public interface CustomerMybatisDao {
 	public void update(Customer customer);
 
 	public void insert(Customer customer);
+	
 }

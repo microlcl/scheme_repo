@@ -19,6 +19,13 @@ CREATE TABLE `category` (
   UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `function_category` (
+  `function_id` varchar(64) NOT NULL DEFAULT '',
+  `category_id` varchar(64) NOT NULL DEFAULT '',
+  PRIMARY KEY (`function_id`,`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE `departments` (
   `department_id` varchar(64) NOT NULL,
    `name` varchar(64) NOT NULL,
@@ -144,6 +151,7 @@ CREATE TABLE `holders` (
 
 CREATE TABLE `spaces` (
   `space_id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `holder_id` bigint(11),
   `space_name` varchar(32) DEFAULT NULL,
   `floor` int(11) DEFAULT NULL,
   `volume` int(11) DEFAULT NULL,

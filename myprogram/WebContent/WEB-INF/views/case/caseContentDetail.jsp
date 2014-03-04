@@ -193,6 +193,8 @@
 			</div>
 		</div>
 	</div>
+	<script>myCharacterIndex = ${status.index}</script>
+	
 	</c:forEach>
 	
 </div>
