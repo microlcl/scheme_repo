@@ -38,7 +38,7 @@ import com.eastteam.myprogram.web.Servlets;
 
 @Controller
 @RequestMapping(value = "/visit")
-public class VisitContrller {
+public class VisitController {
 	
 	@Autowired
   	@Qualifier("configProperties")
@@ -50,7 +50,7 @@ public class VisitContrller {
 	@Autowired
 	private VisitService visitService;
 	
-	private static Logger logger = LoggerFactory.getLogger(VisitContrller.class);
+	private static Logger logger = LoggerFactory.getLogger(VisitController.class);
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(@RequestParam(value = "page", defaultValue = "1") int pageNumber,
