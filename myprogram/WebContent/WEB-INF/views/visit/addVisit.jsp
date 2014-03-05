@@ -156,8 +156,8 @@
 
 </head>
 <body>
-	<div class="form">
-		<form id="inputForm" action="${ctx}/visit/save" method="post">
+	<form id="inputForm" action="${ctx}/visit/save" method="post">
+		<div class="form">
 			<input type="hidden" name="isVisited" id="sex" value="F" >
 			<h1>增加初次到访记录</h1>
 			<div class="alert hide" id="warning-block1">
@@ -168,7 +168,7 @@
 			</div>
 						
 			
-			<div class="accordion-group">
+			<div class="accordion-group" style="margin:20px;">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse"
 						href="#visit_details">		
@@ -215,7 +215,7 @@
 			</div>	            
 						
 			            
-			<div class="accordion-group">
+			<div class="accordion-group" style="margin:20px;">
 				<div class="accordion-heading">
 					<a class="accordion-toggle" data-toggle="collapse"
 						href="#case_details">		
@@ -272,7 +272,7 @@
 		
 		
 		
-			<div class="accordion-group">
+			<div class="accordion-group" style="margin:20px;">
 				<div class="accordion-heading">
 		
 						<a class="accordion-toggle" data-toggle="collapse"
@@ -352,14 +352,13 @@
 
 	            
 	            
-			</div>
 			<%@ include file="../components/casePopupWindow.jsp"%>
 			<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
 				<input id="submit_btn" class="btn btn-warning" type="button" value="提交" onclick="submitForm();"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
 			
-		</form>
-	</div>
+		</div>
+	</form>
 </body>
 </html>

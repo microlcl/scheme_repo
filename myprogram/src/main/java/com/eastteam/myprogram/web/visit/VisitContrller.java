@@ -104,8 +104,12 @@ public class VisitContrller {
 			model.addAttribute("thisCase", visitMybatisDao.selectCase(Long.parseLong(request.getParameter("caseId"))));
 		}
 		model.addAttribute("isVisited", request.getParameter("isVisited"));
+		if (request.getParameter("isVisited") != null){
+			return "visit/addNotFirstVisit";
+		} else {
+			return "visit/addVisit";
+		}
 		
-		return "visit/addVisit";
 	}
 	
 	@RequestMapping(value = "returnVisit", method = RequestMethod.GET)
