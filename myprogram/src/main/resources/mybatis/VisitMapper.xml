@@ -109,8 +109,8 @@
 	</insert>
 	
 	<insert id="insertVisit" parameterType="map" useGeneratedKeys="true" keyProperty="id">
-		insert into visit_activities (customer_id, visit_type, visitor_num,  visit_stime, business_type, case_id, is_visited, comment) 
-		values (#{customerId}, #{visitType}, #{visitNum}, #{visitTime}, #{businessType}, #{caseId}, #{isVisited}, #{comment});
+		insert into visit_activities (customer_id, visit_type, visitor_num,  visit_stime, operator, business_type, case_id, is_visited, comment) 
+		values (#{customerId}, #{visitType}, #{visitNum}, #{visitTime}, #{operator}, #{businessType}, #{caseId}, #{isVisited}, #{comment});
 	</insert>
 	
 	<select id="selectCustomers" resultType="Customer" >

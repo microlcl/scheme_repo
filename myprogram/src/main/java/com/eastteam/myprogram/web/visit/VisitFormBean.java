@@ -7,8 +7,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Customer;
+import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.web.BaseFormBean;
 
 /**
@@ -21,17 +24,24 @@ public class VisitFormBean extends BaseFormBean {
 	private Long customerId;
 	private Long caseId;
 	private Category visitType;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm") 
 	private Date visitTime;
+	
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+	private Date eventTime;
+	
 	private int visitNum;
 	private Category businessType;
 	private String isVisited;
 	private String comment;
-	private Date eventTime;
 	private int guestNum;
 	private String spaceTip;
+//	private String customerName;
 	private String caseTitle;
+	private Paper paper;
+	private String operator;
 	private Customer customer;
-	
 	
 	public Long getVisitId() {
 		return visitId;
@@ -60,20 +70,8 @@ public class VisitFormBean extends BaseFormBean {
 	public Date getVisitTime() {
 		return visitTime;
 	}
-	public void setVisitTime(String visitTime) {
-		if(visitTime != null && visitTime != ""){	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date date = new Date();
-			try {
-				date = sdf.parse(visitTime);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.visitTime = date;
-		}
-		else 
-			this.visitTime = null;
+	public void setVisitTime(Date visitTime) {
+		this.visitTime = visitTime;
 	}
 	public int getVisitNum() {
 		return visitNum;
@@ -102,20 +100,8 @@ public class VisitFormBean extends BaseFormBean {
 	public Date getEventTime() {
 		return eventTime;
 	}
-	public void setEventTime(String eventTime) {
-		if(eventTime != null && eventTime != ""){	
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			Date date = new Date();
-			try {
-				date = sdf.parse(eventTime);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			this.eventTime = date;
-		}
-		else 
-			this.visitTime = null;
+	public void setEventTime(Date eventTime) {
+		this.eventTime = eventTime;	
 	}
 	public int getGuestNum() {
 		return guestNum;
@@ -129,11 +115,29 @@ public class VisitFormBean extends BaseFormBean {
 	public void setSpaceTip(String spaceTip) {
 		this.spaceTip = spaceTip;
 	}
+//	public String getCustomerName() {
+//		return customerName;
+//	}
+//	public void setCustomerName(String customerName) {
+//		this.customerName = customerName;
+//	}
 	public String getCaseTitle() {
 		return caseTitle;
 	}
 	public void setCaseTitle(String caseTitle) {
 		this.caseTitle = caseTitle;
+	}
+	public Paper getPaper() {
+		return paper;
+	}
+	public void setPaper(Paper paper) {
+		this.paper = paper;
+	}
+	public String getOperator() {
+		return operator;
+	}
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 	public Customer getCustomer() {
 		return customer;
@@ -141,8 +145,4 @@ public class VisitFormBean extends BaseFormBean {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	
-	
-
 }

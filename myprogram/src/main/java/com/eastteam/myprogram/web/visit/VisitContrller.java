@@ -128,28 +128,37 @@ public class VisitContrller {
 	}
 	
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(HttpSession session, VisitFormBean visitFormBean, @RequestParam(value="customerVisitTime") String visitTime, 
-			@RequestParam(value="customerEventTime") String eventTime, @RequestParam(value="visitNumber") String visitNumber, 
-			@RequestParam(value="guestNumber") String guestNumber, @RequestParam(value="visitTypeId") String visitTypeId,
-			@RequestParam(value="businessTypeId") String businessTypeId) {
+	public String save(VisitFormBean visitFormBean){
 		logger.info("in visit control  save");
 		
-		visitFormBean.setVisitTime(visitTime);
-		visitFormBean.setEventTime(eventTime);
-		visitFormBean.setVisitNum(Integer.parseInt(visitNumber));
-		visitFormBean.setGuestNum(Integer.parseInt(guestNumber));
-		Category visitType = new Category();
-		visitType.setId(visitTypeId);
-		Category businessType = new Category();
-		businessType.setId(businessTypeId);
-		visitFormBean.setBusinessType(businessType);
-		visitFormBean.setVisitType(visitType);
-		logger.info("VisitFormBean: " + visitFormBean.toString());
-		
 		visitService.saveVisit(visitFormBean);
-		
+				
 		return "redirect:/visit/list";
 	}
+	
+//	@RequestMapping(value = "save", method = RequestMethod.POST)
+//	public String save(HttpSession session, VisitFormBean visitFormBean, @RequestParam(value="customerVisitTime") String visitTime, 
+//			@RequestParam(value="customerEventTime") String eventTime, @RequestParam(value="visitNumber") String visitNumber, 
+//			@RequestParam(value="guestNumber") String guestNumber, @RequestParam(value="visitTypeId") String visitTypeId,
+//			@RequestParam(value="businessTypeId") String businessTypeId) {
+//		logger.info("in visit control  save");
+//		
+//		visitFormBean.setVisitTime(visitTime);
+//		visitFormBean.setEventTime(eventTime);
+//		visitFormBean.setVisitNum(Integer.parseInt(visitNumber));
+//		visitFormBean.setGuestNum(Integer.parseInt(guestNumber));
+//		Category visitType = new Category();
+//		visitType.setId(visitTypeId);
+//		Category businessType = new Category();
+//		businessType.setId(businessTypeId);
+//		visitFormBean.setBusinessType(businessType);
+//		visitFormBean.setVisitType(visitType);
+//		logger.info("VisitFormBean: " + visitFormBean.toString());
+//		
+//		visitService.saveVisit(visitFormBean);
+//		
+//		return "redirect:/visit/list";
+//	}
 	
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String showVisit(@PathVariable("id") String id, Model model, HttpSession session){

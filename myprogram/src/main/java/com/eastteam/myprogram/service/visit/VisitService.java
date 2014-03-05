@@ -105,6 +105,7 @@ public class VisitService extends PageableService {
 			map.put("caseId", thisCase.getId());
 			map.put("isVisited", visitFormBean.getIsVisited());
 			map.put("comment", visitFormBean.getComment());
+			map.put("operator",visitFormBean.getOperator());
 			visitMybatisDao.insertVisit(map);
 		}
 		else{
