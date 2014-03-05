@@ -1,6 +1,7 @@
 package com.eastteam.myprogram.entity;
 
 public class Stakeholder extends BaseEntity {
+	private String key;
 	/**角色**/
 	private Category character;
 	private Customer customer;
@@ -30,6 +31,12 @@ public class Stakeholder extends BaseEntity {
 	}
 	public void setRequired(boolean required) {
 		this.required = required;
+	}
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
 	}
 	
 

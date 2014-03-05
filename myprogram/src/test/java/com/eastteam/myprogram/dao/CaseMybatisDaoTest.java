@@ -80,6 +80,7 @@ public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 	public void getStakeholders() {
 		List<Stakeholder> stakeholders = this.casesDao.getStakeholders(1L);
 		logger.info(stakeholders.toString());
+		logger.info("size==========" + stakeholders.size());
 		assertTrue(stakeholders.size() > 0);
 	}
 }
