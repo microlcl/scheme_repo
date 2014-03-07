@@ -188,7 +188,7 @@
 			</a> 
 
 		</div>
-		<div id="stakeholders_{index}" class="accordion-body collapse">
+		<div id="stakeholders_{index}" class="accordion-body collapse in">
 			<div class="accordion-inner">
 				<div class="row">
 					<div class="control-group span pull-left">
