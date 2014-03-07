@@ -7,7 +7,7 @@ public class Stakeholder extends BaseEntity {
 	private Customer customer;
 	private String description;
 	/**是否是默认角色**/
-	private boolean required;
+	private boolean required = false;
 	public Category getCharacter() {
 		return character;
 	}

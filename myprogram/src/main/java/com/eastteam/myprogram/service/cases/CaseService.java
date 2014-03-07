@@ -107,6 +107,39 @@ public class CaseService extends PageableService {
 				mycase.getStatkeholders().add(defaultStakeholder);
 			}
 		}
+		
+		updateDefaultStakeholderTag(mycase, defaultCharacters);
+	}
+	
+	private void updateDefaultStakeholderTag(Case mycase, List<Category> defaultCharacters) {
+		
+		List<Stakeholder> myStakeholders = mycase.getStatkeholders();
+		if(myStakeholders == null) 
+			return;
+		for(Stakeholder stakeholder : myStakeholders) {
+			if (isDefautCharater(stakeholder, defaultCharacters)) {
+				stakeholder.setRequired(true);
+			}
+		}
+		
+	}
+	
+	/**
+	 * 判断此人是不是默认必须的角色
+	 * @param stakeholder
+	 * @param defaultCharacters
+	 * @return
+	 */
+	private boolean isDefautCharater(Stakeholder stakeholder, List<Category> defaultCharacters) {
+		if (stakeholder == null || defaultCharacters == null) 
+			return false;
+		for (Category defaultCharacter : defaultCharacters) {
+			if (defaultCharacter.equals(stakeholder.getCharacter())) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	private boolean contains(List<Stakeholder> stakeholders, Category character) {

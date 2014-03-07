@@ -110,7 +110,8 @@
 							<input name="statkeholders[${status.index}].character.id" id="customer_character_${status.index}"
 								class="span4 easyui-combotree"
 								data-options="url:'${ctx}/category/api/getChildren/getCharacterType',method:'get',required:false"
-								value="${statkeholders.character.id}">
+								value="${statkeholders.character.id}" <c:if test="${statkeholders.required}">disabled="disabled" </c:if>>
+								
 						</div>
 					</div>
 					<div class="control-group pull-right">
