@@ -177,6 +177,7 @@
 			<input id="save_btn" class="btn" type="submit" value="保存"/>
 		</div>
 	</form>
+	<a name="myBottom"></a>
 	
 	<!-- character 模板 开始 -->
 <div style="display:none" id="myCharacterTemplate">	

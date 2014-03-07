@@ -88,7 +88,7 @@
 			</div>
 		</div>
 		<div class="pull-right">
-			<a href="#" onclick="addCharacter()">增加</a>
+			<a href="#myBottom" onclick="addCharacter()">增加</a>
 		</div>
 	</div>
 	<c:forEach items="${mycase.statkeholders}" var="statkeholders" varStatus="status">
