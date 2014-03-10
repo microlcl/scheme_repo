@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.eastteam.myprogram.entity.Attachment;
 import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
@@ -161,9 +162,8 @@ public class TaskController {
 		String filename = session.getId() + "_" + name;
 		logger.info("文件保存路径：" + mediafolder);
 		logger.info("文件名称：" + filename);		
-//		taskService.saveFile(file, realPath, filename);
+		taskService.saveFile(file, mediafolder, filename);
 		
-//		return "";
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
@@ -178,7 +178,7 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "doUpdate", method = RequestMethod.POST)
-	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,@RequestParam(value="timeRemainingDay") int day,@RequestParam(value="timeRemainingHour") int hour,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
+	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@ModelAttribute Attachment attachment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,@RequestParam(value="timeRemainingDay") int day,@RequestParam(value="timeRemainingHour") int hour,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task update action");
 		if(finishTime!=null&&!finishTime.equals("")){
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
