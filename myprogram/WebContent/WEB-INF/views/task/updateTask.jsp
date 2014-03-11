@@ -48,9 +48,14 @@
 					<label for="case_title">概要：</label> 
 					<input type="text" class="input-xxlarge" id="summary" name="summary" value="${task.summary}">
 					<input type="hidden" name="id" value="${task.id}">
-
 				</div>
 			</div>
+			<div class="pull-right">
+				<input name="status.id" id="status"
+				class="span easyui-combotree" 
+				data-options="url:'${ctx}/category/api/getAll/getTaskStatus',method:'get',required:false" value="${task.status.id}">
+
+				</div>
 		</div>
 		<div style="padding: 20px;">
 			<div class="tabbable">

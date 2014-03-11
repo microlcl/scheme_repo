@@ -18,7 +18,7 @@
 			<div class="controls">
 				<input id="taskType" name="taskType.id"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-9-1',method:'get',required:false" value="${task.taskType.id}">
+				data-options="url:'${ctx}/category/api/getAll/getTaskType',method:'get',required:false" value="${task.taskType.id}">
 			</div>
 		</div>
 		<div class="control-group pull-right">
@@ -26,7 +26,7 @@
 			<div class="pull-right">
 				<!--input type="text" class="span4" id="event_time" placeholder=""-->
 				<div class="input-append date form_date" >
-                    <input size="16" type="text" id="finishTime" name="finishTime" style="width:302px" value="<fmt:formatDate value='${task.dueDate}' pattern='yyyy-MM-dd'/>" >
+                    <input size="16" type="text" id="finishTime" name="finishTime" style="width:302px" value="<fmt:formatDate value='${task.dueDate}' pattern='yyyy-MM-dd HH:mm'/>" >
                     <span class="add-on"><i class="icon-remove"></i></span>
 					<span class="add-on"><i class="icon-th"></i></span>
                 </div>
@@ -76,7 +76,7 @@
 			<div class="controls">
 				<input id="priority" name="priority.id"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-9-2',method:'get',required:false" value="${task.priority.id}">
+				data-options="url:'${ctx}/category/api/getAll/getTaskPriority',method:'get',required:false" value="${task.priority.id}">
 			</div>
 		</div>
 		<div class="control-group span pull-right">
@@ -91,29 +91,19 @@
 	</div>
 	<div class="row">
 		<div class="control-group span pull-left">
-			<label class="control-label" for="task_status">任务状态:</label>
-			<div class="controls">
-				<input name="status.id" value="${task.status.id}" id="status"
-				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false" value="${task.status.id}">
-			</div>
-		</div>
-		<div class="control-group span pull-right">
-			<label class="control-label" for="create_time">创建时间:</label>
-			<div class="controls">
-				<input type="text" class="span4" id="createdTimestamp"  value="<fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd"/>"
-					 maxlength="64" readonly>
-			   <input type="hidden" name="createdTime" value="${task.createdTimestamp}">
-			</div>
-		</div>
-	</div>
-		<div class="row">
-		<div class="control-group span pull-left">
 			<label class="control-label" for="task_status">所属案例:</label>
 			<div class="input-append">
 			<input type="text" class="required" id="caseTitle" name="cases.title"  style="width:267px" class="input-large " value="${task.cases.title}" readonly />
 			<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
 			<input type="hidden" name="cases.id" id="caseid" >
+			</div>
+		</div>
+		<div class="control-group span pull-right">
+			<label class="control-label" for="create_time">创建时间:</label>
+			<div class="controls">
+				<input type="text" class="span4" id="createdTimestamp"  value="<fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/>"
+					 maxlength="64" readonly>
+			   <input type="hidden" name="createdTime" value="${task.createdTimestamp}">
 			</div>
 		</div>
 	</div>
@@ -170,11 +160,11 @@ $('.form_date').datetimepicker({
 		todayBtn : true,
 		autoclose : 1,
 		todayHighlight : 1,
-		startView : 2,
-		minView : 2,
+//		startView : 2,
+// 	    minView : 2,
 		forceParse : 0,
 		pickerPosition: "bottom-left",
-		format : 'yyyy-mm-dd HH:ii'
+		format : 'yyyy-mm-dd hh:ii'
 	});
 	
 CKEDITOR.replace('comment');

@@ -42,7 +42,7 @@
 			<div class="controls">
 				<input id="taskType" name="taskType.id"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-9-1',method:'get',required:false">
+				data-options="url:'${ctx}/category/api/getAll/getTaskType',method:'get',required:false">
 			</div>
 		</div>
 		<div class="control-group pull-right">
@@ -97,7 +97,7 @@
 			<div class="controls">
 				<input id="priority" name="priority.id"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-9-2',method:'get',required:false">
+				data-options="url:'${ctx}/category/api/getAll/getTaskPriority',method:'get',required:false">
 			</div>
 		</div>
 		<div class="control-group span pull-right">
@@ -113,7 +113,7 @@
 			<div class="controls">
 				<input name="status.id" id="status"
 				class="span4 easyui-combotree"
-				data-options="url:'${ctx}/category/api/getAll/M1-9',method:'get',required:false">
+				data-options="url:'${ctx}/category/api/getAll/getTaskStatus',method:'get',required:false" value="1-0-7-1" readonly>
 			</div>
 		</div>
 		<div class="control-group span pull-right">
@@ -184,11 +184,11 @@
 		todayBtn : true,
 		autoclose : 1,
 		todayHighlight : 1,
-		startView : 2,
-		minView : 2,
+//		startView : 2,
+//		minView : 2,
 		forceParse : 0,
 		pickerPosition: "bottom-left",
-		format : 'yyyy-mm-dd HH:ii'
+		format : 'yyyy-mm-dd hh:ii'
 	});
 //验证输入数字	
 	function clearNoNum(obj)

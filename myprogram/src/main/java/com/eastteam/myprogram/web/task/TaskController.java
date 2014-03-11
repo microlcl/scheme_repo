@@ -98,7 +98,7 @@ public class TaskController {
 	public String save(@ModelAttribute Task task,@ModelAttribute Comment comment,@RequestParam(value="finishTime") String finishTime, Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task save action");
 		if(finishTime!=null&&!finishTime.equals("")){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date dueDate = new Date();
 			try {
 				dueDate = sdf.parse(finishTime);
@@ -109,22 +109,9 @@ public class TaskController {
 			task.setDueDate(dueDate);
 		}
 		
-		Date nowTime = new Date();
-		String createdTime=nowTime.toString();
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-		Date creDate = new Date();
-		try {
-			String timebegin=createdTime.substring(0, 11);
-			String timeend=createdTime.substring(19);
-			String time=timebegin+"00:00:00"+timeend;			
-			creDate = sdf.parse(time);
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		Date creDate = new Date();		
 		task.setCreatedTimestamp(creDate);
+		
 		List comments=new ArrayList();
 		User user=(User) request.getSession().getAttribute("user");
 		comment.setUser(user);
@@ -181,7 +168,7 @@ public class TaskController {
 	public String doUpdate(@ModelAttribute Task task,@ModelAttribute Comment comment,@ModelAttribute Attachment attachment,@RequestParam(value="finishTime") String finishTime,@RequestParam(value="createdTime")String createdTime,@RequestParam(value="timeRemainingDay") int day,@RequestParam(value="timeRemainingHour") int hour,Model model,RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		logger.info("in Task update action");
 		if(finishTime!=null&&!finishTime.equals("")){
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			Date dueDate = new Date();
 			try {
 				dueDate = sdf.parse(finishTime);
@@ -194,11 +181,8 @@ public class TaskController {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 		Date creDate = new Date();
-		try {
-			String timebegin=createdTime.substring(0, 11);
-			String timeend=createdTime.substring(19);
-			String time=timebegin+"00:00:00"+timeend;			
-			creDate = sdf.parse(time);
+		try {			
+			creDate = sdf.parse(createdTime);
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

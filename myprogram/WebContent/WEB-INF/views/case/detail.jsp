@@ -62,8 +62,34 @@
     		var url = '${ctx}/account/api/search?departmentId=' + defaultDept;
 			$('#case_owner').combobox('reload', url);
     	}
-
-
+    	
+    	$("#caseForm").validate({
+    		rules: {
+    			title:{
+						rangelength: [1,64],
+						required: true
+				},
+				eventTime:{
+						required: true
+				},	
+				guestNum: {
+						rangelength: [1,5],
+						digits: true 			
+				}					
+			},
+			messages: {
+				title:{
+					required: "请填写案例名称！"	
+				},
+				eventTime:{
+					required: "请选择举行时间"
+				},
+				guestNum: {
+					required: "请填写到访人数！",
+					digits: "请输入数字！"
+				}	
+			}
+		});
 	});
 	
 	function mySubmit() {
@@ -119,6 +145,7 @@
 			textField: 'text',
 			method:'get'
 		});
+		
 	}
 </script>
 

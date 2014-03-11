@@ -72,7 +72,7 @@
 				<td><a href="${ctx}/task/update?id=${task.id}">${task.summary}</a></td>
 				<td>${task.status.name}&nbsp;</td>
 				<td>${task.owner.name}</td> 
-				<td><fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${task.createdTimestamp}" type="both" pattern="yyyy-MM-dd HH:mm"/></td>
 				<td>${task.priority.name}</td>
 				<td><a href="${ctx}/case/detail/${task.cases.id}">${task.cases.title}</a></td>
 			</tr>
