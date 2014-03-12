@@ -127,10 +127,20 @@
 							<c:if test="${visit.isVisited=='T'}">否</c:if>
 							<c:if test="${visit.isVisited=='F'}"><span style="color:#FF0000">是</span></c:if>
 						</td>
-						<td>
-							<a href="${ctx}/visit/show/${visit.id}" id="showLink-${visit.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
-							<a href="${ctx}/visit/update/${visit.id}" id="editLink-${visit.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
-						</td>
+						<c:choose>
+							<c:when test="${visit.visitType.id == '1-0-4-1'}">
+								<td>
+									<a href="${ctx}/visit/showReVisit/${visit.id}" id="showLink-${visit.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+									<a href="${ctx}/visit/updateReVisit/${visit.id}" id="editLink-${visit.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
+								</td>
+							</c:when>	
+							<c:otherwise>
+								<td>
+									<a href="${ctx}/visit/show/${visit.id}" id="showLink-${visit.id}"><i class="icon-folder-open"></i> 查看</a>&nbsp;&nbsp;
+									<a href="${ctx}/visit/update/${visit.id}" id="editLink-${visit.id}"><i class="icon-edit"></i> 修改</a>&nbsp;&nbsp;
+								</td>
+							</c:otherwise>					
+						</c:choose>
 					</tr>
 				</c:forEach>
 				</tbody>		

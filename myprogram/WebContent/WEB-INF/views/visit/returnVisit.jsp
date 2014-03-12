@@ -201,7 +201,7 @@
 				</div>
 				
 				<div class="control-group">	
-					<span class="formlabel span2 control-label">到访时间：</span>
+					<span class="formlabel span2 control-label">回访时间：</span>
 					<div class="input-append date form_date">
 	                	<input size="16" type="text" name="visitTime" id="visit_time" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
@@ -217,8 +217,8 @@
 						<span class="add-on"><i class="icon-th"></i></span>
 	               </div>
 	            </div>	       
-	<!--  			
-				<div class="control-group">
+	  			
+				<div class="control-group" style="display:none">
 					<span class="formlabel span2 control-label">是否初次到访：</span>
 					<div class="controls">
 						<label class="radio inline">
@@ -229,7 +229,7 @@
 						</label>
 					</div>
 				</div>
-	 -->	
+		
 				<div class="control-group">
 					<span class="formlabel span2 control-label">相关信息调查：</span>
 					<input id="visitPaper" class="easyui-combobox" name="paper.id" data-options="url:'${ctx}/paper/api/search?businessType=${businessTypeId}',method:'get',valueField:'id',textField:'paperName'" style="width:200px;" />

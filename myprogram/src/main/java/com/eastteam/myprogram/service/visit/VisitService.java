@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Customer;
+import com.eastteam.myprogram.entity.Paper;
 import com.eastteam.myprogram.entity.VisitActivity;
 import com.eastteam.myprogram.service.PageableService;
 import com.eastteam.myprogram.web.visit.VisitFormBean;
@@ -89,6 +90,8 @@ public class VisitService extends PageableService {
 			Case thisCase = new Case();
 			thisCase = visitMybatisDao.selectCase(visitFormBean.getCaseId());
 			
+			Paper paper = visitFormBean.getPaper();
+			
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());
 			map.put("customerId", customer.getId());
@@ -99,6 +102,7 @@ public class VisitService extends PageableService {
 			map.put("caseId", thisCase.getId());
 			map.put("isVisited", visitFormBean.getIsVisited());
 			map.put("comment", visitFormBean.getComment());
+			map.put("paperId", paper.getId());
 			map.put("operator",visitFormBean.getOperator());
 			visitMybatisDao.insertVisit(map);
 		}

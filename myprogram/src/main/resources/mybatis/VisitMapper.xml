@@ -67,7 +67,10 @@
 		</association>	
 		<association property="operator" javaType="User">
 			<id property="id" column="operator" />
-		</association>			
+		</association>	
+		<association property="paper" javaType="Paper">
+			<id property="id" column="paper_id"/>
+		</association>		
 	</resultMap>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
@@ -109,8 +112,8 @@
 	</insert>
 	
 	<insert id="insertVisit" parameterType="map" useGeneratedKeys="true" keyProperty="id">
-		insert into visit_activities (customer_id, visit_type, visitor_num,  visit_stime, operator, business_type, case_id, is_visited, comment) 
-		values (#{customerId}, #{visitType}, #{visitNum}, #{visitTime}, #{operator}, #{businessType}, #{caseId}, #{isVisited}, #{comment});
+		insert into visit_activities (customer_id, visit_type, visitor_num,  visit_stime, operator, business_type, case_id, is_visited, comment, paper_id) 
+		values (#{customerId}, #{visitType}, #{visitNum}, #{visitTime}, #{operator}, #{businessType}, #{caseId}, #{isVisited}, #{comment}, #{paperId});
 	</insert>
 	
 	<select id="selectCustomers" resultType="Customer" >
@@ -124,7 +127,7 @@
 	</select>
 	
 	<select id="selectVisit" parameterType="Long" resultMap="visitDetailMap">
-		select v.visit_id as visit_id, v.customer_id as customer_id, ct.customer_name as customer_name,v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id paper_id, c.case_title as case_title, c.event_time, c.guest_num, c.space_tip, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
+		select v.visit_id as visit_id, v.customer_id as customer_id, ct.customer_name as customer_name,v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id as paper_id, c.case_title as case_title, c.event_time, c.guest_num, c.space_tip, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
 		from visit_activities v
 		left join cases c on v.case_id= c.case_id
 		left join category cg on v.visit_type=cg.id

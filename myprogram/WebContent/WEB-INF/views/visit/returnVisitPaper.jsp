@@ -1,16 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
-<div class="row">
-	<div class="span">
-		<div class="form-search" style="padding: 0px 0 20px 2px;">
-			<label for="paperList">调查问卷：</label> 
-				<input id="case_owner"
-				class="span4 easyui-combobox" name="paper.id"
-				data-options="url:'${ctx}/paper/api/search?businessType=${businessTypeId}',method:'get',valueField:'id',textField:'paperName'" value="">
-
-		</div>
-	</div>
-</div>
 <div>
 				<c:forEach items="${mycase.paper.questions}" var="question" varStatus="status">
                   <div class="accordion-heading">

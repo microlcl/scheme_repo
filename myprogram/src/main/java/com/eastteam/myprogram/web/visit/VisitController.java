@@ -177,4 +177,22 @@ public class VisitController {
 		
 		return "visit/updateVisit";
 	}
+	
+	@RequestMapping(value = "showReVisit/{id}", method = RequestMethod.GET)
+	public String showReVisit(@PathVariable("id") String id, Model model, HttpSession session){
+		logger.info("in visit controller: show ");
+		VisitActivity visit = visitService.selectVisit(id);
+		model.addAttribute("visit", visit);
+		
+		return "visit/showReVisit";
+	}
+	
+	@RequestMapping(value = "updateReVisit/{id}", method = RequestMethod.GET)
+	public String updateReVisit(@PathVariable("id") String id, Model model, HttpSession session){
+		logger.info("in visit controller: update ");
+		VisitActivity visit = visitService.selectVisit(id);
+		model.addAttribute("visit", visit);
+		
+		return "visit/updateReVisit";
+	}
 }
