@@ -117,19 +117,19 @@
 		});
 		
 		function submitForm(){
-			console.log("测试" + $("#customerVisitTime").val() + $("#customerEventTime").val() + $("input[name='visitTypeId']").val() + $("input[name='businessTypeId']").val());
-			if (($("#customerVisitTime").val() != "") && ($("#customerEventTime").val() != "") && ($("input[name='visitTypeId']").val() != "") && ($("input[name='businessTypeId']").val() != "")) {
-				console.log("In form submit");
+//			console.log("测试" + $("#customerVisitTime").val() + $("#customerEventTime").val() + $("input[name='visitTypeId']").val() + $("input[name='businessTypeId']").val());
+//			if (($("#customerVisitTime").val() != "") && ($("#customerEventTime").val() != "") && ($("input[name='visitTypeId']").val() != "") && ($("input[name='businessTypeId']").val() != "")) {
+//				console.log("In form submit");
 				$('#inputForm').submit();
-			}else if (($("#customerVisitTime").val() == "") || ($("#customerEventTime").val() == "")){
-				$("#warning-block1").show();
-				return;
-			}else if (($("input[name='visitTypeId']").val() == "") || ($("input[name='businessTypeId']").val() == "")){
-				$("#warning-block2").show();
-				return;
-			}else {
-				console.log("判断条件不正确");
-			}
+//			}else if (($("#customerVisitTime").val() == "") || ($("#customerEventTime").val() == "")){
+//				$("#warning-block1").show();
+//				return;
+//			}else if (($("input[name='visitTypeId']").val() == "") || ($("input[name='businessTypeId']").val() == "")){
+//				$("#warning-block2").show();
+//				return;
+//			}else {
+//				console.log("判断条件不正确");
+//			}
 		}
       
 
@@ -155,7 +155,7 @@
         	} 
         	} 
         	return format; 
-        	} 
+        };
         
         function addCase(result){
             var date = new Date(result.cases[0].eventTime);
@@ -166,7 +166,8 @@
  		   $("#guestNumber").val(result.cases[0].guestNum);
  		   $("#spaceTip").val(result.cases[0].spaceTip);
  		   $("#businessTypeId").val(result.cases[0].businessType.id);
- 		   $("#businessType").val(result.cases[0].businessType.name);
+ 		   $("#businessTypeName").val(result.cases[0].businessType.name);
+ 		   $("#caseId").val(result.cases[0].id);
  		  
  		  
         }
@@ -213,7 +214,8 @@
 							<div class="control-group span5 pull-left">
 								<label class="control-label" for="cc1">访问类别：</label>
 								<div class="controls">
-									<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:370px;" name="visitTypeId"/>
+									<input name="visitType.name" id="visitTypeName" type="text" class="span4" value="回访" readonly>
+									<input type="hidden" name="visitType.id" value="1-0-4-1">
 								</div>
 							</div>
 							<div class="control-group span5 pull-right">
@@ -225,10 +227,10 @@
 						</div>			
 						<div class="row">
 							<div class="control-group span5 pull-left">
-								<label class="control-label" for="customerVisitTime">访问时间：</label>
+								<label class="control-label" for="visitTime">访问时间：</label>
 								<div class="pull-left">
 									<div class="input-append date form_date">
-					                	<input size="16" type="text" id="customerVisitTime" name="customerVisitTime" style="width:302px" readonly>
+					                	<input size="16" type="text" id="visitTime" name="visitTime" style="width:302px" readonly>
 					                    <span class="add-on"><i class="icon-remove"></i></span>
 										<span class="add-on"><i class="icon-th"></i></span>
 			              		 	</div>
@@ -262,13 +264,14 @@
 								<div class="controls">
 									<input name="caseTitle" id="caseTitle" type="text" class="required"  style="width:270px" readonly>
 									<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})" style="margin-bottom: 10px;">选择案例</button>
+									<input type="hidden" name="caseId" id="caseId" >
 								</div>
 							</div>
 							<div class="control-group span5 pull-right">
 								<label class="control-label" for="businessType">策划类别：</label>
 								<div class="pull-left">
-									<input name="businessType" id="businessType" type="text" class="span4" readonly>
-									<input type="hidden" name="businessTypeId">
+									<input name="businessType。name" id="businessTypeName" type="text" class="span4" readonly>
+									<input type="hidden" name="businessType.id" id="businessTypeId" >
 								</div>
 							</div>
 						</div>			

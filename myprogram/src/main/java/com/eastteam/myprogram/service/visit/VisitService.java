@@ -87,13 +87,7 @@ public class VisitService extends PageableService {
 			visitMybatisDao.insertCustomer(customer);
 			
 			Case thisCase = new Case();
-			thisCase.setBusinessType(visitFormBean.getBusinessType());
-			thisCase.setEventTime(visitFormBean.getEventTime());
-			thisCase.setGuestNum(visitFormBean.getGuestNum());
-			thisCase.setSpaceTip(visitFormBean.getSpaceTip());
-			thisCase.setTitle(visitFormBean.getCaseTitle());
-			thisCase.setId(visitFormBean.getCaseId());
-			visitMybatisDao.updateCase(thisCase);
+			thisCase = visitMybatisDao.selectCase(visitFormBean.getCaseId());
 			
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());

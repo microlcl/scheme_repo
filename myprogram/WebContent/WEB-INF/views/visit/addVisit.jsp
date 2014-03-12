@@ -19,20 +19,6 @@
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
 			
-			var visitTypeId = ['${visitType}'];
-			$("#cc1").combotree({ 
-				onLoadSuccess:function(node){//数据加载成功触发 
-					$("#cc1").combotree('setValues', visitTypeId);
-				},
-				onBeforeSelect:function(node){ 
-					var tree = $(this).tree;
-					var isLeaf = tree('isLeaf', node.target);
-					console.log("isLeaf=" + isLeaf);
-					return isLeaf;
-				}
-			
-			});
-			
 			$("#cc2").combotree({ 
 				onBeforeSelect:function(node){ 
 					var tree = $(this).tree;
@@ -181,7 +167,8 @@
 							<div class="control-group span5 pull-left">
 								<label class="control-label" for="cc1">访问类别：</label>
 								<div class="controls">
-									<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:370px;" name="visitTypeId"/>
+									<input name="visitType.name" id="visitTypeName" type="text" class="span4" value="回访" readonly>
+									<input type="hidden" name="visitType.id" value="1-0-4-1">
 								</div>
 							</div>
 							<div class="control-group span5 pull-right">
@@ -235,7 +222,7 @@
 							<div class="control-group span5 pull-right">
 								<label class="control-label" for="cc2">策划类别：</label>
 								<div class="pull-left">
-									<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:370px;" name="businessTypeId"/>
+									<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:370px;" name="businessType.id"/>
 								</div>
 							</div>
 						</div>			
