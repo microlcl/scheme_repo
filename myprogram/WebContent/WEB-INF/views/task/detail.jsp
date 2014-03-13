@@ -62,7 +62,7 @@
 			<label class="control-label" for="department">所属部门:</label>
 			<div class="controls">
 				<input id="mydepartment_id" name="department.id"
-				class="span4 easyui-combotree"
+				class="span4 easyui-combotree required"
 				data-options="url:'${ctx}/department/api/get',method:'get',required:false">
 			</div>
 		</div>
@@ -80,7 +80,7 @@
 			<label class="control-label" for="task_owner">拥有者:</label>
 			<div class="controls">
 				<input id="myaccount_id" name="owner.id"
-				class="span4 easyui-combobox"
+				class="span4 easyui-combobox required"
 				data-options="method:'get',valueField:'id',textField:'name'">		
 			</div>
 		</div>
@@ -96,7 +96,7 @@
 			<label class="control-label" for="task_priority">优先级：</label>
 			<div class="controls">
 				<input id="priority" name="priority.id"
-				class="span4 easyui-combotree"
+				class="span4 easyui-combotree required"
 				data-options="url:'${ctx}/category/api/getAll/getTaskPriority',method:'get',required:false">
 			</div>
 		</div>
@@ -126,11 +126,9 @@
 	<div class="row">
 		<div class="control-group span pull-left">
 			<label class="control-label" for="task_status">所属案例:</label>
-			<div class="input-append">
 			<input type="text" class="required" id="caseTitle" name="cases.title"  style="width:267px" class="input-large " readonly />
 			<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
 			<input type="hidden" name="cases.id" id="caseid" >
-			</div>
 		</div>
 	</div>
 	<div class="control-group">
@@ -151,7 +149,7 @@
 					
 <%@ include file="../components/casePopupWindow.jsp"%>
 <div class="form-actions">
-			<input id="cancel_btn" class="btn" type="submit" value="保存" />
+			<input id="cancel_btn" class="btn" type="button" value="保存" onclick="submitForm();"/>
 		</div>
 
 

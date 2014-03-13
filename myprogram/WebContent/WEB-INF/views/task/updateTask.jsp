@@ -34,6 +34,38 @@
     		var url = '${ctx}/account/api/search?departmentId=' + defaultDept;
 			$('#myaccount_id').combobox('reload', url);
     	}
+    	
+    	$("#taskForm").validate({
+	     	rules: {
+					summary: {
+						required : true
+					},
+					timeRemainingDay:{
+						required : true,
+						digits : true,
+						min:0
+					},
+					timeRemainingHour:{
+					    required : true,
+					    digits : true,
+					    range:[0,8]						
+					}
+				},
+				messages: {
+					summary: {
+						required: "请填写任务名称！"
+					},
+					timeRemainingDay:{
+						required: "请填入剩余天数(如小于1天,请填0)！"
+					},
+					timeRemainingHour:{
+					    range: jQuery.validator.format("工作日1天=8小时，请输入一个介于 0 和 8 之间的值")				
+					}
+				},
+			errorPlacement: function (error, element) {
+            	error.appendTo(element.parent());    //将错误信息添加当前元素的父结点后面 
+    		}
+		});
     });
    
 	</script>

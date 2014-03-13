@@ -19,6 +19,16 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
 		$("#taskForm").validate({
+	     	rules: {
+					summary: {
+						required : true
+					}
+				},
+				messages: {
+					summary: {
+						required: "请填写任务名称！"
+					}
+				},
 			errorPlacement: function (error, element) {
             	error.appendTo(element.parent());    //将错误信息添加当前元素的父结点后面 
     		}
@@ -39,6 +49,25 @@
 		   $("#caseid").val(id);
 
         }
+     	function submitForm(){
+			console.log("测试");
+			if (($("#finishTime").val() != "") && ($("input[name='priority.id']").val() != "") && ($("input[name='taskType.id']").val() != "") && ($("input[name='department.id']").val() != "")&&($("input[name='owner.id']").val() != "")) {
+				console.log("In form submit");
+				$("#warning-block1").hide();
+				$("#warning-block2").hide();
+				$('#taskForm').submit();
+			}else if (($("input[name='priority.id']").val() == "") && ($("input[name='taskType.id']").val() == "") && ($("input[name='department.id']").val() == "")&&($("input[name='owner.id']").val() == "")){
+				$("#warning-block2").hide();
+				$("#warning-block1").show();
+				return;
+			}else if (($("#finishTime").val() == "")){
+				$("#warning-block1").hide();
+				$("#warning-block2").show();
+				return;
+			}else {
+				console.log("判断条件不正确");
+			}
+		}
 	//var count = 0;
 	
 //	function addsub(){
@@ -55,6 +84,12 @@
 <body>
 	<div class="form">
 		<h1>增加任务</h1>
+		<div class="alert hide" id="warning-block1">
+		  	   <strong>注意! </strong> 请确保您已选择 <strong> 任务类型 </strong> 或 <strong> 所属部门  </strong> 或 <strong>优先级</strong> 或  <strong>拥有者 </strong>。
+		</div>
+		<div class="alert hide" id="warning-block2">
+		  	   <strong>注意! </strong> 请确保您已选择 <strong> 计划完成时间 </strong>。
+		</div>
 		<form id="taskForm" action="${ctx}/task/save" method="post" class="form-horizontal" >
 		<div >
 		<p style="padding-left:24px;"> 
