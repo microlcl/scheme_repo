@@ -3,6 +3,7 @@
  */
 package com.eastteam.myprogram.web.visit;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -28,6 +29,7 @@ import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.VisitActivity;
+import com.eastteam.myprogram.service.paper.PaperService;
 import com.eastteam.myprogram.service.visit.VisitService;
 import com.eastteam.myprogram.web.Servlets;
 
@@ -49,6 +51,9 @@ public class VisitController {
 	
 	@Autowired
 	private VisitService visitService;
+	
+	@Autowired
+	private PaperService paperService;
 	
 	private static Logger logger = LoggerFactory.getLogger(VisitController.class);
 	
@@ -183,6 +188,9 @@ public class VisitController {
 		logger.info("in visit controller: show ");
 		VisitActivity visit = visitService.selectVisit(id);
 		model.addAttribute("visit", visit);
+		
+		List<Question> questions = paperService.getQuestions(visit.getPaper().getId().toString());
+		model.addAttribute("questions", questions);
 		
 		return "visit/showReVisit";
 	}

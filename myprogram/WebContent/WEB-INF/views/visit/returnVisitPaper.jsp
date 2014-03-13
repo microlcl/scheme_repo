@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 
 <div>
-				<c:forEach items="${mycase.paper.questions}" var="question" varStatus="status">
+				<div style="padding-bottom:8px;font-size:15px;color:red">本次回访采用的问卷：${visit.paper.paperName}</div>
+				<c:forEach items="${questions}" var="question" varStatus="status">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.count}：</span>
                       	${question.question}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
