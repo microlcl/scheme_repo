@@ -52,9 +52,6 @@ public class VisitController {
 	@Autowired
 	private VisitService visitService;
 	
-	@Autowired
-	private PaperService paperService;
-	
 	private static Logger logger = LoggerFactory.getLogger(VisitController.class);
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -168,7 +165,7 @@ public class VisitController {
 	@RequestMapping(value = "show/{id}", method = RequestMethod.GET)
 	public String showVisit(@PathVariable("id") String id, Model model, HttpSession session){
 		logger.info("in visit controller: show ");
-		VisitActivity visit = visitService.selectVisit(id);
+		VisitActivity visit = visitService.getVisitWithAnswer(id);
 		model.addAttribute("visit", visit);
 		
 		return "visit/showVisit";
@@ -177,7 +174,7 @@ public class VisitController {
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateVisit(@PathVariable("id") String id, Model model, HttpSession session){
 		logger.info("in visit controller: update ");
-		VisitActivity visit = visitService.selectVisit(id);
+		VisitActivity visit = visitService.getVisitWithAnswer(id);
 		model.addAttribute("visit", visit);
 		
 		return "visit/updateVisit";
@@ -186,11 +183,10 @@ public class VisitController {
 	@RequestMapping(value = "showReVisit/{id}", method = RequestMethod.GET)
 	public String showReVisit(@PathVariable("id") String id, Model model, HttpSession session){
 		logger.info("in visit controller: show ");
-		VisitActivity visit = visitService.selectVisit(id);
+		VisitActivity visit = visitService.getVisitWithAnswer(id);
 		model.addAttribute("visit", visit);
 		
-		List<Question> questions = paperService.getQuestions(visit.getPaper().getId().toString());
-		model.addAttribute("questions", questions);
+		model.addAttribute("questions", visit.getPaper().getQuestions());
 		
 		return "visit/showReVisit";
 	}
@@ -198,8 +194,10 @@ public class VisitController {
 	@RequestMapping(value = "updateReVisit/{id}", method = RequestMethod.GET)
 	public String updateReVisit(@PathVariable("id") String id, Model model, HttpSession session){
 		logger.info("in visit controller: update ");
-		VisitActivity visit = visitService.selectVisit(id);
+		VisitActivity visit = visitService.getVisitWithAnswer(id);
 		model.addAttribute("visit", visit);
+		
+		model.addAttribute("questions", visit.getPaper().getQuestions());
 		
 		return "visit/updateReVisit";
 	}

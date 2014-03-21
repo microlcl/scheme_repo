@@ -445,6 +445,8 @@ insert into paper_answers(business_id, paper_id, question_id, answer) values('C1
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C2',5,1,'2');
 insert into paper_answers(business_id, paper_id, question_id, answer) values('C2',5,3,'abcde');
 
+insert into paper_answers(business_id, paper_id, question_id, answer) values('V6',3,9,'1,2,3');
+
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
 		values(1,0,'年会','举行年会','1-0-6-3','1-0-7-1','D1-1','admin',40,'1-0-5-3','2013-11-18',1,'2013-11-15 18:00:00','admin');
 insert into task (task_id,parent_id,summary,description,task_type,status,department_id,owner,progress,priority,due_date,time_remaining,created_timestamp,created_by)
@@ -471,7 +473,7 @@ insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, vi
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
 	values (5, 2, '1-0-4-0', '2013-11-06 02:00:00', 2, 'D1-2-1', 'userid10', 'userid11', '1-0-2-1', 2, 'T', '此人生日宴会喜欢非常简单', 2);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (6, 3, '1-0-4-0', '2013-12-25 12:00:00', 15, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'T', '年会要布置合理', 3);
+	values (6, 3, '1-0-4-1', '2013-12-25 12:00:00', 15, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'T', '年会要布置合理', 3);
 
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)

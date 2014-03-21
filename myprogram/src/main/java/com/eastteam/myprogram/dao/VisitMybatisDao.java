@@ -6,6 +6,7 @@ package com.eastteam.myprogram.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Customer;
 import com.eastteam.myprogram.entity.VisitActivity;
@@ -29,6 +30,7 @@ public interface VisitMybatisDao {
 	public void updateCase(Case thisCase);
 	public void updateVisit(Map<String, Object> parameters);
 	public Case selectCase(Long caseId);
+	public List<Answer> getAnswers(String visitId);
 	
 
 }

@@ -222,10 +222,10 @@
 					<span class="formlabel span2 control-label">是否初次到访：</span>
 					<div class="controls">
 						<label class="radio inline">
-							<input type="radio" name="isVisited" id="sex" value="F" disabled>是
+							<input type="radio" name="isVisited" value="F" disabled>是
 						</label>
 						<label class="radio inline">
-							<input type="radio" name="isVisited" id="sex" value="T" checked="checked" >否
+							<input type="radio" name="isVisited" value="T" checked="checked" >否
 						</label>
 					</div>
 				</div>
