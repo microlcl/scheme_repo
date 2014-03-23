@@ -469,12 +469,15 @@ insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, vi
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
 	values (3, 3, '1-0-4-0', '2013-12-06 18:00:00', 10, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'F', '年会要布置合理', 3);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (4, 1, '1-0-4-0', '2013-07-05 10:00:00', 5, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华', 1);
+	values (4, 1, '1-0-4-0', '2013-07-05 10:00:00', 5, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华，需要注意', 1);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
 	values (5, 2, '1-0-4-0', '2013-11-06 02:00:00', 2, 'D1-2-1', 'userid10', 'userid11', '1-0-2-1', 2, 'T', '此人生日宴会喜欢非常简单', 2);
 insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
-	values (6, 3, '1-0-4-1', '2013-12-25 12:00:00', 15, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'T', '年会要布置合理', 3);
-
+	values (6, 3, '1-0-4-1', '2013-12-25 12:00:00', 15, 'D1-2-1', 'userid10', 'userid11', '1-0-2-2', 3, 'T', '回访：年会要布置合理', 3);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (7, 1, '1-0-4-1', '2013-07-05 10:00:00', 5, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '此人婚礼喜欢极尽奢华，特意回访', 1);
+insert into visit_activities (visit_id, customer_id, visit_type, visit_stime, visitor_num, assigned_department_id, recipient, operator, business_type, case_id, is_visited, comment, paper_id )
+	values (8, 1, '1-0-4-1', '2013-07-06 19:00:00', 5, 'D1-2-1', 'userid10', 'userid11', '1-0-2-0', 1, 'T', '喜欢奢华，特意回访', 1);
 
 insert into cases (case_id, case_title, created_time, assigned_department_id, case_owner, business_type, event_time, guest_num, space_id, space_tip, description, paper_id, status, business_code)
 	values (1, '张三的婚礼', '2013-06-05 02:00:00', 'D1-1', 'userid1', '1-0-2-0', '2013-07-10 12:00:00', 100, 1, '1号大厅', '场面极尽奢华', 1, '1-0-8-1', 'C');

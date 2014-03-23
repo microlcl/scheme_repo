@@ -177,7 +177,8 @@
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#caseDetail" data-toggle="tab">详细</a></li>
 					<li><a href="#paper" data-toggle="tab">调查问卷</a></li>
-					<li><a href="#visitActivities" data-toggle="tab">到访/回访记录</a></li>
+					<li><a href="#visitActivities" data-toggle="tab">到访记录</a></li>
+					<li><a href="#returnVisitActivities" data-toggle="tab">回访记录</a></li>
 					<li><a href="#tasks" data-toggle="tab">相关任务</a></li>
 					<li><a href="#subscribers" data-toggle="tab">相关人员</a></li>
 				</ul>
@@ -191,6 +192,9 @@
 					<div class="tab-pane" id="visitActivities">
 						<%@ include file="visitActivities.jsp"%>
 					</div>
+					<div class="tab-pane" id="returnVisitActivities">
+						<%@ include file="returnVisitActivities.jsp"%>
+					</div>					
 					<div class="tab-pane" id="tasks">
 						<%@ include file="tasks.jsp"%>
 					</div>	
