@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.eastteam.myprogram.dao.CaseMybatisDao;
 import com.eastteam.myprogram.dao.CustomerMybatisDao;
 import com.eastteam.myprogram.dao.HolderMybatisDao;
+import com.eastteam.myprogram.dao.TaskMybatisDao;
 import com.eastteam.myprogram.dao.VisitMybatisDao;
 import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
@@ -25,6 +26,7 @@ import com.eastteam.myprogram.entity.Option;
 import com.eastteam.myprogram.entity.Question;
 import com.eastteam.myprogram.entity.Spaces;
 import com.eastteam.myprogram.entity.Stakeholder;
+import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.entity.VisitActivity;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
@@ -46,6 +48,9 @@ public class CaseService extends PageableService {
 	
 	@Autowired
 	private HolderMybatisDao holderDao;
+	
+	@Autowired
+	private TaskMybatisDao taskDao;
 	
 	
 	public List<Case> search(Map parameters, Pageable pageRequest) {
@@ -89,7 +94,14 @@ public class CaseService extends PageableService {
 		}
 		if (mycase.getPaper() != null) {
 			List<Answer> answerList = this.getAnswers(caseId);		
-			return buildCaseWithAnswers(mycase, answerList);
+			buildCaseWithAnswers(mycase, answerList);
+		}
+		
+		Map taskParameter = new HashMap<String, Object>();
+		taskParameter.put("caseId", caseId);
+		List<Task> tasks = taskDao.search(taskParameter);		
+		if (tasks != null && !tasks.isEmpty()) {
+			mycase.setTasks(tasks);
 		}
 		
 		return mycase;

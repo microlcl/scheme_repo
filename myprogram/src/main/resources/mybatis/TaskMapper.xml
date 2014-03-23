@@ -145,6 +145,7 @@
 		left join users uc on t.created_by=uc.id 
 		left join category cp on t.priority=cp.id 
 		left join departments d on t.department_id=d.department_id 
+		left join case_task ct on t.task_id=ct.task_id
 		<where>
 			<if test="department_id != null">
 				and t.department_id like '${department_id}%'
@@ -155,6 +156,9 @@
 			<if test="statusId != null">
 				and t.status like '${statusId}%'
 			</if>
+			<if test="caseId != null">
+				and ct.case_id = #{caseId}
+			</if>			
 			<if test="keyword != null">
 				and t.summary||t.description like '%${keyword}%'
 			</if>
