@@ -150,11 +150,11 @@
 </head>
 <body>
 	<div class="form">
-		<form id="inputForm" action="${ctx}/visit/save" method="post">
+		<form id="inputForm" action="${ctx}/visit/updateReVisit" method="post">
 			<input type="hidden" value="${visit.id}" name="visitId">
 			<input type="hidden" value="${visit.customer.id}" name="customerId">
 			<input type="hidden" value="${visit.thisCase.id}" name="caseId">
-			<h1>修改到访记录</h1>
+			<h1>修改回访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。
 			</div>
@@ -192,7 +192,7 @@
 								
 				<div class="control-group">
 					<span class="formlabel span2 control-label">客户名字：</span>
-					<input type="text" id="customerName" class="required" name="customerName" value="${visit.customer.customerName}" style="width:186px" class="input-large " maxlength="64" placeholder="客户姓名，xx先生/xx女士亦可"/>
+					<input type="text" id="customerName" class="required" name="customer.customerName" value="${visit.customer.customerName}" style="width:186px" class="input-large " maxlength="64" placeholder="客户姓名，xx先生/xx女士亦可"/>
 				</div>		
 					            
 	           	<div class="control-group">

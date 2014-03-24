@@ -2,6 +2,7 @@
 
 <div>
 				<div style="padding-bottom:8px;font-size:15px;color:red">本次回访采用的问卷：${visit.paper.paperName}</div>
+				<input type="hidden" name="paper.id" id="paperId" value="${visit.paper.id}">
 				<c:forEach items="${questions}" var="question" varStatus="status">
                   <div class="accordion-heading">
                   	<span style="padding-left:8px">Q${status.count}：</span>

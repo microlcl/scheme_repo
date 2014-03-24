@@ -94,9 +94,7 @@ public class VisitService extends PageableService {
 			
 			Case thisCase = new Case();
 			thisCase = visitMybatisDao.selectCase(visitFormBean.getCaseId());
-			
-			
-			
+	
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());
 			map.put("customerId", customer.getId());
@@ -218,5 +216,53 @@ public class VisitService extends PageableService {
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * 更新回访记录
+	 */
+	public void updateVisit(VisitFormBean visitFormBean){
+		logger.info("修改现有访问记录");
+		Customer customer = visitFormBean.getCustomer();
+		customer.setId(visitFormBean.getCustomerId());
+		visitMybatisDao.updateCustomer(customer);
+		
+		Case thisCase = new Case();
+		thisCase.setBusinessType(visitFormBean.getBusinessType());
+		thisCase.setEventTime(visitFormBean.getEventTime());
+		thisCase.setGuestNum(visitFormBean.getGuestNum());
+		thisCase.setSpaceTip(visitFormBean.getSpaceTip());
+		thisCase.setTitle(visitFormBean.getCaseTitle());
+		thisCase.setId(visitFormBean.getCaseId());
+		visitMybatisDao.updateCase(thisCase);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("customerId", customer.getId());
+		map.put("visitType", visitFormBean.getVisitType().getId());
+		map.put("visitNum", visitFormBean.getVisitNum());
+		map.put("visitTime", visitFormBean.getVisitTime());
+		map.put("businessType", visitFormBean.getBusinessType().getId());
+		map.put("caseId", thisCase.getId());
+		map.put("isVisited", visitFormBean.getIsVisited());
+		map.put("comment", visitFormBean.getComment());
+		map.put("paperId", visitFormBean.getPaper().getId());
+		map.put("operator",visitFormBean.getOperator());
+		visitMybatisDao.updateVisit(map);
+		
+		//update调查问卷答案
+		if (visitFormBean.getPaper() != null && visitFormBean.getPaper().getQuestions() != null) {
+			Map visitParameters = new HashMap<String, Object>();
+			visitParameters.put("visitId", visitFormBean.getVisitId());
+			visitParameters.put("paperId", visitFormBean.getPaper().getId());
+			this.visitMybatisDao.deleteVisitAnswers(visitParameters);
+			
+			for(Question question : visitFormBean.getPaper().getQuestions()) {
+				Map questionParameters = new HashMap<String, Object>();
+				questionParameters.put("visitId", visitFormBean.getVisitId());
+				questionParameters.put("paperId", visitFormBean.getPaper().getId());
+				questionParameters.put("question", question);
+				this.visitMybatisDao.updateVisitAnswers(questionParameters);
+			}
+		}
 	}
 }

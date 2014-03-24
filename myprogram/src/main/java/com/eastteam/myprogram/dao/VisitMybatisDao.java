@@ -10,6 +10,7 @@ import com.eastteam.myprogram.entity.Answer;
 import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.Customer;
 import com.eastteam.myprogram.entity.VisitActivity;
+import com.eastteam.myprogram.web.visit.VisitFormBean;
 
 /**
  * @author LSS
@@ -31,6 +32,6 @@ public interface VisitMybatisDao {
 	public void updateVisit(Map<String, Object> parameters);
 	public Case selectCase(Long caseId);
 	public List<Answer> getAnswers(String visitId);
-	
-
+	public void deleteVisitAnswers(Map<String, Object> parameters);
+	public void updateVisitAnswers(Map<String, Object> parameters);
 }

@@ -201,4 +201,12 @@ public class VisitController {
 		
 		return "visit/updateReVisit";
 	}
+	
+	@RequestMapping(value = "updateReVisit", method = RequestMethod.POST)
+	public String updateReVisit(VisitFormBean visitFormBean){
+		logger.info("in visit controller: update visit");
+		this.visitService.updateVisit(visitFormBean);
+		
+		return "redirect:/visit/list";
+	}
 }
