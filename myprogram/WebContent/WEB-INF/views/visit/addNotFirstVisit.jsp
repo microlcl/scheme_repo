@@ -46,6 +46,34 @@
 				format: 'yyyy-mm-dd HH:mm'
 		    });
 			
+	        Date.prototype.format = function(format){ 
+	        	var o = { 
+	        	"M+" : this.getMonth()+1, //month 
+	        	"d+" : this.getDate(), //day 
+	        	"h+" : this.getHours(), //hour 
+	        	"m+" : this.getMinutes(), //minute 
+	        	"s+" : this.getSeconds(), //second 
+	        	"q+" : Math.floor((this.getMonth()+3)/3), //quarter 
+	        	"S" : this.getMilliseconds() //millisecond 
+	        	} ;
+
+	        	if(/(y+)/.test(format)) { 
+	        	format = format.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+	        	} 
+
+	        	for(var k in o) { 
+	        	if(new RegExp("("+ k +")").test(format)) { 
+	        	format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length)); 
+	        	} 
+	        	} 
+	        	return format; 
+	        };
+	        
+	        var myDate = new Date();
+			var datetime = myDate.format("yyyy-MM-dd hh:mm");
+			//console.log(myDate.toLocaleString());
+			$("#visitTime").val(datetime.toLocaleString());
+			
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
@@ -134,28 +162,7 @@
       
 
         
-        Date.prototype.format = function(format){ 
-        	var o = { 
-        	"M+" : this.getMonth()+1, //month 
-        	"d+" : this.getDate(), //day 
-        	"h+" : this.getHours(), //hour 
-        	"m+" : this.getMinutes(), //minute 
-        	"s+" : this.getSeconds(), //second 
-        	"q+" : Math.floor((this.getMonth()+3)/3), //quarter 
-        	"S" : this.getMilliseconds() //millisecond 
-        	} ;
 
-        	if(/(y+)/.test(format)) { 
-        	format = format.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
-        	} 
-
-        	for(var k in o) { 
-        	if(new RegExp("("+ k +")").test(format)) { 
-        	format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length)); 
-        	} 
-        	} 
-        	return format; 
-        };
         
         function addCase(result){
             var date = new Date(result.cases[0].eventTime);
@@ -192,6 +199,7 @@
 	<form id="inputForm" action="${ctx}/visit/save" method="post">
 		<div class="form">
 			<input type="hidden" name="isVisited" id="sex" value="T" >
+			<input type="hidden" name="visitType.id" value="1-0-4-1">
 			<h1>增加非初次到访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。
@@ -212,12 +220,15 @@
 					<div class="accordion-inner">
 						<div class="row">
 							<div class="control-group span5 pull-left">
-								<label class="control-label" for="cc1">访问类别：</label>
-								<div class="controls">
-									<input name="visitType.name" id="visitTypeName" type="text" class="span4" value="回访" readonly>
-									<input type="hidden" name="visitType.id" value="1-0-4-1">
+								<label class="control-label" for="visitTime">访问时间：</label>
+								<div class="pull-left">
+									<div class="input-append date form_date">
+					                	<input size="16" type="text" id="visitTime" name="visitTime" style="width:302px" readonly>
+					                    <span class="add-on"><i class="icon-remove"></i></span>
+										<span class="add-on"><i class="icon-th"></i></span>
+			              		 	</div>
 								</div>
-							</div>
+							</div>		
 							<div class="control-group span5 pull-right">
 								<label class="control-label" for="visitNumber">到访人数：</label>
 								<div class="pull-left">
@@ -227,21 +238,11 @@
 						</div>			
 						<div class="row">
 							<div class="control-group span5 pull-left">
-								<label class="control-label" for="visitTime">访问时间：</label>
+								<label class="control-label" for="comment">访问时间：</label>
 								<div class="pull-left">
-									<div class="input-append date form_date">
-					                	<input size="16" type="text" id="visitTime" name="visitTime" style="width:302px" readonly>
-					                    <span class="add-on"><i class="icon-remove"></i></span>
-										<span class="add-on"><i class="icon-th"></i></span>
-			              		 	</div>
-								</div>
-							</div>				
-							<div class="control-group span5 pull-right">
-								<label class="control-label" for="comment">到访备注：</label>
-								<div class="controls">
 									<textarea id="comment" name="comment"   maxlength="256" class="input-large  span4">${thisCase.comment}</textarea>
 								</div>
-							</div>					
+							</div>				
 		
 						</div>				
 					</div>
