@@ -135,7 +135,7 @@ public class VisitController {
 		
 		visitService.saveVisit(visitFormBean);
 				
-		return "redirect:/visit/list";
+		return "redirect:/visit/list?search_visitType=1-0-4-0";
 	}
 	
 //	@RequestMapping(value = "save", method = RequestMethod.POST)

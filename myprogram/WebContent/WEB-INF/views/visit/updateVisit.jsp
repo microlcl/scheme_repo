@@ -19,19 +19,6 @@
 		$(document).ready(function() {
 			$("#visit-tab").addClass("active");
 			
-			var visitTypeId = ['${visit.visitType.id}'];
-			$("#cc1").combotree({ 
-				onLoadSuccess:function(node){//数据加载成功触发 
-					$("#cc1").combotree('setValues', visitTypeId);
-				},
-				onBeforeSelect:function(node){ 
-					var tree = $(this).tree;
-					var isLeaf = tree('isLeaf', node.target);
-					console.log("isLeaf=" + isLeaf);
-					return isLeaf;
-				}
-			
-			});
 			var businessTypeId = ['${visit.businessType.id}'];
 			$("#cc2").combotree({ 
 				onLoadSuccess:function(node){//数据加载成功触发 
@@ -154,6 +141,7 @@
 			<input type="hidden" value="${visit.id}" name="visitId">
 			<input type="hidden" value="${visit.customer.id}" name="customerId">
 			<input type="hidden" value="${visit.thisCase.id}" name="caseId">
+			<input type="hidden" name="visitType.id" value="1-0-4-0">
 			<h1>修改到访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。
@@ -167,11 +155,6 @@
 					<input type="text" class="required" id="caseTitle" name="caseTitle" value="${visit.thisCase.title}" style="width:186px" class="input-large " maxlength="64" placeholder="请输入案例名称"/>
 				</div>		
 			
-				<div class="control-group">
-					<span class="formlabel span2 control-label">访问类别：</span>
-					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="visitTypeId"/>
-				</div>
-				
 	           	<div class="control-group">
 					<span class="formlabel span2 control-label">到访人数：</span>
 					<input type="text" class="required" id="visitNumber" name="visitNumber" value="${visit.visitNum}" style="width:186px" class="input-large " maxlength="20" placeholder="请输入到访人数"/>
@@ -180,7 +163,7 @@
 				<div class="control-group">	
 					<span class="formlabel span2 control-label">到访时间：</span>
 					<div class="input-append date form_date">
-	                	<input size="16" type="text" id=customerVisitTime name="customerVisitTime" value="<fmt:formatDate value='${visit.visitTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:132px" readonly>
+	                	<input size="16" type="text" id=visitTime name="visitTime" value="<fmt:formatDate value='${visit.visitTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
 						<span class="add-on"><i class="icon-th"></i></span>
 	               </div>
@@ -188,7 +171,7 @@
 				
 				<div class="control-group">
 					<span class="formlabel span2 control-label">策划类别：</span>
-					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="businessTypeId"/>
+					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="businessType.id"/>
 				</div>
 		
 				<div class="control-group">
@@ -226,7 +209,7 @@
 				<div class="control-group">	
 					<span class="formlabel span2 control-label">案例时间：</span>
 					<div class="input-append date form_date">
-	                	<input size="16" type="text" id="customerEventTime" name="customerEventTime" value="<fmt:formatDate value='${visit.thisCase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:132px" readonly>
+	                	<input size="16" type="text" id="eventTime" name="eventTime" value="<fmt:formatDate value='${visit.thisCase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:132px" readonly>
 	                    <span class="add-on"><i class="icon-remove"></i></span>
 						<span class="add-on"><i class="icon-th"></i></span>
 	               </div>

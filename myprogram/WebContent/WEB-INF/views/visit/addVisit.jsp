@@ -174,7 +174,7 @@
 	<form id="inputForm" action="${ctx}/visit/save" method="post">
 		<div class="form">
 			<input type="hidden" name="isVisited" id="sex" value="F" >
-			<input type="hidden" name="visitType.id" value="1-0-4-1">
+			<input type="hidden" name="visitType.id" value="1-0-4-0">
 			<h1>增加初次到访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。

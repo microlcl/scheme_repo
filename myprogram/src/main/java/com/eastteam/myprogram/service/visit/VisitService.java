@@ -66,8 +66,10 @@ public class VisitService extends PageableService {
 		if (visitFormBean.getVisitId() != null){
 			logger.info("修改现有访问记录");
 			Customer customer = visitFormBean.getCustomer();
-			customer.setId(visitFormBean.getCustomerId());
-			visitMybatisDao.updateCustomer(customer);
+			if(customer != null){
+				customer.setId(visitFormBean.getCustomerId());
+				visitMybatisDao.updateCustomer(customer);
+			}
 			
 			Case thisCase = new Case();
 			thisCase.setBusinessType(visitFormBean.getBusinessType());
@@ -79,7 +81,6 @@ public class VisitService extends PageableService {
 			visitMybatisDao.updateCase(thisCase);
 			
 			HashMap<String, Object> map = new HashMap<String, Object>();
-			logger.info("Case Id:" + thisCase.getId() + " Customer Id" + customer.getId());
 			map.put("visitType", visitFormBean.getVisitType().getId());
 			map.put("visitNum", visitFormBean.getVisitNum());
 			map.put("visitTime", visitFormBean.getVisitTime());
