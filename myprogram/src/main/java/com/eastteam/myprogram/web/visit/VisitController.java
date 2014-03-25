@@ -134,8 +134,11 @@ public class VisitController {
 		logger.info("in visit control  save");
 		
 		visitService.saveVisit(visitFormBean);
-				
-		return "redirect:/visit/list?search_visitType=1-0-4-0";
+		
+		if(visitFormBean.getVisitType().getId().equals("1-0-4-1"))
+			return "redirect:/case/detail/" + visitFormBean.getCaseId();
+		else
+			return "redirect:/visit/list?search_visitType=1-0-4-0";
 	}
 	
 //	@RequestMapping(value = "save", method = RequestMethod.POST)
@@ -207,6 +210,6 @@ public class VisitController {
 		logger.info("in visit controller: update visit");
 		this.visitService.updateVisit(visitFormBean);
 		
-		return "redirect:/visit/list";
+		return "redirect:/case/detail/" + visitFormBean.getCaseId();
 	}
 }
