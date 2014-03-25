@@ -13,6 +13,9 @@
 			<if test="businessType != null">
 		        and cb.id = #{businessType}
 			</if>
+			<if test="visitType != null">
+				and v.visit_type=#{visitType}
+			</if>
 			<if test="isVisited != null">
 		        and v.is_visited like '${isVisited}'
 			</if>
@@ -85,6 +88,9 @@
 		<where>
 			<if test="businessType != null">
 		        and cb.id = #{businessType}
+			</if>
+			<if test="visitType != null">
+				and v.visit_type=#{visitType}
 			</if>
 			<if test="isVisited != null">
 		        and v.is_visited like '${isVisited}'

@@ -21,7 +21,7 @@
 		<h1>业务</h1>
 		<div class="submenu">
 			<a id="case-tab" href="${ctx}/case/list">需求管理</a>	
-			<a id="visit-tab" href="${ctx}/visit/list">进店管理</a>
+			<a id="visit-tab" href="${ctx}/visit/list?search_visitType=1-0-4-0">进店管理</a>
 		</div>
 		<h1>页面效果测试</h1>
 		<div class="submenu">
