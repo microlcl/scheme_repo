@@ -17,6 +17,7 @@
                   	<span style="padding-left:8px">Q${status.count}：</span>
                       	${question.question}<c:if test="${question.trashed == 'T'}"><span style="color:#FF0000">(此问题已被删除)</span></c:if>
                       	<input type="hidden" name="paper.questions[${status.index}].id" value="${question.id}">
+                      	<input type="hidden" name="quest" value="paper.questions[${status.index}].questionOptions">
                    </div>
                     <div class="accordion-inner" style="padding-left:55px">
 						<c:if test="${question.questionType == '1'}">

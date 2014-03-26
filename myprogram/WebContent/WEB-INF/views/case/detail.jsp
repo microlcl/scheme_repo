@@ -73,8 +73,12 @@
 						required: true
 				},	
 				guestNum: {
+						required: true,
 						rangelength: [1,5],
 						digits: true 			
+				},
+				description:{
+						rangelength: [1,1024]
 				}					
 			},
 			messages: {
@@ -87,14 +91,41 @@
 				guestNum: {
 					required: "请填写到访人数！",
 					digits: "请输入数字！"
-				}	
+				},
+				description:{
+					rangelength: $.validator.format("请输入面试小于1024个字符.")
+				}
 			}
 		});
 	});
 	
 	function mySubmit() {
-		console.log('in mySubmit');
-		$('#caseForm').submit();
+	console.log('in mySubmit');
+	var number=1;
+	var quests=document.getElementsByName("quest");      
+    var questnum=quests.length;
+    for(var i=0;i<questnum;i++){                        
+   	 	var questid=quests[i].getAttribute("value");  
+    	var options=document.getElementsByName(questid);    
+    	var optionnum=options.length;
+    	var flag=0;
+    	for(var j=0;j<optionnum;j++){                   
+       		if(options[j].checked){
+    		flag=1;
+    		break;
+     		}
+    	}
+    	if(flag==0){
+    		 number=0;
+    		}
+    	}
+    	
+     if(!number)
+        $("#warning-block1").show();
+     else{
+        $("#warning-block1").hide();
+     	$('#caseForm').submit();
+     }
 	}
 	
 	function addSpaces(result) {
@@ -156,6 +187,9 @@
 <body>
 	<form id="caseForm" class="form" style="padding:20px;" action="${ctx}/case/save" method="post">
 		<h1>需求管理</h1>
+		<div class="alert hide" id="warning-block1">
+		  	   <strong>注意! </strong> 请确保您已选择对“调查问卷”中，所以问题给予选择回答！ </strong>
+		</div>
 		<div class="row">
 			<div class="span">
 				<div class="form-search" style="padding-left:20px;">
@@ -205,7 +239,7 @@
 			</div>
 		</div>
 		<div class="form-actions">
-			<input id="save_btn" class="btn" type="submit" value="保存"/>
+			<input id="save_btn" class="btn" type="button" value="保存" onclick="mySubmit();"/>
 		</div>
 	</form>
 	<a name="myBottom"></a>
