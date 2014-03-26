@@ -49,6 +49,17 @@ public class CaseMybatisDaoTest extends SpringTransactionalTestCase{
 	}
 	
 	@Test
+	public void insert() {
+		String title = "my test for title update";
+		Case mycase = casesDao.get(1L);
+		mycase.setId(null);
+		casesDao.insert(mycase);
+		logger.info("case.id=" + mycase.getId());
+		assertTrue(mycase.getId() > 0);
+
+	}
+	
+	@Test
 	public void deleteAnswers() {
 		Case mycase = casesDao.get(1L);
 		this.casesDao.deleteAnswers(mycase);

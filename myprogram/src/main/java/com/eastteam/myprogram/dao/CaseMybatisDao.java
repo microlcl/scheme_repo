@@ -16,6 +16,7 @@ public interface CaseMybatisDao {
 	public Case get(Long CaseId);
 	public List<Answer> getAnswers(Long CaseId);
 	public void update(Case mycase);
+	public void insert(Case mycase);
 	public void deleteAnswers(Case mycase);
 	public void insertAnswers(Map<String, Object> parameters);
 	public List<Category> getDefaultCharacters(Category businessType);
