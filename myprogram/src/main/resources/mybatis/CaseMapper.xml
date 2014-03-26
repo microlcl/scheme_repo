@@ -127,6 +127,11 @@
 		status=#{status.id}		
 		where case_id=#{id}
 	</update>
+
+	<insert id="insert" parameterType="Case" useGeneratedKeys="true" keyProperty="id">
+		insert into cases (case_title,assigned_department_id,case_owner,business_type,event_time,guest_num,space_id,description,paper_id,status) 
+		values(#{title},#{department.id},#{owner.id},#{businessType.id},#{eventTime},#{guestNum},#{space.id},#{description},#{paper.id},#{status.id})
+	</insert>	
 	
 	<delete id="deleteAnswers" parameterType="Case">
 		delete from paper_answers where business_id='C'||#{id} and paper_id=#{paper.id}

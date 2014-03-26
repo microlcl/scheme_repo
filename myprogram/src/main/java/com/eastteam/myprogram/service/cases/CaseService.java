@@ -233,22 +233,33 @@ public class CaseService extends PageableService {
 		return false;
 	}
 	
-	public void update(Case mycase) {
-		this.caseDao.update(mycase);
-		//update调查问卷答案
-		if (mycase.getPaper() != null && mycase.getPaper().getQuestions() != null) {
-			this.caseDao.deleteAnswers(mycase);
-			for(Question question : mycase.getPaper().getQuestions()) {
-				Map parameters = new HashMap<String, Object>();
-				parameters.put("caseId", mycase.getId());
-				parameters.put("paperId", mycase.getPaper().getId());
-				parameters.put("question", question);
-				this.caseDao.insertAnswers(parameters);
-			}
+
+	
+	public void save(Case mycase) {
+		if (mycase.getId() != null) {
+			this.caseDao.update(mycase);
+		} else {
+			this.caseDao.insert(mycase);
 		}
+		//update调查问卷答案
+		this.saveAnswer(mycase);
 		//更新stakeholder
-		saveStakeholder(mycase);
+		this.saveStakeholder(mycase);
 		
+	}
+	
+	private void saveAnswer(Case mycase) {
+		if (mycase.getPaper() == null || mycase.getPaper().getQuestions() == null) {
+			return;
+		}
+		this.caseDao.deleteAnswers(mycase);
+		for(Question question : mycase.getPaper().getQuestions()) {
+			Map parameters = new HashMap<String, Object>();
+			parameters.put("caseId", mycase.getId());
+			parameters.put("paperId", mycase.getPaper().getId());
+			parameters.put("question", question);
+			this.caseDao.insertAnswers(parameters);
+		}		
 	}
 	
 	private void saveStakeholder(Case mycase) {

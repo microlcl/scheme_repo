@@ -45,6 +45,12 @@ public class CaseController {
 		model.addAttribute("mycase", mycase);
 		return "case/detail";
 	}
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String add() {
+		logger.info("add case");
+		return "case/add";
+	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(
@@ -85,7 +91,7 @@ public class CaseController {
 		logger.info("in case save action!" + mycase.toString());
 		logger.info("in case save action, stakeholder:!" + mycase.getStatkeholders());
 		logger.info("in case save action, space:!" + mycase.getSpace().getId());
-		this.caseService.update(mycase);
+		this.caseService.save(mycase);
 		return "redirect:list";		
 	}
 
