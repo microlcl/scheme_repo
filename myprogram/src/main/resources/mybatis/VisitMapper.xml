@@ -49,6 +49,13 @@
 		<association property="customer" javaType="Customer">
 			<id property="id" column="customer_id" />
 			<result property="customerName" column="customer_name" />
+			<result property="customerPhone" column="customer_phone" />
+			<result property="job" column="job" />
+			<result property="weixin" column="weixin" />
+			<result property="weibo" column="weibo" />
+			<result property="qq" column="qq" />
+			<result property="favorite" column="favorite" />
+			<result property="description" column="description" />
 		</association>
 		<association property="visitType" javaType="Category">
 			<id property="id" column="visit_type_id" />
@@ -135,7 +142,7 @@
 	</select>
 	
 	<select id="selectVisit" parameterType="Long" resultMap="visitDetailMap">
-		select v.visit_id as visit_id, v.customer_id as customer_id, ct.customer_name as customer_name,v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id as paper_id, p.paper_name as paper_name, c.case_title as case_title, c.event_time, c.guest_num, c.space_tip, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
+		select v.visit_id as visit_id, v.customer_id as customer_id, ct.customer_name as customer_name, ct.customer_phone as customer_phone, ct.job as job, ct.weixin as weixin, ct.weibo as weibo, ct.qq as qq, ct.favorite as favorite, ct.description as description, v.visit_stime visit_stime, v.visitor_num as visitor_num, v.assigned_department_id as assigned_department_id, v.recipient, v.operator, v.case_id as case_id, v.is_visited as is_visited, v.comment as comment, v.paper_id as paper_id, p.paper_name as paper_name, c.case_title as case_title, c.event_time, c.guest_num, c.space_tip, cg.name as visit_type, cg.id as visit_type_id, cb.id as business_type_id, cb.name as business_type
 		from visit_activities v
 		left join papers p on p.paper_id=v.paper_id
 		left join cases c on v.case_id= c.case_id
@@ -146,7 +153,7 @@
 	</select>
 	
 	<update id="updateCustomer" parameterType="Customer">
-		update customer set customer_name = #{customerName}
+		update customer set customer_name = #{customerName}, job = #{job}, weixin = #{weixin}, weibo = #{weibo}, qq = #{qq}, favorite = #{favorite}, description = #{description}
 		where customer_id=#{id}
 	</update>
 	
