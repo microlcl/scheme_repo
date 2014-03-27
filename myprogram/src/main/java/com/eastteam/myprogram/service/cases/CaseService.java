@@ -88,12 +88,16 @@ public class CaseService extends PageableService {
 		mycase.setStatkeholders(this.caseDao.getStakeholders(caseId));
 		this.addDefaultCharacters(mycase);
 		//build space:
-		if(mycase.getSpace() != null & mycase.getSpace().getId() != null) {
+		if(mycase.getSpace() != null && mycase.getSpace().getId() != null) {
 			Spaces myspaces = this.holderDao.getSpaces(mycase.getSpace().getId());
 			mycase.setSpace(myspaces);
 		}
 		if (mycase.getPaper() != null) {
-			List<Answer> answerList = this.getAnswers(caseId);		
+			List<Answer> answerList = this.getAnswers(caseId);	
+			// 有答案，表明用户已经作答,根据isAnswered属性决定是否能更换paper
+			if (answerList != null && answerList.size() > 0) {
+				mycase.setAnswered(true);
+			}
 			buildCaseWithAnswers(mycase, answerList);
 		}
 		

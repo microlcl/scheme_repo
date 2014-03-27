@@ -35,6 +35,15 @@ public class Case extends IdEntity {
 	
 	private List<Stakeholder> statkeholders;
 	
+	/**标识用户是否已经作答**/
+	private boolean answered = false;
+	
+	public boolean isAnswered() {
+		return answered;
+	}
+	public void setAnswered(boolean answered) {
+		this.answered = answered;
+	}
 	public String getTitle() {
 		return title;
 	}

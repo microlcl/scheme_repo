@@ -42,6 +42,7 @@ public class CaseController {
 		Case mycase =  this.caseService.getCaseWithAnswer(id);
 		logger.info("case = " + mycase);
 		logger.info("case.businessType = " + mycase.getBusinessType().getId());
+		logger.info("isAnswered=" + mycase.isAnswered());
 		model.addAttribute("mycase", mycase);
 		return "case/detail";
 	}
