@@ -98,7 +98,7 @@
 	</select>
 	
 	<select id="selectcomments" resultMap="commentMap">
-	   select c.comment_id as attachment_id,c.comment as comment,c.created_timestamp as createdTimestamp,c.user_id as c_user_id,u.name as u_name
+	   select c.comment_id as id,c.comment as comment,c.created_timestamp as createdTimestamp,c.user_id as c_user_id,u.name as u_name
 	   from comments c,task_comments tc,users u 	   
 	   where c.comment_id = tc.comment_id
 	        and tc.task_id=#{task_id}
