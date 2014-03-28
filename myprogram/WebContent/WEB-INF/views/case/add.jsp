@@ -155,7 +155,7 @@
 
 <body>
 	<form id="caseForm" class="form" style="padding:20px;" action="${ctx}/case/save" method="post">
-		<h1>需求管理</h1>
+		<h1>需求管理：新增</h1>
 		<div class="row">
 			<div class="span">
 				<div class="form-search" style="padding-left:20px;">
@@ -168,7 +168,7 @@
 								<div class="pull-right">
 										<input id="case_status"
 				class="span2 easyui-combotree" name="status.id"
-				data-options="url:'${ctx}/category/api/getChildren/getCaseStatus',method:'get',required:false" value="${mycase.status.id}">
+				data-options="url:'${ctx}/category/api/getChildren/getCaseStatus',method:'get',required:false" value="1-0-8-1" readonly="readonly">
 					</div>
 		</div>
 
