@@ -126,9 +126,9 @@
 	<div class="row">
 		<div class="control-group span pull-left">
 			<label class="control-label" for="task_status">所属案例:</label>
-			<input type="text" class="required" id="caseTitle" name="cases.title"  style="width:267px" class="input-large " readonly />
-			<button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button>
-			<input type="hidden" name="cases.id" id="caseid" >
+			<input type="text" class="required" id="caseTitle" name="cases.title"  value="${caseTemp.title}" style="width:267px" class="input-large " readonly />
+			<c:if test="${caseTemp==null}"><button type="button" class="btn"  onclick="casePopupWindow({callback:addCase})">选择案例</button></c:if>
+			<input type="hidden" name="cases.id" id="caseid" value="${caseTemp.id}">
 		</div>
 	</div>
 	<div class="control-group">

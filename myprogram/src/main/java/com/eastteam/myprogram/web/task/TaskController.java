@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,11 +28,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.eastteam.myprogram.entity.Attachment;
+import com.eastteam.myprogram.entity.Case;
 import com.eastteam.myprogram.entity.CategoryLiteBean;
 import com.eastteam.myprogram.entity.Comment;
 import com.eastteam.myprogram.entity.Holders;
 import com.eastteam.myprogram.entity.Task;
 import com.eastteam.myprogram.entity.User;
+import com.eastteam.myprogram.service.cases.CaseService;
 import com.eastteam.myprogram.service.task.TaskService;
 import com.eastteam.myprogram.web.Servlets;
 import com.eastteam.myprogram.web.WebUtils;
@@ -42,6 +45,8 @@ import com.google.common.collect.Maps;
 public class TaskController {
 	@Autowired
 	private TaskService taskService;
+	@Autowired
+	private CaseService caseService;
 	
 	private static Logger logger = LoggerFactory
 			.getLogger(TaskController.class);
@@ -90,7 +95,10 @@ public class TaskController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add(Model model) {
+	public String add(Model model,ServletRequest request) {
+		if(request.getParameter("caseId")!=null&&!request.getParameter("caseId").equalsIgnoreCase("")){
+			request.setAttribute("caseTemp",caseService.get(Long.parseLong(request.getParameter("caseId"))));
+		}
 		return "task/addTask";
 	}
 	
