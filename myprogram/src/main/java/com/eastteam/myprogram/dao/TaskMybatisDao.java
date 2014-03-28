@@ -22,7 +22,7 @@ public interface TaskMybatisDao {
 	void update(Task task);
 	List<Task> search(Map<String, Object> parameters);
 	Long getCount(Map<String, Object> parameters);
-	Task getTask(String id);
+	Task getTask(long id);
 	void saveAttachment(Attachment attachment);
 	void saveTaskSubscriber(Map<String, Object> parameters);
 	void saveComments(Comment comment);
@@ -30,4 +30,6 @@ public interface TaskMybatisDao {
 	void saveCaseTask(Map<String, Object> parameters);
 	void updateCaseTask(Map<String, Object> parameters);	
 	void deleteSubscriber(Long taskId);
+	long getAllComment();//for test
+	long getAllTaskComment();//for test
 }

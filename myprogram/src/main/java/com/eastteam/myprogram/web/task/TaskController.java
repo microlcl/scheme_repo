@@ -155,7 +155,7 @@ public class TaskController {
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public String update(@RequestParam(value="id") String id,Model model, HttpServletRequest request) {
-		Task task = this.taskService.getTask(id);
+		Task task = this.taskService.getTask(Long.parseLong(id));
 		int day=task.getTimeRemaining()/8;
 		int hour=task.getTimeRemaining()%8;
 		model.addAttribute("task", task);

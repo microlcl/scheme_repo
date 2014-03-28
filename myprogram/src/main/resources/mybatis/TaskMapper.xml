@@ -242,4 +242,14 @@
 	<delete id="deleteSubscriber" parameterType="Task">
 		delete from task_subscribers where task_id=#{taskId};
 	</delete>
+	
+	
+	
+	<select id="getAllComment" parameterType="map" resultType="Long">
+		select count(0) from comments
+	</select>
+	
+	<select id="getAllTaskComment" parameterType="map" resultType="Long">
+		select count(0) from task_comments
+	</select>
 </mapper> 

@@ -61,7 +61,7 @@ public class TaskService extends PageableService{
 	}
 	
 	
-	public Task getTask(String id) {
+	public Task getTask(long id) {
 		return this.taskDao.getTask(id);
 	}
 	
@@ -121,6 +121,7 @@ public class TaskService extends PageableService{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				parameters.put("comment_id", comment.getId());
 				parameters.put("task_id", task.getId());
+				System.out.println(comment.getId() +" "+task.getId());
 				taskDao.saveTaskComment(parameters);
 			}
 		}
