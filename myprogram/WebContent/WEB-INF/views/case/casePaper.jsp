@@ -4,10 +4,16 @@
 	<div class="span">
 		<div class="form-search" style="padding: 0px 0 20px 2px;">
 			<label for="paperList">调查问卷：</label> 
+			<c:if test="${mycase.answered == false}">
 				<input id="case_owner"
 				class="span4 easyui-combobox" name="paper.id"
 				data-options="url:'${ctx}/paper/api/search?businessType=${mycase.businessType.id}',method:'get',valueField:'id',textField:'paperName'" value="${mycase.paper.id}">
-
+			</c:if>
+			<c:if test="${mycase.answered == true}">
+				<input id="case_owner"
+				class="span4 easyui-combobox" name="paper.id"
+				data-options="url:'${ctx}/paper/api/search?businessType=${mycase.businessType.id}',method:'get',valueField:'id',textField:'paperName'" value="${mycase.paper.id}" readonly>
+			</c:if>
 		</div>
 	</div>
 </div>
