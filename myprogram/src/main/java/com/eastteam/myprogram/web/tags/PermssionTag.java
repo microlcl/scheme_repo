@@ -11,7 +11,7 @@ import com.eastteam.myprogram.entity.User;
 public class PermssionTag extends SimpleTagSupport {
 	// 重写 doTag 方法，该方法在标签结束生成页面内容
 	private String functionId;
-	private String content;
+	private String noFunctionId;
 	public String getFunctionId() {
 		return functionId;
 	}
@@ -19,25 +19,32 @@ public class PermssionTag extends SimpleTagSupport {
 	public void setFunctionId(String functionId) {
 		this.functionId = functionId;
 	}
-
-	public String getContent() {
-		return content;
+	
+	public String getNoFunctionId() {
+		return noFunctionId;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setNoFunctionId(String noFunctionId) {
+		this.noFunctionId = noFunctionId;
 	}
+
 	public void doTag() throws JspException, IOException {
 		// 获取页面输出流，并输出字符串
-		JspFragment j = getJspBody();
 		JspContext b = getJspContext();
 		User user = (User)b.getAttribute("user",3);
-		boolean temp = user.checkPermission(functionId);
-		if(temp){
-			   JspFragment jf=this.getJspBody();
-	              jf.invoke(null);
+		if(functionId!=null&&!functionId.equalsIgnoreCase("")){
+			boolean temp = user.checkPermission(functionId);
+			if(temp){
+				   JspFragment jf=this.getJspBody();
+		              jf.invoke(null);
+			}
+		}else{
+			boolean temp = user.checkPermission(noFunctionId);
+			if(!temp){
+				   JspFragment jf=this.getJspBody();
+		              jf.invoke(null);
+			}
 		}
-		
 //		String a = b.getOut().toString();
 	}
 }

@@ -16,11 +16,11 @@
 		<body-content>scriptless</body-content>
 		<attribute>
 			<name>functionId</name>
-			<required>true</required>
-			<fragment>true</fragment>
+			<required>false</required>
+			<fragment>false</fragment>
 		</attribute>
 		<attribute>
-			<name>content</name>
+			<name>noFunctionId</name>
 			<required>false</required>
 			<fragment>false</fragment>
 		</attribute>
