@@ -35,6 +35,8 @@ public class Case extends IdEntity {
 	
 	private List<Stakeholder> statkeholders;
 	
+	private List<Scheme> schemes;
+	
 	/**标识用户是否已经作答**/
 	private boolean answered = false;
 	
@@ -141,5 +143,12 @@ public class Case extends IdEntity {
 	public void setStatkeholders(List<Stakeholder> statkeholders) {
 		this.statkeholders = statkeholders;
 	}
+	public List<Scheme> getSchemes() {
+		return schemes;
+	}
+	public void setSchemes(List<Scheme> schemes) {
+		this.schemes = schemes;
+	}
+	
 	
 }

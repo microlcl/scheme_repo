@@ -129,8 +129,8 @@
 	</update>
 
 	<insert id="insert" parameterType="Case" useGeneratedKeys="true" keyProperty="id">
-		insert into cases (case_title,assigned_department_id,case_owner,business_type,event_time,guest_num,space_id,description,paper_id,status) 
-		values(#{title},#{department.id},#{owner.id},#{businessType.id},#{eventTime},#{guestNum},#{space.id},#{description},#{paper.id},#{status.id})
+		insert into cases (case_title,assigned_department_id,case_owner,business_type,event_time,guest_num,space_id,description,paper_id,status,created_time) 
+		values(#{title},#{department.id},#{owner.id},#{businessType.id},#{eventTime},#{guestNum},#{space.id},#{description},#{paper.id},#{status.id},now())
 	</insert>	
 	
 	<delete id="deleteAnswers" parameterType="Case">
