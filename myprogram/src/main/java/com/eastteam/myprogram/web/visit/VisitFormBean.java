@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.eastteam.myprogram.entity.Category;
 import com.eastteam.myprogram.entity.Customer;
 import com.eastteam.myprogram.entity.Paper;
+import com.eastteam.myprogram.entity.User;
 import com.eastteam.myprogram.web.BaseFormBean;
 
 /**
@@ -40,7 +41,7 @@ public class VisitFormBean extends BaseFormBean {
 //	private String customerName;
 	private String caseTitle;
 	private Paper paper;
-	private String operator;
+	private User operator;
 	private Customer customer;
 	
 	public Long getVisitId() {
@@ -133,10 +134,10 @@ public class VisitFormBean extends BaseFormBean {
 	public void setPaper(Paper paper) {
 		this.paper = paper;
 	}
-	public String getOperator() {
+	public User getOperator() {
 		return operator;
 	}
-	public void setOperator(String operator) {
+	public void setOperator(User operator) {
 		this.operator = operator;
 	}
 	public Customer getCustomer() {

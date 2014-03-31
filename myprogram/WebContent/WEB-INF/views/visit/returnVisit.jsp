@@ -33,15 +33,6 @@
 			
 			});
 			
-			$("#cc2").combotree({ 
-				onBeforeSelect:function(node){ 
-					var tree = $(this).tree;
-					var isLeaf = tree('isLeaf', node.target);
-					console.log("isLeaf=" + isLeaf);
-					return isLeaf;
-				}
-			
-			});
 			
 			$('.form_date').datetimepicker({
 		        language:  'zh-CN',
@@ -55,13 +46,38 @@
 				format: 'yyyy-mm-dd HH:mm'
 		    });
 			
+	        Date.prototype.format = function(format){ 
+	        	var o = { 
+	        	"M+" : this.getMonth()+1, //month 
+	        	"d+" : this.getDate(), //day 
+	        	"h+" : this.getHours(), //hour 
+	        	"m+" : this.getMinutes(), //minute 
+	        	"s+" : this.getSeconds(), //second 
+	        	"q+" : Math.floor((this.getMonth()+3)/3), //quarter 
+	        	"S" : this.getMilliseconds() //millisecond 
+	        	} ;
+
+	        	if(/(y+)/.test(format)) { 
+	        	format = format.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+	        	} 
+
+	        	for(var k in o) { 
+	        	if(new RegExp("("+ k +")").test(format)) { 
+	        	format = format.replace(RegExp.$1, RegExp.$1.length==1 ? o[k] : ("00"+ o[k]).substr((""+ o[k]).length)); 
+	        	} 
+	        	} 
+	        	return format; 
+	        };
+	        
+	        var myDate = new Date();
+			var datetime = myDate.format("yyyy-MM-dd hh:mm");
+			//console.log(myDate.toLocaleString());
+			$("#visitTime").val(datetime.toLocaleString());
+			
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
 					caseTitle: {
-						rangelength: [1,64]
-					},
-					operator: {
 						rangelength: [1,64]
 					},
 					visitNumber: {
@@ -90,9 +106,6 @@
 				messages: {
 					caseTitle: {
 						required: "请填写案例名称！"
-					},
-					operator: {
-						required: "请填写跟单人！"
 					},
 					visitNumber: {
 						required: "请填写到访人数！",
@@ -132,30 +145,43 @@
 		});
 		
 		function submitForm(){
-			console.log("测试" + $("#visit_time").val() + $("#event_time").val());
-			if (($("#visit_time").val() != "") && ($("#event_time").val() != "") ) {
-				console.log("In form submit");
+//			console.log("测试" + $("#customerVisitTime").val() + $("#customerEventTime").val() + $("input[name='visitTypeId']").val() + $("input[name='businessTypeId']").val());
+//			if (($("#customerVisitTime").val() != "") && ($("#customerEventTime").val() != "") && ($("input[name='visitTypeId']").val() != "") && ($("input[name='businessTypeId']").val() != "")) {
+//				console.log("In form submit");
 				$('#inputForm').submit();
-			}else if (($("#visit_time").val() == "") || ($("#event_time").val() == "")){
-				$("#warning-block1").show();
-				return;
-			}else {
-				console.log("判断条件不正确");
-			}
+//			}else if (($("#customerVisitTime").val() == "") || ($("#customerEventTime").val() == "")){
+//				$("#warning-block1").show();
+//				return;
+//			}else if (($("input[name='visitTypeId']").val() == "") || ($("input[name='businessTypeId']").val() == "")){
+//				$("#warning-block2").show();
+//				return;
+//			}else {
+//				console.log("判断条件不正确");
+//			}
 		}
       
-        function addCase(result){
-           var temp = result.cases[0].title;           
-		   $("#caseTitle").val(temp);
-
-        }
+        
 	</script>
-
+	<style>
+		.control-label {
+		    float: left;
+		    padding-top: 5px;
+		    text-align: left;
+		    width: 100px;
+		}
+		.controls {
+		    margin-left: 100px;
+		}
+		.accordion-inner {
+			background-color: #FFFFFF;
+		}
+	</style>
 </head>
 <body>
-	<div class="form">
-		<form id="inputForm" action="${ctx}/visit/save" method="post">
-			<input type="hidden" value="${thisCase.id}" name="caseId">
+	<form id="inputForm" action="${ctx}/visit/save" method="post">
+		<div class="form">
+			<input type="hidden" name="isVisited" id="sex" value="T" >
+			<input type="hidden" name="visitType.id" value="1-0-4-1">
 			<h1>增加回访记录</h1>
 			<div class="alert hide" id="warning-block1">
 		  	   <strong>注意! </strong>请确保您已选择<strong>到访时间</strong>和<strong>案例时间 </strong>。
@@ -163,95 +189,130 @@
 			<div class="alert hide" id="warning-block2">
 		  	   <strong>注意! </strong>请确保您已选择<strong>访问类别</strong>和<strong>策划类别</strong>。
 			</div>
-			<div style="padding:20px;">
-				<div class="control-group">	
-					<span class="formlabel span2 control-label">案例名称：</span>
-					<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:186px" class="input-large " maxlength="64" placeholder="案例名称" value="${thisCase.title}" readonly>
-					<input type="hidden" name="caseId" id="caseId" >
-				</div>		
+						
 			
-				<div class="control-group">
-					<span class="formlabel span2 control-label">访问类别：</span>
-					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-10',method:'get',required:false" style="width:200px;" name="visitType.id" disabled/>
+			<div class="accordion-group" style="margin:20px;">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse"
+						href="#visit_details">		
+							回访细节：
+					</a>
 				</div>
-				
-				<div class="control-group">
-					<span class="formlabel span2 control-label">策划类别：</span>
-					<input id="cc2" name="businessType.id" class="easyui-combotree" value="${businessTypeId}" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" disabled/>
-				</div>
-								
-				<div class="control-group">
-					<span class="formlabel span2 control-label">跟单者：</span>
-					<input type="text" id="operator" class="required" name="operator" style="width:186px" class="input-large " maxlength="64" />
-				</div>
-							
-				<div class="control-group">
-					<span class="formlabel span2 control-label">客户名字：</span>
-					<input type="text" id="customerName" class="required" name="customer.customerName" style="width:186px" class="input-large " maxlength="64" placeholder="客户姓名，xx先生/xx女士亦可"/>
-				</div>
-	<!-- 							
-	           	<div class="control-group">
-					<span class="formlabel span2 control-label">到访人数：</span>
-					<input type="text" class="required" id="visitNum" name="visitNum" style="width:186px" class="input-large " maxlength="20" placeholder="请输入到访人数"/>
-				</div>
-	 -->
-	           	<div class="control-group">
-					<span class="formlabel span2 control-label">客人人数：</span>
-					<input type="text" id="guestNum" class="required" name="guestNum" value="${thisCase.guestNum}" style="width:186px" class="input-large " maxlength="20" placeholder="请输入客人人数"/>
-				</div>
-				
-				<div class="control-group">	
-					<span class="formlabel span2 control-label">回访时间：</span>
-					<div class="input-append date form_date">
-	                	<input size="16" type="text" name="visitTime" id="visit_time" style="width:132px" readonly>
-	                    <span class="add-on"><i class="icon-remove"></i></span>
-						<span class="add-on"><i class="icon-th"></i></span>
-	               </div>
-	            </div>
-	            
-				<div class="control-group">	
-					<span class="formlabel span2 control-label">案例时间：</span>
-					<div class="input-append date form_date">
-	                	<input size="16" type="text" name="eventTime" id="event_time" value="<fmt:formatDate value='${thisCase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:132px" readonly>
-	                    <span class="add-on"><i class="icon-remove"></i></span>
-						<span class="add-on"><i class="icon-th"></i></span>
-	               </div>
-	            </div>	       
-	  			
-				<div class="control-group" style="display:none">
-					<span class="formlabel span2 control-label">是否初次到访：</span>
-					<div class="controls">
-						<label class="radio inline">
-							<input type="radio" name="isVisited" value="F" disabled>是
-						</label>
-						<label class="radio inline">
-							<input type="radio" name="isVisited" value="T" checked="checked" >否
-						</label>
+				<div id="visit_details" class="accordion-body collapse">
+					<div class="accordion-inner">
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="visitTime">回访时间：</label>
+								<div class="pull-left">
+									<div class="input-append date form_date">
+					                	<input size="16" type="text" id="visitTime" name="visitTime" style="width:200px" readonly>
+					                    <span class="add-on"><i class="icon-remove"></i></span>
+										<span class="add-on"><i class="icon-th"></i></span>
+			              		 	</div>
+								</div>
+							</div>		
+						</div>	
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="comment">跟单者：</label>
+								<div class="pull-left">
+									<input name="operator" id="operator" class="easyui-combobox"
+				data-options="url:'${ctx}/account/api/search?departmentId=D1',method:'get',valueField:'id',textField:'name'" style="width:270px;"/>
+								</div>
+							</div>				
+						</div>		
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="comment">客户姓名：</label>
+								<div class="pull-left">
+									<input type="text" id="customerName" class="required" name="customer.customerName" style="width:255px" class="input-large " maxlength="64" placeholder="客户姓名，xx先生/xx女士亦可"/>
+								</div>
+							</div>				
+						</div>	
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="comment">相关问题调查：</label>
+								<div class="pull-left">
+									<input id="visitPaper" class="easyui-combobox" name="paper.id" data-options="url:'${ctx}/paper/api/search?businessType=${businessTypeId}',method:'get',valueField:'id',textField:'paperName'" style="width:270px;" />								
+								</div>
+							</div>				
+						</div>							
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="comment">回访备注：</label>
+								<div class="pull-left">
+									<textarea id="comment" name="comment"   maxlength="256" class="input-large  span4"></textarea>
+								</div>
+							</div>				
+						</div>	
+			
 					</div>
 				</div>
+			</div>	            
+						
+			            
+			<div class="accordion-group" style="margin:20px;">
+				<div class="accordion-heading">
+					<a class="accordion-toggle" data-toggle="collapse"
+						href="#case_details">		
+							案例资料：
+					</a>
+				</div>
+				<div id="case_details" class="accordion-body collapse">
+					<div class="accordion-inner">
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="caseTitle">案例名称：</label>
+								<div class="controls">
+									<input type="text" class="required" id="caseTitle" name="caseTitle"  style="width:270px"  value="${thisCase.title}" readonly>
+									<input type="hidden" value="${thisCase.id}" name="caseId">
+								</div>
+							</div>
+							<div class="control-group span5 pull-right">
+								<label class="control-label" for="businessType">策划类别：</label>
+								<div class="pull-left">
+									<input id="cc" name="businessType.id" class="easyui-combotree" value="${businessTypeId}" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" disabled/>
+								</div>
+							</div>
+						</div>			
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="customerEventTime">案例时间：</label>
+								<div class="pull-left">
+									<div class="input-append date form_date">
+					                	<input size="16" type="text" name="eventTime" id="event_time" value="<fmt:formatDate value='${thisCase.eventTime}' pattern='yyyy-MM-dd HH:mm'/>" style="width:217px" readonly>
+					                    <span class="add-on"><i class="icon-remove"></i></span>
+										<span class="add-on"><i class="icon-th"></i></span>
+			              		 	</div>
+								</div>
+							</div>				
+							<div class="control-group span5 pull-right">
+								<label class="control-label" for="guestNumber">客人人数：</label>
+								<div class="pull-left">
+									<input type="text" id="guestNumber" class="required span4" name="guestNum" value="${thisCase.guestNum}"  class="input-large " maxlength="20" style="width:187px" placeholder="请输入客人人数" />
+								</div>
+							</div>					
 		
-				<div class="control-group">
-					<span class="formlabel span2 control-label">相关信息调查：</span>
-					<input id="visitPaper" class="easyui-combobox" name="paper.id" data-options="url:'${ctx}/paper/api/search?businessType=${businessTypeId}',method:'get',valueField:'id',textField:'paperName'" style="width:200px;" />
+						</div>				
+						<div class="row">
+							<div class="control-group span5 pull-left">
+								<label class="control-label" for="spaceTip">会场简介：</label>
+								<div class="controls">
+									<textarea id="spaceTip" name="spaceTip"   maxlength="256" class="input-large  span4">${thisCase.spaceTip}</textarea>
+								</div>
+							</div>
+						</div>	
+					</div>
 				</div>
-										
-	           	<div class="control-group">
-					<span class="formlabel span2 control-label">回访备注：</span>
-					<textarea id="comment" name="comment" style="width:186px" maxlength="256" class="input-large"></textarea>
-				</div>
+			</div>	            
 
-				<div class="control-group">
-					<span class="formlabel span2 control-label">会场简介：</span>
-					<textarea id="spaceTip" name="spaceTip"  style="width:186px" maxlength="256" class="input-large">${thisCase.spaceTip}</textarea>
-				</div>
-	            
-			</div>
+
 			<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;padding-left: 180px;">
 				<input id="submit_btn" class="btn btn-warning" type="button" value="提交" onclick="submitForm();"/>&nbsp;	
 				<input id="cancel_btn" class="btn" type="button" value="返回" onclick="history.back()"/>
 			</div>
 			
-		</form>
-	</div>
+		</div>
+	</form>
 </body>
 </html>

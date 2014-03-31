@@ -110,7 +110,7 @@ public class VisitService extends PageableService {
 			if (paper != null) {
 				map.put("paperId", paper.getId());
 			}
-			map.put("operator",visitFormBean.getOperator());
+			map.put("operator",visitFormBean.getOperator().getId());
 			visitMybatisDao.insertVisit(map);
 		}
 		else{
@@ -238,16 +238,14 @@ public class VisitService extends PageableService {
 		visitMybatisDao.updateCase(thisCase);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("customerId", customer.getId());
 		map.put("visitType", visitFormBean.getVisitType().getId());
 		map.put("visitNum", visitFormBean.getVisitNum());
 		map.put("visitTime", visitFormBean.getVisitTime());
 		map.put("businessType", visitFormBean.getBusinessType().getId());
-		map.put("caseId", thisCase.getId());
 		map.put("isVisited", visitFormBean.getIsVisited());
 		map.put("comment", visitFormBean.getComment());
-		map.put("paperId", visitFormBean.getPaper().getId());
-		map.put("operator",visitFormBean.getOperator());
+		map.put("operator",visitFormBean.getOperator().getId());
+		map.put("visitId", visitFormBean.getVisitId());
 		visitMybatisDao.updateVisit(map);
 		
 		//update调查问卷答案
