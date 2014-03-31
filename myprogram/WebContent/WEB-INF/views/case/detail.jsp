@@ -182,6 +182,7 @@
 					<li><a href="#visitActivities" data-toggle="tab">到访记录</a></li>
 					<li><a href="#returnVisitActivities" data-toggle="tab">回访记录</a></li>
 					<li><a href="#tasks" data-toggle="tab">相关任务</a></li>
+					<li><a href="#schemes" data-toggle="tab">方案</a></li>
 					<li><a href="#subscribers" data-toggle="tab">相关人员</a></li>
 				</ul>
 				<div class="tab-content">
@@ -200,6 +201,9 @@
 					<div class="tab-pane" id="tasks">
 						<%@ include file="tasks.jsp"%>
 					</div>	
+					<div class="tab-pane" id="schemes">
+						<%@ include file="schemes.jsp"%>
+					</div>						
 					<div class="tab-pane" id="subscribers">
 						<%@ include file="subscribers.jsp"%>
 					</div>							
