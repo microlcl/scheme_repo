@@ -7,6 +7,7 @@
 				<input id="case_owner"
 				class="span4 easyui-combobox" name="paper.id"
 				data-options="url:'${ctx}/paper/api/search?businessType=${mycase.businessType.id}',method:'get',valueField:'id',textField:'paperName'" value="${mycase.paper.id}" <c:if test="${mycase.answered == true}">readonly</c:if>>
+		   <input id="reset_answer" class="btn" type="button" style="margin-left: 60px;" value="重置答案" onclick="ResetAnswer();"/>
 		</div>
 	</div>
 </div>
@@ -36,10 +37,27 @@
 							</c:forEach>
 						</c:if>
 						<c:if test="${question.questionType == '3'}">
-							<textarea name="paper.questions[${status.index}].questionOptions">${question.questionOptions}</textarea>
+							<textarea name="paper.questions[${status.index}].questionOptions" id="paper.questions[${status.index}].questionOptions">${question.questionOptions}</textarea>
 						</c:if>
                     </div>
 			</c:forEach>
 
 </div>
-
+<script type="text/javascript">
+ function ResetAnswer(){
+ 	var quests=document.getElementsByName("quest");      
+    var questnum=quests.length;
+    for(var i=0;i<questnum;i++){                        
+   	 	var questid=quests[i].getAttribute("value");  
+    	var options=document.getElementsByName(questid);                       
+    	var optionnum=options.length;
+    	if( optionnum == 1)
+    	    document.getElementById(questid).value ="";
+    	for(var j=0;j<optionnum;j++){                   
+       		if(options[j].checked){
+    		  options[j].checked = false;
+     		}
+    	}   	
+ 	}
+ }
+</script>
