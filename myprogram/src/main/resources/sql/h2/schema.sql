@@ -372,6 +372,7 @@ create table schemes (
 	scheme_name varchar(32) not null,
 	created_by varchar(64), -- 由谁创建
 	modified_timestamp timestamp, -- 修改时间
+	status varchar(64), -- 方案的状态（new, in progress, finished, trashed）,配置在category table的系统参数节点下
 	comment varchar(128)
 );
 

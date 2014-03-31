@@ -12,6 +12,7 @@ public class Scheme extends IdEntity {
 	private User creator;
 	private Date modificationTimestamp;
 	private List<Procedure> procedures;
+	private Category status;
 	
 	public String getName() {
 		return name;
@@ -55,7 +56,11 @@ public class Scheme extends IdEntity {
 	public void setModificationTimestamp(Date modificationTimestamp) {
 		this.modificationTimestamp = modificationTimestamp;
 	}
-	
-	
+	public Category getStatus() {
+		return status;
+	}
+	public void setStatus(Category status) {
+		this.status = status;
+	}
 
 }
