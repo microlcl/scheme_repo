@@ -36,8 +36,8 @@
 					<td style="color:#A1A1A1">${visit.customer.customerName}</td>
 				</tr>
 				<tr>
-					<td class="formlabel" >访问类别：</td>
-					<td style="color:#A1A1A1">${visit.visitType.name}</td>
+					<td class="formlabel" >跟单者：</td>
+					<td style="color:#A1A1A1">${visit.operator.id}</td>
 				</tr>
 				<tr>
 					<td class="formlabel">回访时间：</td>

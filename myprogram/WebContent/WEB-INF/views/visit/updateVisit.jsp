@@ -191,7 +191,7 @@
 							<div class="control-group span5 pull-right">
 								<label class="control-label" for="visitNumber">到访人数：</label>
 								<div class="controls">
-									<input type="text" class="required span4" id="visitNumber" name="visitNumber" value="${visit.visitNum}" class="input-large " maxlength="20" placeholder="请输入到访人数"/>
+									<input type="text" class="required span4" id="visitNumber" name="visitNum" value="${visit.visitNum}" class="input-large " maxlength="20" placeholder="请输入到访人数"/>
 									
 								</div>
 							</div>					

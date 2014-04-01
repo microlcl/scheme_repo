@@ -163,7 +163,7 @@
 	</update>
 	
 	<update id="updateVisit" parameterType="map">
-		update visit_activities set visit_type = #{visitType}, visitor_num = #{visitNum}, visit_stime = #{visitTime}, business_type = #{businessType}, is_visited = #{isVisited}, comment = #{comment}, operator=#{operator}, paper_id=#{paperId}
+		update visit_activities set visit_type = #{visitType}, visitor_num = #{visitNum}, visit_stime = #{visitTime}, business_type = #{businessType}, is_visited = #{isVisited}, comment = #{comment}, operator=#{operator}
 		where visit_id=#{visitId}
 	</update>
 	
