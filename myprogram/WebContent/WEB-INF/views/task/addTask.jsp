@@ -51,20 +51,26 @@
         }
      	function submitForm(){
 			console.log("测试");
-			if (($("#finishTime").val() != "") && ($("input[name='priority.id']").val() != "") && ($("input[name='taskType.id']").val() != "") && ($("input[name='department.id']").val() != "")&&($("input[name='owner.id']").val() != "")) {
-				console.log("In form submit");
-				$("#warning-block1").hide();
-				$("#warning-block2").hide();
-				$('#taskForm').submit();
-			}else if (($("input[name='priority.id']").val() == "") && ($("input[name='taskType.id']").val() == "") && ($("input[name='department.id']").val() == "")&&($("input[name='owner.id']").val() == "")){
+   		 	var beginTime =$('#createdTimestamp').val(); 
+    		var endTime =  $('#finishTime').val();  
+   			var beginTimes = beginTime.substring(0, 10).split('-');  
+    		var endTimes = endTime.substring(0, 10).split('-');  
+  
+    		beginTime = beginTimes[1] + '/' + beginTimes[2] + '/' + beginTimes[0]+ beginTime.substring(10, 19);  
+    		endTime = endTimes[1] + '/' + endTimes[2] + '/' + endTimes[0]+ endTime.substring(10, 16)+":00";   
+  
+
+		    var a = (Date.parse(endTime) - Date.parse(beginTime)) / 3600 / 1000;
+			if (($("#finishTime").val() == "")){
 				$("#warning-block2").hide();
 				$("#warning-block1").show();
 				return;
-			}else if (($("#finishTime").val() == "")){
-				$("#warning-block1").hide();
-				$("#warning-block2").show();
-				return;
+			}else if(a < 0){
+			    $("#warning-block2").show();
+			    $("#warning-block1").hide();
+			    return;
 			}else {
+				$('#taskForm').submit();
 				console.log("判断条件不正确");
 			}
 		}
@@ -85,10 +91,10 @@
 	<div class="form">
 		<h1>增加任务</h1>
 		<div class="alert hide" id="warning-block1">
-		  	   <strong>注意! </strong> 请确保您已选择 <strong> 任务类型 </strong> 或 <strong> 所属部门  </strong> 或 <strong>优先级</strong> 或  <strong>拥有者 </strong>。
+		  	   <strong>注意! </strong> 请确保您已选择 <strong> 计划完成时间 </strong>。
 		</div>
 		<div class="alert hide" id="warning-block2">
-		  	   <strong>注意! </strong> 请确保您已选择 <strong> 计划完成时间 </strong>。
+		  	   <strong>注意! </strong> 请确保您已选择 <strong> 计划完成时间 大于 创建时间 </strong>。
 		</div>
 		<form id="taskForm" action="${ctx}/task/save" method="post" class="form-horizontal" >
 		<div >
