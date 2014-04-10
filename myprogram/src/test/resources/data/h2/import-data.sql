@@ -528,3 +528,5 @@ insert into task_attachments(attachment_id,task_id) values (3,3);
 insert into attachments(attachment_id,user_id,uploaded_timestamp,path,file_size) values (1,'userid1','2014-02-24 18:00:00','C:\Users\IBM_ADMIN\Desktop\1',1024);
 insert into attachments(attachment_id,user_id,uploaded_timestamp,path,file_size) values (2,'userid2','2014-02-24 18:00:00','C:\Users\IBM_ADMIN\Desktop\1',1024);
 insert into attachments(attachment_id,user_id,uploaded_timestamp,path,file_size) values (3,'userid3','2014-02-24 18:00:00','C:\Users\IBM_ADMIN\Desktop\1',1024);
+
+insert into procedures (procedure_id, procedure_name, business_type) values (1, '婚礼录像', '1-0-2-0');

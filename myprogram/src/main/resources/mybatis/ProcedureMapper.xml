@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="com.eastteam.myprogram.dao.ProcedureMybatisDao">	
+
+	<resultMap id="procedureDetailMap" type="Procedure">
+		<id property="id" column="procedure_id" />
+		<result property="name" column="procedure_name" />
+
+		<association property="businessType" column="business_type" javaType="Category">
+			<id property="id" column="c_id" />
+			<result property="name" column="c_name" />
+		</association>
+	</resultMap>
+	
+	<select id="search" parameterType="map" resultMap="procedureDetailMap">
+		select p.procedure_id, p.procedure_name, p.business_type, c.id as c_id, c.name as c_name
+		from procedures p
+		left join category c on p.business_type=c.id
+
+		<if test="sort != null">
+			order by ${sort} 
+		</if>
+		<if test="offset != null">
+			limit #{offset}, #{pageSize}
+		</if>
+	</select>
+	
+	<select id="getCount" parameterType="map" resultType="Long">
+		select count(0) from procedures
+
+	</select>
+</mapper> 
