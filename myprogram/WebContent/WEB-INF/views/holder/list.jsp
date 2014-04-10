@@ -5,8 +5,12 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/bootstrap/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctx}/static/easyui/mytree.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/styles/form.css">
 	<link rel="stylesheet" type="text/css" href="${ctx}/static/holder/css/holder.css">
+	<script src="${ctx}/static/easyui/jquery.easyui.min.js" type="text/javascript"></script>
 	<title>场地管理</title>
 	<script>
 		$(document).ready(function() {
@@ -35,37 +39,33 @@
 	</script>
 </head>
 <body>
-<div class="form" style="padding:20px;">
+<div class="form">
 	<h1>场地管理</h1>
 	<c:if test="${not empty message}">
 		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
 	</c:if>
 	
-	<div class="row">
-		<div class="span">
-		  	<form class="form-search" action="#">
-			 	<label>会场名称：</label> <input type="text" name="search_space_name"   class="input-small"  value="${param.search_space_name }" style="width:205px;"> 
-			 	<label style="margin-left: 2cm;">场地名称：</label> <input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }" style="width:205px;"> 
-			 	<div style="padding-top:10px">
-				<label>星级：</label> 
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-				<select name="search_level" id="sellevel" >
+ 	<div class=" onefield" style="height:40px !important; text-align: right !important;padding-top: 7px;margin-left:20px;background-color: white;">
+ 		<form style="padding-left:10px;">
+ 			<span  style="float:left;">
+ 				会场名称：<input type="text" name="search_space_name"   class="input-small"  value="${param.search_space_name }" style="width:100px;"> 
+			 	&nbsp;&nbsp;场地名称：<input type="text" name="search_holder_name"   class="input-small"  value="${param.search_holder_name }" style="width:100px;"> 
+ 			           &nbsp;&nbsp; 星级：
+				<select name="search_level" id="sellevel" style="width:120px;">
 				<option value=""></option>
 				<option value="5">五星级</option>
 				<option value="4">四星级</option>
 				<option value="3">三星级</option>
 				</select>
-			    <label style="margin-left: 2cm;">关键字：</label>
-			    &nbsp;&nbsp;
-			    <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:205px;">
-			    <button type="submit" class="btn" id="search_btn" style="margin-left: 25px;" >搜索</button>			  
-			    <a href="${ctx}/holder/add/" style="margin-left: 2cm;">创建新场地</a>
-			    </div>
-		    </form>
-	    </div>
-	    <tags:sort/>
-	</div>
-	
+				&nbsp;&nbsp;关键字：
+			    <input type="text" name="search_keyword" class="input-small" value="${param.search_keyword}" style="width:100px;">	
+			    &nbsp;&nbsp;<button type="submit" class="btn" id="search_btn_test" style="margin-bottom:8px;"><i class="icon-search"></i></button>		  
+			    <button type="button" class="btn btn-success" onclick="location.href='${ctx}/holder/add/'" style="margin-left: 20px;margin-bottom:8px;"><i class="icon-plus" style="margin-right: 5px;"></i>创建新场地</button>
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<tags:sort/>
+ 			</span>
+ 		</form>
+ 	</div>
+ 	<div  style="padding:20px;">
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
 		<tr>
@@ -110,6 +110,7 @@
 		</tbody>
 	</table>
 	<tags:pagination page="${spaces}" paginationSize="4"/>
+	</div>
 </div>
 <div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
 </div>
