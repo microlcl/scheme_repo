@@ -117,8 +117,8 @@ function clearNoNum(obj)
 	}
 	function check(){
 		//验证默认图片是否选择
-		var default_picture_id = $("input[name=default_picture_id]").val();
-		if(default_picture_id==null||default_picture_id==""){
+		var defaultPictureId = $("input[name=defaultPictureId]").val();
+		if(defaultPictureId==null||defaultPictureId==""){
 			$("#message").show();
 			$("#message").html("请选择默认图片！");
 			return;
@@ -206,7 +206,7 @@ function clearNoNum(obj)
 								<td>
 									<div class="span3">
 										<img id="prod_default_pic" src="${ctx}/plupload/files/small/${product.media.path}" alt="" onclick="resourcePopupWindow({mediaType:'picture', callback: setMedia, renderPic:prod_default_pic})"/>
-										<input id="prod_pic" type="hidden" name=default_picture_id value="${product.default_picture_id}" />	
+										<input id="prod_pic" type="hidden" name=defaultPictureId value="${product.defaultPictureId}" />	
 									</div>
 								</td>
 								<td>

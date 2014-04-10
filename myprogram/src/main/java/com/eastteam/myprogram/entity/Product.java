@@ -7,7 +7,7 @@ public class Product extends IdEntity{
 	private String title;
 	private String status;
 	private String description;
-	private String default_picture_id;
+	private String defaultPictureId;
 	private BigDecimal price;
 	private List<Category> categories;
 	private Media media;
@@ -48,12 +48,17 @@ public class Product extends IdEntity{
 	public void setMedia(Media media) {
 		this.media = media;
 	}
-	public String getDefault_picture_id() {
-		return default_picture_id;
+	public String getDefaultPictureId() {
+		return defaultPictureId;
 	}
-	public void setDefault_picture_id(String default_picture_id) {
-		this.default_picture_id = default_picture_id;
+	public void setDefaultPictureId(String defaultPictureId) {
+		this.defaultPictureId = defaultPictureId;
 	}
-
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
 	
 }

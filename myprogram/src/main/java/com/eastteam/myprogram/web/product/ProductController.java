@@ -96,7 +96,7 @@ public class ProductController {
 //		String row_count = request.getParameter("row_count");
 		List<ProductCategory> list = new ArrayList<ProductCategory>();
 		String[] pictures = request.getParameterValues("picture");
-		String[] medias = request.getParameterValues("default_picture_id");
+		String[] medias = request.getParameterValues("defaultPictureId");
 		Long media_id = Long.parseLong(medias[0]);
 		Media media = this.productService.getMedia(media_id);
 		product.setMedia(media);

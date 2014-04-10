@@ -9,7 +9,7 @@
 		<result property="title" column="title" />
 		<result property="status" column="status" />
 		<result property="price" column="price" />
-		<result property="default_picture_id" column="default_picture_id" />
+		<result property="defaultPictureId" column="default_picture_id" />
 		<association property="media" column="default_picture_id" javaType="Media" select="selectMedia">
 			<id property="id" column="media_id" />
 			<result property="path" column="path" />
@@ -95,7 +95,7 @@
 	<!-- 插入产品-->
 	<insert id="save" parameterType="Product" useGeneratedKeys="true" keyProperty="id" >
 		insert into products (title,status,description,price,default_picture_id)
-		values(#{title},#{status},#{description},#{price},#{default_picture_id});
+		values(#{title},#{status},#{description},#{price},#{defaultPictureId});
 	</insert>
 	
 	<!-- 插入product_category-->
@@ -111,7 +111,7 @@
 	
 	 	<!-- 修改产品-->
 	<update id="update" parameterType="Product">
-		update products set title=#{title}, status=#{status}, description=#{description},default_picture_id=#{default_picture_id},price=#{price} where product_id=#{id};
+		update products set title=#{title}, status=#{status}, description=#{description},default_picture_id=#{defaultPictureId},price=#{price} where product_id=#{id};
 	</update>
 	
 	<!-- 修改产品-->
