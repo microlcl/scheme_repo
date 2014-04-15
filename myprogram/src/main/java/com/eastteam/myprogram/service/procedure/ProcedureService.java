@@ -1,5 +1,7 @@
 package com.eastteam.myprogram.service.procedure;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.eastteam.myprogram.dao.ProcedureMybatisDao;
+import com.eastteam.myprogram.entity.Procedure;
 import com.eastteam.myprogram.service.PageableService;
 import com.google.common.collect.Maps;
 
@@ -38,6 +41,27 @@ public class ProcedureService extends PageableService {
 	public Long getCount(Map parameters) {
 		// TODO Auto-generated method stub
 		return procedureDao.getCount(parameters);
+	}
+	
+	public void saveProcedure(Procedure procedure) {
+		logger.info("in procedure save service");
+		this.procedureDao.insertProcedure(procedure);
+	}
+	
+	public void updateProcedure(Procedure procedure) {
+		logger.info("in procedure update service");
+		this.procedureDao.updateProcedure(procedure);
+	}
+	
+	public Procedure selectProcedure(String paperId) {
+		logger.info("in procedurer select procedure service");
+		return(this.procedureDao.selectProcedure(Long.parseLong(paperId)));
+		
+	}
+	
+	public void deleteProcedure(String paperId) {
+		logger.info("in procedure save service");
+		this.procedureDao.deleteProcedure(Long.parseLong(paperId));
 	}
 
 }

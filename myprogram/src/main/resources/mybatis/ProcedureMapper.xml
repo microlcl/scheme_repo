@@ -18,7 +18,17 @@
 		select p.procedure_id, p.procedure_name, p.business_type, c.id as c_id, c.name as c_name
 		from procedures p
 		left join category c on p.business_type=c.id
-
+		<where>
+			<if test="name != null">
+		        p.procedure_name like '%${name}%'
+			</if>
+			<if test="categoryId != null">
+		        and c.id = #{categoryId}
+			</if>
+			<if test="keyword != null">
+				and (p.procedure_name like '%${keyword}%' or c.name like '%${keyword}%')
+			</if>
+		</where>
 		<if test="sort != null">
 			order by ${sort} 
 		</if>
@@ -28,7 +38,39 @@
 	</select>
 	
 	<select id="getCount" parameterType="map" resultType="Long">
-		select count(0) from procedures
-
+		select count(0) from (select distinct p.procedure_id from procedures p
+		left join category c on p.business_type=c.id
+		<where>
+			<if test="name != null">
+		        p.procedure_name like '%${name}%'
+			</if>
+			<if test="businessType != null">
+		        and c.id = #{businessType}
+			</if>
+			<if test="keyword != null">
+				and (p.procedure_name like '%${keyword}%' or c.name like '%${keyword}%')
+			</if>
+		</where>)t
 	</select>
+	
+	<insert id="insertProcedure" parameterType="Procedure" useGeneratedKeys="true" keyProperty="id">
+	    insert into procedures (procedure_name,business_type)
+	    values(#{name},#{businessType.id});
+	</insert>
+	
+	<insert id="updateProcedure" parameterType="Procedure">
+	    update procedures set procedure_name=#{name},business_type=#{businessType.id}
+	    where procedure_id=#{id}
+	</insert>
+	
+	<select id="selectProcedure" parameterType="map" resultMap="procedureDetailMap">
+		select p.procedure_id, p.procedure_name, p.business_type, c.id as c_id, c.name as c_name
+		from procedures p
+		left join category c on p.business_type=c.id
+		where p.procedure_id=#{procedureId};
+	</select>
+	
+	<delete id="deleteProcedure" parameterType="Long">
+		delete from procedures p where p.procedure_id=#{procedureId}
+	</delete>
 </mapper> 

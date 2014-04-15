@@ -17,19 +17,22 @@
 <body>
 	<div class="form">
 		<h1>环节</h1>
-<!--  		<div class=" onefield" style="height:40px !important; text-align: right !important;padding-right: 10px;padding-top: 7px;margin-left:20px;background-color: white;">
+		<c:if test="${not empty message}">
+		<div id="message" class="alert alert-success"><button data-dismiss="alert" class="close">×</button>${message}</div>
+		</c:if>
+  		<div class=" onefield" style="height:40px !important; text-align: right !important;padding-right: 10px;padding-top: 7px;margin-left:20px;background-color: white;">
 			<form style="padding-left:10px;">
 				<span  style="float:left;">
-					问卷状态：
-					<input id="cc1" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/M1-8',method:'get',required:false" style="width:200px;" name="search_categoryId1" value="${param.search_categoryId}" />
-					&nbsp;&nbsp;&nbsp;&nbsp;问卷类型：
-					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId2" value="${param.search_categoryId}"/>
-					<button type="button" class="btn btn-success" onclick="location.href='${ctx}/paper/add/'" style="margin-left: 20px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建问卷</button>
+					环节名称：
+					<input id="cc1" type="text"  name="search_name" style="width:150px;margin-bottom: 0px;margin-left:10px;" >
+					&nbsp;&nbsp;&nbsp;&nbsp;环节类型：
+					<input id="cc2" class="easyui-combotree" data-options="url:'${ctx}/category/api/getAll/getBusinessType',method:'get',required:false" style="width:200px;" name="search_categoryId" value="${param.search_categoryId}"/>
+					<button type="button" class="btn btn-success" onclick="location.href='${ctx}/procedure/add/'" style="margin-left: 20px;"><i class="icon-plus" style="margin-right: 5px;"></i>新建环节</button>
 				</span>
 				<input type="text" name="search_keyword" value="${param.search_keyword}" style="width:150px;margin-bottom: 0px;margin-left:10px;" placeholder="输入关键字搜索">
 				<button type="submit" class="btn" id="search_btn_test"><i class="icon-search"></i></button>
 			</form>
-		</div>   -->
+		</div>   
 		<div  style="padding:20px;">
 			<table id="contentTable" class="table table-striped table-bordered table-condensed">
 				<thead>
@@ -52,7 +55,11 @@
 				</c:forEach>
 				</tbody>		
 			</table>
-		</div>
+			<tags:pagination page="${procedures}" paginationSize="4"/>
+		</div>		
+	</div>
+	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
+	
 	</div>
 </body>
 </html>
