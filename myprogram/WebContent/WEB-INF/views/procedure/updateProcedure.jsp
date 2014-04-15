@@ -70,7 +70,7 @@
 </head>
 <body>
 	<div class="form">
-		<h1>新增环节</h1>
+		<h1>修改环节</h1>
 		<div class="alert hide" id="warning-block">
 	  	   <strong>注意! </strong>请选择环节类型。
 		</div>
@@ -84,6 +84,8 @@
 				<input id="submit_btn" style="height: 40px !important;width: 120px !important; margin-top: 10px;" type="button" class="btn btn-warning" onclick="submitForm();" value="更改"/>&nbsp;	
 				<input id="cancel_btn" style="height: 40px !important;width: 120px !important; margin-top: 10px;" type="button" class="btn" value="返回" onclick="history.back()"/>				
 		</div>
+	</div>
+	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">
 	</div>
 </body>
 </html>

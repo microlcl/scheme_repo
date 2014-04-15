@@ -76,5 +76,7 @@
 				<input id="cancel_btn" style="height: 40px !important;width: 120px !important; margin-top: 10px;" type="button" class="btn" value="返回" onclick="history.back()"/>				
 		</div>
 	</div>
+	<div class="form-actions" style="min-height: 23px;margin-top: 0 !important;">	
+	</div>
 </body>
 </html>
